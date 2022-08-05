@@ -22,6 +22,7 @@ jobs:
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version}}
+            - run: git pull origin master
             - run: npm i
             - run: npm run build
             - run: mv /var/www/tranining/reactjs-ecommerce/build /var/www/tranining/reactjs-ecommerce/deploy
