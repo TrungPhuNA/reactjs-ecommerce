@@ -13,7 +13,7 @@ jobs:
         # Name of the job
         name: Build
         # The OS to run the job on
-        runs-on: reactjs-runner
+        runs-on: self-hosted
         # Steps
         steps:
             - name: Checkout Code
@@ -34,7 +34,7 @@ jobs:
     # Deploy Job
     deploy:
         name: Deploy
-        runs-on: reactjs-runner
+        runs-on: self-hosted
         needs: build
 
         steps:
