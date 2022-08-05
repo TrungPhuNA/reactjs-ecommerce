@@ -12,7 +12,7 @@
 ## Pm2
 `nginx`
 `Run build`
-`pm2 --name le-reactjs  serve build/ 5001 --spa`
+`pm2 --name le-reactjs  serve deploy/build/ 5001 --spa`
 
 ## Cấu trúc dự án
 `

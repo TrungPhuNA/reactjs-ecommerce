@@ -12,7 +12,7 @@ function App() {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Xin chào Phú ĐZ. Tôi giúp bạn được điều gì ko nhỉ
+                    Xin chào Phú ĐZ. Tôi giúp bạn được điều gì ko nhỉ, OK lần này OK
                 </a>
             </header>
         </div>
