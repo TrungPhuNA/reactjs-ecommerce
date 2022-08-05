@@ -23,6 +23,6 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version}}
             - run: git pull origin master
-#            - run: npm i
+            - run: npm i
             - run: npm run build
             - run: mv /var/www/tranining/reactjs-ecommerce/_work/reactjs-ecommerce/reactjs-ecommerce/build/ /var/www/tranining/reactjs-ecommerce/build/
