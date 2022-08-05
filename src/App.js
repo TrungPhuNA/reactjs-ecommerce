@@ -12,7 +12,7 @@ function App() {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Xin chào Phú ĐZ
+                    Xin chào Phú ĐZ. Tôi giúp bạn được điều gì ko nhỉ
                 </a>
             </header>
         </div>
