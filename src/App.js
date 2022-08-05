@@ -12,7 +12,7 @@ function App() {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Mệt rồi :( như cc
+                    Mệt rồi :( như cc v6
                 </a>
             </header>
         </div>
