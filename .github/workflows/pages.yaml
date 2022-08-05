@@ -11,7 +11,7 @@ jobs:
     # Build Job
     build:
         # Name of the job
-        name: Build
+        name: Build Reactjs
         # The OS to run the job on
         runs-on: self-hosted
         # Steps
@@ -22,29 +22,5 @@ jobs:
               uses: actions/setup-node@v1
               with:
                   node-version: 16.x
-            - name: Install NPM Dependencies
-              run: npm i
-            - name: Build Project
-              run: npm run build
-            - name: Upload artifact in order to deploy
-              uses: actions/upload-artifact@v2
-              with:
-                  name: production-files
-                  path: ./dist
-    # Deploy Job
-    deploy:
-        name: Deploy
-        runs-on: self-hosted
-        needs: build
-
-        steps:
-            - name: Download artifact
-              uses: actions/download-artifact@v2
-              with:
-                  name: production-files
-                  path: ./dist
-            - name: Deploy to gh pages
-              uses: peaceiris/actions-gh-pages@v3
-              with:
-                  github_token: ${{ secrets.GH_ACCESS_TOKEN }}
-                  publish_dir: ./dist
+            - run: npm i
+            - run: npm run build
