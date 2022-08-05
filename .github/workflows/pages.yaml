@@ -25,4 +25,4 @@ jobs:
             - run: git pull origin master
             - run: npm i
             - run: npm run build
-            - run: mv /var/www/tranining/reactjs-ecommerce/_work/reactjs-ecommerce/reactjs-ecommerce/build /var/www/tranining/reactjs-ecommerce/deploy
+            - run: mv /var/www/tranining/reactjs-ecommerce/_work/reactjs-ecommerce/reactjs-ecommerce/build /var/www/tranining/reactjs-ecommerce/
