@@ -18,9 +18,10 @@ jobs:
         steps:
             - name: Checkout Code
               uses: actions/checkout@v2
-            - name: Install node 16
+            - name: Install Node
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version}}
             - run: npm i
             - run: npm run build
+            - run: mv /var/www/tranining/reactjs-ecommerce/build /var/www/tranining/reactjs-ecommerce/build
