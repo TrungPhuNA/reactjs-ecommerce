@@ -1,8 +1,7 @@
 import React, {useState,useEffect } from "react";
 import ProductSummary from "./ProductSumary";
 
-function Suggestion({
-}) {
+function Suggestion() {
     const [disCount,setDistCount]=useState(true);
     const [suggestTitle,setSuggestTitle] = useState([]);
 
@@ -14,7 +13,7 @@ function Suggestion({
           tab:true,
           src:"https://salt.tikicdn.com/ts/personalish/f9/27/b5/3a8e2286a1c8fb91b67acc5ee35f82f0.png"
       },
-      {
+      { 
           id:2,
           name:'Coupon 10 Triệu',
           tab:false,
@@ -64,7 +63,7 @@ function Suggestion({
 
     const changeTab = (tabNumber) => {
         let title = suggestTitle.map(item => {
-            item.tab = item.id == tabNumber ? true:false;
+            item.tab = item.id === tabNumber ? true:false;
             return item
         })
        setSuggestTitle(title);
