@@ -10,9 +10,7 @@ function App() {
   return (
     <div className="layout">
         <Header/>
-         <main>
             {route_item}
-          </main> 
           <Footers/>
     </div>
   )

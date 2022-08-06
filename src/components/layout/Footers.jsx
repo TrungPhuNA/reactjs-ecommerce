@@ -27,19 +27,19 @@ export default function Footers(){
                         Báo lỗi bảo mật: <a href="">security@tiki.vn</a>
                         </p>
                     </div>
-                    <div class="block">
+                    <div className="block">
                         <h4>Về tiki</h4>
-                        <a href="" class="small-text">Giới thiệu Tiki</a>
-                        <a href="" class="small-text">Tuyển dụng</a>
-                        <a href="" class="small-text">Chính sách bảo mật thanh toán</a>
-                        <a href="" class="small-text">Chính sách bảo mật thông tin cá nhân</a>
-                        <a href="" class="small-text">Chính sách giải quyết khiếu nại</a>
-                        <a href="" class="small-text">Điều khoản sử dụng</a>
-                        <a href="" class="small-text">Giới thiệu Tiki Xu</a>
-                        <a href="" class="small-text">SEP - Mua sắm có lời</a>
-                        <a href="" class="small-text">Tiếp thị liên kết cùng Tiki</a>
-                        <a href="" class="small-text">Bán hàng doanh nghiệp</a>
-                        <a href="" class="small-text">Điều kiện vận chuyển</a>
+                        <a href="" className="small-text">Giới thiệu Tiki</a>
+                        <a href="" className="small-text">Tuyển dụng</a>
+                        <a href="" className="small-text">Chính sách bảo mật thanh toán</a>
+                        <a href="" className="small-text">Chính sách bảo mật thông tin cá nhân</a>
+                        <a href="" className="small-text">Chính sách giải quyết khiếu nại</a>
+                        <a href="" className="small-text">Điều khoản sử dụng</a>
+                        <a href="" className="small-text">Giới thiệu Tiki Xu</a>
+                        <a href="" className="small-text">SEP - Mua sắm có lời</a>
+                        <a href="" className="small-text">Tiếp thị liên kết cùng Tiki</a>
+                        <a href="" className="small-text">Bán hàng doanh nghiệp</a>
+                        <a href="" className="small-text">Điều kiện vận chuyển</a>
                     </div>
                     <div className="block">
                         <h4>Hợp tác và liên hệ</h4>
@@ -137,10 +137,9 @@ export default function Footers(){
                 <div className="py-3">
                     <h1>Danh mục sản phẩm</h1>
                     <div className="category">
-                        {cate.map((item) => {
+                        {cate.map((item,index) => {
                             return (
-                                <>
-                                 <div className="category-item">
+                                 <div key={index.toString()}  className="category-item">
                                     <div className="category-item--title">
                                         <a href="">Đồ Chơi - Mẹ  Bé</a>
                                         <p>
@@ -148,7 +147,6 @@ export default function Footers(){
                                         </p>
                                     </div>
                                 </div>
-                                </>
                             )
                         })}
                     </div>
