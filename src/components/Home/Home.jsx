@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import HomeBanner from "../Banners/HomeBanner";
 import FamousCategory from "../Category/FamousCategory";
 import Suggestion from "../products/Suggestion";
 
 function Home() {
- 
-  
-
     return (
       <main>
         <FamousCategory/>

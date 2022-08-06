@@ -9,48 +9,48 @@ export default function Footers(){
                     <div className="block">
                         <h4>Hỗ trợ khách hàng</h4>
                         <p className="hot-line">
-                        Hotline: <a >1900-6035</a>
+                        Hotline: <a href="/home">1900-6035</a>
                         <span className="small-text">(1000 đ/phút, 8-21h kể cả T7, CN)</span>
                         </p>
-                        <a href="" className="small-text">Các câu hỏi thường gặp</a>
-                        <a href="" className="small-text">Gửi yêu cầu hỗ trợ</a>
-                        <a href="" className="small-text">Hướng dẫn đặt hàng</a>
-                        <a href="" className="small-text">Phương thức vận chuyển</a>
-                        <a href="" className="small-text">Chính sách đổi trả</a>
-                        <a href="" className="small-text">Hướng dẫn trả góp</a>
-                        <a href="" className="small-text">Chính sách hàng nhập khẩu</a>
+                        <a href="/home" className="small-text">Các câu hỏi thường gặp</a>
+                        <a href="/home" className="small-text">Gửi yêu cầu hỗ trợ</a>
+                        <a href="/home" className="small-text">Hướng dẫn đặt hàng</a>
+                        <a href="/home" className="small-text">Phương thức vận chuyển</a>
+                        <a href="/home" className="small-text">Chính sách đổi trả</a>
+                        <a href="/home" className="small-text">Hướng dẫn trả góp</a>
+                        <a href="/home" className="small-text">Chính sách hàng nhập khẩu</a>
 
                         <p className="security">
-                        Hỗ trợ khách hàng: <a href="">hotro@tiki.vn</a>
+                        Hỗ trợ khách hàng: <a href="/home">hotro@tiki.vn</a>
                         </p>
                         <p className="security mb-0">
-                        Báo lỗi bảo mật: <a href="">security@tiki.vn</a>
+                        Báo lỗi bảo mật: <a href="/home">security@tiki.vn</a>
                         </p>
                     </div>
                     <div className="block">
                         <h4>Về tiki</h4>
-                        <a href="" className="small-text">Giới thiệu Tiki</a>
-                        <a href="" className="small-text">Tuyển dụng</a>
-                        <a href="" className="small-text">Chính sách bảo mật thanh toán</a>
-                        <a href="" className="small-text">Chính sách bảo mật thông tin cá nhân</a>
-                        <a href="" className="small-text">Chính sách giải quyết khiếu nại</a>
-                        <a href="" className="small-text">Điều khoản sử dụng</a>
-                        <a href="" className="small-text">Giới thiệu Tiki Xu</a>
-                        <a href="" className="small-text">SEP - Mua sắm có lời</a>
-                        <a href="" className="small-text">Tiếp thị liên kết cùng Tiki</a>
-                        <a href="" className="small-text">Bán hàng doanh nghiệp</a>
-                        <a href="" className="small-text">Điều kiện vận chuyển</a>
+                        <a href="/home" className="small-text">Giới thiệu Tiki</a>
+                        <a href="/home" className="small-text">Tuyển dụng</a>
+                        <a href="/home" className="small-text">Chính sách bảo mật thanh toán</a>
+                        <a href="/home" className="small-text">Chính sách bảo mật thông tin cá nhân</a>
+                        <a href="/home" className="small-text">Chính sách giải quyết khiếu nại</a>
+                        <a href="/home" className="small-text">Điều khoản sử dụng</a>
+                        <a href="/home" className="small-text">Giới thiệu Tiki Xu</a>
+                        <a href="/home" className="small-text">SEP - Mua sắm có lời</a>
+                        <a href="/home" className="small-text">Tiếp thị liên kết cùng Tiki</a>
+                        <a href="/home" className="small-text">Bán hàng doanh nghiệp</a>
+                        <a href="/home" className="small-text">Điều kiện vận chuyển</a>
                     </div>
                     <div className="block">
                         <h4>Hợp tác và liên hệ</h4>
-                        <a href="" className="small-text">Quy chế hoạt động Sàn GDTMĐT</a>
-                        <a href="" className="small-text">Bán hàng cùng Tiki</a>
+                        <a href="/home" className="small-text">Quy chế hoạt động Sàn GDTMĐT</a>
+                        <a href="/home" className="small-text">Bán hàng cùng Tiki</a>
                         <h4>Chứng nhận bởi</h4>
                         <div className="d-flex">
-                        <a >
+                        <a href="/home">
                             <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt=""/>
                         </a>
-                        <a href="">
+                        <a href="/home">
                             <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong.svg" width="83" height="32" alt=""/>
                         </a>
                         </div>
@@ -67,7 +67,7 @@ export default function Footers(){
                         </p>
                         <h4>Dịch vụ giao hàng</h4>
                         <p>
-                            <a href="">
+                            <a href="/home">
                             <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="68" height="32" alt="" />
                             </a>
                         </p>
@@ -75,13 +75,13 @@ export default function Footers(){
                     <div className="block">
                         <h4>Kết nối với chúng tôi</h4>
                         <p>
-                            <a href="">
+                            <a href="/home">
                             <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="" />
                             </a>
-                            <a href="">
+                            <a href="/home">
                             <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="" />
                             </a>
-                            <a href="">
+                            <a href="/home">
                             <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="" />
                             </a>
                         </p>
@@ -89,10 +89,10 @@ export default function Footers(){
                         <div className="d-flex">
                             <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/qrcode.png" height="80" width="80" alt="" />
                             <div className="dowload-app">
-                            <a href="">
+                            <a href="/home">
                                 <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/appstore.png" width="122" alt="" />
                             </a>
-                            <a href="">
+                            <a href="/home">
                                 <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/playstore.png" width="122" alt="" />
                             </a>
                             </div>
@@ -119,18 +119,18 @@ export default function Footers(){
                     <h1>Tiki - Thật nhanh, thật chất lượng, thật rẻ</h1>
                     <h2>Tiki có tất cả</h2>
                     <p>Với hàng triệu sản phẩm từ các thương hiệu, cửa hàng uy tín, hàng nghìn loại mặt hàng từ
-                    <a href="">Điện thoại smartphone</a>
+                    <a href="/home">Điện thoại smartphone</a>
                     tới
-                    <a href="">Rau củ quả tươi</a>
+                    <a href="/home">Rau củ quả tươi</a>
                     , kèm theo dịch vụ giao hàng siêu tốc TikiNOW, Tiki mang đến cho bạn một trải nghiệm mua sắm online bắt đầu bằng chữ tín. Thêm vào đó, ở Tiki bạn có thể dễ dàng sử dụng vô vàn các tiện ích khác như
-                    <a href="">mua thẻ cào, thanh toán hoá đơn điện nước, các dịch vụ bảo hiểm.</a>
+                    <a href="/home">mua thẻ cào, thanh toán hoá đơn điện nước, các dịch vụ bảo hiểm.</a>
                     </p>
                     <h2>Khuyến mãi, ưu đãi tràn ngập</h2>
                     <p>
-                    Bạn muốn săn giá sốc, Tiki có <a href="">giá sốc mỗi ngày</a>  cho bạn! Bạn là tín đồ của các thương hiệu, các <a href="">cửa hàng Official chính hãng</a>
-                    đang chờ đón bạn. Không cần săn mã freeship, vì Tiki đã có hàng triệu sản phẩm trong <a href="">chương trình Freeship+</a>, không giới hạn lượt đặt, tiết kiệm thời gian vàng bạc của bạn. Mua thêm gói
-                    <a href="">TikiNOW tiết kiệm</a> để nhận 100% free ship 2h & trong ngày, hoặc mua gói TikiNOW cao cấp để nhận được 100% freeship, áp dụng cho 100% sản phẩm, 100% tỉnh thành Việt Nam. Bạn muốn tiết kiệm hơn nữa? Đã có TikiCARD,
-                    <a href="">thẻ tín dụng Tiki hoàn tiền 15%</a> trên mọi giao dịch (tối đa hoàn 600k/tháng)
+                    Bạn muốn săn giá sốc, Tiki có <a href="/home">giá sốc mỗi ngày</a>  cho bạn! Bạn là tín đồ của các thương hiệu, các <a href="/home">cửa hàng Official chính hãng</a>
+                    đang chờ đón bạn. Không cần săn mã freeship, vì Tiki đã có hàng triệu sản phẩm trong <a href="/home">chương trình Freeship+</a>, không giới hạn lượt đặt, tiết kiệm thời gian vàng bạc của bạn. Mua thêm gói
+                    <a href="/home">TikiNOW tiết kiệm</a> để nhận 100% free ship 2h & trong ngày, hoặc mua gói TikiNOW cao cấp để nhận được 100% freeship, áp dụng cho 100% sản phẩm, 100% tỉnh thành Việt Nam. Bạn muốn tiết kiệm hơn nữa? Đã có TikiCARD,
+                    <a href="/home">thẻ tín dụng Tiki hoàn tiền 15%</a> trên mọi giao dịch (tối đa hoàn 600k/tháng)
                     </p>
                 </div>
                 <div className="style-line"></div>
@@ -141,9 +141,9 @@ export default function Footers(){
                             return (
                                  <div key={index.toString()}  className="category-item">
                                     <div className="category-item--title">
-                                        <a href="">Đồ Chơi - Mẹ  Bé</a>
+                                        <a href="/home">Đồ Chơi - Mẹ  Bé</a>
                                         <p>
-                                            <a href=""> askdjkasd /</a>
+                                            <a href="/home"> askdjkasd /</a>
                                         </p>
                                     </div>
                                 </div>

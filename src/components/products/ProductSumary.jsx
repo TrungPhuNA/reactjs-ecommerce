@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 function ProductSummary({disCount,setDisCount}) {
     const src_1 = "https://salt.tikicdn.com/ts/upload/dc/0d/49/ef9dc5d8164bd62b011e54276502b342.png";
     const src_2 = "https://salt.tikicdn.com/cache/280x280/media/catalog/product/tmp/ef/dd/4e/bf2a14ed2c1593a704ddcffc960f7877.jpg";
     return (
         <div className="dashboard-product--item">
-            <a  className="product-item">
+            <a href="/home" className="product-item">
                 <div className="product-item--style">
                     <div className="thumbnail">
                         <img className="thumbnail--icon-badge" src={src_1} width="136" height="24" alt=""/>

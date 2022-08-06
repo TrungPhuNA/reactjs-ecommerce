@@ -92,7 +92,7 @@ function FamousCategory() {
                         <div className="body-slide--list">
                             { categories.map((category,index) => {
                                 return (
-                                    <a key={index.toString()} href="" className="item">
+                                    <a href="/home" key={index.toString()} className="item">
                                         <img src={category.src} alt="" />
                                         <h3>{category.title}</h3>
                                     </a>
