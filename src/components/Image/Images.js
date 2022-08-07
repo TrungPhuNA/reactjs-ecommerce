@@ -23,7 +23,7 @@ const Images = ({ src, alt }) => {
           )
           observer.observe(imageRef);
         } else {
-          setImageSrc(src);
+            console.log("not working")
         }
       }
       return () => {
@@ -33,7 +33,7 @@ const Images = ({ src, alt }) => {
         }
       }
     })
-    return <img ref={setImageRef} src={imageSrc} alt={alt} />
+    return <img ref={(element) => setImageRef(element)} src={imageSrc} alt={alt} />
 
   }
   export default Images

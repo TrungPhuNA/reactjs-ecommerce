@@ -7,7 +7,7 @@ import HomeDeal from "./HomeDeal";
 import HomeAdv from "./HomeAdv";
 import HomeCategory from "./HomeCategory";
 import Images from "../Image/Images";
-import { isSmallScreen, isWideScreen } from "../../helpers/screen";
+import {isWideScreen } from "../../helpers/screen";
 import MenuMobile from "../layout/MenuMobile";
 import MobileHeader from "../layout/MobileHeader";
 
