@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Pagination, Navigation, Autoplay,Lazy } from "swiper";
+import Images from "../Image/Images";
 
 const settingsSlide = {
     slidesPerView:2,
@@ -68,7 +69,7 @@ function HomeBrand() {
             <div className="famous-brand">
                 <div className="famous-brand--header">
                     <div className="main-title d-flex fs-20">
-                        <img className="mx-0 my-auto" src="https://salt.tikicdn.com/ts/upload/33/0f/67/de89fab36546a63a8f3a8b7d038bff81.png" width="24" height="24" alt="" />
+                        <Images src="https://salt.tikicdn.com/ts/upload/33/0f/67/de89fab36546a63a8f3a8b7d038bff81.png" alt="aaa" />
                         <div className="main-title__text">Thương Hiệu Chính Hãng</div>
                     </div>
                     <a href="/home" className="see-more">Xem thêm</a>
@@ -82,7 +83,7 @@ function HomeBrand() {
                                                 <div className="brand-item">
                                                     <a href="/home">
                                                         <div className="position-relative">
-                                                            <img className="brand-img swiper-lazy" src={item.src} alt={item.title}/>
+                                                            <Images src={item.src} alt={item.title}/>
                                                             <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
                                                         </div>
                                                     </a>
@@ -104,7 +105,7 @@ function HomeBrand() {
                                             <div className="slick-slide">
                                                 <a href="/home" className="text">
                                                     <div className="position-relative">
-                                                        <img className="img-brand" src="https://salt.tikicdn.com/ts/banner/4d/5b/21/23b24cbfaac38c74a43fef60343194e8.png" alt="" />
+                                                        <Images src="https://salt.tikicdn.com/ts/banner/4d/5b/21/23b24cbfaac38c74a43fef60343194e8.png" alt="âds" />
                                                         <p className="brand__title">Giảm đến 50%</p>
                                                     </div>
                                                 </a>

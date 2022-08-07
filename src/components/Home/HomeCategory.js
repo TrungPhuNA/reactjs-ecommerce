@@ -16,7 +16,6 @@ const settingsSlide = {
     className:"category-swiper"
 }
 function HomeCategory() {
-    const arr_6 = Array.from(Array(6).keys());
     const [brand,setBrand] = useState([]);
 
     useEffect(() => {

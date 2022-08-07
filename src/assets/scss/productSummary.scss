@@ -36,6 +36,11 @@
             display: block;
             position: absolute;
             z-index: 2;
+            
+            img {
+                width: 136px;
+                height: 24px;
+            }
           }
           &--product-img {
             position: relative;

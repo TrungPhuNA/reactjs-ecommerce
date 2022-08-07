@@ -1,4 +1,5 @@
 import React, {useState,useEffect } from "react";
+import Images from "../Image/Images";
 import ProductSummary from "../products/ProductSumary";
 
 function HomeSuggest() {
@@ -79,7 +80,7 @@ function HomeSuggest() {
                                 return (
                                     <>
                                     <div keys={item.id.toString()} className={`tab ${item.tab ? 'active' : ''}`} onClick={() => changeTab(item.id)}>
-                                        <img width="48" alt="" src={item.src} />
+                                        <Images alt="test" src={item.src} />
                                         <div className="tab-text fs-13">{item.name}</div>
                                     </div>
                                     </>   

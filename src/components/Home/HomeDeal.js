@@ -33,7 +33,7 @@ const settingSlide2 = {
 function HomeDeal() {
 
     const [deal,setDeal] = useState([]);
-    const [hours, minutes, seconds] = useCountdown('2022-8-8');
+    const [hours, minutes, seconds] = useCountdown('2022-10-7');
     const deal_right = [
         {
             id:1,
@@ -121,9 +121,9 @@ function HomeDeal() {
                     <div className="header">
                         <div className="header-left">
                             <div>
-                                <img alt="flash-deal" className="flash-deal" src="https://frontend.tikicdn.com/_desktop-next/static/img/giasoc.svg"/>
-                                <img alt="flash-deal" width="21" className="flash-deal middle" src="https://frontend.tikicdn.com/_desktop-next/static/img/dealFlashIcon.svg"/>
-                                <img alt="flash-deal" className="flash-deal" src="https://frontend.tikicdn.com/_desktop-next/static/img/homnay.svg"/>
+                                <img alt="flash-deal12" className="flash-deal" src="https://frontend.tikicdn.com/_desktop-next/static/img/giasoc.svg"/>
+                                <img alt="flash-deal2" width="21" className="flash-deal middle" src="https://frontend.tikicdn.com/_desktop-next/static/img/dealFlashIcon.svg"/>
+                                <img alt="flash-deal3" className="flash-deal" src="https://frontend.tikicdn.com/_desktop-next/static/img/homnay.svg"/>
                             </div>
                             <div>
                                 <a href="/home">
@@ -161,7 +161,7 @@ function HomeDeal() {
                         deal_right.map((item,index) => {
                             return(
                                 <SwiperSlide key={index}>
-                                  {item.type === 2 && <img src={item.src} height="274" width="488" alt={index.toString}/>}  
+                                  {item.type === 2 && <img src={item.src} height="274" width="488" alt="1212"/>}  
                                 </SwiperSlide>
                             )
                         })

@@ -3,15 +3,16 @@ import { routes } from '../../router/router'
 import Header from "./Header";
 import Footers from "./Footers";
 import { useRoutes } from "react-router-dom";
+import { isWideScreen } from "../../helpers/screen";
 
 
 function App() {
   const route_item = useRoutes(routes());
   return (
     <div className="layout">
-        <Header/>
+        {isWideScreen() && <Header/>}
             {route_item}
-          <Footers/>
+        {isWideScreen() && <Footers/>}
     </div>
   )
 }

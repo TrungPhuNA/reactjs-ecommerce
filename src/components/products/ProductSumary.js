@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import Images from "../Image/Images";
 
 function ProductSummary({disCount,setDisCount,deal,price}) {
     const src_1 = "https://salt.tikicdn.com/ts/upload/dc/0d/49/ef9dc5d8164bd62b011e54276502b342.png";
     const src_2 = "https://salt.tikicdn.com/cache/280x280/media/catalog/product/tmp/ef/dd/4e/bf2a14ed2c1593a704ddcffc960f7877.jpg";
+
     return (
         <div className="dashboard-product--item">
             <a href="/home" className="product-item">
                 <div className={`product-item--style ${!deal? 'not-style':''}`}>
                     <div className="thumbnail">
-                        <img className="thumbnail--icon-badge" src={src_1} width="136" height="24" alt=""/>
+                        <div className="thumbnail--icon-badge">
+                            <Images src={src_1} alt="333"/>
+                        </div>
                         <div className="thumbnail--product-img">
-                            <img src={src_2} alt="" />
+                            <Images src={src_2} alt="111" />
                         </div>
                     </div>
                     <div className="infor">
@@ -54,7 +58,7 @@ function ProductSummary({disCount,setDisCount,deal,price}) {
                     <div className="deal-quty">
                         <div className="deal-progress">
                             <span>Sắp bán hết</span>
-                            <img src="https://frontend.tikicdn.com/_desktop-next/static/img/fire_icon.svg"/>
+                            <Images src="https://frontend.tikicdn.com/_desktop-next/static/img/fire_icon.svg" alt="222"/>
                         </div>
                     </div>
                         
