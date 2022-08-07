@@ -3,7 +3,7 @@ import React from "react";
 function HomeBanner({number}) {
     return (
         <div className="cm-width">
-            {number == 4 && 
+            {number === 4 && 
                     <>
                     <div className="home-banner--top">
                         <a href="/home">
@@ -22,7 +22,7 @@ function HomeBanner({number}) {
                         
                     </>
                 }
-            {number != 4 && 
+            {number !== 4 && 
                 <>
                 <div className="home-banner">
                     <a href="/home">
