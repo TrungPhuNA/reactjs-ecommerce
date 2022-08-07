@@ -25,7 +25,6 @@ const settingsSlide = {
     className:"advertise-swiper"
 }
 function HomeAdv() {
-    const arr_6 = Array.from(Array(6).keys());
     const [brand,setBrand] = useState([]);
 
     useEffect(() => {
@@ -87,7 +86,7 @@ function HomeAdv() {
                             </Swiper>
                 </div>
                 <div className="right">
-                    <img src="https://salt.tikicdn.com/ts/banner/fe/9e/a9/e42b3b531e92432bab99e933318ac0b7.png"/>
+                    <img src="https://salt.tikicdn.com/ts/banner/fe/9e/a9/e42b3b531e92432bab99e933318ac0b7.png" alt="text"/>
                 </div>
                 
             </div>
