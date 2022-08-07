@@ -1,7 +1,7 @@
 import React, {useState,useEffect } from "react";
-import ProductSummary from "./ProductSumary";
+import ProductSummary from "../products/ProductSumary";
 
-function Suggestion() {
+function HomeSuggest() {
     const [disCount,setDistCount]=useState(true);
     const [suggestTitle,setSuggestTitle] = useState([]);
 
@@ -78,12 +78,11 @@ function Suggestion() {
                             suggestTitle.map(item => {
                                 return (
                                     <>
-                                    <div className={`tab ${item.tab ? 'active' : ''}`} onClick={() => changeTab(item.id)}>
+                                    <div keys={item.id.toString()} className={`tab ${item.tab ? 'active' : ''}`} onClick={() => changeTab(item.id)}>
                                         <img width="48" alt="" src={item.src} />
                                         <div className="tab-text fs-13">{item.name}</div>
                                     </div>
-                                    </>
-                                    
+                                    </>   
                                 )
                             })
                         } 
@@ -97,6 +96,8 @@ function Suggestion() {
                                     <ProductSummary
                                         disCount={disCount}
                                         setDistCount={setDistCount}
+                                        deal={false}
+                                        price={undefined} sold={undefined}
                                     />
                                 )
                             })
@@ -107,4 +108,4 @@ function Suggestion() {
         </div>
     )
 }
-export default Suggestion
+export default HomeSuggest

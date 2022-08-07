@@ -4,6 +4,7 @@
 @import "./banner.scss";
 @import "./category.scss";
 @import "./product.scss";
+@import "./home.scss";
 html {
     line-height: 1.15;
     text-size-adjust: 100%;
@@ -83,6 +84,9 @@ html {
       -webkit-box-align: center;
       align-items: center;
   }
+  .d-flex {
+    display: flex;
+  }
   
   /* font-size */
   $class-name-separator: "-" !default;
@@ -99,6 +103,7 @@ html {
   .fs {
     @include font-sizes
   }
+
   /* width relative */
   @function width($i) {
     @return #{$i} ;
@@ -113,7 +118,6 @@ html {
   .w {
     @include widths
   }
-  
   /* Text */
   .text {
     text-align: center;
