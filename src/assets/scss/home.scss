@@ -19,6 +19,11 @@
       }
       .main-title {
         display: flex;
+
+        img {
+            width: 24px;
+            height: 24px;
+        }
       }
       .main-title__text {
         margin: auto 0px auto 8px;
@@ -53,7 +58,7 @@
                         .position-relative {
                             position: relative;
                                         
-                            .brand-img {
+                            img {
                                 border: 1px solid rgb(238, 238, 238);
                                 border-radius: 8px;
                                 width: 598px;
@@ -118,7 +123,7 @@
                     position: relative;
                 }
               }
-              .img-brand {
+              img {
                 border: 1px solid rgb(238, 238, 238);
                 border-radius: 8px;
                 width: 190px;
@@ -332,52 +337,11 @@
         justify-content: space-between;
 
         .advertise-slide {
-            display: flex;
-            flex-wrap: wrap;
-            width: 824px;
             height: 274px;
-            background: white;
-            border-radius: 4px;
-            overflow: hidden;
-
-            position: relative;
-
-            .advertise-swiper {
-                .advertise-img {
-                    width: 824px;
-                    height: 274px;
-                    object-fit: contain;
-                }
-                .swiper-pagination-bullet-active {
-                    background: #fff;
-                }
-                .swiper-button-prev {
-                    left: 4px;
-                    padding: 28px 10px;
-                    background-color: #202124;
-                    opacity: 0.3;
-                    &::after {
-                        font-size: 24px;
-                        color: white;
-                    }
-                    &:hover {
-                        opacity: 0.7;
-                    }
-
-                }
-                .swiper-button-next {
-                    right: 4px;
-                    padding: 28px 10px;
-                    background-color: #202124;
-                    opacity: 0.3;
-                    &::after {
-                        font-size: 24px;
-                        color: white;
-                    }
-                    &:hover {
-                        opacity: 0.7;
-                    }
-                }
+            width: 824px !important;
+            .advertise-img img {
+                width: 824px;
+                height: 274px;
             }
         }
         .right {
@@ -395,6 +359,67 @@
                 width: 408px;
                 height: 274px;
                 object-fit: contain;
+            }
+        }
+    }
+    &-mobile {
+        z-index: 1;
+        margin-bottom: 8px;
+        padding: 0px 12px;
+        width: 100%;
+
+        .advertise-slide {
+            border-radius: 4px;
+            width: 100%;
+
+            .advertise-img img {
+                height: calc(((100vw - 24px) * 116) / 351);
+            }
+        }
+    }
+    .advertise-slide {
+        display: flex;
+        flex-wrap: wrap;
+        background: white;
+        border-radius: 4px;
+        overflow: hidden;
+
+        position: relative;
+
+        .advertise-swiper {
+            .advertise-img img {
+                width: 100%;
+                object-fit: contain;
+            }
+            .swiper-pagination-bullet-active {
+                background: #fff;
+            }
+            .swiper-button-prev {
+                left: 4px;
+                padding: 28px 10px;
+                background-color: #202124;
+                opacity: 0.3;
+                &::after {
+                    font-size: 24px;
+                    color: white;
+                }
+                &:hover {
+                    opacity: 0.7;
+                }
+
+            }
+            .swiper-button-next {
+                right: 4px;
+                padding: 28px 10px;
+                background-color: #202124;
+                opacity: 0.3;
+                &::after {
+                    font-size: 24px;
+                    color: white;
+                }
+                &:hover {
+                    opacity: 0.7;
+                }
             }
         }
     }

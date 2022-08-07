@@ -7,21 +7,23 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import { Pagination, Navigation, Autoplay,Lazy } from "swiper";
+import { Pagination, Navigation, Autoplay} from "swiper";
+import Images from "../Image/Images";
+import { isWideScreen } from "../../helpers/screen";
 
 const settingsSlide = {
     slidesPerView:1,
-    loop:true,
-    lazy:true,
+    spaceBetween:30,
+    centeredSlides:!isWideScreen()?true:false,
     pagination:{
       clickable: true
     },
     autoplay:{
-        delay: 2500,
+        delay: 10,
         disableOnInteraction: false,
       },
-    navigation:true,
-    modules:[Pagination, Navigation,Autoplay,Lazy],
+    navigation:isWideScreen()?true:false,
+    modules:[Pagination, Navigation,Autoplay],
     className:"advertise-swiper"
 }
 function HomeAdv() {
@@ -30,7 +32,7 @@ function HomeAdv() {
     useEffect(() => {
         const data = [
             {
-               src:"https://salt.tikicdn.com/cache/w750/ts/banner/be/d8/ef/8f91abb908bf17e1b8c088e8b34264cc.jpg",
+               src:isWideScreen()?"https://salt.tikicdn.com/cache/w750/ts/banner/be/d8/ef/8f91abb908bf17e1b8c088e8b34264cc.jpg":"https://salt.tikicdn.com/ts/banner/b7/4f/a6/df57773698828022bf0c6c138ea224c0.png",
                title:'Ngon'
             },
             {
@@ -63,7 +65,7 @@ function HomeAdv() {
     },[])
     return(
         <div className="cm-width advertise">
-            <div className="advertise-list">
+            <div className={isWideScreen()?"advertise-list":"advertise-mobile"}>
                 <div className="advertise-slide">
                             <Swiper {...settingsSlide}>
                                 {
@@ -73,8 +75,9 @@ function HomeAdv() {
                                                 <div className="advertise-item">
                                                     <a href="/home">
                                                         <div className="position-relative">
-                                                            <img className="advertise-img swiper-lazy" src={item.src} alt={item.title}/>
-                                                            <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                                                            <div className="advertise-img">
+                                                                <Images src={item.src} alt={item.title}/>
+                                                            </div>
                                                         </div>
                                                     </a>
                                                 </div>
@@ -85,9 +88,11 @@ function HomeAdv() {
                                 }
                             </Swiper>
                 </div>
-                <div className="right">
-                    <img src="https://salt.tikicdn.com/ts/banner/fe/9e/a9/e42b3b531e92432bab99e933318ac0b7.png" alt="text"/>
-                </div>
+               {isWideScreen() && 
+                    <div className="right">
+                        <Images src="https://salt.tikicdn.com/ts/banner/fe/9e/a9/e42b3b531e92432bab99e933318ac0b7.png" alt="text-right"/>
+                    </div>
+               } 
                 
             </div>
         </div>

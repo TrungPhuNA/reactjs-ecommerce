@@ -1,4 +1,5 @@
 import React from "react";
+import Images from "../Image/Images";
 
 function FamousCategory() {
       const categories = [
@@ -93,7 +94,7 @@ function FamousCategory() {
                             { categories.map((category,index) => {
                                 return (
                                     <a href="/home" key={index.toString()} className="item">
-                                        <img src={category.src} alt="" />
+                                        <Images src={category.src} alt={`category ${index}`}/>
                                         <h3>{category.title}</h3>
                                     </a>
                                 )
