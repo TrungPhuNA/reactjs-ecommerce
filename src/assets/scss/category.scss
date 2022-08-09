@@ -1,0 +1,101 @@
+.home-category {
+    background: white;
+    margin: 16px 0px 0px;
+    border-radius: 4px;
+  
+    .header {
+      font-size: 20px;
+      line-height: 28px;
+      padding: 10px 16px;
+      text-transform: capitalize;
+      font-weight: initial;
+    }
+    .body {
+      margin: 10px 0px 0px;
+  
+      &-slide {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+  
+        &--list {
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(10, 1fr);
+          grid-template-rows: 1fr;
+          gap: 12px 8px;
+  
+          .item {
+            display: flex;
+            flex-direction: column;
+            -webkit-box-align: center;
+            align-items: center;
+            color: rgb(36, 36, 36);
+  
+            img {
+              border-radius: 20px;
+              overflow: hidden;
+              width: 60px;
+              height: 60px;
+              object-fit: contain;
+            }
+  
+            h3 {
+              text-align: center;
+              margin: 12px 0px 16px;
+              padding: 0px 12px;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              overflow: hidden;
+              font-size: 13px;
+              line-height: 20px;
+              font-weight: initial;
+            }
+          }
+        }
+      }
+    }
+    
+  }
+@media (max-width: 1190px) {
+    .cm-width {
+        width: auto;
+        .home-category {
+            min-height: 96px;
+            width: 100%;
+            border-radius: 0px;
+            margin: 0px;
+            z-index: 2;
+            .body
+            {
+                position: static;
+                overflow: auto;
+                margin: 0px;
+                white-space: nowrap;
+
+                &-slide--list {
+
+                display: flex;
+                width: 100%;
+                overflow-x: auto;
+        
+                .item {
+                    text-align: center;
+                    display: block;
+                    text-decoration: none;
+                    padding: 8px;
+                    width: 22vw;
+                    height: 96px;
+        
+                  img {
+                    width: 40px;
+                    height: 40px;
+                  }
+                }
+                }
+            }
+        }
+    }
+    
+}
