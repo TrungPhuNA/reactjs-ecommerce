@@ -2,7 +2,7 @@ import { CommentOutlined, FireOutlined, UserOutlined } from '@ant-design/icons';
 import React from 'react'
 import Images from '../Image/Images'
 
-function MenuMobile({menu}) {
+function MenuMobile({menu,setMenu}) {
     const changeMenu = (number) => {
         setMenu(number);
     }
