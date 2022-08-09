@@ -19,7 +19,6 @@
         overflow: hidden;
   
         &--list {
-          display: inline-block;
           width: 100%;
           display: grid;
           grid-template-columns: repeat(10, 1fr);
@@ -57,4 +56,46 @@
         }
       }
     }
+    
   }
+@media (max-width: 1190px) {
+    .cm-width {
+        width: auto;
+        .home-category {
+            min-height: 96px;
+            width: 100%;
+            border-radius: 0px;
+            margin: 0px;
+            z-index: 2;
+            .body
+            {
+                position: static;
+                overflow: auto;
+                margin: 0px;
+                white-space: nowrap;
+
+                &-slide--list {
+
+                display: flex;
+                width: 100%;
+                overflow-x: auto;
+        
+                .item {
+                    text-align: center;
+                    display: block;
+                    text-decoration: none;
+                    padding: 8px;
+                    width: 22vw;
+                    height: 96px;
+        
+                  img {
+                    width: 40px;
+                    height: 40px;
+                  }
+                }
+                }
+            }
+        }
+    }
+    
+}

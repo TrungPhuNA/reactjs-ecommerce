@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import { Navigation,Pagination, Autoplay, Lazy} from "swiper";
 import { useCountdown } from "../../hook/useCountDown";
 import ProductSummary from "../products/ProductSumary";
+import { isWideScreen } from "../../helpers/screen";
 
 const settingsSlide = {
     slidesPerView:5,
@@ -116,45 +117,47 @@ function HomeDeal() {
     },[]);
     return(
         <div className="cm-width my-2 d-flex">
-            <div className="deal-hot">
-                <div className="deal-hot--left">
-                    <div className="header">
-                        <div className="header-left">
-                            <div>
-                                <img alt="flash-deal12" className="flash-deal" src="https://frontend.tikicdn.com/_desktop-next/static/img/giasoc.svg"/>
-                                <img alt="flash-deal2" width="21" className="flash-deal middle" src="https://frontend.tikicdn.com/_desktop-next/static/img/dealFlashIcon.svg"/>
-                                <img alt="flash-deal3" className="flash-deal" src="https://frontend.tikicdn.com/_desktop-next/static/img/homnay.svg"/>
-                            </div>
-                            <div>
-                                <a href="/home">
-                                    <div className="deal-time">
-                                        {hours+minutes+seconds > 0 && 
-                                         <>
-                                          <span>{hours}</span>:<span className="min">{minutes}</span>:<span>{seconds}</span>
-                                         </>  
-
-                                        }
-                                        
+            <div className="deal-hot"> 
+                    { isWideScreen() && 
+                        <div className="deal-hot--left">
+                            <div className="header">
+                                <div className="header-left">
+                                    <div>
+                                        <img alt="flash-deal12" className="flash-deal" src="https://frontend.tikicdn.com/_desktop-next/static/img/giasoc.svg"/>
+                                        <img alt="flash-deal2" width="21" className="flash-deal middle" src="https://frontend.tikicdn.com/_desktop-next/static/img/dealFlashIcon.svg"/>
+                                        <img alt="flash-deal3" className="flash-deal" src="https://frontend.tikicdn.com/_desktop-next/static/img/homnay.svg"/>
                                     </div>
-                                </a>
+                                    <div>
+                                        <a href="/home">
+                                            <div className="deal-time">
+                                                {hours+minutes+seconds > 0 && 
+                                                <>
+                                                <span>{hours}</span>:<span className="min">{minutes}</span>:<span>{seconds}</span>
+                                                </>  
+
+                                                }
+                                                
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <a href="/home">Xem thêm</a>
                             </div>
-                        </div>
-                        <a href="/home">Xem thêm</a>
+                            <div className="body">
+                                <Swiper {...settingsSlide}>
+                                            {
+                                                deal.map((item,index) => {
+                                                    return (
+                                                        <SwiperSlide key={index}>
+                                                            <ProductSummary disCount={item.sale} deal={true} price={item.price} sold={item.sold}/>
+                                                        </SwiperSlide>
+                                                    )
+                                                })
+                                            }
+                                </Swiper>
+                            </div>
                     </div>
-                    <div className="body">
-                    <Swiper {...settingsSlide}>
-                                {
-                                    deal.map((item,index) => {
-                                        return (
-                                            <SwiperSlide key={index}>
-                                                <ProductSummary disCount={item.sale} deal={true} price={item.price} sold={item.sold}/>
-                                            </SwiperSlide>
-                                        )
-                                    })
-                                }
-                    </Swiper>
-                    </div>
-                </div>
+                    }
                 <div className="deal-hot--right">
                 <Swiper {...settingSlide2}>
                     {
