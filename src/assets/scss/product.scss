@@ -112,31 +112,71 @@
           min-height: 500px;
           background: white;
           margin-top: 8px;
-      
-          &__title {
-            display: none !important;
+
+          h2 {
+            display: flex;
+            padding: 12px;
+            background-color: white;
+            flex: 1 1 0%;
+            font-size: 17px;
+            line-height: 24px;
+            text-transform: capitalize;
+            border-radius: 4px;
+            color: rgb(56, 56, 61);
           }
-      
-            &__product {
-              display: flex;
-              flex-direction: column;
-              -webkit-box-align: center;
-              align-items: center;
-              background: white;
-              padding: 0px 0px 16px;
-              border-radius: 0px 0px 4px 4px;
+
+          &__title-list {
+            position: sticky;
+            top: 0px;
+            background: rgb(239, 239, 239);
+            z-index: 100;
+
+            display: flex;
+
+            .tab {
+                width: 80px;
+                img {
+                    width: 40px;
+                    height: 40px;
+                }
+                &-text {
+                    font-size: 11px !important;
+                }
+            }
+          }
+        &__product {
+            // display: flex;
+            // flex-direction: column;
+            // -webkit-box-align: center;
+            // align-items: center;
+            // background: white;
+            // margin-bottom: 8px;
+            // border-radius: 0px 0px 4px 4px;
       
               .content {
-                display: flex;
-                flex-wrap: wrap;
+                width: 100vw;
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
                 align-self: stretch;
                 background-color: rgb(255, 255, 255);
-                border-top: 1px solid rgb(242, 242, 242);
-      
-                * {
-                  width: 16.6667%;
+                
+                .dashboard-product--item {
+                    width: 100%;
+
+                    .thumbnail {
+                        text-align: unset;
+                        
+                        &--product-img img {
+                            width: 100%;
+                        }
+                    }
+                }
+                a {
+                  width: 100%;
+                  border-top: 1px solid rgb(242, 242, 242);
+                  border-right: 1px solid rgb(242, 242, 242);
                 }
               }
-            }
         }
+    }
 }

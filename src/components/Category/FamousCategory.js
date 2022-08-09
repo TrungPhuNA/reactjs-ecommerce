@@ -1,7 +1,7 @@
 import React from "react";
 import Images from "../Image/Images";
 
-function FamousCategory() {
+function FamousCategory({check}) {
       const categories = [
         {
           src:"https://salt.tikicdn.com/ts/category/1e/8c/08/d8b02f8a0d958c74539316e8cd437cbd.png",
@@ -87,7 +87,7 @@ function FamousCategory() {
     return (
         <div className="cm-width">
             <div className="home-category">
-                <h2 className="header">Danh mục nổi bật</h2>
+               {!check && <h2 className="header">Danh mục nổi bật</h2>} 
                 <div className="body">
                     <div className="body-slide">
                         <div className="body-slide--list">

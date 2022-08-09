@@ -2,7 +2,7 @@ import React, {useState,useEffect } from "react";
 import Images from "../Image/Images";
 import ProductSummary from "../products/ProductSumary";
 
-function HomeSuggest() {
+function HomeSuggest({status}) {
     const [disCount,setDistCount]=useState(true);
     const [suggestTitle,setSuggestTitle] = useState([]);
 
@@ -60,7 +60,7 @@ function HomeSuggest() {
   setSuggestTitle(data);
   },[])
 
-    const arr_10 = Array.from(Array(10).keys());
+    const arr_10 = Array.from(Array(100).keys());
 
     const changeTab = (tabNumber) => {
         let title = suggestTitle.map(item => {
@@ -69,11 +69,31 @@ function HomeSuggest() {
         })
        setSuggestTitle(title);
     }
-    return (
-        <div className="cm-width">
-            <div className="suggestion">
+    const getSuggestTitle = ()=>{
+        if(status) {
+            return(
                 <div className="suggestion__title">
-                    <h2 style={{height: 48+'px'}}>Gợi Ý Hôm Nay</h2>
+                        <h2 style={{height: 48+'px'}}>Gợi Ý Hôm Nay</h2>
+                        <div className="suggestion__title-list">
+                            {
+                                suggestTitle.map(item => {
+                                    return (
+                                        <>
+                                        <div keys={item.id.toString()} className={`tab ${item.tab ? 'active' : ''}`} onClick={() => changeTab(item.id)}>
+                                            <Images alt="test" src={item.src} />
+                                            <div className="tab-text fs-13">{item.name}</div>
+                                        </div>
+                                        </>   
+                                    )
+                                })
+                            } 
+                            
+                        </div>
+                    </div>
+            )   
+        }
+       else return (<>  
+                <h2 style={{height: 48+'px'}}>Gợi Ý Hôm Nay</h2>
                     <div className="suggestion__title-list">
                         {
                             suggestTitle.map(item => {
@@ -87,9 +107,13 @@ function HomeSuggest() {
                                 )
                             })
                         } 
-                        
                     </div>
-                </div>
+            </>)
+    }
+    return (
+        <div className="cm-width">
+            <div className={`suggestion`}>
+                {getSuggestTitle()}
                 <div className="suggestion__product">
                     <div className="content">
                         { arr_10.map(item => {
