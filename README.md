@@ -8,6 +8,7 @@
 - Commit phải đúng nội dung xử lý, không được push các file thừa  ( node_modules)
 
 # Cấu hình server
+
 ## Pm2
 `nginx`
 `Run build`
