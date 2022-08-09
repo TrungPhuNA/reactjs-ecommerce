@@ -67,8 +67,8 @@ function Home() {
             <div className="home__background">
                 <Images src="https://salt.tikicdn.com/ts/banner/df/e4/7e/45fd347a5b3479a0a16b8a8f1b164819.png" alt="bg" />
             </div>
-            <MenuMobile menu={menu}/>
-            
+            <MenuMobile menu={menu} setMenu={setMenu}/>
+
         </>
             
         }
