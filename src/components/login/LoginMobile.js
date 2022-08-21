@@ -1,6 +1,5 @@
-import { ArrowLeftOutlined, FacebookOutlined, GoogleOutlined, LeftOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined} from '@ant-design/icons';
 import React, { useState } from 'react';
-import Images from '../Image/Images';
 
 export default function LoginMobile(props) {
     const [loginBy, setLoginBy] = useState('sdt');

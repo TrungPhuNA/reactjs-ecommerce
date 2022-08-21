@@ -1,8 +1,6 @@
-import Modal from "antd/lib/modal/Modal";
 import React, { useState } from "react";
 import { isWideScreen } from "../../helpers/screen";
 import BoxSearch from "../common/BoxSearch";
-import ModalLogin from "../login/ModalLogin";
 
 function Header(props) {
     const [showSearchDesktop, setShowSearchDesktop] = useState(false);
