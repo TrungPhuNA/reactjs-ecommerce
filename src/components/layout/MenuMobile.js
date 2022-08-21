@@ -5,7 +5,7 @@ import Images from '../Image/Images'
 function MenuMobile(props) {
     const changeMenu = (number) => {
         props.setMenu(number);
-        if(number == 4 || number == 5) {
+        if(number === 4 || number === 5) {
             props.setLogin(true);
         }
     }

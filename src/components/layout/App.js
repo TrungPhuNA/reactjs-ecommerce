@@ -4,7 +4,6 @@ import Header from "./Header";
 import Footers from "./Footers";
 import { useRoutes } from "react-router-dom";
 import { isWideScreen } from "../../helpers/screen";
-import ModalLogin from "../login/ModalLogin";
 
 
 function App() {

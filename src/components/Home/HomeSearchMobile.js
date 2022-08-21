@@ -1,5 +1,4 @@
 import { LeftOutlined, MenuOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-import { Form, Input } from 'antd'
 import React from 'react';
 import BoxSearch from '../common/BoxSearch';
 
