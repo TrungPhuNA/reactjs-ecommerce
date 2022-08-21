@@ -3,11 +3,11 @@ export const isMobileScreen = () => {
 }
 
 export const isWideScreen = () => {
-    return window.innerWidth > 1024
+    return window.innerWidth >= 1280
 }
 
 export const isDesktopScreen = () => {
-    return window.innerWidth >= 992 && window.innerWidth <= 1028
+    return window.innerWidth >= 992 && window.innerWidth <= 1024
 }
 
 export const isTableScreen = () => {

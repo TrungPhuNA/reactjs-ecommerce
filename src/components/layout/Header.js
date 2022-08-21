@@ -1,8 +1,21 @@
-import React from "react";
+import Modal from "antd/lib/modal/Modal";
+import React, { useState } from "react";
+import { isWideScreen } from "../../helpers/screen";
+import BoxSearch from "../common/BoxSearch";
+import ModalLogin from "../login/ModalLogin";
 
-function Header() {
+function Header(props) {
+    const [showSearchDesktop, setShowSearchDesktop] = useState(false);
+    
+
+    const openLogin = () => {
+        console.log(1)
+        props.setShowLogin(true);
+    }
+
     return (
-        <header className="main-header">
+        <>
+            <header className="main-header">
             <div className="cm-width main-header--top">
                 <div className="main-header--top pfpi">
                     <div className="logo-menu">
@@ -12,15 +25,20 @@ function Header() {
                         </a>
                     </div>
                     </div>
-                    <div className="header-form-search">
-                        <input type="text"/>
+                    <div className="header-form-search" onMouseLeave={() => {setShowSearchDesktop(false)}}>
+                        <input placeholder="Bạn đang tìm kiếm gì" type="text" onClick={() => {setShowSearchDesktop(true)}}
+                        onKeyDown={() => {setShowSearchDesktop(false)}}
+                        onChange={() => {setShowSearchDesktop(true)}}
+                        
+                        />
                         <button className="pointer">
-                        <img src="https://salt.tikicdn.com/ts/upload/ed/5e/b8/8538366274240326978318348ea8af7c.png" alt=""/>
-                        tìm kiếm
+                            <img src="https://salt.tikicdn.com/ts/upload/ed/5e/b8/8538366274240326978318348ea8af7c.png" alt=""/>
+                            tìm kiếm
                         </button>
+                        {(showSearchDesktop && isWideScreen()) && <BoxSearch setShowSearchDesktop={setShowSearchDesktop} showSearchDesktop={showSearchDesktop}/> }
                     </div>
                     <div className="main-header--top__right">
-                    <div className="header-user-shortcut">
+                    <div className="header-user-shortcut" onClick={() => openLogin()}>
                         <img className="profile" src="https://salt.tikicdn.com/ts/upload/67/de/1e/90e54b0a7a59948dd910ba50954c702e.png" alt=""/>
                         <span className="user-style">
                             <span className="user-style__title"> Đăng nhập/Đăng ký</span>
@@ -71,6 +89,9 @@ function Header() {
                 </div>
             </div>
         </header>
+        
+        </>
+        
     )   
 }
 export default Header;

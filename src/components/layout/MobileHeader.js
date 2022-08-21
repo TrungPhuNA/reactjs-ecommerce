@@ -1,6 +1,6 @@
 import React from 'react';
 
-function MobileHeader() {
+function MobileHeader(props) {
     return (
         <div className='mobile__header'>
             <div className="mobile__header--logo">
@@ -17,10 +17,10 @@ function MobileHeader() {
                     <img src='https://salt.tikicdn.com/ts/upload/70/44/6c/a5ac520d156fde81c08dda9c89afaf37.png' alt='free' width="24" height="24" />
                 </a>
             </div>
-            <a href='/home' className="mobile__header--search">
+            <div className="mobile__header--search">
                 <img src='https://salt.tikicdn.com/ts/upload/34/62/0c/6ae13efaff83c66f810c4c63942cf6c0.png' height='24' width='24' alt='search' />
-                <input className='w-100' type='text' placeholder='Bạn tìm gì hôm nay?'/>
-            </a>
+                <input className='w-100' type='text' placeholder='Bạn tìm gì hôm nay?' onClick={() => props.setSearch(true)}/>
+            </div>
         </div>
     )
 }
