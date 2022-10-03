@@ -32,5 +32,4 @@ reducer: Chứa file reducer
 routes: Chứa các route
 store: chứa file store
 `
-
 ## Cấu hình nginx
