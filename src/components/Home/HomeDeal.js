@@ -66,7 +66,7 @@ function HomeDeal() {
               src:"https://salt.tikicdn.com/cache/280x280/ts/product/00/01/c7/c0b1ae113ff90cdbf0b848c441b99adb.jpg",
               title:'Giày thể thao nam',
               price:23000,
-              sale:0,
+              sale:23,
               sold:4
             },
             {
@@ -138,7 +138,7 @@ function HomeDeal() {
                                                 }
                                                 
                                             </div>
-                                        </a>
+                                        </a >
                                     </div>
                                 </div>
                                 <a href="/home">Xem thêm</a>

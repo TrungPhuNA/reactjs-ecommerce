@@ -15,7 +15,14 @@ footer {
     }
     .cm-width {
   
-  
+      .hot-line {
+        a {
+          color: rgb(56, 56, 61);
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+      }
       p {
         font-size: 12px;
         line-height: 16px;
@@ -23,10 +30,19 @@ footer {
         margin-bottom: 12px;
         margin-top: 0px;
       }
+      .small-text1 {
+        display: block;
+        margin-bottom: 8px;
+        color: rgb(128, 128, 137);
+      }
       .small-text {
         display: block;
         margin-bottom: 8px;
         color: rgb(128, 128, 137);
+      }
+      .small-text:hover{
+        cursor: pointer;
+        text-decoration: underline;
       }
       .block:first-child {
         width: 268px;
@@ -50,6 +66,9 @@ footer {
           margin-top: 0px;
           color: rgb(128, 128, 137);
         }
+        a:hover {
+          text-decoration: underline;
+        }
       }
       .block {
         width: 226px;
@@ -70,6 +89,9 @@ footer {
   
           a {
             color: rgb(128, 128, 137);
+          }
+          a:hover {
+            text-decoration: underline;
           }
         }
         .icon {
@@ -92,16 +114,16 @@ footer {
         }
       }
       .category {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        column-gap: 20px;
   
         &-item {
           margin-bottom: 16px;
-  
+          column-gap: 20px;
+          grid-template-columns: repeat(5, 1fr);
+          display: grid;
+          
           &--title {
             font-size: 14px;
-            line-height: 20px;
+            line-height: 30px;
             font-weight: 500;
             color: rgb(56, 56, 61);
             margin-bottom: 4px;
@@ -109,6 +131,9 @@ footer {
   
             a {
               color: rgb(128, 128, 137);
+            }
+            a:hover {
+              text-decoration: underline;
             }
           }
         }
