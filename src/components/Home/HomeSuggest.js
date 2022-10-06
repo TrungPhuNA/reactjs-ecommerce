@@ -60,7 +60,7 @@ function HomeSuggest({status}) {
   setSuggestTitle(data);
   },[])
 
-    const arr_10 = Array.from(Array(100).keys());
+    const arr_10 = Array.from(Array(90).keys());
 
     const changeTab = (tabNumber) => {
         let title = suggestTitle.map(item => {
@@ -73,7 +73,7 @@ function HomeSuggest({status}) {
         if(status) {
             return(
                 <div className="suggestion__title">
-                        <h2 style={{height: 48+'px'}}>Gợi Ý Hôm Nay</h2>
+                        <h2 s   >Gợi Ý Hôm Nay</h2>
                         <div className="suggestion__title-list">
                             {
                                 suggestTitle.map(item => {
@@ -89,7 +89,7 @@ function HomeSuggest({status}) {
                             } 
                             
                         </div>
-                    </div>
+                </div>
             )   
         }
        else return (<>  
@@ -128,9 +128,14 @@ function HomeSuggest({status}) {
                             })
                         }
                     </div>
+                    <a className="view-more">
+                        Xem thêm
+                    </a>
                 </div>
             </div>
+            
         </div>
+
     )
 }
 export default HomeSuggest

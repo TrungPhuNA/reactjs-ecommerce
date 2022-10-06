@@ -7,26 +7,42 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import { Pagination, Navigation, Autoplay} from "swiper";
+import { Pagination, Navigation, Autoplay, Lazy} from "swiper";
 import Images from "../Image/Images";
 import { isWideScreen } from "../../helpers/screen";
 
 const settingsSlide = {
+    // slidesPerView:1,
+    // spaceBetween:30,
+    // centeredSlides:!isWideScreen()?true:false,
+    // pagination:{
+    //   clickable: true
+    // },
+    // autoplay:{
+    //     delay: 10,
+    //     disableOnInteraction: false,
+    //   },
+    // navigation:isWideScreen()?true:false,
+    // modules:[Pagination, Navigation,Autoplay],
+    // className:"advertise-swiper"
     slidesPerView:1,
-    spaceBetween:30,
-    centeredSlides:!isWideScreen()?true:false,
+    spaceBetween:0,
+    loop:true,
+    lazy:true,
     pagination:{
       clickable: true
     },
     autoplay:{
-        delay: 10,
+        delay: 2500,
         disableOnInteraction: false,
       },
-    navigation:isWideScreen()?true:false,
-    modules:[Pagination, Navigation,Autoplay],
-    className:"advertise-swiper"
+    navigation:true,
+    modules:[Pagination, Navigation,Autoplay,Lazy],
+    className:"brand-swiper"
+
 }
 function HomeAdv() {
+    const arr_14 = Array.from(Array(14).keys());
     const [brand,setBrand] = useState([]);
 
     useEffect(() => {
@@ -64,7 +80,7 @@ function HomeAdv() {
     setBrand(data);
     },[])
     return(
-        <div className="cm-width advertise">
+        <div className="advertise">
             <div className={isWideScreen()?"advertise-list":"advertise-mobile"}>
                 <div className="advertise-slide">
                             <Swiper {...settingsSlide}>
