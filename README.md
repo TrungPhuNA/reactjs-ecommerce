@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# reactjs-ecommerce
+
 Training Lễ
 =======
 # Auth PHan Trung Phú
@@ -37,8 +36,7 @@ routes: Chứa các route
 store: chứa file store
 `
 ## Cấu hình nginx
-<<<<<<< HEAD
-=======
+
 `server {
 access_log /var/log/nginx/le-reactjs.net-access.log;
 error_log /var/log/nginx/le-reactjs.net-error.log;
@@ -110,5 +108,4 @@ return 301 https://$host$request_uri;
 
 }`
 
->>>>>>> 90216f8618dab0441f4562d1dbd2e953049c9910
->>>>>>> feature/fix-home
+
