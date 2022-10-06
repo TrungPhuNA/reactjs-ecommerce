@@ -1,6 +1,4 @@
-
-Training Lễ
-=======
+# Training Lễ
 # Auth PHan Trung Phú
  `Code by Trịnh Xuân Lễ`
 # RUN PROJECT
