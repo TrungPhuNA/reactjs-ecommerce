@@ -73,7 +73,7 @@ function HomeSuggest({status}) {
         if(status) {
             return(
                 <div className="suggestion__title">
-                        <h2 s   >Gợi Ý Hôm Nay</h2>
+                        <h2>Gợi Ý Hôm Nay</h2>
                         <div className="suggestion__title-list">
                             {
                                 suggestTitle.map(item => {
@@ -128,7 +128,7 @@ function HomeSuggest({status}) {
                             })
                         }
                     </div>
-                    <a className="view-more">
+                    <a href="/home" className="view-more">
                         Xem thêm
                     </a>
                 </div>

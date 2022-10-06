@@ -363,272 +363,272 @@ export default function Footers(){
                                     <div className="category-item--title">
                                         <a href="/home">Balo và Vali</a>
                                         <p>
-                                            <a>Balo</a>
+                                            <a href="/home">Balo</a>
                                             &nbsp;/&nbsp;
-                                            <a>Túi du lịch và phụ kiện</a>
+                                            <a href="/home">Túi du lịch và phụ kiện</a>
                                             &nbsp;/&nbsp;
-                                            <a>Balo, cặp, túi chống sốc laptop</a>
+                                            <a href="/home">Balo, cặp, túi chống sốc laptop</a>
                                             &nbsp;/&nbsp;
-                                            <a>Vali, phụ kiện vali </a>
+                                            <a href="/home">Vali, phụ kiện vali </a>
                                         </p>
                                         <a href="/home">Phụ kiện thời trang</a>
                                         <p>
-                                            <a>Phụ kiện thời trang nữ</a>
+                                            <a href="/home">Phụ kiện thời trang nữ</a>
                                             &nbsp;/&nbsp;
-                                            <a>Mắt kính</a>
+                                            <a href="/home">Mắt kính</a>
                                             &nbsp;/&nbsp;
-                                            <a>Phụ kiện thời trang nam</a>
+                                            <a href="/home">Phụ kiện thời trang nam</a>
                                         </p>
                                         <a href="/home">Đồng hồ và Trang sức</a>
                                         <p>
-                                            <a>Trang sức</a>
+                                            <a href="/home">Trang sức</a>
                                             &nbsp;/&nbsp;
-                                            <a>Đồng hồ nữ</a>
+                                            <a href="/home">Đồng hồ nữ</a>
                                             &nbsp;/&nbsp;
-                                            <a>Đồng hồ nam</a>
+                                            <a href="/home">Đồng hồ nam</a>
                                             &nbsp;/&nbsp;
-                                            <a>Phụ kiện đồng hồ</a>
+                                            <a href="/home">Phụ kiện đồng hồ</a>
                                             &nbsp;/&nbsp;
-                                            <a>Đồng hồ trẻ em</a>
+                                            <a href="/home">Đồng hồ trẻ em</a>
                                         </p>
                                         <a href="/home">Laptop - Máy vi tính - Link kiện</a>
                                         <p>
-                                            <a>Linh Kiện Máy Tính - Phụ Kiện Máy Tính</a>
+                                            <a href="/home">Linh Kiện Máy Tính - Phụ Kiện Máy Tính</a>
                                             &nbsp;/&nbsp;
-                                            <a>Thiết Bị Văn Phòng - Thiết Bị Ngoại Vi</a>
+                                            <a href="/home">Thiết Bị Văn Phòng - Thiết Bị Ngoại Vi</a>
                                             &nbsp;/&nbsp;
-                                            <a>Thiết Bị Mạng</a> 
+                                            <a href="/home">Thiết Bị Mạng</a> 
                                             &nbsp;/&nbsp;
-                                            <a>Thiết Bị Lưu Trữ</a>
+                                            <a href="/home">Thiết Bị Lưu Trữ</a>
                                             &nbsp;/&nbsp;
-                                            <a>PC - Máy Tính Bộ</a>
+                                            <a href="/home">PC - Máy Tính Bộ</a>
                                             &nbsp;/&nbsp;
-                                            <a>Laptop</a>
+                                            <a href="/home">Laptop</a>
                                         </p>
                                         <a href="/home">Nhà Cửa - Đời Sống</a>
                                         <p>
-                                            <a>Trang trí nhà cửa</a>
+                                            <a href="/home">Trang trí nhà cửa</a>
                                             &nbsp;/&nbsp;
-                                            <a>Dụng cụ nhà bếp</a>
+                                            <a href="/home">Dụng cụ nhà bếp</a>
                                             &nbsp;/&nbsp;
-                                            <a>Sửa chữa nhà cửa</a>
+                                            <a href="/home">Sửa chữa nhà cửa</a>
                                             &nbsp;/&nbsp;
-                                            <a>Ngoài trời &amp; sân vườn</a>
+                                            <a href="/home">Ngoài trời &amp; sân vườn</a>
                                             &nbsp;/&nbsp;
-                                            <a>Nội thất</a>
+                                            <a href="/home">Nội thất</a>
                                             &nbsp;/&nbsp;
-                                            <a>Đèn &amp; thiết bị chiếu sáng</a>
+                                            <a href="/home">Đèn &amp; thiết bị chiếu sáng</a>
                                             &nbsp;/&nbsp;
-                                            <a>Đồ dùng và thiết bị nhà tắm</a>
+                                            <a href="/home">Đồ dùng và thiết bị nhà tắm</a>
                                             &nbsp;/&nbsp;
-                                            <a>Đồ dùng phòng ăn</a>
+                                            <a href="/home">Đồ dùng phòng ăn</a>
                                             &nbsp;/&nbsp;
-                                            <a>Đồ dùng phòng ngủ</a>
+                                            <a href="/home">Đồ dùng phòng ngủ</a>
                                             &nbsp;/&nbsp;
-                                            <a>Đồ thờ cúng</a>
+                                            <a href="/home">Đồ thờ cúng</a>
                                             &nbsp;/&nbsp;
-                                            <a>Nhạc cụ</a>    
+                                            <a href="/home">Nhạc cụ</a>    
                                             &nbsp;/&nbsp;
-                                            <a>Hoa tươi và cây cảnh</a>
+                                            <a href="/home">Hoa tươi và cây cảnh</a>
                                         </p>
                                         <a href="/home">Bách Hóa Online</a>
                                         <p>
-                                            <a>Chăm sóc thú cưng</a>
+                                            <a href="/home">Chăm sóc thú cưng</a>
                                             &nbsp;/&nbsp;
-                                            <a>Đồ uống - Pha chế dạng bột</a>
+                                            <a href="/home">Đồ uống - Pha chế dạng bột</a>
                                             &nbsp;/&nbsp;
-                                            <a>Thực phẩm Đóng hộp và Khô</a>
+                                            <a href="/home">Thực phẩm Đóng hộp và Khô</a>
                                             &nbsp;/&nbsp;
-                                            <a>Gia Vị và Chế Biến</a>
+                                            <a href="/home">Gia Vị và Chế Biến</a>
                                             &nbsp;/&nbsp;
-                                            <a>Đậu &amp; Hạt Các Loại</a>
+                                            <a href="/home">Đậu &amp; Hạt Các Loại</a>
                                             &nbsp;/&nbsp;
-                                            <a>Đồ Ăn Vặt</a>
+                                            <a href="/home">Đồ Ăn Vặt</a>
                                             &nbsp;/&nbsp;
-                                            <a>Sữa và các Sản phẩm từ sữa</a>
+                                            <a href="/home">Sữa và các Sản phẩm từ sữa</a>
                                             &nbsp;/&nbsp;
-                                            <a>Đồ Uống Không Cồn</a>
+                                            <a href="/home">Đồ Uống Không Cồn</a>
                                             &nbsp;/&nbsp;
-                                            <a>Đồ uống có cồn</a>
+                                            <a href="/home">Đồ uống có cồn</a>
                                             &nbsp;/&nbsp;
-                                            <a>Bộ quà tặng</a>
+                                            <a href="/home">Bộ quà tặng</a>
                                         </p>
                                     </div>
                                     <div className="category-item--title">
                                         <a href="/home">Hàng Quốc Tế</a>
                                         <p>
-                                            <a>Nhà Cửa - Đời Sống</a>
+                                            <a href="/home">Nhà Cửa - Đời Sống</a>
                                             &nbsp;/&nbsp;
-                                            <a>Thời Trang</a>
+                                            <a href="/home">Thời Trang</a>
                                             &nbsp;/&nbsp;
-                                            <a>Ô tô, xe máy, xe đạp</a>
+                                            <a href="/home">Ô tô, xe máy, xe đạp</a>
                                             &nbsp;/&nbsp;
-                                            <a>Thiết Bị Số - Phụ Kiện Số</a> 
+                                            <a href="/home">Thiết Bị Số - Phụ Kiện Số</a> 
                                             &nbsp;/&nbsp;
-                                            <a>Thể thao - Dã ngoại</a>
+                                            <a href="/home">Thể thao - Dã ngoại</a>
                                             &nbsp;/&nbsp;
-                                            <a>Làm Đẹp - Sức Khỏe</a>
+                                            <a href="/home">Làm Đẹp - Sức Khỏe</a>
                                             &nbsp;/&nbsp;
-                                            <a>Sách, Văn phòng phẩm &amp; Quà lưu niệm</a>
+                                            <a href="/home">Sách, Văn phòng phẩm &amp; Quà lưu niệm</a>
                                             &nbsp;/&nbsp;
-                                            <a>Mẹ &amp; Bé</a>
+                                            <a href="/home">Mẹ &amp; Bé</a>
                                             &nbsp;/&nbsp;
-                                            <a>Điện gia dụng</a>
+                                            <a href="/home">Điện gia dụng</a>
                                             &nbsp;/&nbsp;
-                                            <a>Bách hóa online</a>
+                                            <a href="/home">Bách hóa online</a>
                                             &nbsp;/&nbsp;
-                                            <a>Máy Ảnh - Máy Quay Phim</a>
+                                            <a href="/home">Máy Ảnh - Máy Quay Phim</a>
                                             &nbsp;/&nbsp;
-                                            <a>Laptop &amp; Máy Vi Tính</a>
+                                            <a href="/home">Laptop &amp; Máy Vi Tính</a>
                                             &nbsp;/&nbsp;
-                                            <a>Sản phẩm - thiết bị công nghiệp</a>
+                                            <a href="/home">Sản phẩm - thiết bị công nghiệp</a>
                                             &nbsp;/&nbsp;
-                                            <a>Tivi &amp; Thiết Bị Nghe Nhìn</a>
+                                            <a href="/home">Tivi &amp; Thiết Bị Nghe Nhìn</a>
                                             &nbsp;/&nbsp;
-                                            <a>Điện Thoại - Máy Tính Bảng</a>
+                                            <a href="/home">Điện Thoại - Máy Tính Bảng</a>
                                         </p>
                                         <a href="/home">Thiết Bị Số - Phụ Kiện Số</a>
                                         <p>
-                                            <a>Phụ Kiện Điện Thoại và Máy Tính Bảng</a>
+                                            <a href="/home">Phụ Kiện Điện Thoại và Máy Tính Bảng</a>
                                             &nbsp;/&nbsp;
-                                            <a>Phụ kiện máy tính và Laptop</a>
+                                            <a href="/home">Phụ kiện máy tính và Laptop</a>
                                             &nbsp;/&nbsp;
-                                            <a>Thiết Bị Âm Thanh và Phụ Kiện</a>
+                                            <a href="/home">Thiết Bị Âm Thanh và Phụ Kiện</a>
                                             &nbsp;/&nbsp;
-                                            <a>Thiết Bị Thông Minh và Linh Kiện Điện Tử</a>
+                                            <a href="/home">Thiết Bị Thông Minh và Linh Kiện Điện Tử</a>
                                             &nbsp;/&nbsp;
-                                            <a>Thiết Bị Đeo Thông Minh và Phụ Kiện</a>
+                                            <a href="/home">Thiết Bị Đeo Thông Minh và Phụ Kiện</a>
                                             &nbsp;/&nbsp;
-                                            <a>Thiết Bị Chơi Game và Phụ Kiện</a>
+                                            <a href="/home">Thiết Bị Chơi Game và Phụ Kiện</a>
                                         </p>
                                         <a href="/home">Voucher - Dịch vụ </a>
                                         <p>
-                                            <a>Thanh toán hóa đơn</a>
+                                            <a href="/home">Thanh toán hóa đơn</a>
                                             &nbsp;/&nbsp;
-                                            <a>Khóa học</a>
+                                            <a href="/home">Khóa học</a>
                                             &nbsp;/&nbsp;
-                                            <a>Du lịch - Khách sạn</a>
+                                            <a href="/home">Du lịch - Khách sạn</a>
                                             &nbsp;/&nbsp;
-                                            <a>Spa &amp; Làm đẹp</a>
+                                            <a href="/home">Spa &amp; Làm đẹp</a>
                                             &nbsp;/&nbsp;
-                                            <a>Dịch vụ khác</a>
+                                            <a href="/home">Dịch vụ khác</a>
                                             &nbsp;/&nbsp;
-                                            <a>Nhà hàng - Ăn uống</a>
+                                            <a href="/home">Nhà hàng - Ăn uống</a>
                                             &nbsp;/&nbsp;
-                                            <a>Sự kiện - Giải trí</a>
+                                            <a href="/home">Sự kiện - Giải trí</a>
                                             &nbsp;/&nbsp;
-                                            <a>Nha khoa - Sức khỏe</a>
+                                            <a href="/home">Nha khoa - Sức khỏe</a>
                                             &nbsp;/&nbsp;
-                                            <a>Phiếu quà tặng</a>
+                                            <a href="/home">Phiếu quà tặng</a>
                                             &nbsp;/&nbsp;
-                                            <a>Sim số - Thẻ cào - Thẻ game</a>
+                                            <a href="/home">Sim số - Thẻ cào - Thẻ game</a>
                                         </p>
                                         <a href="/home">Ô Tô - Xe Máy - Xe Đạp</a>
                                         <p>
-                                            <a>Phụ kiện - Chăm sóc xe</a>
+                                            <a href="/home">Phụ kiện - Chăm sóc xe</a>
                                             &nbsp;/&nbsp;
-                                            <a>Xe điện</a>
+                                            <a href="/home">Xe điện</a>
                                             &nbsp;/&nbsp;
-                                            <a>Xe đạp</a>
+                                            <a href="/home">Xe đạp</a>
                                             &nbsp;/&nbsp;
-                                            <a>Xe máy</a>
+                                            <a href="/home">Xe máy</a>
                                             &nbsp;/&nbsp;
-                                            <a>Ô tô</a>
+                                            <a href="/home">Ô tô</a>
                                             &nbsp;/&nbsp;
-                                            <a>Xe Scooter</a>
+                                            <a href="/home">Xe Scooter</a>
                                             &nbsp;/&nbsp;
-                                            <a>Dịch vụ, lắp đặt</a>
+                                            <a href="/home">Dịch vụ, lắp đặt</a>
                                         </p>
                                         <a href="/home">Nhà Sách Tiki</a>
                                         <p>
-                                            <a>Sách tiếng Việt</a>
+                                            <a href="/home">Sách tiếng Việt</a>
                                             &nbsp;/&nbsp;
-                                            <a>Văn phòng phẩm</a>
+                                            <a href="/home">Văn phòng phẩm</a>
                                             &nbsp;/&nbsp;
-                                            <a>Quà lưu niệm</a>
+                                            <a href="/home">Quà lưu niệm</a>
                                             &nbsp;/&nbsp;
-                                            <a>English Books</a>
+                                            <a href="/home">English Books</a>
                                         </p>
                                     </div>
                                     <div className="category-item--title">
                                         <a href="/home">Điện Tử - Điện Lạnh</a>
                                         <p>
-                                            <a>Âm thanh &amp; Phụ kiện Tivi</a>
+                                            <a href="/home">Âm thanh &amp; Phụ kiện Tivi</a>
                                             &nbsp;/&nbsp;
-                                            <a>Phụ kiện điện lạnh</a>
+                                            <a href="/home">Phụ kiện điện lạnh</a>
                                             &nbsp;/&nbsp;
-                                            <a>Tủ lạnh</a>
+                                            <a href="/home">Tủ lạnh</a>
                                             &nbsp;/&nbsp;
-                                            <a>Máy lạnh - Máy điều hòa</a>
+                                            <a href="/home">Máy lạnh - Máy điều hòa</a>
                                             &nbsp;/&nbsp;
-                                            <a>Máy giặt</a>
+                                            <a href="/home">Máy giặt</a>
                                             &nbsp;/&nbsp;
-                                            <a>Tủ đông - Tủ mát</a>
+                                            <a href="/home">Tủ đông - Tủ mát</a>
                                             &nbsp;/&nbsp;
-                                            <a>Tivi</a>
+                                            <a href="/home">Tivi</a>
                                             &nbsp;/&nbsp;
-                                            <a>Máy nước nóng</a>
+                                            <a href="/home">Máy nước nóng</a>
                                             &nbsp;/&nbsp;
-                                            <a>Máy rửa chén</a>
+                                            <a href="/home">Máy rửa chén</a>
                                             &nbsp;/&nbsp;
-                                            <a>Máy sấy quần áo</a>
+                                            <a href="/home">Máy sấy quần áo</a>
                                             &nbsp;/&nbsp;
-                                            <a>Tủ ướp rượu</a>
+                                            <a href="/home">Tủ ướp rượu</a>
                                         </p>
                                         <a href="/home">Thể THao - Dã Ngoại</a>
                                         <p>
-                                            <a>Trang phục thể thao nữ</a>
+                                            <a href="/home">Trang phục thể thao nữ</a>
                                             &nbsp;/&nbsp;
-                                            <a>Trang phục thể thao nam</a>
+                                            <a href="/home">Trang phục thể thao nam</a>
                                             &nbsp;/&nbsp;
-                                            <a>Đồ dùng dã ngoại</a>
+                                            <a href="/home">Đồ dùng dã ngoại</a>
                                             &nbsp;/&nbsp;
-                                            <a>Giày thể thao nam</a>
+                                            <a href="/home">Giày thể thao nam</a>
                                             &nbsp;/&nbsp;
-                                            <a>Phụ kiện thể thao</a>
+                                            <a href="/home">Phụ kiện thể thao</a>
                                             &nbsp;/&nbsp;
-                                            <a>Dụng cụ - thiết bị tập thể thao</a>
+                                            <a href="/home">Dụng cụ - thiết bị tập thể thao</a>
                                             &nbsp;/&nbsp;
-                                            <a>Các môn thể thao khác</a>
+                                            <a href="/home">Các môn thể thao khác</a>
                                             &nbsp;/&nbsp;
-                                            <a>Dụng cụ câu cá</a>
+                                            <a href="/home">Dụng cụ câu cá</a>
                                             &nbsp;/&nbsp;
-                                            <a>Thể thao dưới nước</a>
+                                            <a href="/home">Thể thao dưới nước</a>
                                             &nbsp;/&nbsp;
-                                            <a>Các môn thể thao đồng đội</a>
+                                            <a href="/home">Các môn thể thao đồng đội</a>
                                             &nbsp;/&nbsp;
-                                            <a>Các môn thể thao chơi vợt</a>
+                                            <a href="/home">Các môn thể thao chơi vợt</a>
                                             &nbsp;/&nbsp;
-                                            <a>Các môn thể thao đối kháng </a>
+                                            <a href="/home">Các môn thể thao đối kháng </a>
                                             &nbsp;/&nbsp;
-                                            <a>Giày thể thao nữ</a>
+                                            <a href="/home">Giày thể thao nữ</a>
                                             &nbsp;/&nbsp;
-                                            <a>Thực phẩm bổ sung năng lượng</a>
+                                            <a href="/home">Thực phẩm bổ sung năng lượng</a>
                                             &nbsp;/&nbsp;
-                                            <a>Dụng cụ leo núi</a>
+                                            <a href="/home">Dụng cụ leo núi</a>
 
                                         </p>
                                         <a href="/home">Máy Ảnh - Máy Quay Phim</a>
                                         <p>
-                                            <a>Phụ Kiện Máy Ảnh, Máy Quay</a>
+                                            <a href="/home">Phụ Kiện Máy Ảnh, Máy Quay</a>
                                             &nbsp;/&nbsp;
-                                            <a>Camera Giám Sát</a>
+                                            <a href="/home">Camera Giám Sát</a>
                                             &nbsp;/&nbsp;
-                                            <a>Thiết Bị Ánh Sáng</a>
+                                            <a href="/home">Thiết Bị Ánh Sáng</a>
                                             &nbsp;/&nbsp;
-                                            <a>Camera Hành Trình - Action Camera và Phụ Kiện</a>
+                                            <a href="/home">Camera Hành Trình - Action Camera và Phụ Kiện</a>
                                             &nbsp;/&nbsp;
-                                            <a>Balo - Túi Đựng - Bao Da</a>
+                                            <a href="/home">Balo - Túi Đựng - Bao Da</a>
                                             &nbsp;/&nbsp;
-                                            <a>Ống Kính - Ống Ngắm</a>
+                                            <a href="/home">Ống Kính - Ống Ngắm</a>
                                             &nbsp;/&nbsp;
-                                            <a>Ống Kính (Lens)</a>
+                                            <a href="/home">Ống Kính (Lens)</a>
                                             &nbsp;/&nbsp;
-                                            <a>Thiết Bị Quay Phim</a>
+                                            <a href="/home">Thiết Bị Quay Phim</a>
                                             &nbsp;/&nbsp;
-                                            <a>Máy Bay Camera và Phụ Kiện</a>
+                                            <a href="/home">Máy Bay Camera và Phụ Kiện</a>
                                             &nbsp;/&nbsp;
-                                            <a>Máy Ảnh</a>
+                                            <a href="/home">Máy Ảnh</a>
                                         </p>
                                     </div>
                                     
