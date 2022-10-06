@@ -1,0 +1,157 @@
+footer {
+    margin-top: 16px;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: normal;
+    color: rgb(128, 128, 137);
+    background-color: white;
+  
+    .style-information {
+      padding: 16px 0px;
+    }
+    .d-flexs {
+      display: flex;
+      justify-content: space-between;
+    }
+    .cm-width {
+  
+      .hot-line {
+        a {
+          color: rgb(56, 56, 61);
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+      }
+      p {
+        font-size: 12px;
+        line-height: 16px;
+        color: rgb(128, 128, 137);
+        margin-bottom: 12px;
+        margin-top: 0px;
+      }
+      .small-text1 {
+        display: block;
+        margin-bottom: 8px;
+        color: rgb(128, 128, 137);
+      }
+      .small-text {
+        display: block;
+        margin-bottom: 8px;
+        color: rgb(128, 128, 137);
+      }
+      .small-text:hover{
+        cursor: pointer;
+        text-decoration: underline;
+      }
+      .block:first-child {
+        width: 268px;
+      }
+      .py-3 {
+        padding: 16px 0px;
+  
+        h1 {
+          font-size: 16px;
+          line-height: 24px;
+          font-weight: 500;
+          color: rgb(56, 56, 61);
+          margin-bottom: 12px;
+          margin-top: 0px;
+        }
+        h2 {
+          font-size: 14px;
+          line-height: 20px;
+          font-weight: 500;
+          margin-bottom: 4px;
+          margin-top: 0px;
+          color: rgb(128, 128, 137);
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+      }
+      .block {
+        width: 226px;
+  
+        h4 {
+          font-size: 16px;
+          line-height: 24px;
+          font-weight: 500;
+          color: rgb(56, 56, 61);
+          margin-bottom: 12px;
+          margin-top: 0px;
+        }
+        .security {
+          margin-bottom: 8px;
+          color: rgb(128, 128, 137);
+          font-size: 12px;
+          font-weight: 400;
+  
+          a {
+            color: rgb(128, 128, 137);
+          }
+          a:hover {
+            text-decoration: underline;
+          }
+        }
+        .icon {
+          display: inline-block;
+          margin-right: 8px;
+          margin-bottom: 8px;
+          vertical-align: middle;
+          width: 32px;
+          height: 32px;
+        }
+        .store-title {
+          margin-top: 24px;
+        }
+        .download-app {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          height: 80px;
+        }
+      }
+      .category {
+  
+        &-item {
+          margin-bottom: 16px;
+          column-gap: 20px;
+          grid-template-columns: repeat(5, 1fr);
+          display: grid;
+          
+          &--title {
+            font-size: 14px;
+            line-height: 30px;
+            font-weight: 500;
+            color: rgb(56, 56, 61);
+            margin-bottom: 4px;
+            margin-top: 0px;
+  
+            a {
+              color: rgb(128, 128, 137);
+            }
+            a:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+    .style-line {
+      content: " ";
+      height: 1px;
+      background-color: rgb(235, 235, 240);
+      width: 1240px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .style-line {
+      width: 100% !important;
+    }
+  }
+  
