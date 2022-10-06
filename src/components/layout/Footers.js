@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Footers(){
-    const cate = Array.from(Array(10).keys());
+    // const cate = Array.from(Array(10).keys());
     return (
         <footer>
             <div className="style-information">
