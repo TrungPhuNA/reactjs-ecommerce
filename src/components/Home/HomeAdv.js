@@ -42,7 +42,7 @@ const settingsSlide = {
 
 }
 function HomeAdv() {
-    const arr_14 = Array.from(Array(14).keys());
+    // const arr_14 = Array.from(Array(14).keys());
     const [brand,setBrand] = useState([]);
 
     useEffect(() => {
