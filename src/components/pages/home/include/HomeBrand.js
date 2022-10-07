@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Pagination, Navigation, Autoplay,Lazy } from "swiper";
-import Images from "../Image/Images";
+import Images from "../../../Image/Images";
 
 const settingsSlide = {
     slidesPerView:2,

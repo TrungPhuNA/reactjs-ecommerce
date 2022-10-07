@@ -8,8 +8,8 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Pagination, Navigation, Autoplay, Lazy} from "swiper";
-import Images from "../Image/Images";
-import { isWideScreen } from "../../helpers/screen";
+import Images from "../../../Image/Images";
+import { isWideScreen } from "../../../../helpers/screen";
 
 const settingsSlide = {
     // slidesPerView:1,

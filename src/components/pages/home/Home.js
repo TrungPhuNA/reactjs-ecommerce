@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import HomeBanner from "./HomeBanner";
-import FamousCategory from "../Category/FamousCategory";
-import HomeSuggest from "./HomeSuggest";
-import HomeBrand from "./HomeBrand";
-import HomeDeal from "./HomeDeal";
-import HomeAdv from "./HomeAdv";
-import HomeCategory from "./HomeCategory";
-import Images from "../Image/Images";
-import {isWideScreen } from "../../helpers/screen";
-import MenuMobile from "../layout/MenuMobile";
-import MobileHeader from "../layout/MobileHeader";
-import HomeSearchMobile from "./HomeSearchMobile";
-import LoginMobile from "../../components/login/LoginMobile";
+import HomeBanner from "./include/HomeBanner";
+import FamousCategory from "./include/FamousCategory";
+import HomeSuggest from "./include/HomeSuggest";
+import HomeBrand from "./include/HomeBrand";
+import HomeDeal from "./include/HomeDeal";
+import HomeAdv from "./include/HomeAdv";
+import HomeCategory from "./include/HomeCategory";
+import Images from "../../Image/Images";
+import {isWideScreen } from "../../../helpers/screen";
+import MenuMobile from "../../layout/MenuMobile";
+import MobileHeader from "../../layout/MobileHeader";
+import HomeSearchMobile from "../../common/HomeSearchMobile";
+import LoginMobile from "../../login/LoginMobile";
 
 function Home() {
     const [menu,setMenu]=useState(1);

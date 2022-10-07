@@ -1,5 +1,5 @@
 import React from "react";
-import Images from "../Image/Images";
+import Images from "../../../Image/Images";
 
 function FamousCategory({check}) {
       const categories = [
