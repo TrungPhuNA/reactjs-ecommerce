@@ -1,6 +1,6 @@
 import { LeftOutlined, MenuOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import React from 'react';
-import BoxSearch from '../common/BoxSearch';
+import BoxSearch from './BoxSearch';
 
 export default function HomeSearchMobile(props) {
     return (

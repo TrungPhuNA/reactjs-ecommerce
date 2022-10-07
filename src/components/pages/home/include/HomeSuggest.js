@@ -1,6 +1,6 @@
 import React, {useState,useEffect } from "react";
-import Images from "../Image/Images";
-import ProductSummary from "../products/ProductSumary";
+import Images from "../../../Image/Images";
+import ProductSummary from "../../../products/ProductSumary";
 
 function HomeSuggest({status}) {
     const [disCount,setDistCount]=useState(true);
