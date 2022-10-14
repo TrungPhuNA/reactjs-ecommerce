@@ -393,7 +393,7 @@ function Comment() {
                 <div className="review-pages">
                     <ul>
                         <li>
-                            <a className="img-noactive">
+                            <a href ="detail" className="img-noactive">
                                 <img alt="/" src="https://icons.veryicon.com/png/o/miscellaneous/test-2/prev.png" width="20" height="20"/>
                             </a>
                         </li>
@@ -407,7 +407,7 @@ function Comment() {
                             <a href="/detail">3</a>
                         </li>
                         <li>
-                            <a>
+                            <a href ="detail">
                                 <img alt="/" src="https://cdn-icons-png.flaticon.com/512/130/130884.png" width="20" height="20"/>
                             </a>
                         </li>
