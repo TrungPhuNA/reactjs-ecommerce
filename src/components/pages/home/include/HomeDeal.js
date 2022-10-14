@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 // import required modules
 import { Navigation,Pagination, Autoplay, Lazy} from "swiper";
 import { useCountdown } from "../../../../hook/useCountDown";
-import ProductSummary from "../../../products/ProductSumary";
+import ProductSummary from "../../../common/product/ProductSumary";
 import { isWideScreen } from "../../../../helpers/screen";
 
 const settingsSlide = {

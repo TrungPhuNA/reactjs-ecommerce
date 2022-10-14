@@ -134,7 +134,7 @@ function HomeCategory() {
                                         return (
                                             <SwiperSlide key={index}>
                                                 <div className="category-item">
-                                                    <a href="/home">
+                                                    <a href="/category">
                                                         <div className="position-relative"s>
                                                             <p>{item.title}</p>
                                                         </div>

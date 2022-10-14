@@ -2,12 +2,21 @@
 @import "./layout/footer.scss";
 @import "./products/productSummary.scss";
 @import "./pages/home/banner.scss";
-@import "./pages/home/category.scss";
+@import "./pages/home/homecategory.scss";
 @import "./pages/home/product.scss";
 @import "./pages/home/home.scss";
 @import "./layout/menuMobile.scss";
 @import "./common/box-search.scss";
 @import "./login/login.scss";
+@import "./pages/category/category.scss";
+@import "./pages/category/sidebar.scss";
+@import "./pages/category/categoryright.scss";
+@import "./products/viewed.scss";
+@import "./pages/productdetail/product.scss";
+@import "./pages/productdetail/similarproduct.scss";
+@import "./pages/productdetail/productdescribe.scss";
+@import "./pages/productdetail/comment.scss";
+
 html {
     line-height: 1.15;
     text-size-adjust: 100%;
