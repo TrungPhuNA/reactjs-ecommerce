@@ -2,7 +2,7 @@ import React, {useState,useEffect } from "react";
 import Images from "../../../Image/Images";
 import ProductSummary from "../../../common/product/ProductSumary";
 
-function HomeSuggest({status}) {
+function Explore({status}) {
     const [disCount,setDistCount]=useState(true);
     const [suggestTitle,setSuggestTitle] = useState([]);
 
@@ -16,7 +16,7 @@ function HomeSuggest({status}) {
       },
       { 
           id:2,
-          name:'Coupon 10 Triệu',
+          name:'Dịch vụ số',
           tab:false,
           src:"https://salt.tikicdn.com/ts/tikimsp/14/7b/d9/72d4b0ba52b75a09051aa6da36461bf0.png"
       },
@@ -34,27 +34,15 @@ function HomeSuggest({status}) {
       },
       {
           id:5,
-          name:'Rẻ vô đối',
+          name:'Trending',
           tab:false,
           src:"https://salt.tikicdn.com/ts/personalish/0f/59/9d/215fa18ef72e430eefcbfe5355cab8e2.png"
       },
       {
           id:6,
-          name:'Hàng mới',
+          name:'Ngày hội Astra',
           tab:false,
           src:"https://salt.tikicdn.com/ts/personalish/7d/8a/6e/d8b76e2c43cbd06b7e1aa3ab8c54df64.png"
-      },
-      {
-          id:7,
-          name:'Xu hướng thời trang',
-          tab:false,
-          src:"https://salt.tikicdn.com/ts/personalish/dc/f1/b1/6ba9e529785de3ad1a81b9c569d05aa0.png"
-      },
-      {
-          id:8,
-          name:'Trending',
-          tab:false,
-          src:"https://salt.tikicdn.com/ts/personalish/b9/e1/a9/65ad8ac4e167c5009ae3f7c80395a5a4.png"
       },
     ]
   setSuggestTitle(data);
@@ -73,7 +61,7 @@ function HomeSuggest({status}) {
         if(status) {
             return(
                 <div className="suggestion__title">
-                        <h2>Gợi Ý Hôm Nay</h2>
+                        <h2>Khám Phá Thêm</h2>
                         <div className="suggestion__title-list">
                             {
                                 suggestTitle.map(item => {
@@ -93,7 +81,7 @@ function HomeSuggest({status}) {
             )   
         }
        else return (<>  
-                <h2 style={{height: 48+'px'}}>Gợi Ý Hôm Nay</h2>
+                <h2 style={{height: 48+'px'}}>Khám Phá Thêm</h2>
                     <div className="suggestion__title-list">
                         {
                             suggestTitle.map(item => {
@@ -138,4 +126,4 @@ function HomeSuggest({status}) {
 
     )
 }
-export default HomeSuggest
+export default Explore;

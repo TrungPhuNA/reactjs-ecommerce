@@ -109,4 +109,4 @@ function FamousCategory({check}) {
         </div>
     )
 }
-export default FamousCategory
+export default FamousCategory;
