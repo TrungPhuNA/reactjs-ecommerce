@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import {Link } from "react-router-dom";
 
 // Import Swiper styles
 import "swiper/css";
@@ -72,7 +73,7 @@ function HomeBrand() {
                         <Images src="https://salt.tikicdn.com/ts/upload/33/0f/67/de89fab36546a63a8f3a8b7d038bff81.png" alt="aaa" />
                         <div className="main-title__text">Thương Hiệu Chính Hãng</div>
                     </div>
-                    <a href="/home" className="see-more">Xem thêm</a>
+                    <Link to="/home" className="see-more">Xem thêm</Link>
                 </div>
                 <div className="brand-slide">
                             <Swiper {...settingsSlide}>
@@ -81,12 +82,12 @@ function HomeBrand() {
                                         return (
                                             <SwiperSlide key={index}>
                                                 <div className="brand-item">
-                                                    <a href="/home">
+                                                    <Link to="/home">
                                                         <div className="position-relative">
                                                             <Images src={item.src} alt={item.title}/>
                                                             <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
                                                         </div>
-                                                    </a>
+                                                    </Link>
                                                 </div>
                                                 
                                             </SwiperSlide>
@@ -103,12 +104,12 @@ function HomeBrand() {
                                     return (
                                         <>
                                             <div className="slick-slide">
-                                                <a href="/home" className="text">
+                                                <Link to="/home" className="text">
                                                     <div className="position-relative">
                                                         <Images src="https://salt.tikicdn.com/ts/banner/4d/5b/21/23b24cbfaac38c74a43fef60343194e8.png" alt="âds" />
                                                         <p className="brand__title">Giảm đến 50%</p>
                                                     </div>
-                                                </a>
+                                                </Link>
                                             </div>
                                         </>
                                     )

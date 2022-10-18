@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import {Link } from "react-router-dom";
 
 // Import Swiper styles
 import "swiper/css";
@@ -89,13 +90,13 @@ function HomeAdv() {
                                         return (
                                             <SwiperSlide key={index}>
                                                 <div className="advertise-item">
-                                                    <a href="/home">
+                                                    <Link to="/home">
                                                         <div className="position-relative">
                                                             <div className="advertise-img">
                                                                 <Images src={item.src} alt={item.title}/>
                                                             </div>
                                                         </div>
-                                                    </a>
+                                                    </Link>
                                                 </div>
                                                 
                                             </SwiperSlide>
