@@ -5,6 +5,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import Products from "./Products";
+import {Link } from "react-router-dom";
 
 const settingsSlide = {
     slidesPerView:1,
@@ -17,7 +18,7 @@ function Container({status}) {
     function ListItem(props) {
         return(
             <li>
-                <a href="/">{props.title}</a>
+                <Link to="/">{props.title}</Link>
             </li>
         )
     }
@@ -134,10 +135,10 @@ function Container({status}) {
                                 <p>Bắc Giang</p>
                             </label>
                             <div className="more">
-                                <a href="/">
+                                <Link to="/">
                                     Xem thêm    
                                     <img alt="/" src="https://w7.pngwing.com/pngs/523/1012/png-transparent-arrow-computer-icons-encapsulated-postscript-drop-down-list-arrow-blue-angle-text-thumbnail.png"/>
-                                </a>
+                                </Link>
                             </div>
                         </div>
 
@@ -206,10 +207,10 @@ function Container({status}) {
                                 <p>DAIKIN</p>
                             </label>
                             <div className="more">
-                                <a href="/">
+                                <Link to="/">
                                     Xem thêm    
                                     <img alt="/" src="https://w7.pngwing.com/pngs/523/1012/png-transparent-arrow-computer-icons-encapsulated-postscript-drop-down-list-arrow-blue-angle-text-thumbnail.png"/>
-                                </a>
+                                </Link>
                             </div>
                         </div>
 
@@ -236,10 +237,10 @@ function Container({status}) {
                                 <p>Xám</p>
                             </label>
                             <div className="more">
-                                <a href="/">
+                                <Link to="/">
                                     Xem thêm    
                                     <img alt="/" src="https://w7.pngwing.com/pngs/523/1012/png-transparent-arrow-computer-icons-encapsulated-postscript-drop-down-list-arrow-blue-angle-text-thumbnail.png"/>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                         
@@ -266,10 +267,10 @@ function Container({status}) {
                                 <p>Shop Phước Trần</p>
                             </label>
                             <div className="more">
-                                <a href="/">
+                                <Link to="/">
                                     Xem thêm    
                                     <img alt="/" src="https://w7.pngwing.com/pngs/523/1012/png-transparent-arrow-computer-icons-encapsulated-postscript-drop-down-list-arrow-blue-angle-text-thumbnail.png"/>
-                                </a>
+                                </Link>
                             </div>
                         </div>
 
@@ -312,11 +313,11 @@ function Container({status}) {
                                 <div className="summary-top">
                                     <div className="top-tabs">
                                         <div className="tabs-list">
-                                            <a href="/" className="active">Phổ Biến</a>
-                                            <a href="/" className="active">Bán Chạy</a>
-                                            <a href="/" className="active">Hàng Mới</a>
-                                            <a href="/" className="active">Giá Thấp Đến Cao</a>
-                                            <a href="/" className="active">Giá Cao Đến Thấp</a>
+                                            <Link to="/" className="active">Phổ Biến</Link>
+                                            <Link to="/" className="active">Bán Chạy</Link>
+                                            <Link to="/" className="active">Hàng Mới</Link>
+                                            <Link to="/" className="active">Giá Thấp Đến Cao</Link>
+                                            <Link to="/" className="active">Giá Cao Đến Thấp</Link>
                                         </div>
                                     </div> 
 
@@ -353,21 +354,21 @@ function Container({status}) {
 
                         <div className="paging-nav">
                             <ul>
-                                <li><a href="/" className="curr">1</a></li>
-                                <li><a className="noactive"  href="/">
+                                <li><Link to="/" className="curr">1</Link></li>
+                                <li><Link className="noactive"  href="/">
                                     <img alt="/" src="https://salt.tikicdn.com/ts/brickv2og/79/0d/0a/c49a190b24f4b799e16fadae76d76ce8.png" height="20" width="16"/>
-                                </a></li>
-                                <li><a href="/">2</a></li>
-                                <li><a href="/">3</a></li>
-                                <li><a href="/">4</a></li>
-                                <li><a href="/">5</a></li>
-                                <li><a href="/">
+                                </Link></li>
+                                <li><Link to="/">2</Link></li>
+                                <li><Link to="/">3</Link></li>
+                                <li><Link to="/">4</Link></li>
+                                <li><Link to="/">5</Link></li>
+                                <li><Link to="/">
                                     <img className="noactive" alt="." src="https://salt.tikicdn.com/ts/brickv2og/c5/f9/d0/b4e49aa9576a35e347fbdeec0df9e350.png" width="20" height="20"/>    
-                                </a></li>
-                                <li><a href="/">50</a></li>
-                                <li><a href="/">
+                                </Link></li>
+                                <li><Link to="/">50</Link></li>
+                                <li><Link to="/">
                                 <img alt="/" src="https://salt.tikicdn.com/ts/brickv2og/9d/4a/fa/3c558303ba1d0f07c2d9c4f5583e0c8d.png" height="20" width="16"/>
-                                </a></li>
+                                </Link></li>
                             </ul>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-
+import {Link } from "react-router-dom";
 
 function Product() {
     return (
@@ -32,14 +32,14 @@ function Product() {
                     <div className="product-brand">
                         <span>
                             <h6>Thương hiệu: </h6>
-                            <a href="/detail">Asano</a>
+                            <Link to="/detail">Asano</Link>
                         </span>
                     </div>
                     <h1 class="product-title">Máy Lạnh Asanzo 1.5 HP S12N66 NON INVERTER - Hàng Chính Hãng - Giao Toàn Quốc</h1>
                     <div className="below-title">
                         <div className="below-rate">
                             <img alt="/" src="https://static.vecteezy.com/system/resources/previews/004/186/171/non_2x/star-icon-black-set-rating-icon-black-set-icon-free-vector.jpg" width="80" height="24"/>
-                            <a href="/">(Xem 11 đánh giá)</a>
+                            <Link to="/">(Xem 11 đánh giá)</Link>
                             <div className="below-seperate"/>
                             <div className="sold">Đã bán 65</div>
                         </div>
@@ -130,7 +130,7 @@ function Product() {
                     <div className="content-body-right">
                         <div className="current-seller">
                             <div className="seller-info">
-                                <a href="detail">
+                                <Link to="detail">
                                     <img alt="/" src="https://vcdn.tikicdn.com/cache/w100/ts/seller/c2/d9/01/43d82628cee443204b3d245a54c591cb.jpg.webp"/>
                                     <div className="overview-right">
                                         <span>
@@ -138,7 +138,7 @@ function Product() {
                                             <img alt="/" src="https://salt.tikicdn.com/cache/w100/ts/upload/e8/6a/e3/7f998ef1eb5ab0536aac53f02a698c8a.png.webp"/>
                                         </span>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                             <div className="seller-detail">
                                 <div className="item-rate">
@@ -164,10 +164,10 @@ function Product() {
                                 </div>
                             </div>
                             <div className="seller-action">
-                                <a href="detail" className="actionview">
+                                <Link to="detail" className="actionview">
                                     <img alt="/" src="https://salt.tikicdn.com/ts/upload/49/27/ff/d735c33edfdc6cf6aeb6e183bec28869.png" width="20" height="20"/>
                                     <span>Xem Shop</span>
-                                </a>
+                                </Link>
                                 <div className="actionseperate"/>
                                 <div className="actionfl">
                                     <img alt="/" src="https://salt.tikicdn.com/ts/upload/5b/bf/3c/eeda00767e26b5873030e44f951441c4.png" width="20" height="20"/>

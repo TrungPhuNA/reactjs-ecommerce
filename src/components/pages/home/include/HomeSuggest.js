@@ -1,6 +1,7 @@
 import React, {useState,useEffect } from "react";
 import Images from "../../../Image/Images";
 import ProductSummary from "../../../common/product/ProductSumary";
+import {Link } from "react-router-dom";
 
 function HomeSuggest({status}) {
     const [disCount,setDistCount]=useState(true);
@@ -128,9 +129,9 @@ function HomeSuggest({status}) {
                             })
                         }
                     </div>
-                    <a href="/home" className="view-more">
+                    <Link to="/home" className="view-more">
                         Xem thêm
-                    </a>
+                    </Link>
                 </div>
             </div>
             
