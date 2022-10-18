@@ -1,5 +1,6 @@
 import React from "react";
 import Images from "../../../Image/Images";
+import {Link } from "react-router-dom";
 
 function FamousCategory({check}) {
       const categories = [
@@ -93,10 +94,10 @@ function FamousCategory({check}) {
                         <div className="body-slide--list">
                             { categories.map((category,index) => {
                                 return (
-                                    <a href="/home" key={index.toString()} className="item">
+                                    <Link to="/home" key={index.toString()} className="item">
                                         <Images src={category.src} alt={`category ${index}`}/>
                                         <h3>{category.title}</h3>
-                                    </a>
+                                    </Link>
                                 )
                             })
 

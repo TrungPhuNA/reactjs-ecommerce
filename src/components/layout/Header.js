@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { isWideScreen } from "../../helpers/screen";
 import BoxSearch from "../common/BoxSearch";
+import { Link } from "react-router-dom";
 
 function Header(props) {
     const [showSearchDesktop, setShowSearchDesktop] = useState(false);
@@ -18,9 +19,9 @@ function Header(props) {
                 <div className="main-header--top pfpi">
                     <div className="logo-menu">
                     <div className="style-logo">
-                        <a href="/home" className="tiki-logo">
+                        <Link to="/home" className="tiki-logo">
                             <img src="https://salt.tikicdn.com/ts/upload/ae/f5/15/2228f38cf84d1b8451bb49e2c4537081.png" alt="tiki logo"/>
-                        </a>
+                        </Link>
                     </div>
                     </div>
                     <div className="header-form-search" onMouseLeave={() => {setShowSearchDesktop(false)}}>
@@ -47,7 +48,7 @@ function Header(props) {
                         </span>
                     </div>
                     <div className="header-cart">
-                        <a href="/home">
+                        <Link to="/home">
                             <div className="header-cart-shotcut">
                                 <div className="cart-wrapper">
                                     <img src="https://salt.tikicdn.com/ts/upload/40/44/6c/b80ad73e5e84aeb71c08e5d8d438eaa1.png" alt="" className="cart-icon"/>
@@ -57,7 +58,7 @@ function Header(props) {
                                 </div>
                                 <span className="cart-title">Giỏ hàng</span>
                             </div>
-                        </a>
+                        </Link>
                     </div>
                     </div>
                 </div>
@@ -65,25 +66,25 @@ function Header(props) {
             <div className="main-header--bottom">
                 <div className="cm-width main-header--bottom--title">
                     <div className="left">
-                        <a href="/home" className="img-logo">
+                        <Link to="/home" className="img-logo">
                             <img src="https://salt.tikicdn.com/ts/upload/e5/1d/22/61ff572362f08ead7f34ce410a4a6f96.png" alt="" height="12" width="83"/>
-                        </a>
+                        </Link>
                         <div className="left__link">
-                            <a href="/home" className="item-link">Trái cây</a>
-                            <a href="/home" className="item-link">Thịt, trứng</a>
-                            <a href="/home" className="item-link">rau củ quả</a>
-                            <a href="/home" className="item-link">sữa, bơ, phô mai</a>
-                            <a href="/home" className="item-link">hải sản</a>
-                            <a href="/home" className="item-link">gạo, mỳ ăn liền</a>
-                            <a href="/home" className="item-link">đồ uống, bia rượu</a>
-                            <a href="/home" className="item-link">bánh kẹo</a>
+                            <Link to="/home" className="item-link">Trái cây</Link>
+                            <Link to="/home" className="item-link">Thịt, trứng</Link>
+                            <Link to="/home" className="item-link">rau củ quả</Link>
+                            <Link to="/home" className="item-link">sữa, bơ, phô mai</Link>
+                            <Link to="/home" className="item-link">hải sản</Link>
+                            <Link to="/home" className="item-link">gạo, mỳ ăn liền</Link>
+                            <Link to="/home" className="item-link">đồ uống, bia rượu</Link>
+                            <Link to="/home" className="item-link">bánh kẹo</Link>
                         </div>
                     </div>
 
-                    <a href="/home" className="seller">
+                    <Link to="/home" className="seller">
                         <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icon-seller.svg" alt=""/>
                         <span>Bán hàng cùng tiki</span>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </header>

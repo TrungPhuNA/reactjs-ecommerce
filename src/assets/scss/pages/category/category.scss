@@ -4,6 +4,13 @@
     padding-right: 15px;
     margin-right: auto;
     margin-left: auto;
+
+    @media (max-width: 1100px) {
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-right: auto;
+        margin-left: auto;
+    }
 }
 
 .category-view {

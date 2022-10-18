@@ -1,5 +1,7 @@
 import React, { useEffect, useState} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import {Link } from "react-router-dom";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -128,7 +130,7 @@ function HomeDeal() {
                                         <img alt="flash-deal3" className="flash-deal" src="https://frontend.tikicdn.com/_desktop-next/static/img/homnay.svg"/>
                                     </div>
                                     <div>
-                                        <a href="/home">
+                                        <Link to="/home">
                                             <div className="deal-time">
                                                 {hours+minutes+seconds > 0 && 
                                                 <>
@@ -138,10 +140,10 @@ function HomeDeal() {
                                                 }
                                                 
                                             </div>
-                                        </a >
+                                        </Link >
                                     </div>
                                 </div>
-                                <a href="/home">Xem thêm</a>
+                                <Link to="/home">Xem thêm</Link>
                             </div>
                             <div className="body">
                                 <Swiper {...settingsSlide}>

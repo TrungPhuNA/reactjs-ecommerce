@@ -1,4 +1,6 @@
 
+import {Link } from "react-router-dom";
+
 function Comment() {
     return (
         <div className="cmt-container">
@@ -393,23 +395,23 @@ function Comment() {
                 <div className="review-pages">
                     <ul>
                         <li>
-                            <a className="img-noactive">
+                            <Link to ="detail" className="img-noactive">
                                 <img alt="/" src="https://icons.veryicon.com/png/o/miscellaneous/test-2/prev.png" width="20" height="20"/>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a className="page-active" href="/detail">1</a>
+                            <Link className="page-active" to="/detail">1</Link>
                         </li>
                         <li>
-                            <a href="/detail">2</a>
+                            <Link to="/detail">2</Link>
                         </li>
                         <li>
-                            <a href="/detail">3</a>
+                            <Link to="/detail">3</Link>
                         </li>
                         <li>
-                            <a>
+                            <Link to ="detail">
                                 <img alt="/" src="https://cdn-icons-png.flaticon.com/512/130/130884.png" width="20" height="20"/>
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

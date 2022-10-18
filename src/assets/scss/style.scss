@@ -16,11 +16,12 @@
 @import "./pages/productdetail/similarproduct.scss";
 @import "./pages/productdetail/productdescribe.scss";
 @import "./pages/productdetail/comment.scss";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap');
 
 html {
     line-height: 1.15;
     text-size-adjust: 100%;
-    font-family: Roboto,Helvetica,Arial,sans-serif;
+    font-family: Roboto ,Helvetica,Arial,sans-serif;
     font-size: 14px;
     background-color: #efefef;
   }
@@ -69,7 +70,7 @@ html {
     max-width: 100%;
   }
   input, button, select, textarea {
-    font-family: inherit;
+    font-family: roboto;
     font-size: 100%;
     line-height: 1.15;
     margin: 0px;

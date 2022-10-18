@@ -1,26 +1,27 @@
 import React from 'react'
-import HomeContainer from '../containers/Home/HomeContainer'
 //import { Navigate } from 'react-router-dom'
-import CategoryContainer from '../containers/Category/CategoryContainer'
-import ProductDetailContainer from '../containers/ProductDetail/ProductDetailContainer'
+import NoPage from '../components/pages/NoPage';
+import Home from '../components/pages/home/Home';
+import CategoryIndex from '../components/pages/danhmuc/CategoryIndex';
+import Detail from '../components/pages/productdetail/Detail';
 
 export const routes = () => {
     const router_element = [
         {
-            path: '/',
-            element:<HomeContainer/>
-        },
-        {
             path: '/home',
-            element:<HomeContainer/>
+            element:<Home/>
         },
         {
             path: '/category',
-            element:<CategoryContainer  />
+            element:<CategoryIndex  />
         },
         {
             path: '/detail',
-            element:<ProductDetailContainer   />
+            element:<Detail />
+        },
+        {
+            path: '/',
+            element:<NoPage />
         }
     ]
     return router_element

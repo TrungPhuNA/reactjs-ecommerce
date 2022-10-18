@@ -1,5 +1,6 @@
 import ShowMore from 'react-show-more-button';
 
+
 function ProductDescribe() {
     return (
         <div className="describe-container">
