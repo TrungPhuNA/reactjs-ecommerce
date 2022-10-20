@@ -1,26 +1,31 @@
 import React from 'react';
-import NoPage from '../components/pages/NoPage';
-import Detail from '../components/pages/productdetail/Detail';
+import NoPage from '../pages/nopage/NoPage';
+import ProductDetailPage from '../pages/product_detail/ProductDetailPage';
 import HomePage from '../pages/home/HomePage';
 import CategoryPage from '../pages/category/CategoryPage';
+import ProductPage from '../pages/product/ProductPage';
 
 export const routes = () => {
     return [
         {
-            path: '/home',
+            path: '/',
             element: <HomePage/>
         },
         {
-            path: '/category',
+            path: 'category',
             element: <CategoryPage/>
         },
         {
-            path: '/detail',
-            element: <Detail/>
+            path: 'detail',
+            element: <ProductDetailPage/>
         },
         {
-            path: '/',
+            path: '*',
             element: <NoPage/>
+        },
+        {
+            path: '&pp',
+            element: <ProductPage/>
         }
     ]
 }

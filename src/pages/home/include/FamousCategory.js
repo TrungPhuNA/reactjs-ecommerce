@@ -1,5 +1,5 @@
 import React from "react";
-import Images from "../../../Image/Images";
+import Images from "../../../components/Image/Images";
 import {Link } from "react-router-dom";
 
 function FamousCategory({check}) {
@@ -85,6 +85,9 @@ function FamousCategory({check}) {
           title:'Nội thất phòng ngủ khác'
         }
       ]
+
+    
+    
     return (
         <div className="cm-width">
             <div className="home-category">
@@ -94,7 +97,7 @@ function FamousCategory({check}) {
                         <div className="body-slide--list">
                             { categories.map((category,index) => {
                                 return (
-                                    <Link to="/home" key={index.toString()} className="item">
+                                    <Link to="/" key={index.toString()} className="item">
                                         <Images src={category.src} alt={`category ${index}`}/>
                                         <h3>{category.title}</h3>
                                     </Link>

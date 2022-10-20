@@ -149,14 +149,24 @@
         .star {
             margin-left: 15px;
             margin-bottom: 10px;
-            img {
-                width: 16px;
-                height: 16px;
+            cursor: pointer;
+
+            .star-on {
+                color: rgb(253, 216, 53);
+                display: inline-block;
+            }
+
+            .star-off {
+                color: #ccc;
                 display: inline-block;
             }
 
             p {
                 display: inline-block;
+                margin-left: 3px;
+                color: rgb(36, 36, 36);
+                font-size: 13px;
+                font-weight: 400;
             }
         }
     }
@@ -177,6 +187,7 @@
             border-radius: 12px;
             margin-bottom: 4px;
             margin-left:15px;
+            cursor: pointer;
         }
 
         .price-small-text {

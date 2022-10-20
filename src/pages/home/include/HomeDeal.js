@@ -9,9 +9,9 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Navigation,Pagination, Autoplay, Lazy} from "swiper";
-import { useCountdown } from "../../../../hook/useCountDown";
-import ProductSummary from "../../../common/product/ProductSumary";
-import { isWideScreen } from "../../../../helpers/screen";
+import { useCountdown } from "../../../hook/useCountDown";
+import ProductSummary from "../../../components/common/product/ProductSumary";
+import { isWideScreen } from "../../../helpers/screen";
 
 const settingsSlide = {
     slidesPerView:5,
@@ -130,7 +130,7 @@ function HomeDeal() {
                                         <img alt="flash-deal3" className="flash-deal" src="https://frontend.tikicdn.com/_desktop-next/static/img/homnay.svg"/>
                                     </div>
                                     <div>
-                                        <Link to="/home">
+                                        <Link to="/">
                                             <div className="deal-time">
                                                 {hours+minutes+seconds > 0 && 
                                                 <>
@@ -143,7 +143,7 @@ function HomeDeal() {
                                         </Link >
                                     </div>
                                 </div>
-                                <Link to="/home">Xem thêm</Link>
+                                <Link to="/">Xem thêm</Link>
                             </div>
                             <div className="body">
                                 <Swiper {...settingsSlide}>

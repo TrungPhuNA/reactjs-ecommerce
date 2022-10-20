@@ -6,6 +6,8 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import Products from "./Products";
 import {Link } from "react-router-dom";
+// import Skeleton from "react-loading-skeleton";
+import { useNavigate } from "react-router-dom";
 
 const settingsSlide = {
     slidesPerView:1,
@@ -18,7 +20,7 @@ function Container({status}) {
     function ListItem(props) {
         return(
             <li>
-                <Link to="/">{props.title}</Link>
+                <Link to="/category">{props.title}</Link>
             </li>
         )
     }
@@ -60,6 +62,8 @@ function Container({status}) {
     setAdv(data);
     },[])
 
+    const navigate = useNavigate();
+
     return(
         <div className="container">
             <div className="category-view">
@@ -83,7 +87,7 @@ function Container({status}) {
                         <div className="sidebar-service">
                             <h4>Dịch vụ</h4>
                             <label>
-                                <input type="checkbox"/>
+                                <input type="checkbox" onChange={() => navigate("/&pp") }/>
                                 <img className="filter-icon" alt="/" src="https://salt.tikicdn.com/ts/upload/b3/21/cf/c6525bcd44b3bb1b793277cc98487799.png"/>
                                 <span>Giao siêu tốc 2h</span>
                             </label>
@@ -135,7 +139,7 @@ function Container({status}) {
                                 <p>Bắc Giang</p>
                             </label>
                             <div className="more">
-                                <Link to="/">
+                                <Link to="*">
                                     Xem thêm    
                                     <img alt="/" src="https://w7.pngwing.com/pngs/523/1012/png-transparent-arrow-computer-icons-encapsulated-postscript-drop-down-list-arrow-blue-angle-text-thumbnail.png"/>
                                 </Link>
@@ -145,27 +149,27 @@ function Container({status}) {
                         <div className="sidebar-rate">
                             <h4>Đánh giá</h4>
                             <div className="star">
-                                <img alt="/" src="https://vi.seaicons.com/wp-content/uploads/2017/04/star-icon1.png"/>
-                                <img alt="/" src="https://vi.seaicons.com/wp-content/uploads/2017/04/star-icon1.png"/>
-                                <img alt="/" src="https://vi.seaicons.com/wp-content/uploads/2017/04/star-icon1.png"/>
-                                <img alt="/" src="https://vi.seaicons.com/wp-content/uploads/2017/04/star-icon1.png"/>
-                                <img alt="/" src="https://vi.seaicons.com/wp-content/uploads/2017/04/star-icon1.png"/>
+                                <div className="star-on">
+                                    &#9733;&#9733;&#9733;&#9733;&#9733;
+                                </div>
                                 <p>từ 5 sao</p>
                             </div>
                             <div className="star">
-                                <img alt="/" src="https://vi.seaicons.com/wp-content/uploads/2017/04/star-icon1.png"/>
-                                <img alt="/" src="https://vi.seaicons.com/wp-content/uploads/2017/04/star-icon1.png"/>
-                                <img alt="/" src="https://vi.seaicons.com/wp-content/uploads/2017/04/star-icon1.png"/>
-                                <img alt="/" src="https://vi.seaicons.com/wp-content/uploads/2017/04/star-icon1.png"/>
-                                <img alt="/" src="https://toppng.com/uploads/preview/free-png-grey-star-png-images-transparent-grey-star-icon-11562980999ctbeqsdgmf.png"/>
+                                <div className="star-on">
+                                    &#9733;&#9733;&#9733;&#9733;
+                                </div>
+                                <div className="star-off">
+                                    &#9733;
+                                </div>
                                 <p>từ 4 sao</p>
                             </div>
                             <div className="star">
-                                <img alt="/" src="https://vi.seaicons.com/wp-content/uploads/2017/04/star-icon1.png"/>
-                                <img alt="/" src="https://vi.seaicons.com/wp-content/uploads/2017/04/star-icon1.png"/>
-                                <img alt="/" src="https://vi.seaicons.com/wp-content/uploads/2017/04/star-icon1.png"/>
-                                <img alt="/" src="https://toppng.com/uploads/preview/free-png-grey-star-png-images-transparent-grey-star-icon-11562980999ctbeqsdgmf.png"/>
-                                <img alt="/" src="https://toppng.com/uploads/preview/free-png-grey-star-png-images-transparent-grey-star-icon-11562980999ctbeqsdgmf.png"/>
+                                <div className="star-on">
+                                    &#9733;&#9733;&#9733;
+                                </div>
+                                <div className="star-off">
+                                    &#9733;&#9733;
+                                </div>
                                 <p>từ 3 sao</p>
                             </div>
                         </div>
@@ -177,9 +181,9 @@ function Container({status}) {
                             <div className="price-box"><span>Trên 17.000.000</span></div>
                             <div className="price-small-text">Chọn khoảng giá</div>
                             <div className="input-group">
-                                <input value="0"></input>
+                                <input placeholder="0" type="text"></input>
                                 <span>-</span>
-                                <input value="0"></input>
+                                <input placeholder="0" type="text"></input>
                             </div>
                             <button>Áp dụng</button>
                         </div>
@@ -207,7 +211,7 @@ function Container({status}) {
                                 <p>DAIKIN</p>
                             </label>
                             <div className="more">
-                                <Link to="/">
+                                <Link to="*">
                                     Xem thêm    
                                     <img alt="/" src="https://w7.pngwing.com/pngs/523/1012/png-transparent-arrow-computer-icons-encapsulated-postscript-drop-down-list-arrow-blue-angle-text-thumbnail.png"/>
                                 </Link>
@@ -237,7 +241,7 @@ function Container({status}) {
                                 <p>Xám</p>
                             </label>
                             <div className="more">
-                                <Link to="/">
+                                <Link to="*">
                                     Xem thêm    
                                     <img alt="/" src="https://w7.pngwing.com/pngs/523/1012/png-transparent-arrow-computer-icons-encapsulated-postscript-drop-down-list-arrow-blue-angle-text-thumbnail.png"/>
                                 </Link>
@@ -267,7 +271,7 @@ function Container({status}) {
                                 <p>Shop Phước Trần</p>
                             </label>
                             <div className="more">
-                                <Link to="/">
+                                <Link to="*">
                                     Xem thêm    
                                     <img alt="/" src="https://w7.pngwing.com/pngs/523/1012/png-transparent-arrow-computer-icons-encapsulated-postscript-drop-down-list-arrow-blue-angle-text-thumbnail.png"/>
                                 </Link>
@@ -313,11 +317,11 @@ function Container({status}) {
                                 <div className="summary-top">
                                     <div className="top-tabs">
                                         <div className="tabs-list">
-                                            <Link to="/" className="active">Phổ Biến</Link>
-                                            <Link to="/" className="active">Bán Chạy</Link>
-                                            <Link to="/" className="active">Hàng Mới</Link>
-                                            <Link to="/" className="active">Giá Thấp Đến Cao</Link>
-                                            <Link to="/" className="active">Giá Cao Đến Thấp</Link>
+                                            <Link to="*" className="active">Phổ Biến</Link>
+                                            <Link to="*" className="active">Bán Chạy</Link>
+                                            <Link to="*" className="active">Hàng Mới</Link>
+                                            <Link to="*" className="active">Giá Thấp Đến Cao</Link>
+                                            <Link to="*" className="active">Giá Cao Đến Thấp</Link>
                                         </div>
                                     </div> 
 
@@ -354,19 +358,20 @@ function Container({status}) {
 
                         <div className="paging-nav">
                             <ul>
-                                <li><Link to="/" className="curr">1</Link></li>
+
                                 <li><Link className="noactive"  href="/">
                                     <img alt="/" src="https://salt.tikicdn.com/ts/brickv2og/79/0d/0a/c49a190b24f4b799e16fadae76d76ce8.png" height="20" width="16"/>
-                                </Link></li>
-                                <li><Link to="/">2</Link></li>
-                                <li><Link to="/">3</Link></li>
-                                <li><Link to="/">4</Link></li>
-                                <li><Link to="/">5</Link></li>
-                                <li><Link to="/">
+                                </Link></li>                                
+                                <li><Link to="*" className="curr">1</Link></li>
+                                <li><Link to="*">2</Link></li>
+                                <li><Link to="*">3</Link></li>
+                                <li><Link to="*">4</Link></li>
+                                <li><Link to="*">5</Link></li>
+                                <li><Link to="*">
                                     <img className="noactive" alt="." src="https://salt.tikicdn.com/ts/brickv2og/c5/f9/d0/b4e49aa9576a35e347fbdeec0df9e350.png" width="20" height="20"/>    
                                 </Link></li>
-                                <li><Link to="/">50</Link></li>
-                                <li><Link to="/">
+                                <li><Link to="*">50</Link></li>
+                                <li><Link to="*">
                                 <img alt="/" src="https://salt.tikicdn.com/ts/brickv2og/9d/4a/fa/3c558303ba1d0f07c2d9c4f5583e0c8d.png" height="20" width="16"/>
                                 </Link></li>
                             </ul>

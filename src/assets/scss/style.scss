@@ -1,21 +1,13 @@
-@import "./layout/header.scss";
-@import "./layout/footer.scss";
+@import "./components/layout/header.scss";
+@import "./components/layout/footer.scss";
 @import "./products/productSummary.scss";
-@import "pages/home/include/banner";
-@import "pages/home/include/homecategory";
-@import "pages/home/include/product";
-@import "pages/home/include/home_backup";
-@import "./layout/menuMobile.scss";
-@import "./common/box-search.scss";
-@import "./login/login.scss";
+@import "./pages/home/home.scss";
+@import "./components/layout/menuMobile.scss";
+@import "./components/common/box-search.scss";
+@import "./components/login/login.scss";
 @import "./pages/category/category.scss";
-@import "./pages/category/sidebar.scss";
-@import "./pages/category/categoryright.scss";
 @import "./products/viewed.scss";
 @import "./pages/productdetail/product.scss";
-@import "./pages/productdetail/similarproduct.scss";
-@import "./pages/productdetail/productdescribe.scss";
-@import "./pages/productdetail/comment.scss";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap');
 
 html {

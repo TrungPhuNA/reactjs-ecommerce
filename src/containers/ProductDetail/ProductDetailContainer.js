@@ -1,9 +1,9 @@
 import React from "react";
-import Detail from "../../components/pages/productdetail/Detail";
+import ProductDetailPage from "../../pages/product_detail/ProductDetailPage";
 
 function ProductDetailContainer() {
     return (
-        <Detail/>
+        <ProductDetailPage/>
     )
 }
 export default ProductDetailContainer;

@@ -170,6 +170,11 @@
       }
     }
   }
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    position: relative;
+  }
 }
   .not-style {
     justify-content: space-between;
