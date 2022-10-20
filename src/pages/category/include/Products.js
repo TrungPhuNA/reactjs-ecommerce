@@ -1,5 +1,5 @@
 import React, {useState, } from "react";
-import ProductSummary from "../../../common/product/ProductSumary";
+import ProductSummary from "../../../components/common/product/ProductSumary";
 
 function Products({status}) {
     const [disCount,setDistCount]=useState(true);

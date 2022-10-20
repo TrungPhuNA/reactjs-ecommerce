@@ -1,6 +1,6 @@
 import React, {useState,useEffect } from "react";
-import Images from "../../../Image/Images";
-import ProductSummary from "../../../common/product/ProductSumary";
+import Images from "../../../components/Image/Images";
+import ProductSummary from "../../../components/common/product/ProductSumary";
 import {Link } from "react-router-dom";
 
 function Explore({status}) {
@@ -117,7 +117,7 @@ function Explore({status}) {
                             })
                         }
                     </div>
-                    <Link to="/home" className="view-more">
+                    <Link to="/" className="view-more">
                         Xem thêm
                     </Link>
                 </div>

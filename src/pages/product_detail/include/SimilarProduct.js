@@ -7,8 +7,8 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Navigation,} from "swiper";
-import ProductSummary from "../../../common/product/ProductSumary";
-import { isWideScreen } from "../../../../helpers/screen";
+import ProductSummary from "../../../components/common/product/ProductSumary";
+import { isWideScreen } from "../../../helpers/screen";
 
 const settingsSlide = {
     slidesPerView:5,

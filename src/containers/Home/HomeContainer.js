@@ -1,9 +1,9 @@
 import React from "react";
-import Home from "../../components/pages/home/Home";
+import HomePage from "../../pages/home/HomePage";
 
 function HomeContainer() {
     return (
-        <Home/>
+        <HomePage/>
     )
 }
 export default HomeContainer;

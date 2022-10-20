@@ -1,5 +1,5 @@
 .category-right {
-    width: calc(100% - 200px);
+    width: calc(100% - 208px);
     border-radius: 0px 4px 4px 0px;
     position: relative;  
     background-color: #efefef;;
@@ -33,6 +33,13 @@
         border-bottom: 1px solid rgb(242, 242, 242);
         padding: 12px 0px 0px;
         background-color: white;
+
+        
+    @media (max-width: 1024px) {
+        padding-left: 5px;
+        padding-right: 5px;
+        width: 100%;
+    }
 
         .top-tabs {
             margin-right: 10px;
@@ -115,6 +122,10 @@
         flex-wrap: wrap;
         background-color: white;
 
+        @media (max-width: 1024px) {
+            display: none;
+        }
+
         .itemsticky {
             background: rgb(238, 238, 238);
             cursor: pointer;
@@ -137,6 +148,14 @@
     }
 
     .product-container {
+
+        @media (max-width: 1024px) {
+            padding-left: 1px;
+            padding-right: 5px;
+            width: 100%;
+            position: relative;
+        }
+
         .product-list {
             display: flex;
             flex-direction: column;
@@ -161,7 +180,7 @@
 
         ul {
             padding: 0px;
-            margin: 77px 0px 16px;
+            margin: 77px 0px 16px 0px;
             display: flex;
             gap: 16px;
             -webkit-box-pack: center;

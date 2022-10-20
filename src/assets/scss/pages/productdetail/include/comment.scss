@@ -26,12 +26,19 @@
         .review-top {
             display: flex;
             padding: 0px 48px;
+
+            @media (max-width: 1024px) {
+                flex-direction: column;
+            }
         }
 
         .review-rate {
             flex-basis: 335px;
             flex-shrink: 0;
             margin: 0px 0px 32px;
+            @media (max-width: 1024px) {
+                flex-basis: 0;
+            }
         }
 
         .rating-summary {
@@ -141,6 +148,7 @@
                 background-position: center center;
                 margin: 0px 16px 0px 0px;
                 cursor: pointer;
+                
             }
         }
     }
@@ -187,11 +195,19 @@
     .customer-comment {
         padding: 32px 48px;
         display: flex;
-        border-top: 1px solid rgb(242, 242, 242);
+        border-top: 1px solid rgb(242, 242, 242); 
+
+        @media (max-width: 1024px) {
+            flex-direction: column;
+        }
 
         .review-user {
             flex-basis: 335px;
             flex-shrink: 0;
+
+            @media (max-width: 1024px) {
+                flex-basis: 0;
+            }
         }
 
         .user-inner {

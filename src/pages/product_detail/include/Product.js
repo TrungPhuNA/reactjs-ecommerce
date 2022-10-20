@@ -1,6 +1,11 @@
 import {Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 function Product() {
+
     return (
         <div className="product-detail">
             <div className="product-img">
@@ -8,12 +13,47 @@ function Product() {
                     <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
                 </div>
                 <div className="review-img">
-                <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
-                <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
-                <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
-                <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
-                <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
-                <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
+                    {/* <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
+                    <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
+                    <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
+                    <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
+                    <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
+                    <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/> */}
+                        <Swiper 
+                            spaceBetween={5}
+                            slidesPerView={6}
+                            speed={500}
+                            navigation={true}
+                            pagination={{ clickable: true }}
+                            className="review-swiper">
+                            <div class="swiper-button-prev"/>
+                            <SwiperSlide>
+                                <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/2a/3b/a1/694060a125c0d42ba5d2fafc511b6ec3.jpg.webp"/>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/2a/3b/a1/694060a125c0d42ba5d2fafc511b6ec3.jpg.webp"/>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/2a/3b/a1/694060a125c0d42ba5d2fafc511b6ec3.jpg.webp"/>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/2a/3b/a1/694060a125c0d42ba5d2fafc511b6ec3.jpg.webp"/>
+                            </SwiperSlide>
+                            <div class="swiper-button-next"/>
+                        </Swiper>
+
                 </div>
                 <div className="share-product">
                     <div className="share-text">Chia sẻ:</div>
@@ -38,8 +78,10 @@ function Product() {
                     <h1 class="product-title">Máy Lạnh Asanzo 1.5 HP S12N66 NON INVERTER - Hàng Chính Hãng - Giao Toàn Quốc</h1>
                     <div className="below-title">
                         <div className="below-rate">
-                            <img alt="/" src="https://static.vecteezy.com/system/resources/previews/004/186/171/non_2x/star-icon-black-set-rating-icon-black-set-icon-free-vector.jpg" width="80" height="24"/>
-                            <Link to="/">(Xem 11 đánh giá)</Link>
+                            <div className="star-on">
+                                    &#9733;&#9733;&#9733;&#9733;&#9733;
+                            </div>
+                            <Link to="*">(Xem 11 đánh giá)</Link>
                             <div className="below-seperate"/>
                             <div className="sold">Đã bán 65</div>
                         </div>

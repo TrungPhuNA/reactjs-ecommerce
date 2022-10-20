@@ -1,3 +1,6 @@
+@import "./include/categoryright.scss";
+@import "./include/sidebar.scss";
+
 .container {
     width: 1270px;
     padding-left: 15px;
@@ -28,6 +31,11 @@
     margin-right: auto;
     margin-left: auto;
 
+    @media (max-width: 1024px) {
+        width: 100%;
+        position: relative;
+    }
+
     a {
         color: rgb(128, 128, 137);
         padding-left: auto;
@@ -49,6 +57,15 @@
         line-height: 20px;
         font-weight: 300;
         white-space: nowrap;
+
+        @media (max-width: 1024px) {
+            display: inline;
+            color: rgb(128, 128, 137);
+            font-size: 12px;
+            line-height: 20px;
+            font-weight: 300;
+            white-space: nowrap;
+        }
     }
 }
 
