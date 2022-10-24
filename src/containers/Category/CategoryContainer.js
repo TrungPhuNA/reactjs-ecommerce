@@ -1,9 +1,9 @@
 import React from "react";
-import CategoryIndex from "../../components/pages/danhmuc/CategoryIndex";
+import CategoryPage from "../../pages/category/CategoryPage";
 
 function CategoryContainer() {
     return (
-        <CategoryIndex/>
+        <CategoryPage/>
     )
 }
 export default CategoryContainer;

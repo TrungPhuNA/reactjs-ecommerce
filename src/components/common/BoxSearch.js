@@ -2,7 +2,7 @@ import { DownOutlined } from "@ant-design/icons";
 import React from "react";
 import { isWideScreen } from "../../helpers/screen";
 import Images from "../Image/Images";
-import {Link } from "react-router-dom";
+// import {Link } from "react-router-dom";
 
 export default function BoxSearch(props) {
 
@@ -12,10 +12,10 @@ export default function BoxSearch(props) {
             <div className="search-suggest">
                 { arr.map((item,key) => {
                     return(
-                        <Link to="/home" key={key}>
+                        <a href="/" key={key}>
                             <Images src="https://salt.tikicdn.com/ts/upload/e8/aa/26/42a11360f906c4e769a0ff144d04bfe1.png" alt="icon-search"/>
                             <p>Tai nghe</p>
-                        </Link>
+                        </a>
                     );
                 })}
                 <div className="show-more">Xem thêm <DownOutlined /></div>   
@@ -29,10 +29,10 @@ export default function BoxSearch(props) {
                     <div className="popular-list">
                     { arr.map((item,key) => {
                         return (
-                            <Link to="/home" key={key}>
+                            <a href="/" key={key}>
                                 <Images src="https://salt.tikicdn.com/cache/280x280/ts/product/0b/8f/f4/b61f2ed6312cbd30beb014531b7afdd1.jpg" alt="gel"/>
                                 <span>Gell</span>
-                            </Link>
+                            </a>
                         );
                     })}
                     </div>
@@ -44,10 +44,10 @@ export default function BoxSearch(props) {
                     <div className="category-list">
                         {arr.map((item,key) => {
                             return (
-                                <Link to="/home" key={key}>
+                                <a href="/" key={key}>
                                     <Images src="https://salt.tikicdn.com/ts/category/13/64/43/226301adcc7660ffcf44a61bb6df99b7.png" alt="gấu"/>
                                     <span>Đồ chơi</span>
-                                </Link>
+                                </a>
                             );
                         })}
                     </div>
