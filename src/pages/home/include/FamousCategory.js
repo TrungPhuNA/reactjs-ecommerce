@@ -97,7 +97,7 @@ function FamousCategory({check}) {
                         <div className="body-slide--list">
                             { categories.map((category,index) => {
                                 return (
-                                    <Link to="/" key={index.toString()} className="item">
+                                    <Link to="/category" key={index.toString()} className="item">
                                         <Images src={category.src} alt={`category ${index}`}/>
                                         <h3>{category.title}</h3>
                                     </Link>

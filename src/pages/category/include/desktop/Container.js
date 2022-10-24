@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
-import Products from "./Products";
+import Products from "../desktop/Products";
 import {Link } from "react-router-dom";
 // import Skeleton from "react-loading-skeleton";
 import { useNavigate } from "react-router-dom";
@@ -351,10 +351,8 @@ function Container({status}) {
                                     </p>
                                 </div>
                         </div>
-
-                        <div className="product-container">
-                            <Products/>
-                        </div>
+                        
+                        <Products/>
 
                         <div className="paging-nav">
                             <ul>

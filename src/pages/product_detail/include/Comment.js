@@ -1,5 +1,6 @@
 
 import {Link } from "react-router-dom";
+import { isSmallScreen, isWideScreen } from "../../../helpers/screen";
 
 function Comment() {
     return (
@@ -88,32 +89,39 @@ function Comment() {
                         </div>
                     </div>
                     <div className="review-img">
-                        <div className="imgs">
-                            <div className="imgs-header">
-                                Tất cả hình ảnh (100)
+                        { isWideScreen() &&
+                        <>
+                            <div className="imgs">
+                                <div className="imgs-header">
+                                    Tất cả hình ảnh (100)
+                                </div>
+                                <div className="imgs-inner">
+                                    <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg"/>
+                                    <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg"/>
+                                    <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg"/>
+                                    <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg"/>
+                                    <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg"/>
+                                    <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg"/>
+                                </div>
                             </div>
-                            <div className="imgs-inner">
-                                <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg"/>
-                                <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg"/>
-                                <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg"/>
-                                <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg"/>
-                                <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg"/>
-                                <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg"/>
-                            </div>
-                        </div>
-                        <div className="review-filter">
-                            <div className="filter-label">Lọc xem theo : </div>
-                            <div className="filter-inner">
-                                <span>Mới nhất</span>
-                                <span>Có hình ảnh</span>
-                                <span>Đã mua hàng</span>
-                                <span>5 sao</span>
-                                <span>4 sao</span>
-                                <span>3 sao</span>
-                                <span>2 sao</span>
-                                <span>1 sao</span>
-                            </div>
-                        </div>  
+                            <div className="review-filter">
+                                <div className="filter-label">Lọc xem theo : </div>
+                                <div className="filter-inner">
+                                    <span>Mới nhất</span>
+                                    <span>Có hình ảnh</span>
+                                    <span>Đã mua hàng</span>
+                                    <span>5 sao</span>
+                                    <span>4 sao</span>
+                                    <span>3 sao</span>
+                                    <span>2 sao</span>
+                                    <span>1 sao</span>
+                                </div>
+                            </div>  
+                        </>
+                        }
+                        { isSmallScreen() &&
+                            <div></div>
+                        }
                     </div>
                 </div>
                 <div className="customer-comment">
