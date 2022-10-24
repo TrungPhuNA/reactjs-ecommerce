@@ -86,7 +86,7 @@ function HomePage() {
         }
         {login && <LoginMobile login={login} setLogin={setLogin}/>}
             
-          {!login && <MenuMobile menu={menu} setMenu={setMenu} login={login} setLogin={setLogin}/> }  
+        {!login && <MenuMobile menu={menu} setMenu={setMenu} login={login} setLogin={setLogin}/> }  
 
         </>
             

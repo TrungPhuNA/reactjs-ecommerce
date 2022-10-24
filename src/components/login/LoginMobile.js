@@ -15,7 +15,7 @@ export default function LoginMobile(props) {
     return (
         <div className='login-mobile'>
             <header>
-                <a href='/home'>
+                <a href='/'>
                     <ArrowLeftOutlined />
                 </a>
                 <img src="https://salt.tikicdn.com/ts/upload/38/1a/0c/c9160ec942ae0348aae9bdad444f6ac5.jpg" alt="anh"/>

@@ -8,16 +8,9 @@ import "swiper/css/navigation";
 // import required modules
 import { Navigation,} from "swiper";
 import ProductSummary from "../../../components/common/product/ProductSumary";
-import { isWideScreen } from "../../../helpers/screen";
+import { isSmallScreen, isWideScreen } from "../../../helpers/screen";
 
-const settingsSlide = {
-    slidesPerView:5,
-    navigation:true,
-    modules:[Navigation],
-    className:"deal-hot-swiper"
-}
-
-function HomeDeal() {
+function SimilarProduct() {
     const [deal,setDeal] = useState([]);
     useEffect(() => {
         const data = [
@@ -87,7 +80,12 @@ function HomeDeal() {
                 <>
                     <h2>Sản Phẩm Tương Tự</h2>
                     <div className="slide-container">
-                        <Swiper {...settingsSlide}>
+                        <Swiper
+                              slidesPerView={5}
+                              navigation={true}
+                              modules={[Navigation]}
+                              className="deal-hot-swiper"
+                        >
                             {
                                 deal.map((item,index) => {
                                 return (
@@ -99,9 +97,30 @@ function HomeDeal() {
                             }
                         </Swiper>
                     </div>
-                </>
-                }
+                </>}
+                { isSmallScreen() && 
+                <>
+                    <h2>Sản Phẩm Tương Tự</h2>
+                    <div className="slide-container">
+                        <Swiper
+                              slidesPerView={2}
+                              navigation={true}
+                              modules={[Navigation]}
+                              className="deal-hot-swiper"
+                        >
+                            {
+                                deal.map((item,index) => {
+                                return (
+                                    <SwiperSlide key={index}>
+                                        <ProductSummary disCount={item.sale} deal={true} price={item.price} sold={item.sold}/>
+                                            </SwiperSlide>
+                                )
+                                })
+                            }
+                        </Swiper>
+                    </div>
+                </>}
         </div>
     )
 }
-export default HomeDeal
+export default SimilarProduct;
