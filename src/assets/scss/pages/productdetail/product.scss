@@ -2,6 +2,7 @@
 @import "./include/productdescribe.scss";
 @import "./include/similarproduct.scss";
 @import "./include//mobile/m_detail_header.scss";
+@import "./include//mobile/m_detail_footer.scss";
 
 .product-detail {
     display: flex;
@@ -38,6 +39,8 @@
 .review-img1 {
     flex: 0 0 100%;
     margin: 16px 0px 0px;
+    margin-top: 45px;
+
     img {
         cursor: pointer;
         position: relative;
