@@ -576,7 +576,7 @@ export default function Footers(){
                                             &nbsp;/&nbsp;
                                             <Link to="/">Tủ ướp rượu</Link>
                                         </p>
-                                        <Link to="/">Thể THao - Dã Ngoại</Link>
+                                        <Link to="/">Thể Thao - Dã Ngoại</Link>
                                         <p>
                                             <Link to="/">Trang phục thể thao nữ</Link>
                                             &nbsp;/&nbsp;
