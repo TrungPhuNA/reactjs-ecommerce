@@ -2,7 +2,6 @@ import React, {useState,useEffect } from "react";
 import Images from "../../../components/Image/Images";
 import ProductSummary from "../../../components/common/product/ProductSumary";
 import {Link } from "react-router-dom";
-import { isWideScreen } from "../../../helpers/screen";
 
 function Explore({status}) {
     const [disCount,setDistCount]=useState(true);
