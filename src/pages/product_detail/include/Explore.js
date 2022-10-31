@@ -63,7 +63,9 @@ function Explore({status}) {
             return(
                 <div className="suggestion__title">
                         <h2>Khám Phá Thêm</h2>
+                        
                         <div className="suggestion__title-list">
+
                             {
                                 suggestTitle.map(item => {
                                     return (
@@ -76,27 +78,28 @@ function Explore({status}) {
                                     )
                                 })
                             } 
-                            
+
                         </div>
                 </div>
             )   
         }
        else return (<>  
                 <h2 style={{height: 48+'px'}}>Khám Phá Thêm</h2>
-                    <div className="suggestion__title-list">
-                        {
-                            suggestTitle.map(item => {
-                                return (
-                                    <>
-                                    <div keys={item.id.toString()} className={`tab ${item.tab ? 'active' : ''}`} onClick={() => changeTab(item.id)}>
-                                        <Images alt="test" src={item.src} />
-                                        <div className="tab-text fs-13">{item.name}</div>
-                                    </div>
-                                    </>   
-                                )
-                            })
-                        } 
-                    </div>
+
+                <div className="suggestion__title-list">
+                    {
+                        suggestTitle.map(item => {
+                            return (
+                                <>
+                                <div keys={item.id.toString()} className={`tab ${item.tab ? 'active' : ''}`} onClick={() => changeTab(item.id)}>
+                                    <Images alt="test" src={item.src} />
+                                    <div className="tab-text fs-13">{item.name}</div>
+                                </div>
+                                </>   
+                            )
+                        })
+                    } 
+                </div>
             </>)
     }
     return (

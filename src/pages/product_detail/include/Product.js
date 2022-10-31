@@ -3,9 +3,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { isSmallScreen, isWideScreen } from "../../../helpers/screen";
+import { isWideScreen } from "../../../helpers/screen";
+import { useState } from 'react';
 
 function Product() {
+    const [count, setCount] = useState(0);
 
     return (
         <div className="product-detail">
@@ -61,7 +63,7 @@ function Product() {
                         </div>
                     </>
                 }
-                { isSmallScreen() &&
+                { !isWideScreen() &&
                     <>
                         <div className="review-img1">
                             <Swiper 
@@ -117,7 +119,7 @@ function Product() {
                             </div>
                         </>
                     }
-                    {isSmallScreen() && <></>}
+                    {!isWideScreen() && <></>}
                     <h1 class="product-title">Máy Lạnh Asanzo 1.5 HP S12N66 NON INVERTER - Hàng Chính Hãng - Giao Toàn Quốc</h1>
                     <div className="below-title">
                         <div className="below-rate">
@@ -190,7 +192,7 @@ function Product() {
                                     <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/arrow-right-blue.svg" width="12" height="12"/>
                             </div>
                             </>}
-                            {isSmallScreen && <div></div>}
+                            {!isWideScreen && <div></div>}
                         </div>
 
                         { isWideScreen() &&
@@ -199,11 +201,11 @@ function Product() {
                             <div className="count">
                                 <p>Số Lượng</p>
                                 <div className="group-input">
-                                    <button className="disable">
+                                    <button className="disable" onClick={() => setCount(count - 1)}>
                                         <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg" width="20" height="20"/>
                                     </button>
-                                    <input type="text" value="1" className="input"/>
-                                    <button>
+                                    <input type="text" value={count} className="input"></input>
+                                    <button onClick={() => setCount(count + 1)}>
                                         <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg" width="20" height="20" />
                                     </button>
                                 </div>
@@ -217,7 +219,7 @@ function Product() {
                             </div>
                         </div>
                         </>}
-                        {isSmallScreen() && <div></div>}
+                        {!isWideScreen() && <div></div>}
                     </div>
 
                     { isWideScreen() &&
@@ -323,7 +325,7 @@ function Product() {
                         </div>
                     </>
                     }
-                    {isSmallScreen() &&
+                    {!isWideScreen() &&
                         <div></div>
                     }
                 </div>
