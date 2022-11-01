@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 // import required modules
 import { Navigation,} from "swiper";
 import ProductSummary from "../../../components/common/product/ProductSumary";
-import { isSmallScreen, isWideScreen } from "../../../helpers/screen";
+import { isWideScreen } from "../../../helpers/screen";
 
 function SimilarProduct() {
     const [deal,setDeal] = useState([]);
@@ -98,7 +98,7 @@ function SimilarProduct() {
                         </Swiper>
                     </div>
                 </>}
-                { isSmallScreen() && 
+                { !isWideScreen() && 
                 <>
                     <h2>Sản Phẩm Tương Tự</h2>
                     <div className="slide-container">
