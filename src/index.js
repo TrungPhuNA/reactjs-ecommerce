@@ -9,12 +9,13 @@ import AppContainer from './containers/layouts/AppContainer';
 import reportWebVitals from './reportWebVitals';
 import NoPage from "./pages/nopage/NoPage";
 import HomePage from './pages/home/HomePage';
-import { SkeletonTheme } from 'react-loading-skeleton';
 import ProductPage from './pages/product/ProductPage';
+import AccountPage from './pages/account/AccountPage';
+import AccountInfo from './pages/account/include/AccountInfo';
+import MyNoti from './pages/account/include/MyNoti';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <SkeletonTheme baseColor='#313131' highlightColor='#525252'>
     <BrowserRouter>
         <AppContainer>
             <Routes>
@@ -24,11 +25,13 @@ root.render(
                     </Route>
                     <Route path="detail" element={<ProductDetailPage />} />
                     <Route path="*" element = {<NoPage />} />
+                    <Route path="account" element = {<AccountPage />} />
+                    <Route path="AI" element = {<AccountInfo />} />
+                    <Route path="Noti" element = {<MyNoti />} />
                 </Route>
             </Routes>
         </AppContainer>
     </BrowserRouter>
-    </SkeletonTheme>
 );
 
 // If you want to start measuring performance in your app, pass a function

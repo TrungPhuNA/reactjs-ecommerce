@@ -4,6 +4,9 @@ import ProductDetailPage from '../pages/product_detail/ProductDetailPage';
 import HomePage from '../pages/home/HomePage';
 import CategoryPage from '../pages/category/CategoryPage';
 import ProductPage from '../pages/product/ProductPage';
+import AccountPage from '../pages/account/AccountPage';
+import AccountInfo from '../pages/account/include/AccountInfo';
+import MyNoti from '../pages/account/include/MyNoti';
 
 export const routes = () => {
     return [
@@ -26,6 +29,18 @@ export const routes = () => {
         {
             path: '&pp',
             element: <ProductPage/>
+        },
+        {
+            path: 'account',
+            element: <AccountPage/>
+        },
+        {
+            path: 'AI',
+            element: <AccountInfo/>
+        },
+        {
+            path: 'Noti',
+            element: <MyNoti/>
         }
     ]
 }

@@ -1,6 +1,7 @@
 
 import {Link } from "react-router-dom";
 import { isWideScreen } from "../../../helpers/screen";
+import React from 'react';
 
 function Comment() {
     return (

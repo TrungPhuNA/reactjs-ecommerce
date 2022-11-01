@@ -1,0 +1,9 @@
+@import './include/sidebar.scss';
+@import './include/account_info.scss';
+
+.page-container {
+    display: flex;
+    width: 100%;
+    margin: 0px auto 20px;
+    flex-wrap: wrap;
+}

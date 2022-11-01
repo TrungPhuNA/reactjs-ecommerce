@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { isWideScreen } from "../../../helpers/screen";
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function Product() {
     const [count, setCount] = useState(0);
