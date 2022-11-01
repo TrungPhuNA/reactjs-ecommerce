@@ -15,9 +15,9 @@ function AccountPage() {
             <Category/>
             <div className="page-container">
                 <SideNavBar/>
-                {/* <AccountInfo/> */}
+                <AccountInfo/>
                 {/* <OrderManagement/> */}
-                <OrderDetail/>
+                {/* <OrderDetail/> */}
             </div>
         </div>
     )
