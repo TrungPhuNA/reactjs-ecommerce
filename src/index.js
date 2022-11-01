@@ -13,6 +13,7 @@ import ProductPage from './pages/product/ProductPage';
 import AccountPage from './pages/account/AccountPage';
 import AccountInfo from './pages/account/include/AccountInfo';
 import OrderManagement from './pages/account/include/OrderManagement';
+import OrderDetail from './pages/account/include/OrderDetail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,6 +29,7 @@ root.render(
                     <Route path="account" element = {<AccountPage />} />
                     <Route path="AI" element = {<AccountInfo />} />
                     <Route path="order" element = {<OrderManagement />} />
+                    <Route path="order-detail" element = {<OrderDetail />} />
                 </Route>
             </Routes>
         </AppContainer>

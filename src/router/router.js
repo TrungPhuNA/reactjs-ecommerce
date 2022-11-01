@@ -7,6 +7,7 @@ import ProductPage from '../pages/product/ProductPage';
 import AccountPage from '../pages/account/AccountPage';
 import AccountInfo from '../pages/account/include/AccountInfo';
 import OrderManagement from '../pages/account/include/OrderManagement';
+import OrderDetail from '../pages/account/include/OrderDetail';
 
 export const routes = () => {
     return [
@@ -41,6 +42,10 @@ export const routes = () => {
         {
             path: 'order',
             element: <OrderManagement/>
+        },
+        {
+            path: 'order-detail',
+            element: <OrderDetail/>
         }
     ]
 }

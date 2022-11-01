@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import AccountInfo from './include/AccountInfo';
 import Category from './include/Category';
+import OrderDetail from './include/OrderDetail';
 import OrderManagement from './include/OrderManagement';
 import SideNavBar from './include/SideNavBar';
 
@@ -14,7 +15,9 @@ function AccountPage() {
             <Category/>
             <div className="page-container">
                 <SideNavBar/>
-                <AccountInfo/>
+                {/* <AccountInfo/> */}
+                {/* <OrderManagement/> */}
+                <OrderDetail/>
             </div>
         </div>
     )

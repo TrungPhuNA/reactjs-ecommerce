@@ -165,7 +165,7 @@ class SideNavBar extends React.Component {
                                                 (link.id === activeLink ? " active_item" : "")
                                             }
                                             > 
-                                                    <img className="cli-icon" src={link.src}/>
+                                                    <img className="cli-icon" src={link.src} alt="sdasd"/>
                                                     {link.name} 
                                                     {link.id === activeLink && "active"}
                                             
