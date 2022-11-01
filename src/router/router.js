@@ -6,7 +6,7 @@ import CategoryPage from '../pages/category/CategoryPage';
 import ProductPage from '../pages/product/ProductPage';
 import AccountPage from '../pages/account/AccountPage';
 import AccountInfo from '../pages/account/include/AccountInfo';
-import MyNoti from '../pages/account/include/MyNoti';
+import OrderManagement from '../pages/account/include/OrderManagement';
 
 export const routes = () => {
     return [
@@ -35,12 +35,12 @@ export const routes = () => {
             element: <AccountPage/>
         },
         {
-            path: 'AI',
+            path: 'info',
             element: <AccountInfo/>
         },
         {
-            path: 'Noti',
-            element: <MyNoti/>
+            path: 'order',
+            element: <OrderManagement/>
         }
     ]
 }

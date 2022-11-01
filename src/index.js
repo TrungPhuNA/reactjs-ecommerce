@@ -12,7 +12,7 @@ import HomePage from './pages/home/HomePage';
 import ProductPage from './pages/product/ProductPage';
 import AccountPage from './pages/account/AccountPage';
 import AccountInfo from './pages/account/include/AccountInfo';
-import MyNoti from './pages/account/include/MyNoti';
+import OrderManagement from './pages/account/include/OrderManagement';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -27,7 +27,7 @@ root.render(
                     <Route path="*" element = {<NoPage />} />
                     <Route path="account" element = {<AccountPage />} />
                     <Route path="AI" element = {<AccountInfo />} />
-                    <Route path="Noti" element = {<MyNoti />} />
+                    <Route path="order" element = {<OrderManagement />} />
                 </Route>
             </Routes>
         </AppContainer>

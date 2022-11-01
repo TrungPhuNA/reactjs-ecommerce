@@ -1,9 +1,6 @@
 import React from "react";
-import Dropdown from 'react-dropdown';
 
 function AccountInfo() {
-    const options = ['1900', '1901', '1902'];
-    const defaultOption = options[0];
     return(
         <>
             <div className="right-container">
@@ -39,75 +36,209 @@ function AccountInfo() {
                                         </div>
                                     </div>
                                     <div className="form-control">
-                                        <label className="input-label">Ngày sinh</label>
-                                        <select name="day">
-                                            <option value="0">Ngày</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-                                            <option value="13">13</option>
-                                            <option value="14">14</option>
-                                            <option value="15">15</option>
-                                            <option value="16">16</option>
-                                            <option value="17">17</option>
-                                            <option value="18">18</option>
-                                            <option value="19">19</option>
-                                            <option value="20">20</option>
-                                            <option value="21">21</option>
-                                            <option value="22">22</option>
-                                            <option value="23">23</option>
-                                            <option value="24">24</option>
-                                            <option value="25">25</option>
-                                            <option value="26">26</option>
-                                            <option value="27">27</option>
-                                            <option value="28">28</option>
-                                            <option value="29">29</option>
-                                            <option value="30">30</option>
-                                            <option value="31">31</option>
-                                        </select>
-                                        <select name="month">
-                                            <option value="0">Tháng</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-                                        </select>
-                                        <select name="year">
-                                            <option value="0">Năm</option>
-                                        </select>
+                                        <label className="input-label1">Ngày sinh</label>
+                                        <div className="form-select">
+                                            <select name="day">
+                                                <option value="0">Ngày</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                            </select>
+                                            <select name="month">
+                                                <option value="0">Tháng</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                            </select>
+                                            <select name="year">
+                                                <option value="0">Năm</option>
+                                                <option value="1990">1990</option>
+                                                <option value="1991">1991</option>
+                                                <option value="1992">1992</option>
+                                                <option value="1993">1993</option>
+                                                <option value="1994">1994</option>
+                                                <option value="1995">1995</option>\
+                                                <option value="1996">1996</option>
+                                                <option value="1997">1997</option>
+                                                <option value="1998">1998</option>
+                                                <option value="1999">1999</option>
+                                                <option value="2000">2000</option>
+                                                <option value="2001">2001</option>
+                                                <option value="2002">2002</option>
+                                                <option value="2003">2003</option>
+                                                <option value="2004">2004</option>
+                                                <option value="2005">2005</option>
+                                                <option value="2006">2006</option>
+                                                <option value="2007">2007</option>
+                                                <option value="2008">2008</option>
+                                                <option value="2009">2009</option>
+                                                <option value="2010">2010</option>
+                                                <option value="2011">2011</option>
+                                                <option value="2012">2012</option>
+                                                <option value="2013">2013</option>
+                                                <option value="2014">2014</option>
+                                                <option value="2015">2015</option>
+                                                <option value="2016">2016</option>
+                                                <option value="2017">2017</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2020">2020</option>
+                                                <option value="2021">2021</option>
+                                                <option value="2022">2022</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div className="form-control">
-                                        <label className="input-label">Giới tính</label>
+                                        <label className="input-label1">Giới tính</label>
+                                        <label className="check-label">
+                                            <input className="check-input" type="radio" name="gender" value="male"/>
+                                            <span className="span-input">Nam</span>
+                                        </label>
+                                        <label className="check-label">
+                                            <input className="check-input" type="radio" name="gender" value="female"/>
+                                            <span className="span-input">Nữ</span>
+                                        </label>
+                                        <label className="check-label">
+                                            <input className="check-input" type="radio" name="gender" value="other"/>
+                                            <span className="span-input">Khác</span>
+                                        </label>
                                     </div>
                                     <div className="form-control">
-                                        <label className="input-label">Quốc tịch</label>
+                                        <label className="input-label1">Quốc tịch</label>
+                                        <div className="input-region">
+                                            <input className="input-with-icon-right" name="nationality" maxlength="128" placeholder="Chọn quốc tịch" readonly="" value="Việt Nam"></input>
+                                            <svg class="icon-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.30806 6.43306C3.55214 6.18898 3.94786 6.18898 4.19194 6.43306L10 12.2411L15.8081 6.43306C16.0521 6.18898 16.4479 6.18898 16.6919 6.43306C16.936 6.67714 16.936 7.07286 16.6919 7.31694L10.4419 13.5669C10.1979 13.811 9.80214 13.811 9.55806 13.5669L3.30806 7.31694C3.06398 7.07286 3.06398 6.67714 3.30806 6.43306Z" fill="#808089"></path></svg>
+                                        </div>
                                     </div>
                                     <div className="form-control">
-                                        <label className="input-label">&nbsp;</label>
+                                        <label className="input-label1">&nbsp;</label>
+                                        <button type="submit">Lưu thay đổi</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div className="info-vertical"/>
                         <div className="info-right">
-
+                            <span class="info-title">Số điện thoại và Email</span>
+                            <div className="list-container">
+                                <div className="listitem">
+                                    <div className="listitem-info">
+                                        <img src="https://frontend.tikicdn.com/_desktop-next/static/img/account/phone.png" alt="sad" width="24" height="24"/>
+                                        <div className="listitem-info-detail">
+                                            <span>Số điện thoại</span>
+                                            <span>0394890366</span>
+                                        </div>
+                                    </div>
+                                    <div className="listitem-status">
+                                        <span/>
+                                        <button>Cập nhật</button>
+                                    </div>
+                                </div>
+                                <div className="listitem">
+                                    <div className="listitem-info">
+                                        <img src="https://frontend.tikicdn.com/_desktop-next/static/img/account/email.png" alt="sad" width="24" height="24"/>
+                                        <div className="listitem-info-detail">
+                                            <span>Địa chỉ email</span>
+                                            <span>hoangnguyen@interspace.vn</span>
+                                        </div>
+                                    </div>
+                                    <div className="listitem-status">
+                                        <span/>
+                                        <button>Cập nhật</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="info-title">Bảo mật</span>
+                            <div className="list-container">
+                                <div className="listitem">
+                                    <div className="listitem-info">
+                                        <img src="https://frontend.tikicdn.com/_desktop-next/static/img/account/lock.png" alt="sad" width="24" height="24"/>
+                                        <div className="listitem-info-detail">
+                                            <span>Đổi mật khẩu</span>
+                                        </div>
+                                    </div>
+                                    <div className="listitem-status">
+                                        <span/>
+                                        <button>Cập nhật</button>
+                                    </div>
+                                </div>
+                                <div className="listitem">
+                                    <div className="listitem-info">
+                                        <img src="https://salt.tikicdn.com/ts/upload/99/50/d7/cc0504daa05199e1fb99cd9a89e60fa5.jpg" alt="sad" width="24" height="24"/>
+                                        <div className="listitem-info-detail">
+                                            <span>Thiết lập mã PIN</span>
+                                        </div>
+                                    </div>
+                                    <div className="listitem-status">
+                                        <span/>
+                                        <button>Cập nhật</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="info-title">Liên kết mạng xã hội</span>
+                            <div className="list-container">
+                                <div className="listitem">
+                                    <div className="listitem-info">
+                                        <img src="https://frontend.tikicdn.com/_desktop-next/static/img/account/facebook.png" alt="sad" width="24" height="24"/>
+                                        <div className="listitem-info-detail">
+                                            <span>Facebook</span>
+                                        </div>
+                                    </div>
+                                    <div className="listitem-status">
+                                        <span/>
+                                        <button>Cập nhật</button>
+                                    </div>
+                                </div>
+                                <div className="listitem">
+                                    <div className="listitem-info">
+                                        <img src="https://frontend.tikicdn.com/_desktop-next/static/img/account/google.png" alt="sad" width="24" height="24"/>
+                                        <div className="listitem-info-detail">
+                                            <span>Google</span>
+                                        </div>
+                                    </div>
+                                    <div className="listitem-status">
+                                        <span/>
+                                        <button>Cập nhật</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

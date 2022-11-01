@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import AccountInfo from './include/AccountInfo';
 import Category from './include/Category';
-import MyNoti from './include/MyNoti';
+import OrderManagement from './include/OrderManagement';
 import SideNavBar from './include/SideNavBar';
 
 function AccountPage() {

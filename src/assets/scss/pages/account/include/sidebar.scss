@@ -43,11 +43,15 @@
             color: rgb(0, 0, 0);
         }
         
+        ul {
+            margin-left: -40px;
+        }
+
         .side_nav_item {
             display: flex;
             -webkit-box-align: center;
             align-items: center;
-            padding: 7px 18px;
+            padding: 2px 18px;
             color: rgb(74, 74, 74);
 
             svg {
@@ -57,6 +61,14 @@
                 font-size: 24px;
                 color: rgb(155, 155, 155);
             }
+        }
+
+        img {
+            width: 24px;
+            height: 24px;
+            margin: 0px 22px 0px 0px;
+            font-size: 24px;
+            color: rgb(155, 155, 155);
         }
     }
 }

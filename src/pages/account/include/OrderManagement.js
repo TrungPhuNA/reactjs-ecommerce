@@ -1,6 +1,6 @@
 import React from "react";
 
-function MyNoti() {
+function OrderManagement() {
     return(
         <>
             Noti
@@ -8,4 +8,4 @@ function MyNoti() {
     )
 }
 
-export default MyNoti;
+export default OrderManagement;
