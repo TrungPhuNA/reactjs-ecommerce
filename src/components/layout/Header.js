@@ -40,7 +40,7 @@ function Header(props) {
                     <div className="header-user-shortcut" onClick={() => openLogin()}>
                         <img className="profile" src="https://salt.tikicdn.com/ts/upload/67/de/1e/90e54b0a7a59948dd910ba50954c702e.png" alt=""/>
                         <span className="user-style">
-                            <span className="user-style__title"><Link to='account' style={{color:'white'}}>Đăng nhập/Đăng ký</Link></span>
+                            <span className="user-style__title"><Link to='info' style={{color:'white'}}>Đăng nhập/Đăng ký</Link></span>
                             <span className="account-label">
                             <span>Tài khoản</span>
                             <img src="https://salt.tikicdn.com/ts/upload/d7/d4/a8/34939af2da1ceeeae9f95b7485784233.png" alt="arrowIcon"/>
