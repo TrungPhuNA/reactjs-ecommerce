@@ -1,5 +1,5 @@
 import ShowMore from 'react-show-more-button';
-
+import React from 'react';
 
 function ProductDescribe() {
     return (

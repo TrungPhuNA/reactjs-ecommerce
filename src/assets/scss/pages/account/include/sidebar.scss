@@ -1,0 +1,86 @@
+.left-container {
+    width: 250px;
+    margin-right: 17px;
+
+    .account-avatar {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        padding-left: 7px;
+        margin: 0px 0px 12px;
+
+        img {
+            width: 45px;
+            margin: 0px 12px 0px 0px;
+            border-radius: 50%;
+        }
+
+        .account-info {
+            flex: 1 1 0%;
+            font-size: 13px;
+            line-height: 15px;
+            color: rgb(51, 51, 51);
+            font-weight: 300;
+
+            strong {
+                font-size: 16px;
+                line-height: 19px;
+                font-weight: 400;
+                display: block;
+                margin: 4px 0px 0px;
+            }
+        }
+    }
+
+    .category-list-item {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        font-size: 13px;
+
+        .is-active {
+            background-color: red;
+            color: rgb(0, 0, 0);
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            padding: 2px 18px;
+            list-style: none;
+        }
+        
+        .no-active {
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            padding: 2px 18px;
+            color: rgb(74, 74, 74);
+            list-style: none;
+            
+        }
+
+        ul {
+            margin-left: -40px;
+
+            ul:hover {
+                background-color: red;
+            }
+        }
+
+
+        svg {
+            width: 24px;
+            height: 24px;
+            margin: 0px 22px 0px 0px;
+            font-size: 24px;
+            color: rgb(155, 155, 155);
+        }
+
+        img {
+            width: 24px;
+            height: 24px;
+            margin: 0px 22px 0px 0px;
+            font-size: 24px;
+            color: rgb(155, 155, 155);
+        }
+    }
+}
