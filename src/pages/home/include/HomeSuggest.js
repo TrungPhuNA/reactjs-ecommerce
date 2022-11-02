@@ -7,7 +7,7 @@ function HomeSuggest({status}) {
     const [disCount,setDistCount]=useState(true);
     const [suggestTitle,setSuggestTitle] = useState([]);
 
-  useEffect(() => {
+    useEffect(() => {
     let data = [
       {
           id:1,

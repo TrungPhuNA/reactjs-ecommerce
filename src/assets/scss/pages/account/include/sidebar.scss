@@ -39,28 +39,40 @@
         font-size: 13px;
 
         .is-active {
-            background-color: rgb(235, 235, 240);
+            background-color: red;
             color: rgb(0, 0, 0);
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            padding: 2px 18px;
+            list-style: none;
         }
         
-        ul {
-            margin-left: -40px;
-        }
-
-        .side_nav_item {
+        .no-active {
             display: flex;
             -webkit-box-align: center;
             align-items: center;
             padding: 2px 18px;
             color: rgb(74, 74, 74);
+            list-style: none;
+            
+        }
 
-            svg {
-                width: 24px;
-                height: 24px;
-                margin: 0px 22px 0px 0px;
-                font-size: 24px;
-                color: rgb(155, 155, 155);
+        ul {
+            margin-left: -40px;
+
+            ul:hover {
+                background-color: red;
             }
+        }
+
+
+        svg {
+            width: 24px;
+            height: 24px;
+            margin: 0px 22px 0px 0px;
+            font-size: 24px;
+            color: rgb(155, 155, 155);
         }
 
         img {
