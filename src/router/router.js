@@ -34,7 +34,7 @@ export const routes = () => {
         {
             path: 'account',
             element: <AccountPage/>
-        },
+        },  
         {
             path: 'info',
             element: <AccountInfo/>
@@ -44,7 +44,7 @@ export const routes = () => {
             element: <OrderManagement/>
         },
         {
-            path: 'order-detail',
+            path: 'order/orderdetail',
             element: <OrderDetail/>
         }
     ]
