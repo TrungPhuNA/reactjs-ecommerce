@@ -4,10 +4,9 @@ import Category from './include/Category';
 import OrderDetail from './include/OrderDetail';
 import OrderManagement from './include/OrderManagement';
 import SideNavBar from './include/SideNavBar';
-import { routes1 } from '../../router/router1';
-import { useRoutes } from "react-router-dom";
-import {Link } from "react-router-dom";
-import links from '../account/include/SideNavBar';
+// import { useRoutes } from "react-router-dom";
+// import {Link } from "react-router-dom";
+// import links from '../account/include/SideNavBar';
 
 function AccountPage() {
     useEffect(() => {
