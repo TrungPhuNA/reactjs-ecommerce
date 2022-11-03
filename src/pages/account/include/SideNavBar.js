@@ -152,31 +152,31 @@ class SideNavBar extends React.Component {
                             <strong>Trần Hoàng</strong>
                         </div>
                     </div>
-                    <div className="category-list-item">
-                        {links.map(link => {
-                            return (
-                                <div key={link.id}>
-                                    <ul>
-                                        <Link to={link.to}>
-                                            <li
-                                            onClick={() => this.handleClick(link.id)}   
-                                            className={
-                                                (link.id === activeLink ? "is-active" : "no-active")
-                                            }
-                                            > 
-                                                    <img className="cli-icon" src={link.src} alt="sdasd"/>
-                                                    {link.name} 
-                                                    {link.id === activeLink && ""}                  
-                                            </li>
-                                        </Link>
-                                    </ul>
-                                </div>
-                            );
-                        })}
-                    </div>
+                <div className="category-list-item">
+                    {links.map(link => {
+                        return (
+                            <div key={link.id}>
+                                <ul>
+                                    <Link to={link.to}>
+                                        <li
+                                        onClick={() => this.handleClick(link.id)}   
+                                        className={
+                                            (link.id === activeLink ? "is-active" : "no-active")
+                                        }
+                                        > 
+                                            <img className="cli-icon" src={link.src} alt="sdasd"/>
+                                            {link.name} 
+                                            {link.id === activeLink && ""}                  
+                                        </li>
+                                    </Link>
+                                </ul>
+                            </div>
+                        );
+                    })}
+                </div>
                 </div>
             </>
-        );
+    );
     }
 }
 

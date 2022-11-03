@@ -22,14 +22,14 @@ root.render(
             <Routes>
                 <Route path ="/" element={<HomePage />}>
                     <Route path="category" element={<CategoryPage />}>
-                        <Route path="&pp" element={<ProductPage/>} />
+                        <Route path="/detail" element={<ProductDetailPage />} />
                     </Route>
-                    <Route path="detail" element={<ProductDetailPage />} />
+
                     <Route path="*" element = {<NoPage />} />
                     <Route path="account" element = {<AccountPage />} />
-                    <Route path="AI" element = {<AccountInfo />} />
-                    <Route path="order" element = {<OrderManagement />} />
-                    <Route path="order-detail" element = {<OrderDetail />} />
+                    <Route path="info" element = {<AccountInfo />} />
+                    <Route path="order" element = {<OrderManagement />}/>
+                    <Route path="order/orderdetail" element = {<OrderDetail />} />
                 </Route>
             </Routes>
         </AppContainer>
