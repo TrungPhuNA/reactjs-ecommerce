@@ -1,5 +1,6 @@
 import { ArrowLeftOutlined} from '@ant-design/icons';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function LoginMobile(props) {
     const [loginBy, setLoginBy] = useState('sdt');
@@ -24,7 +25,7 @@ export default function LoginMobile(props) {
                 <h3 className='fs-24'>Xin chào,</h3>
                 <p className='fs-14'>Đăng nhập hoặc tạo tài khoản</p>
                 <input placeholder={loginBy === 'sdt'?'Số điện thoại':'abc@gmail.com'} type={loginBy === 'sdt'? 'text':'email'}/>
-                <button className='continue w-100'>Tiếp tục</button>
+                <Link to='/info'><button className='continue w-100'>Tiếp tục</button></Link>
                 <div className='login-by' onClick={() => changeLogin()}>Đăng nhập bằng email</div>
                 <p className='continue-by'> Hoặc tiếp tục bằng</p>
                 <div className='icon'>
