@@ -1,6 +1,11 @@
 import React from "react";
 import SideNavBar from "./SideNavBar";
 import {Link} from 'react-router-dom';
+import Popup from "reactjs-popup";
+import UpdatePhoneNum from "./UpdatePhoneNum";
+import UpdateEmail from "./UpdateEmail";
+import UpdatePassword from "./UpdatePassword";
+import UpdatePin from "./UpdatePin";
 
 function AccountInfo() {
     return(
@@ -179,7 +184,9 @@ function AccountInfo() {
                                             </div>
                                             <div className="listitem-status">
                                                 <span/>
-                                                <button>Cập nhật</button>
+                                                <Popup modal trigger={<button>Cập nhật</button>}>
+                                                    <UpdatePhoneNum/>
+                                                </Popup>
                                             </div>
                                         </div>
                                         <div className="listitem">
@@ -192,7 +199,9 @@ function AccountInfo() {
                                             </div>
                                             <div className="listitem-status">
                                                 <span/>
-                                                <button>Cập nhật</button>
+                                                <Popup modal trigger={<button>Cập nhật</button>}>
+                                                    <UpdateEmail/>
+                                                </Popup>
                                             </div>
                                         </div>
                                     </div>
@@ -207,7 +216,9 @@ function AccountInfo() {
                                             </div>
                                             <div className="listitem-status">
                                                 <span/>
-                                                <button>Cập nhật</button>
+                                                <Popup modal trigger={<button>Cập nhật</button>}>
+                                                    <UpdatePassword/>
+                                                </Popup>
                                             </div>
                                         </div>
                                         <div className="listitem">
@@ -219,7 +230,9 @@ function AccountInfo() {
                                             </div>
                                             <div className="listitem-status">
                                                 <span/>
-                                                <button>Cập nhật</button>
+                                                <Popup modal trigger={<button>Cập nhật</button>}>
+                                                    <UpdatePin/>
+                                                </Popup>
                                             </div>
                                         </div>
                                     </div>

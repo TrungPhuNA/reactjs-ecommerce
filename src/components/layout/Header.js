@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { isWideScreen } from "../../helpers/screen";
 import BoxSearch from "../common/BoxSearch";
 import { Link } from "react-router-dom";
+import LogIn from "../login/LogInDesktop";
+import Popup from "reactjs-popup";
 
 function Header(props) {
     const [showSearchDesktop, setShowSearchDesktop] = useState(false);
@@ -40,9 +42,13 @@ function Header(props) {
                     <div className="header-user-shortcut" onClick={() => openLogin()}>
                         <img className="profile" src="https://salt.tikicdn.com/ts/upload/67/de/1e/90e54b0a7a59948dd910ba50954c702e.png" alt=""/>
                         <span className="user-style">
-                            <span className="user-style__title"><Link to='info' style={{color:'white'}}>Đăng nhập/Đăng ký</Link></span>
+                            <span className="user-style__title">
+                                <Popup modal trigger={<div>Đăng nhập/Đăng ký</div>}>
+                                    {close => <LogIn close={close}/> }
+                                </Popup>
+                            </span>
                             <span className="account-label">
-                            <span>Tài khoản</span>
+                            <Link to="/info" style={{color: 'white'}}><span>Tài khoản</span></Link>
                             <img src="https://salt.tikicdn.com/ts/upload/d7/d4/a8/34939af2da1ceeeae9f95b7485784233.png" alt="arrowIcon"/>
                             </span>
                         </span>
