@@ -1,12 +1,11 @@
 import React from 'react';
 
-function LogIn() {
-    return(
-        <>  
+export default ({close}) => (
+         
             <div className="login-desktop">
                 <div className="login-desktop-container">
                     <div className="login-desktop-content">
-                        <button className="button-close"><img src="https://salt.tikicdn.com/ts/upload/fe/20/d7/6d7764292a847adcffa7251141eb4730.png" alt="sdf"/></button>
+                        <button className="button-close" onClick={close}><img src="https://salt.tikicdn.com/ts/upload/fe/20/d7/6d7764292a847adcffa7251141eb4730.png" alt="sdf"/></button>
                         <div className="login-left">
                             <div className="login-left-content">
                                 <div className="login-left-content-heading">
@@ -46,8 +45,5 @@ function LogIn() {
                     </div>
                 </div>
             </div>
-        </>
-    )
-}
-
-export default LogIn;
+        
+);

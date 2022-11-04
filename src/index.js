@@ -4,6 +4,7 @@ import {
     BrowserRouter, Routes, Route
 } from 'react-router-dom'
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import './fontawesome';
 import ProductDetailPage from './pages/product_detail/ProductDetailPage';
 import CategoryPage from './pages/category/CategoryPage';
 import AppContainer from './containers/layouts/AppContainer';
