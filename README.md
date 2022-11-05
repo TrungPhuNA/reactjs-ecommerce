@@ -106,4 +106,5 @@ return 301 https://$host$request_uri;
 
 }`
 
+/var/www/tranining/reactjs-ecommerce
 

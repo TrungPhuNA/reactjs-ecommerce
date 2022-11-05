@@ -14,6 +14,7 @@ import AccountPage from './pages/account/AccountPage';
 import AccountInfo from './pages/account/include/AccountInfo';
 import OrderManagement from './pages/account/include/OrderManagement';
 import OrderDetail from './pages/account/include/OrderDetail';
+import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
