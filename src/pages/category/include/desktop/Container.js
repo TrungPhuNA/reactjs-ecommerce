@@ -29,16 +29,7 @@ function Container({status}) {
     function ListTitle() {
         const title = [
             'Tivi',
-            'Âm thanh & Phụ kiện Tivi',
-            'Máy giặt',
-            'Máy sấy quần áo',
-            'Máy rửa chén',
-            'Máy lạnh - Máy điều hòa',
-            'Máy nước nóng',
-            'Tủ lạnh',
-            'Tủ đông - Tủ mát',
-            'Tủ ướp rượu',
-            'Phụ kiện điện lạnh'
+            'Âm thanh & Phụ kiện Tivi'
         ];
         return (
             <>
@@ -68,7 +59,6 @@ function Container({status}) {
     return(
         <div className="container">
             <div className="category-view">
-
                 <div className="sidebar">
                     <div>
                         <div className="sidebar-title">
@@ -76,13 +66,7 @@ function Container({status}) {
                         </div>
 
                         <div className="sidebar-list">
-                            <ListTitle/>
-                        </div>
-
-                        <div className="sidebar-address">
-                            <h4>Địa chỉ nhận hàng</h4>
-                            <div className="address">Q. Hoàn Kiếm, P. Hàng Trống, Hà Nội</div>
-                            <div className="address-change">Đổi địa chỉ</div>
+                            <ListTitle key={1}/>
                         </div>
 
                         <div className="sidebar-service">
@@ -123,25 +107,9 @@ function Container({status}) {
                                 <input type="checkbox"/>
                                 <p>Hà Nội</p>
                             </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Hồ Chí Minh</p>
-                            </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Ninh Bình</p>
-                            </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Đồng Nai</p>
-                            </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Bắc Giang</p>
-                            </label>
                             <div className="more">
                                 <Link to="*">
-                                    Xem thêm    
+                                    Xem thêm
                                     <img alt="/" src="https://w7.pngwing.com/pngs/523/1012/png-transparent-arrow-computer-icons-encapsulated-postscript-drop-down-list-arrow-blue-angle-text-thumbnail.png"/>
                                 </Link>
                             </div>
@@ -213,7 +181,7 @@ function Container({status}) {
                             </label>
                             <div className="more">
                                 <Link to="*">
-                                    Xem thêm    
+                                    Xem thêm
                                     <img alt="/" src="https://w7.pngwing.com/pngs/523/1012/png-transparent-arrow-computer-icons-encapsulated-postscript-drop-down-list-arrow-blue-angle-text-thumbnail.png"/>
                                 </Link>
                             </div>
@@ -243,37 +211,21 @@ function Container({status}) {
                             </label>
                             <div className="more">
                                 <Link to="*">
-                                    Xem thêm    
+                                    Xem thêm
                                     <img alt="/" src="https://w7.pngwing.com/pngs/523/1012/png-transparent-arrow-computer-icons-encapsulated-postscript-drop-down-list-arrow-blue-angle-text-thumbnail.png"/>
                                 </Link>
                             </div>
                         </div>
-                        
+
                         <div className="sidebar-contributor">
                             <h4>Nhà cung cấp</h4>
                             <label>
                                 <input type="checkbox"/>
                                 <p>Tiki Trading</p>
                             </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Điện Tử Siêu Nhỏ</p>
-                            </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Dien Tu Hoang Thinh</p>
-                            </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Điện máy City</p>
-                            </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Shop Phước Trần</p>
-                            </label>
                             <div className="more">
                                 <Link to="*">
-                                    Xem thêm    
+                                    Xem thêm
                                     <img alt="/" src="https://w7.pngwing.com/pngs/523/1012/png-transparent-arrow-computer-icons-encapsulated-postscript-drop-down-list-arrow-blue-angle-text-thumbnail.png"/>
                                 </Link>
                             </div>
@@ -284,10 +236,6 @@ function Container({status}) {
                             <label>
                                 <input type="checkbox"/>
                                 <p>Hàng Nội Địa</p>
-                            </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Hàng Quốc Tế</p>
                             </label>
                         </div>
                     </div>
@@ -306,14 +254,14 @@ function Container({status}) {
                                     adv.map((item,index) => {
                                         return(
                                             <SwiperSlide key={index}>
-                                                {<img alt="/" src={item.src}/>}  
+                                                {<img alt="/" src={item.src}/>}
                                             </SwiperSlide>
                                         )
                                     })
                                 }
                             </Swiper>
                         </div>
-                        
+
                         <div className="search-summary-category">
                                 <div className="summary-top">
                                     <div className="top-tabs">
@@ -336,20 +284,20 @@ function Container({status}) {
                                             </>
                                         }
                                         </div>
-                                    </div> 
+                                    </div>
 
                                     <div className="search-navigate">
                                         <div className="paging">
                                             <span className="current">1</span>
                                             &#47;
-                                            <span className="last">50</span>    
-                                        </div>    
+                                            <span className="last">50</span>
+                                        </div>
 
                                         <div className="list-arrow">
                                             <img alt="/" src="https://salt.tikicdn.com/ts/brickv2og/b0/c0/37/55863dd4fac41fc53a8ad943545973b1.png"/>
                                             <img className="right" alt="/" src="https://salt.tikicdn.com/ts/brickv2og/a8/b5/3b/3c2faee1a219b651e8bf39b1e57b9bbc.png"/>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
 
                                 <div className="summary-bottom">
@@ -364,7 +312,7 @@ function Container({status}) {
                                     </p>
                                 </div>
                         </div>
-                        
+
                         <Products/>
 
                         <div className="paging-nav">
@@ -372,14 +320,14 @@ function Container({status}) {
 
                                 <li><Link className="noactive"  href="/">
                                     <img alt="/" src="https://salt.tikicdn.com/ts/brickv2og/79/0d/0a/c49a190b24f4b799e16fadae76d76ce8.png" height="20" width="16"/>
-                                </Link></li>                                
+                                </Link></li>
                                 <li><Link to="*" className="curr">1</Link></li>
                                 <li><Link to="*">2</Link></li>
                                 <li><Link to="*">3</Link></li>
                                 <li><Link to="*">4</Link></li>
                                 <li><Link to="*">5</Link></li>
                                 <li><Link to="*">
-                                    <img className="noactive" alt="." src="https://salt.tikicdn.com/ts/brickv2og/c5/f9/d0/b4e49aa9576a35e347fbdeec0df9e350.png" width="20" height="20"/>    
+                                    <img className="noactive" alt="." src="https://salt.tikicdn.com/ts/brickv2og/c5/f9/d0/b4e49aa9576a35e347fbdeec0df9e350.png" width="20" height="20"/>
                                 </Link></li>
                                 <li><Link to="*">50</Link></li>
                                 <li><Link to="*">

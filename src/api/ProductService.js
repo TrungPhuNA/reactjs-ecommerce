@@ -1,10 +1,11 @@
 import axiosClient from './axiosClient';
 
-const categoryApi = {
-	async getListsCategory(params) {
+const productApi = {
+	async getListsProducts(params) {
 		try {
+			console.log('------------ params: ', params);
 			const newParams = { ...params }
-			const url = `category/lists`;
+			const url = `product/lists`;
 			const response = await axiosClient.get(url, {
 				params: {...newParams},
 			})
@@ -13,13 +14,17 @@ const categoryApi = {
 				return response.data;
 			}
 		} catch (e) {
-			console.log('--------------- E ', e);
+			console.log('--------------- getListsProducts@Error ', e);
+		}
+
+		return  {
+			status: 501
 		}
 	},
 
 	async findById(id) {
 		try {
-			const url = `category/show/${id}`;
+			const url = `product/show/${id}`;
 			const response = await axiosClient.get(url)
 
 			if (response.status === 200) {
@@ -27,9 +32,12 @@ const categoryApi = {
 			}
 		} catch (e) {
 			console.log('--------------- findById@Error ', e);
-			return {};
+		}
+
+		return  {
+			status: 501
 		}
 	},
 }
 
-export default categoryApi;
+export default productApi;

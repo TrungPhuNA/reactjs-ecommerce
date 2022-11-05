@@ -33,7 +33,6 @@ function HomeCategory() {
         };
 
         const response = await categoryApi.getListsCategory(params);
-        console.log('-------------- getCategoriesHome@response: ', response);
         SetCategoriesHome(response.data);
         SetLoadingCategoryHome(false);
     }
@@ -58,10 +57,8 @@ function HomeCategory() {
                             return (
                                 <SwiperSlide key={index}>
                                     <div className="category-item">
-                                        <Link to="/category">
-                                            <div className="position-relative">
-                                                <p>{item.c_name}</p>
-                                            </div>
+                                        <Link to={'/category/' + (item.c_slug) + '-' + item.id}>
+                                            <span className="position-relative">{item.c_name}</span>
                                         </Link>
                                     </div>
                                 </SwiperSlide>

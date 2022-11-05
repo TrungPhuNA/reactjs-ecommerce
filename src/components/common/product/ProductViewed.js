@@ -8,22 +8,21 @@ function ProductViewed() {
 
     return (
         <div className="viewed">
-                <h2>Sản Phẩm Đã Xem</h2>
-                <div className="suggestion__product">
-                    <div className="content">
-                        { arr_10.map(item => {
-                                return (
-                                    <ProductSummary
-                                        disCount={disCount}
-                                        setDistCount={setDistCount}
-                                        deal={false}
-                                        price={undefined} sold={undefined}
-                                    />
-                                )
-                            })
-                        }
-                    </div>
+            <h2>Sản Phẩm Đã Xem</h2>
+            <div className="suggestion__product">
+                <div className="content">
+                    { arr_10.map(item => {
+                        return (
+                            <ProductSummary
+                                disCount={disCount}
+                                setDistCount={setDistCount}
+                                deal={false}
+                                price={undefined} sold={undefined}
+                            />
+                        )
+                    })}
                 </div>
+            </div>
         </div>
     )
 }

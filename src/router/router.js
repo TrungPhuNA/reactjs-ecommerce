@@ -20,7 +20,7 @@ export const routes = () => {
             element: <HomePage/>
         },
         {
-            path: 'category',
+            path: 'category/:slug-:id',
             element: <CategoryPage/>
         },
         {
