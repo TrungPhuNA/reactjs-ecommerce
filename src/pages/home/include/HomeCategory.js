@@ -19,17 +19,23 @@ const settingsSlide = {
     className:"category-swiper",
 }
 function HomeCategory() {
-    const [categoriesHome,SetCategoriesHome] = useState([]);
-    const [loadingCategoryHome, setLoadingCategoryHome] = useState(true);
+    const [categoriesHome, SetCategoriesHome] = useState([]);
+    const [loadingCategoryHome, SetLoadingCategoryHome] = useState(true);
+
     useEffect(() => {
         getCategoriesHome();
     },[])
 
     const getCategoriesHome = async (params) => {
+        params = {
+            status: 1,
+            hot : 1
+        };
+
         const response = await categoryApi.getListsCategory(params);
         console.log('-------------- getCategoriesHome@response: ', response);
         SetCategoriesHome(response.data);
-        setLoadingCategoryHome(false);
+        SetLoadingCategoryHome(false);
     }
 
     return(
