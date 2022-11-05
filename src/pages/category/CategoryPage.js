@@ -7,7 +7,7 @@ import MobileCategoryHeader from "./include/mobile/MobileCategoryHeader";
 import {useParams} from 'react-router';
 import categoryApi from '../../api/CategoryService';
 import productApi from '../../api/ProductService';
-import {Link} from 'react-router-dom';
+import {Link, useSearchParams} from 'react-router-dom';
 
 import {Swiper, SwiperSlide} from 'swiper/react';
 import Products from './include/desktop/Products';
@@ -29,13 +29,13 @@ function CategoryPage() {
     const [products, setProducts] = useState([]);
 
     const [loadingProduct, setLoadingProduct] = useState(true);
-
+    const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
         window.scrollTo(0, 0)
         getCategoryDetail();
         getProductsByCategory();
-    }, [])
+    }, [id])
 
     const getCategoryDetail = async () => {
         const response = await categoryApi.findById(id);
@@ -56,7 +56,6 @@ function CategoryPage() {
     }
 
     const [adv,setAdv] = useState([]);
-
     useEffect(() => {
         const data = [
             {
@@ -70,6 +69,22 @@ function CategoryPage() {
         ]
         setAdv(data);
     },[])
+
+    const handleChangeSort = (event) => {
+        let sortType = event.currentTarget.getAttribute('data-sort-type');
+        let sortValue = event.currentTarget.getAttribute('data-sort-value');
+        const elementLinks = [...document.querySelectorAll('.tabs-list')];
+
+        elementLinks.map((tl) => {
+            tl.classList.remove('active');
+        });
+
+        event.currentTarget.classList.add("active");
+        if (sortType === 'price')
+        {
+            setSearchParams({price: sortValue});
+        }
+    }
 
     return (
         <main className={isWideScreen() ? 'desktop' : 'mobile'}>
@@ -105,11 +120,8 @@ function CategoryPage() {
                                                 <div className="tabs-list">
                                                     { isWideScreen() &&
                                                         <>
-                                                            <Link to="category" className="active">Phổ Biến</Link>
-                                                            <Link to="category" className="active">Bán Chạy</Link>
-                                                            <Link to="category" className="active">Hàng Mới</Link>
-                                                            <Link to="category" className="active">Giá Thấp Đến Cao</Link>
-                                                            <Link to="category" className="active">Giá Cao Đến Thấp</Link>
+                                                            <a onClick={handleChangeSort} className="tabs-list" data-sort-type="price" data-sort-value={"desc"} >Giá Thấp Đến Cao</a>
+                                                            <a onClick={handleChangeSort} className="tabs-list" data-sort-type="price" data-sort-value={"asc"} >Giá Cao Đến Thấp</a>
                                                         </>
                                                     }
                                                     { !isWideScreen() &&

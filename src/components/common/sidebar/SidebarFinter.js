@@ -15,10 +15,7 @@ export default function SidebarFilter()  {
 		const response = await categoryApi.getListsCategory(params);
 		setCategories(response.data);
 		SetLoadingCategories(false);
-		console.log('-------------------------- getCategoriesSidebar',);
 	}
-
-	// const navigate = useNavigate();
 
 	return (
 		<div className="sidebar">
@@ -30,11 +27,11 @@ export default function SidebarFilter()  {
 				<div className="sidebar-list">
 					{ loadingCategories === false ? (
 						<ul>
-							{ categoriesSidebar.length > 0 && categoriesSidebar.map((item, index) => {
+							{ categoriesSidebar.map(( item, index) => (
 								<li key={index}>
-									<Link title={item.c_name} to={'/'}> { item.c_name} </Link>
+									<Link title={item.c_name} to={'/category/' + (item.c_slug) + '-' + item.id}> { item.c_name} </Link>
 								</li>
-							})}
+							))}
 						</ul>
 					) : (
 						<ul>
@@ -43,7 +40,6 @@ export default function SidebarFilter()  {
 							</li>
 						</ul>
 					)}
-
 				</div>
 
 				<div className="sidebar-service">
