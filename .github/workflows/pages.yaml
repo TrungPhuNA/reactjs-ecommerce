@@ -29,7 +29,7 @@ jobs:
               with:
                   source: "."
                   target: "/var/www/tranining/reactjs-ecommerce"
-                  node-version: '14.x'
+                  node-version: ${{ matrix.node-version }}
 
             - name: Deploy
               uses: appleboy/ssh-action@master
