@@ -15,6 +15,7 @@ export default function SidebarFilter()  {
 		const response = await categoryApi.getListsCategory(params);
 		setCategories(response.data);
 		SetLoadingCategories(false);
+		console.log('-------------------------- getCategoriesSidebar',);
 	}
 
 	// const navigate = useNavigate();

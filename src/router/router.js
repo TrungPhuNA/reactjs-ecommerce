@@ -32,10 +32,6 @@ export const routes = () => {
             element: <NoPage/>
         },
         {
-            path: '&pp',
-            element: <ProductPage/>
-        },
-        {
             path: 'account',
             element: <AccountPage/>
         },  
