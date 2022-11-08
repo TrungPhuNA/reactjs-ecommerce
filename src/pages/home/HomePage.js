@@ -48,7 +48,7 @@ function HomePage() {
                     <HomeBrand/>
                     <FamousCategory check={false}/>
                     <HomeBanner/>
-                    <HomeSuggest status={true} key={2}/>
+                    <HomeSuggest status={true}/>
                 </>
             }
 
@@ -78,7 +78,7 @@ function HomePage() {
                             <HomeBanner number={4}/>
                             <HomeBrand/>
                             <FamousCategory check={false}/>
-                            <HomeSuggest status={false} key={1}/>
+                            <HomeSuggest status={false}/>
                             <div className="home__background">
                                 <Images src="https://salt.tikicdn.com/ts/banner/df/e4/7e/45fd347a5b3479a0a16b8a8f1b164819.png" alt="bg" />
                             </div>

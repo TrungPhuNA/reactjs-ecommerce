@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect }from "react";
 import SideNavBar from "./SideNavBar";
 import {Link} from 'react-router-dom';
 import Popup from "reactjs-popup";
@@ -6,10 +6,20 @@ import UpdatePhoneNum from "./UpdatePhoneNum";
 import UpdateEmail from "./UpdateEmail";
 import UpdatePassword from "./UpdatePassword";
 import UpdatePin from "./UpdatePin";
+// import AccountInfoMob from "./mobile/AccountInfoMob";
+import { isWideScreen } from "../../../helpers/screen";
+import AccountSetting from "./mobile/AccountSetting";
 
 function AccountInfo() {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
+
     return(
-    <>
+    <>  
+        {isWideScreen() && 
+        <>
         <div className="container">
             <div className="page-container">
                 <div className="category-title">
@@ -269,6 +279,12 @@ function AccountInfo() {
                     </div>
                 </div>
             </div>
+            </>
+            }
+
+            { !isWideScreen() &&
+                <AccountSetting/>
+            }   
         </>
     )
 }

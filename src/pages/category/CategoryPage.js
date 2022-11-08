@@ -120,8 +120,8 @@ function CategoryPage() {
                                                 <div className="tabs-list">
                                                     { isWideScreen() &&
                                                         <>
-                                                            <a onClick={handleChangeSort} className="tabs-list" data-sort-type="price" data-sort-value={"desc"} >Giá Thấp Đến Cao</a>
-                                                            <a onClick={handleChangeSort} className="tabs-list" data-sort-type="price" data-sort-value={"asc"} >Giá Cao Đến Thấp</a>
+                                                            <Link to="" onClick={handleChangeSort} className="tabs-list" data-sort-type="price" data-sort-value={"desc"} >Giá Thấp Đến Cao</Link>
+                                                            <Link to="" onClick={handleChangeSort} className="tabs-list" data-sort-type="price" data-sort-value={"asc"} >Giá Cao Đến Thấp</Link>
                                                         </>
                                                     }
                                                     { !isWideScreen() &&

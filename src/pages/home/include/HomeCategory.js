@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 
 // Import Swiper styles
@@ -9,14 +9,14 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import {Navigation } from "swiper";
+import { Navigation } from "swiper";
 import categoryApi from '../../../api/CategoryService';
 
 const settingsSlide = {
     slidesPerView: 10,
-    navigation:true,
-    modules:[Navigation],
-    className:"category-swiper",
+    navigation: true,
+    modules: [Navigation],
+    className: "category-swiper",
 }
 function HomeCategory() {
     const [categoriesHome, SetCategoriesHome] = useState([]);
@@ -24,12 +24,12 @@ function HomeCategory() {
 
     useEffect(() => {
         getCategoriesHome();
-    },[])
+    }, [])
 
     const getCategoriesHome = async (params) => {
         params = {
             status: 1,
-            hot : 1
+            hot: 1
         };
 
         const response = await categoryApi.getListsCategory(params);
@@ -37,23 +37,23 @@ function HomeCategory() {
         SetLoadingCategoryHome(false);
     }
 
-    return(
+    return (
         <div className="category">
-            { loadingCategoryHome === true ? (
+            {loadingCategoryHome === true ? (
                 <div className="loading-category category-swiper" style={{
                     display: "flex",
                     alignItems: "center"
                 }}>
-                    <Skeleton style={{ marginRight: "10px"}} count={1} height={20} width={100}/>
-                    <Skeleton style={{ marginRight: "10px"}}count={1} height={20} width={100}/>
-                    <Skeleton style={{ marginRight: "10px"}} count={1} height={20} width={100}/>
-                    <Skeleton style={{ marginRight: "10px"}} count={1} height={20} width={100}/>
-                    <Skeleton style={{ marginRight: "10px"}} count={1} height={20} width={100}/>
+                    <Skeleton style={{ marginRight: "10px" }} count={1} height={20} width={100} />
+                    <Skeleton style={{ marginRight: "10px" }} count={1} height={20} width={100} />
+                    <Skeleton style={{ marginRight: "10px" }} count={1} height={20} width={100} />
+                    <Skeleton style={{ marginRight: "10px" }} count={1} height={20} width={100} />
+                    <Skeleton style={{ marginRight: "10px" }} count={1} height={20} width={100} />
                 </div>
             ) : (
                 <Swiper {...settingsSlide}>
                     {
-                        categoriesHome.length > 0 && categoriesHome.map((item,index) => {
+                        categoriesHome.length > 0 && categoriesHome.map((item, index) => {
                             return (
                                 <SwiperSlide key={index}>
                                     <div className="category-item">
@@ -65,7 +65,6 @@ function HomeCategory() {
                             )
                         })
                     }
-
                 </Swiper>
             )}
         </div>
