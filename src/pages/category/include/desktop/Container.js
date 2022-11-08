@@ -72,7 +72,7 @@ function Container({status}) {
                         <div className="sidebar-service">
                             <h4>Dịch vụ</h4>
                             <label>
-                                <input type="checkbox" onChange={() => navigate("/&pp") }/>
+                                <input type="checkbox" onChange={() => navigate("") }/>
                                 <img className="filter-icon" alt="/" src="https://salt.tikicdn.com/ts/upload/b3/21/cf/c6525bcd44b3bb1b793277cc98487799.png"/>
                                 <span>Giao siêu tốc 2h</span>
                             </label>

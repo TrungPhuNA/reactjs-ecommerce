@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect} from 'react';
 import AccountInfo from './include/AccountInfo';
 // import Category from './include/Category';
 // import OrderDetail from './include/OrderDetail';
@@ -7,6 +7,8 @@ import AccountInfo from './include/AccountInfo';
 // import { useRoutes } from "react-router-dom";
 // import {Link } from "react-router-dom";
 // import links from '../account/include/SideNavBar';
+import { isWideScreen } from '../../helpers/screen';
+import AccountSetting from './include/mobile/AccountSetting';
 
 function AccountPage() {
     useEffect(() => {
@@ -14,11 +16,22 @@ function AccountPage() {
       }, [])  
 
     return(
-        <div className="container">
-            <div className="page-container">
-                <></>
+        <>
+        {isWideScreen() && 
+            <div className="container">
+                <div className="page-container">
+                    <AccountInfo/>
+                </div>
             </div>
-        </div>
+        }
+
+       {!isWideScreen() && 
+           <>
+                <AccountSetting/>
+           </>    
+           }
+   </>
+
 
     )
 }
