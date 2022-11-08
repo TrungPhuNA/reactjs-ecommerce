@@ -6,8 +6,9 @@ import UpdatePhoneNum from "./UpdatePhoneNum";
 import UpdateEmail from "./UpdateEmail";
 import UpdatePassword from "./UpdatePassword";
 import UpdatePin from "./UpdatePin";
-import AccountInfoMob from "./mobile/AccountInfoMob";
+// import AccountInfoMob from "./mobile/AccountInfoMob";
 import { isWideScreen } from "../../../helpers/screen";
+import AccountSetting from "./mobile/AccountSetting";
 
 function AccountInfo() {
     useEffect(() => {
@@ -282,7 +283,7 @@ function AccountInfo() {
             }
 
             { !isWideScreen() &&
-                <AccountInfoMob/>
+                <AccountSetting/>
             }   
         </>
     )

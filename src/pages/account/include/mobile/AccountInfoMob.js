@@ -5,7 +5,7 @@ function AccountInfoMob() {
     return (
         <>
             <header className="header-as-title">
-                <Link to="/" >
+                <Link to="/accsetting" >
                     <button className="btn-back">
                         <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="30" height="30" width="30" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>    
                     </button>    
@@ -23,7 +23,7 @@ function AccountInfoMob() {
                         <div class="edit"><img src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/edit.png" class="edit_img" alt="" width='10' height='10'/></div>
                     </div>
                 </div>
-                <Link to="info/updname" className="account-info-mob">
+                <Link to="/updname" className="account-info-mob">
                     <div className="info-mob">
                         <div className="left-info-mob">
                             <img alt='s' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/user.png" width="24" height='24'/>
@@ -37,7 +37,7 @@ function AccountInfoMob() {
                             <img alt='s' width='24' height='24' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/arrow-right.png"/>
                     </div>
                 </Link>
-                <Link to="info/updnickname" className="account-info-mob">
+                <Link to="/updnickname" className="account-info-mob">
                     <div className="info-mob">
                         <div className="left-info-mob">
                             <img  alt='s' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/follower.png" width="24" height='24'/>
@@ -65,7 +65,7 @@ function AccountInfoMob() {
                             <img alt='s' width='24' height='24' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/arrow-right.png"/>
                     </div>
                 </Link>
-                <Link to="info/updsex" className="account-info-mob">
+                <Link to="/updsex" className="account-info-mob">
                     <div className="info-mob">
                         <div className="left-info-mob">
                             <img alt='s' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/gender.png" width="24" height='24'/>
@@ -93,7 +93,7 @@ function AccountInfoMob() {
                             <img alt='s' width='24' height='24' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/arrow-right.png"/>
                     </div>
                 </Link>
-                <Link to="info/updphonenum" className="account-info-mob">
+                <Link to="/updphonenum" className="account-info-mob">
                     <div className="info-mob">
                         <div className="left-info-mob">
                             <img alt='s' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/phone.png" width="24" height='24'/>
@@ -107,7 +107,7 @@ function AccountInfoMob() {
                             <img alt='s' width='24' height='24' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/arrow-right.png"/>
                     </div>
                 </Link>
-                <Link to="info/updemail" className="account-info-mob">
+                <Link to="/updemail" className="account-info-mob">
                     <div className="info-mob">
                         <div className="left-info-mob">
                             <img alt='s' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/email.png" width="24" height='24'/>
@@ -121,7 +121,7 @@ function AccountInfoMob() {
                             <img alt='s' width='24' height='24' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/arrow-right.png"/>
                     </div>
                 </Link>
-                <Link to="info/updpass" className="account-info-mob">
+                <Link to="/updpass" className="account-info-mob">
                     <div className="info-mob">
                         <div className="left-info-mob">
                             <img alt='s' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/lock.png" width="24" height='24'/>

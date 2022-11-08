@@ -1,25 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function AccountSetting(){
-    return(
+function AccountSetting() {
+    return (
         <>
             <header className="header-as-title">
                 <Link to="/" >
                     <button className="btn-back">
-                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="30" height="30" width="30" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>    
-                    </button>    
-                </Link>  
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="30" height="30" width="30" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>
+                    </button>
+                </Link>
                 <div className="mob-as-title">Quản lý tài khoản</div>
                 <Link to="" className="img-cart">
-                    <img alt="." src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/cart.svg"/>
+                    <img alt="." src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/cart.svg" />
                 </Link>
             </header>
             <main className="main-as">
                 <div>
                     <div className="group">
                         <Link to="/infomob" className="gr-avatar">
-                            <img width="40" height="40" src="https://salt.tikicdn.com/cache/512x512/ts/avatar/b9/42/e9/5d6bd301d4a6fb334877b9ae5082f483.jpg" alt="avatar"/>
+                            <img width="40" height="40" src="https://salt.tikicdn.com/cache/512x512/ts/avatar/b9/42/e9/5d6bd301d4a6fb334877b9ae5082f483.jpg" alt="avatar" />
                             <div class="link__content">
                                 <div class="link__name">Trần Hoàng</div>
                                 <div class="link__email">tranhoangnd3062@gmail.com</div>
@@ -30,7 +30,7 @@ function AccountSetting(){
                     </div>
                     <div className="group">
                         <Link to="" class="link">
-                            <img src="https://frontend.tikicdn.com/_mobile-next/static/img/mycoupon/coupon_code.svg" alt='xasd'/>
+                            <img src="https://frontend.tikicdn.com/_mobile-next/static/img/mycoupon/coupon_code.svg" alt='xasd' />
                             <div class="link__content">Mã giảm giá<span>(Bạn đang có <b>0</b> mã giảm giá)</span></div>
                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="link__arrow" size="20" height="20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M294.1 256L167 129c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.3 34 0L345 239c9.1 9.1 9.3 23.7.7 33.1L201.1 417c-4.7 4.7-10.9 7-17 7s-12.3-2.3-17-7c-9.4-9.4-9.4-24.6 0-33.9l127-127.1z"></path></svg>
                         </Link>
@@ -63,7 +63,7 @@ function AccountSetting(){
                             <div class="link__content">&ensp; Thông báo của tôi</div>
                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="link__arrow" size="20" height="20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M294.1 256L167 129c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.3 34 0L345 239c9.1 9.1 9.3 23.7.7 33.1L201.1 417c-4.7 4.7-10.9 7-17 7s-12.3-2.3-17-7c-9.4-9.4-9.4-24.6 0-33.9l127-127.1z"></path></svg>
                         </Link>
-                        <Link to="" class="link">
+                        <Link to="/ordmob" class="link">
                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" size="24" class="link__icon" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M408 64H104c-22.091 0-40 17.908-40 40v304c0 22.092 17.909 40 40 40h304c22.092 0 40-17.908 40-40V104c0-22.092-17.908-40-40-40zM304 368H144v-48h160v48zm64-88H144v-48h224v48zm0-88H144v-48h224v48z"></path></svg>
                             <div class="link__content">&ensp; Quản lý đơn hàng</div>
                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="link__arrow" size="20" height="20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M294.1 256L167 129c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.3 34 0L345 239c9.1 9.1 9.3 23.7.7 33.1L201.1 417c-4.7 4.7-10.9 7-17 7s-12.3-2.3-17-7c-9.4-9.4-9.4-24.6 0-33.9l127-127.1z"></path></svg>
@@ -81,12 +81,12 @@ function AccountSetting(){
                     </div>
                     <div className="group">
                         <Link to="" class="link">
-                            <img srcset="https://salt.tikicdn.com/ts/upload/87/32/25/7959ecba309e1ef49f6f7360b2b8476d.png 2x, https://salt.tikicdn.com/ts/upload/ed/10/e8/7a14bc168e29faf4cd9c40c0236fb913.png 1x" alt='xa'/>
+                            <img srcset="https://salt.tikicdn.com/ts/upload/87/32/25/7959ecba309e1ef49f6f7360b2b8476d.png 2x, https://salt.tikicdn.com/ts/upload/ed/10/e8/7a14bc168e29faf4cd9c40c0236fb913.png 1x" alt='xa' />
                             <div class="link__content">Thông tin TikiNOW</div>
                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="link__arrow" size="20" height="20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M294.1 256L167 129c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.3 34 0L345 239c9.1 9.1 9.3 23.7.7 33.1L201.1 417c-4.7 4.7-10.9 7-17 7s-12.3-2.3-17-7c-9.4-9.4-9.4-24.6 0-33.9l127-127.1z"></path></svg>
                         </Link>
                         <Link to="" class="link">
-                        <img srcset="https://salt.tikicdn.com/ts/upload/b5/33/14/09096979a40d25a2ad3976e3809ceb78.png 2x, https://salt.tikicdn.com/ts/upload/4a/d4/da/77fe4fd0c771088f7794ba3ce66782eb.png 1x" alt='xx'/>
+                            <img srcset="https://salt.tikicdn.com/ts/upload/b5/33/14/09096979a40d25a2ad3976e3809ceb78.png 2x, https://salt.tikicdn.com/ts/upload/4a/d4/da/77fe4fd0c771088f7794ba3ce66782eb.png 1x" alt='xx' />
                             <div class="link__content">Thông tin Tiki Xu</div>
                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="link__arrow" size="20" height="20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M294.1 256L167 129c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.3 34 0L345 239c9.1 9.1 9.3 23.7.7 33.1L201.1 417c-4.7 4.7-10.9 7-17 7s-12.3-2.3-17-7c-9.4-9.4-9.4-24.6 0-33.9l127-127.1z"></path></svg>
                         </Link>

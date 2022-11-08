@@ -3,8 +3,8 @@ import NoPage from '../pages/nopage/NoPage';
 import ProductDetailPage from '../pages/product_detail/ProductDetailPage';
 import HomePage from '../pages/home/HomePage';
 import CategoryPage from '../pages/category/CategoryPage';
-import ProductPage from '../pages/product/ProductPage';
-// import AccountPage from '../pages/account/AccountPage';
+// import ProductPage from '../pages/product/ProductPage';
+import AccountPage from '../pages/account/AccountPage';
 import AccountInfo from '../pages/account/include/AccountInfo';
 import OrderManagement from '../pages/account/include/OrderManagement';
 import OrderDetail from '../pages/account/include/OrderDetail';
@@ -18,81 +18,95 @@ import UpdNickname from '../pages/account/include/mobile/UpdNickname';
 import UpdPass from '../pages/account/include/mobile/UpdPass';
 import UpdPhoneNum from '../pages/account/include/mobile/UpdPhoneNum';
 import UpdSex from '../pages/account/include/mobile/UpdSex';
+import AccountInfoMob from '../pages/account/include/mobile/AccountInfoMob';
+import AccountSetting from '../pages/account/include/mobile/AccountSetting';
+import OrderManagementMob from '../pages/account/include/mobile/OrderManagementMob';
 
 export const routes = () => {
     return [
         {
             path: '/',
-            element: <HomePage/>
+            element: <HomePage />
         },
         {
-            path: 'category',
-            element: <CategoryPage/>
+            path: 'category/:slug-:id',
+            element: <CategoryPage />
         },
         {
             path: 'detail',
-            element: <ProductDetailPage/>
+            element: <ProductDetailPage />
         },
         {
             path: '*',
-            element: <NoPage/>
+            element: <NoPage />
         },
         {
-            path: '&pp',
-            element: <ProductPage/>
+            path: 'account',
+            element: <AccountPage />
         },
-         
         {
-            path: '/info',
-            element: <AccountInfo/>
+            path: 'info',
+            element: <AccountInfo />
+        },
+        {
+            path: '/infomob',
+            element: <AccountInfoMob />
+        },
+        {
+            path: '/accsetting',
+            element: <AccountSetting />
         },
         {
             path: '/updatepn',
-            element: <UpdatePhoneNum/>
+            element: <UpdatePhoneNum />
         },
         {
             path: '/updatepass',
-            element: <UpdatePassword/>
+            element: <UpdatePassword />
         },
         {
             path: '/updatepin',
-            element: <UpdatePin/>
+            element: <UpdatePin />
         },
         {
             path: '/updateemail',
-            element: <UpdateEmail/>
+            element: <UpdateEmail />
         },
         {
             path: 'order',
-            element: <OrderManagement/>
+            element: <OrderManagement />
+        },
+        {
+            path: '/ordmob',
+            element: <OrderManagementMob />
         },
         {
             path: 'order/orderdetail',
-            element: <OrderDetail/>
+            element: <OrderDetail />
         },
         {
-            path: 'info/updname',
-            element: <UpdName/>
+            path: '/updname',
+            element: <UpdName />
         },
         {
-            path: 'info/updemail',
-            element: <UpdEmail/>
+            path: '/updemail',
+            element: <UpdEmail />
         },
         {
-            path: 'info/updnickname',
-            element: <UpdNickname/>
+            path: '/updnickname',
+            element: <UpdNickname />
         },
         {
-            path: 'info/updpass',
-            element: <UpdPass/>
+            path: '/updpass',
+            element: <UpdPass />
         },
         {
-            path: 'info/updphonenum',
-            element: <UpdPhoneNum/>
+            path: '/updphonenum',
+            element: <UpdPhoneNum />
         },
         {
-            path: 'info/updsex',
-            element: <UpdSex/>
+            path: '/updsex',
+            element: <UpdSex />
         },
     ]
 }
