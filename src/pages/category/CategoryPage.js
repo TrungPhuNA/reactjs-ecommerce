@@ -33,42 +33,9 @@ function CategoryPage() {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-        getCategoryDetail();
-        getProductsByCategory();
-    }, [id])
-
-    const getCategoryDetail = async () => {
-        const response = await categoryApi.findById(id);
-        if(response.status === 200) {
-            setCategory(response.data);
-        }
-    }
-
-    const getProductsByCategory = async () => {
-        let params = {
-            category_id: id
-        }
-        const response = await productApi.getListsProducts(params);
-        if(response.status === 200) {
-            setProducts(response.data);
-            setLoadingProduct(false);
-        }
-    }
+      }, [])
 
     const [adv,setAdv] = useState([]);
-    useEffect(() => {
-        const data = [
-            {
-                src:"https://salt.tikicdn.com/cache/w1080/ts/banner/b3/6d/bd/3538eb353010d41cd0533e7804a347ac.jpg.webp",
-                title:'Ngon'
-            },
-            {
-                src:"https://salt.tikicdn.com/cache/w1080/ts/banner/19/eb/19/b05a27bf2a1db86b74bcac1fe4be115c.png.webp",
-                title:'Ngon'
-            },
-        ]
-        setAdv(data);
-    },[])
 
     const handleChangeSort = (event) => {
         let sortType = event.currentTarget.getAttribute('data-sort-type');

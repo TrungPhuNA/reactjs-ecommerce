@@ -3,7 +3,7 @@ import NoPage from '../pages/nopage/NoPage';
 import ProductDetailPage from '../pages/product_detail/ProductDetailPage';
 import HomePage from '../pages/home/HomePage';
 import CategoryPage from '../pages/category/CategoryPage';
-// import ProductPage from '../pages/product/ProductPage';
+import ProductPage from '../pages/product/ProductPage';
 import AccountPage from '../pages/account/AccountPage';
 import AccountInfo from '../pages/account/include/AccountInfo';
 import OrderManagement from '../pages/account/include/OrderManagement';
@@ -30,7 +30,7 @@ export const routes = () => {
         },
         {
             path: 'category/:slug-:id',
-            element: <CategoryPage />
+            element: <CategoryPage/>
         },
         {
             path: 'detail',
