@@ -3,7 +3,7 @@ import { isWideScreen } from "../../helpers/screen";
 import BoxSearch from "../common/BoxSearch";
 import { Link } from "react-router-dom";
 import Popup from "reactjs-popup";
-import LoginDesktop from "../login/LogInDesktop";
+import LoginDesktop from "../login/LogIn";
 
 function Header(props) {
     const [showSearchDesktop, setShowSearchDesktop] = useState(false);
