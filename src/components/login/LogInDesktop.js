@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function LoginDesktop() {
     const [username, setUsername] = useState("");
@@ -44,7 +45,6 @@ function LoginDesktop() {
     }, [])
 
     async function logIn(e) {
-        e.preventDefault();
         let item = {username, password}
         let result = await fetch("https://api-ecm.123code.net/api/auth/login", {
             method: "POST",
@@ -53,9 +53,10 @@ function LoginDesktop() {
             },
             body: JSON.stringify(item)
         });
+        // axios.defaults.headers.common['Authorization'] = `Bearer ${result['token']}`;
         result = await result.json();
         localStorage.setItem("user-info", JSON.stringify(result))
-        navigate("/")
+        navigate("info")
     }
 
     return (

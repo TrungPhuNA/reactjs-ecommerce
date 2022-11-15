@@ -60,7 +60,7 @@ function RegisterDesktop() {
             body: JSON.stringify(item)
         });
         result = await result.json();
-        localStorage.setItem("user-info", JSON.stringify(result))
+        localStorage.setItem("accessToken", result['accessToken'])
         navigate("/")
     }
 
