@@ -153,12 +153,18 @@
 
                     input {
                         width: 100%;
-                        padding: 10px 0px;
+                        padding: 5px 0px;
                         border: none;
-                        font-size: 24px;
+                        font-size: 16px;
                         color: rgb(36, 36, 36);
                         outline: none;
                         position: relative;
+                        border-bottom: 1px solid rgb(224, 224, 224);
+                        margin-bottom: 20px;
+                    }
+
+                    .text-title {
+                        font-size: 18px;
                     }
                 }
 

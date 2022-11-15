@@ -1,4 +1,4 @@
-import React, { useEffect }from "react";
+import React, { useState, useEffect }from "react";
 import SideNavBar from "./SideNavBar";
 import {Link} from 'react-router-dom';
 import Popup from "reactjs-popup";
@@ -12,10 +12,39 @@ import AccountSetting from "./mobile/AccountSetting";
 
 function AccountInfo() {
     useEffect(() => {
-        window.scrollTo(0, 0)
-      }, [])
+            window.scrollTo(0, 0)
+        }, [])
 
+    const [user, setUser] = useState([]);
+    const [username, setUsername] = useState("");
+    const [address, setAddress] = useState("");
+    
+    async function getUser() {
+        fetch("https://api-ecm.123code.net/api/auth/profile").then((result) => {
+            result.json().then((res) => {
+                setUser(res);
+                setUsername(res.username);
+                setAddress(res.address);
+            })
+        });
+    }
 
+    async function updateInfo(e) {
+        e.preventDefault();
+        let item = {username, address};
+        fetch("https://api-ecm.123code.net/api/user/update-info", {
+            method: "PUT",
+            headers: { 
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(item)
+        }).then((result) => {
+            result.json().then(() => {
+                getUser();
+            })
+        })
+    }
+    
     return(
     <>  
         {isWideScreen() && 
@@ -38,7 +67,7 @@ function AccountInfo() {
                                 <div className="info-left">
                                     <span className="info-title">Thông tin cá nhân</span>
                                     <div className="info-form">
-                                        <form>
+                                        <form >
                                             <div className="form-info">
                                                 <div className="form-avatar">
                                                     <div className="avatar-view">
@@ -52,12 +81,16 @@ function AccountInfo() {
                                                     <div className="form-control">
                                                         <label>Họ & Tên</label>
                                                         <div className="input-label">
-                                                            <input class="input" type="search" name="fullName" maxlength="128" placeholder="Thêm họ tên"/>
+                                                            <input class="input" type="search" name="fullName" maxlength="128" placeholder="Thêm họ tên"
+                                                                value={username}
+                                                            />
                                                         </div>
                                                     </div>
                                                     <div className="form-control">
-                                                        <label class="input-label">Nickname</label>
-                                                        <input class="input" type="search" name="userName" maxlength="128" placeholder="Thêm nickname"/>
+                                                        <label class="input-label">Địa chỉ</label>
+                                                        <input class="input" type="search" name="userName" maxlength="128" placeholder="Nhập địa chỉ"
+                                                            value={address}
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>
@@ -175,7 +208,7 @@ function AccountInfo() {
                                             </div>
                                             <div className="form-control">
                                                 <label className="input-label1">&nbsp;</label>
-                                                <button type="submit">Lưu thay đổi</button>
+                                                <button type="submit"  onClick={updateInfo}>Lưu thay đổi</button>
                                             </div>
                                         </form>
                                     </div>

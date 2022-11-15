@@ -1,50 +1,82 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-export default ({ close }) => (
+function LoginDesktop() {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
-    <div className="login-desktop">
-        <div className="login-desktop-container">
-            <div className="login-desktop-content">
-                <button className="button-close" onClick={close}><img src="https://salt.tikicdn.com/ts/upload/fe/20/d7/6d7764292a847adcffa7251141eb4730.png" alt="sdf" /></button>
-                <div className="login-left">
-                    <div className="login-left-content">
-                        <div className="login-left-content-heading">
-                            <h4>Xin chào,</h4>
-                            <p>Đăng nhập hoặc Tạo tài khoản</p>
-                        </div>
-                        <form>
-                            <div className="left-content-heading-input">
-                                <input type="tel" placeholder="Số điện thoại" maxlength="10" />
-                            </div>
-                            <button>Tiếp tục</button>
-                        </form>
-                        <p className="login-with-login">Đăng nhập bằng email</p>
-                    </div>
-                    <div className="login-left-footer">
-                        <p className="login-footer-text1">
-                            <span>Hoặc tiếp tục bằng</span>
-                        </p>
-                        <ul>
-                            <li>
-                                <img src="https://salt.tikicdn.com/ts/upload/3a/22/45/0f04dc6e4ed55fa62dcb305fd337db6c.png" alt="ads" width="58" height="58" />
-                            </li>
-                            <li>
-                                <img src="https://salt.tikicdn.com/ts/upload/1c/ac/e8/141c68302262747f5988df2aae7eb161.png" alt="ads" width="58" height="58" />
-                            </li>
-                        </ul>
-                        <p class="note">Bằng việc tiếp tục, bạn đã chấp nhận <Link to="">điều khoản sử dụng</Link></p>
-                    </div>
-                </div>
-                <div className="login-right">
-                    <img src="https://salt.tikicdn.com/ts/upload/eb/f3/a3/25b2ccba8f33a5157f161b6a50f64a60.png" alt="sad" width='203' height='203' />
-                    <div class="login-right-content">
-                        <h4>Mua sắm tại Tiki</h4>
-                        <span>Siêu ưu đãi mỗi ngày</span>
-                    </div>
-                </div>
+    // let handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         let res = await fetch("https://api-ecm.123code.net/api/auth/login", {
+    //             method: "POST",
+    //             headers: { 
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({
+    //                 username: username,
+    //                 password: password,
+    //         }),
+    //     });
+    //     let resJson = await res.json();
+    //     if (res.status === 201) {
+    //         setUserName("");
+    //         setPassWord("");
+    //     } else {
+
+    //     }
+    //     } catch (e) {
+    //         console.log("----Login Error@");
+    //     }
+
+    //     return {
+    //         status: 401,
+    //     };
+        
+    // };
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(localStorage.getItem('user-info')){
+            navigate("/")
+        }
+    }, [])
+
+    async function logIn(e) {
+        let item = {username, password}
+        let result = await fetch("https://api-ecm.123code.net/api/auth/login", {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(item)
+        });
+        // axios.defaults.headers.common['Authorization'] = `Bearer ${result['token']}`;
+        result = await result.json();
+        localStorage.setItem("user-info", JSON.stringify(result))
+        navigate("info")
+    }
+
+    return (
+        <>
+            <div className="login-left-content-heading">
+                <h4>Xin chào,</h4>
+                <p>Đăng nhập</p>
             </div>
-        </div>
-    </div>
+            <form >
+                <div className="left-content-heading-input">
+                    <label className="text-title">Tên đăng nhập</label>
+                    <input type="username" placeholder="Nhập tên đăng nhập" onChange={(e) => setUsername(e.target.value)} maxlength="50" />
+                    <label className="text-title">Mật khẩu</label>
+                    <input type="password" placeholder="Nhập mật khẩu" onChange={(e) => setPassword(e.target.value)} maxlength="20" />
+                </div>
+                <button type="submit" onClick={logIn}><Link to="/" style={{ color: "white" }}>Tiếp tục</Link></button>
+            </form>
+            {/* <p className="login-with-login">Bạn chưa có tài khoản? <Link onClick={() => setIsRegister(true)}>Đăng ký</Link></p> */}
+        </>
+    )
+}
 
-)
+export default LoginDesktop;
