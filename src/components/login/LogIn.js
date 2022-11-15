@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import RegisterDesktop from './RegisterDesktop';
-import LoginDesktop from './LoginDesktop';
+import LogInDesktop from './LogInDesktop';
    
 export default () => {
 
@@ -24,7 +24,7 @@ export default () => {
                                         </>
                                     ) : (
                                         <>
-                                            <LoginDesktop/>
+                                            <LogInDesktop/>
                                             <p className="login-with-login">Bạn chưa có tài khoản? <Link onClick={() => setIsRegister(true)}>Đăng ký</Link></p>
                                         </>
                                     )
