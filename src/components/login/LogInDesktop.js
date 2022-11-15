@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function LoginDesktop() {
+function LogInDesktop() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -45,6 +45,7 @@ function LoginDesktop() {
     }, [])
 
     async function logIn(e) {
+        e.preventDefault();
         let item = {username, password}
         let result = await fetch("https://api-ecm.123code.net/api/auth/login", {
             method: "POST",
@@ -79,4 +80,4 @@ function LoginDesktop() {
     )
 }
 
-export default LoginDesktop;
+export default LogInDesktop;

@@ -81,14 +81,14 @@ function AccountInfo() {
                                                     <div className="form-control">
                                                         <label>Họ & Tên</label>
                                                         <div className="input-label">
-                                                            <input class="input" type="search" name="fullName" maxlength="128" placeholder="Thêm họ tên"
+                                                            <input className="input" type="search" name="fullName" maxlength="128" placeholder="Thêm họ tên"
                                                                 value={username}
                                                             />
                                                         </div>
                                                     </div>
                                                     <div className="form-control">
-                                                        <label class="input-label">Địa chỉ</label>
-                                                        <input class="input" type="search" name="userName" maxlength="128" placeholder="Nhập địa chỉ"
+                                                        <label className="input-label">Địa chỉ</label>
+                                                        <input className="input" type="search" name="userName" maxlength="128" placeholder="Nhập địa chỉ"
                                                             value={address}
                                                         />
                                                     </div>
