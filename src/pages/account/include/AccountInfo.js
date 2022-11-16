@@ -16,14 +16,20 @@ function AccountInfo() {
         }, [])
 
     const [user, setUser] = useState([]);
-    const [username, setUsername] = useState("");
+    const [name, setName] = useState("");
     const [address, setAddress] = useState("");
     
     async function getUser() {
-        fetch("https://api-ecm.123code.net/api/auth/profile").then((result) => {
+        fetch("https://api-ecm.123code.net/api/auth/profile", {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem('accessToken'),
+            }
+        }).then((result) => {
             result.json().then((res) => {
                 setUser(res);
-                setUsername(res.username);
+                setName(res.name);
                 setAddress(res.address);
             })
         });
@@ -31,11 +37,12 @@ function AccountInfo() {
 
     async function updateInfo(e) {
         e.preventDefault();
-        let item = {username, address};
+        let item = {name, address};
         fetch("https://api-ecm.123code.net/api/user/update-info", {
             method: "PUT",
             headers: { 
                 "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem('accessToken'),
             },
             body: JSON.stringify(item)
         }).then((result) => {
@@ -67,7 +74,7 @@ function AccountInfo() {
                                 <div className="info-left">
                                     <span className="info-title">Thông tin cá nhân</span>
                                     <div className="info-form">
-                                        <form >
+                                        <form onSubmit={updateInfo}>
                                             <div className="form-info">
                                                 <div className="form-avatar">
                                                     <div className="avatar-view">
@@ -81,15 +88,15 @@ function AccountInfo() {
                                                     <div className="form-control">
                                                         <label>Họ & Tên</label>
                                                         <div className="input-label">
-                                                            <input className="input" type="search" name="fullName" maxlength="128" placeholder="Thêm họ tên"
-                                                                value={username}
+                                                            <input className="input" type="text" name="fullName" maxlength="128" placeholder="Thêm họ tên"
+                                                                value={name} onChange={(e) => setName(e.target.value)}
                                                             />
                                                         </div>
                                                     </div>
                                                     <div className="form-control">
                                                         <label className="input-label">Địa chỉ</label>
-                                                        <input className="input" type="search" name="userName" maxlength="128" placeholder="Nhập địa chỉ"
-                                                            value={address}
+                                                        <input className="input" type="text" name="userName" maxlength="128" placeholder="Nhập địa chỉ"
+                                                            value={address} onChange={(e) => setAddress(e.target.value)}
                                                         />
                                                     </div>
                                                 </div>
