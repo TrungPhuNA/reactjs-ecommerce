@@ -22,22 +22,7 @@ import UpdatePhoneNum from './pages/account/include/UpdatePhoneNum';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-        <AppContainer>
-            <Routes>
-                <Route path ="/" element={<HomePage />}>
-                    <Route path="category" element={<CategoryPage />}>
-                        <Route path="/detail" element={<ProductDetailPage />} />
-                    </Route>
-
-                    <Route path="*" element = {<NoPage />} />
-                    <Route path="account" element = {<AccountPage />} />
-                    <Route path="info" element = {<AccountInfo />} />
-                    <Route path="order" element = {<OrderManagement />}/>
-                    <Route path="order/orderdetail" element = {<OrderDetail />} />
-                    <Route path="/updatepn" element = {<UpdatePhoneNum />} />
-                </Route>
-            </Routes>
-        </AppContainer>
+        <AppContainer/> 
     </BrowserRouter>
 );
 

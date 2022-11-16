@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import RegisterDesktop from './RegisterDesktop';
 import LogInDesktop from './LogInDesktop';
-   
+
 export default () => {
 
     const [isShow, setIsShow] = useState(true)
@@ -20,7 +20,7 @@ export default () => {
                                     {isRegister ? (
                                         <>
                                             <RegisterDesktop/>
-                                            <p className="login-with-login"><Link onClick={() => setIsRegister(false)}>Đăng nhập bằng email</Link></p>
+                                            <p className="login-with-login"><Link to="" onClick={() => setIsRegister(false)}>Đăng nhập bằng email</Link></p>
                                         </>
                                     ) : (
                                         <>
@@ -36,13 +36,13 @@ export default () => {
                                     </p>
                                     <ul>
                                         <li>
-                                            <img src="https://salt.tikicdn.com/ts/upload/3a/22/45/0f04dc6e4ed55fa62dcb305fd337db6c.png" alt="ads" width="58" height="58" />
+                                            <img src="https://salt.tikicdn.com/ts/upload/3a/22/45/0f04dc6e4ed55fa62dcb305fd337db6c.png" alt="ads" width="38" height="38" />
                                         </li>
                                         <li>
-                                            <img src="https://salt.tikicdn.com/ts/upload/1c/ac/e8/141c68302262747f5988df2aae7eb161.png" alt="ads" width="58" height="58" />
+                                            <img src="https://salt.tikicdn.com/ts/upload/1c/ac/e8/141c68302262747f5988df2aae7eb161.png" alt="ads" width="38" height="38" />
                                         </li>
                                     </ul>
-                                    <p class="note">Bằng việc tiếp tục, bạn đã chấp nhận <Link to="">điều khoản sử dụng</Link></p>
+                                    <p class="note">Bằng việc tiếp tục, bạn đã chấp nhận <Link to="/">điều khoản sử dụng</Link></p>
                                 </div>
                             </div>
                             <div className="login-right">
