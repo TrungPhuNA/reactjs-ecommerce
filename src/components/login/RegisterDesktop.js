@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 
 function RegisterDesktop() {
 
@@ -9,48 +8,8 @@ function RegisterDesktop() {
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const [address, setAddress] = useState("");
-    
-    // let handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     try {   
-    //         let res = await fetch("https://api-ecm.123code.net/api/auth/register", {
-    //             method: "POST",
-    //             headers: { 
-    //                 'Content-Type': 'application/json' 
-    //             },
-    //             body: JSON.stringify({
-    //                 name: name,
-    //                 email: email,
-    //                 username: username,
-    //                 phone: phone,
-    //                 password: password,
-    //                 address: address,
-    //             }),
-    //         });
-    //         let resJson = await res.json();
-    //         if (res.status === 201) {
-    //             setName("");
-    //             setEmail("");
-    //             setUsername("");
-    //             setPhone("");
-    //             setPassword("");
-    //             setAddress("");
-    //         } else {
-
-    //         }
-    //     } catch (e) {
-    //         console.log("---------Register Error", e);
-    //     }
-
-    //     return {
-    //         status: 500,
-    //     };
-    // };
-
-    const navigate = useNavigate();
 
     async function signUp(e) {
-        e.preventDefault();
         let item = {name, email, username, phone, password, address}
         let result = await fetch("https://api-ecm.123code.net/api/auth/register", {
             method: "POST",
@@ -60,8 +19,16 @@ function RegisterDesktop() {
             body: JSON.stringify(item)
         });
         result = await result.json();
-        localStorage.setItem("accessToken", result['accessToken'])
-        navigate("/")
+        localStorage.setItem('user', JSON.stringify(result.data));
+        const token = localStorage.getItem('user');
+        const tokenString = JSON.parse(token);
+        localStorage.setItem('accessToken', tokenString.accessToken);
+
+        if (localStorage.getItem('accessToken') !== null) {
+            window.location.reload();
+        } else {
+            
+        }
     }
 
     return(
@@ -85,7 +52,7 @@ function RegisterDesktop() {
                     <label className="text-title">Địa chỉ</label>
                     <input type="address" vale={address} placeholder="Nhập địa chỉ" onChange={(e) => setAddress(e.target.value)} maxlength="10" />
                 </div>
-                <button type="submit" onClick={signUp}><Link to="/" style={{ color: "white" }}>Tiếp tục</Link></button>
+                <button type="submit" onClick={signUp}>Tiếp tục</button>
             </form>
             {/* <p className="login-with-login"><Link onClick={() => setIsRegister(false)}>Đăng nhập bằng email</Link></p> */}
         </>

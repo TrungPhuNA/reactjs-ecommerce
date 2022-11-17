@@ -18,6 +18,8 @@ function AccountInfo() {
     const [user, setUser] = useState([]);
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
+    const [phone, setPhone] = useState("");
+    const [email, setEmail] = useState("");
     
     async function getUser() {
         fetch("https://api-ecm.123code.net/api/auth/profile", {
@@ -29,11 +31,17 @@ function AccountInfo() {
         }).then((result) => {
             result.json().then((res) => {
                 setUser(res);
-                setName(res.name);
-                setAddress(res.address);
+                setName(res.data.name);
+                setAddress(res.data.address);
+                setPhone(res.data.phone);
+                setEmail(res.data.email);
             })
         });
     }
+
+    useEffect(() => {
+        getUser();
+    }, []);
 
     async function updateInfo(e) {
         e.preventDefault();
@@ -229,7 +237,7 @@ function AccountInfo() {
                                                 <img src="https://frontend.tikicdn.com/_desktop-next/static/img/account/phone.png" alt="sad" width="24" height="24"/>
                                                 <div className="listitem-info-detail">
                                                     <span>Số điện thoại</span>
-                                                    <span>0394890366</span>
+                                                    <span>{phone}</span>
                                                 </div>
                                             </div>
                                             <div className="listitem-status">
@@ -244,7 +252,7 @@ function AccountInfo() {
                                                 <img src="https://frontend.tikicdn.com/_desktop-next/static/img/account/email.png" alt="sad" width="24" height="24"/>
                                                 <div className="listitem-info-detail">
                                                     <span>Địa chỉ email</span>
-                                                    <span>hoangnguyen@interspace.vn</span>
+                                                    <span>{email}</span>
                                                 </div>
                                             </div>
                                             <div className="listitem-status">

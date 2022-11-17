@@ -61,10 +61,6 @@
         ul {
             margin-left: -40px;
 
-            ul:hover {
-                background-color: red;
-            }
-
             li {
                 list-style: none;
                 color: rgb(0, 0, 0);
@@ -77,6 +73,10 @@
                     margin-left: 4px;
                 }
             }
+        }
+        ul:hover {
+            background-color: rgb(189, 189, 212);
+            color: rgb(0, 0, 0);
         }
 
 

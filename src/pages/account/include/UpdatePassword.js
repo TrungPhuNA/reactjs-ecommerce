@@ -17,7 +17,7 @@ function UpdatePassword() {
         }).then((result) => {
             result.json().then((res) => {
                 setUser(res);
-                setPassword(res.password);
+                setPassword(res.data.password);
             })
         });
     }
@@ -26,8 +26,7 @@ function UpdatePassword() {
     const [password_new, setPassword_new] = useState("");
     const [password_confirm, setPassword_confirm] = useState("");
 
-    async function updatePassword(e) {
-        e.preventDefault();
+    async function updatePassword() {
         let item = {password_old, password_new, password_confirm}
         fetch("https://api-ecm.123code.net/api/user/update-password", {
             method: 'PUT',
@@ -41,6 +40,7 @@ function UpdatePassword() {
                 getUser();
             })
         })
+        window.location.reload();
     }
 
     const [showPass, setShowPass] = useState(false);
