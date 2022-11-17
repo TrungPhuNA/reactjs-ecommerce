@@ -20,7 +20,7 @@ export default () => {
                                     {isRegister ? (
                                         <>
                                             <RegisterDesktop/>
-                                            <p className="login-with-login"><Link to="" onClick={() => setIsRegister(false)}>Đăng nhập bằng email</Link></p>
+                                            <p className="login-with-login"><Link onClick={() => setIsRegister(false)}>Đăng nhập bằng email</Link></p>
                                         </>
                                     ) : (
                                         <>

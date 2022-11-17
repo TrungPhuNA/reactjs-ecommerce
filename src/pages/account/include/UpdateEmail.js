@@ -5,7 +5,8 @@ function UpdateEmail() {
     const [isShow, setIsShow] = useState(true);
 
     const [user, setUser] = useState([]);
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState();
+
     
     async function getUser() {
         fetch("https://api-ecm.123code.net/api/auth/profile", {
@@ -17,13 +18,12 @@ function UpdateEmail() {
         }).then((result) => {
             result.json().then((res) => {
                 setUser(res);
-                setEmail(res.email);
+                setEmail(res.data.email);
             })
         });
     }
 
-    async function updateEmail(e) {
-        e.preventDefault();
+    async function updateEmail() {
         let item = { email };
         fetch("https://api-ecm.123code.net/api/user/update-email", {
             method: "PUT",
@@ -37,6 +37,7 @@ function UpdateEmail() {
                 getUser();
             })
         })
+        window.location.reload();
     }
 
     return (

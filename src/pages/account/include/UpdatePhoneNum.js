@@ -17,13 +17,12 @@ function UpdatePhoneNum() {
         }).then((result) => {
             result.json().then((res) => {
                 setUser(res);
-                setPhone(res.phone);
+                setPhone(res.data.phone);
             })
         });
     }
 
-    async function updatePhone(e) {
-        e.preventDefault();
+    async function updatePhone() {
         let item = { phone };
         fetch("https://api-ecm.123code.net/api/user/update-phone", {
             method: "PUT",
@@ -33,10 +32,11 @@ function UpdatePhoneNum() {
             },
             body: JSON.stringify(item)
         }).then((result) => {
-            result.json().then(() => {
-                getUser();
+            result.json().then((res) => {
+                getUser(res);
             })
         })
+        window.location.reload();
     }
 
     return (
