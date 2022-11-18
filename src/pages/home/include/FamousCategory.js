@@ -24,7 +24,7 @@ function FamousCategory({check}) {
 	useEffect(() => {
 		getCategories();
 	},[])
-
+	
 	return (
 		<div className="cm-width">
 			<div className="home-category">
