@@ -10,9 +10,6 @@ jobs:
     build:
 
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                node-version: [14.x]
         steps:
             - uses: actions/checkout@v1
             - name: SCP FOLDER
@@ -25,10 +22,6 @@ jobs:
               with:
                   source: "."
                   target: "/var/www/tranining/reactjs-ecommerce"
-            - name: Setup NodeJS 14
-              uses: actions/setup-node@v1
-              with:
-                  node-version: 14
             - name: Deploy
               uses: appleboy/ssh-action@master
               with:
@@ -40,8 +33,7 @@ jobs:
                   script: |
                       cd /var/www/tranining/reactjs-ecommerce
                       git pull origin master
-                      node -v
-                      npm -v
+                      nvm use v16.13.0
                       npm install
                       npm run build
 #                      pm2 restart api-ecm
