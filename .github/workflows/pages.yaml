@@ -9,8 +9,17 @@ jobs:
     build:
 
         runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [14.x]
         steps:
             - uses: actions/checkout@v1
+            - name: Cache Gradle packages
+            - uses: actions/cache@v3
+            - with:
+                path: |
+                  ~/.gradle/caches
+                  ~/.gradle/wrapper
             - name: SCP FOLDER
               uses: appleboy/scp-action@master
               env:
@@ -21,6 +30,10 @@ jobs:
               with:
                   source: "."
                   target: "/var/www/tranining/reactjs-ecommerce"
+            - name: Setup NodeJS 14
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 14
             - name: Deploy
               uses: appleboy/ssh-action@master
               with:
@@ -32,10 +45,7 @@ jobs:
                   script: |
                       cd /var/www/tranining/reactjs-ecommerce
                       git pull origin master
-                      which nvm
-                      export NVM_DIR=~/.nvm
-                      source ~/.nvm/nvm.sh
-                      nvm use v16.13.0
+                      node -v
                       npm install
                       npm run build
 #                      pm2 restart api-ecm
