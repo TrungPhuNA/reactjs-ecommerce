@@ -25,10 +25,10 @@ jobs:
               with:
                   source: "."
                   target: "/var/www/tranining/reactjs-ecommerce"
-#            - name: Use Node.js ${{ matrix.node-version }}
-#              uses: actions/setup-node@v3
-#              with:
-#                node-version: ${{ matrix.node-version }}
+            - name: Setup NodeJS 14
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 14
             - name: Deploy
               uses: appleboy/ssh-action@master
               with:
@@ -39,9 +39,6 @@ jobs:
                   script: |
                       cd /var/www/tranining/reactjs-ecommerce
                       git pull origin master
-                      node -v
-                      npm -v
-                      nvm use v16.13.0
                       node -v
                       npm -v
                       npm install
