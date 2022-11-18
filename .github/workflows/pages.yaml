@@ -28,6 +28,9 @@ jobs:
               uses: actions/setup-node@v1
               with:
                   node-version: 14
+            - name: Set NVM
+              shell: bash -l {0}
+              run: nvm install
             - name: Deploy
               uses: appleboy/ssh-action@master
               with:
