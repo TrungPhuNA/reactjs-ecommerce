@@ -10,7 +10,7 @@ function Products({products}) {
                 <div className="content">
                     { products.map(( item, index) => (
                         <div className="dashboard-product--item" key={index}>
-                            <Link to="/detail" className="product-item">
+                            <Link to={`/${item.pro_slug}-${item.id}`} className="product-item">
                                 <div className={`product-item--style ${ item.pro_sale === 0 ? 'not-style':''}`}>
                                     <div className="thumbnail">
                                         <div className="thumbnail--icon-badge">

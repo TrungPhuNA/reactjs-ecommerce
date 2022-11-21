@@ -4,7 +4,7 @@ import React, {useState, } from "react";
 function ProductViewed() {
     const [disCount,setDistCount]=useState(true);
 
-    const arr_10 = Array.from(Array(3).keys());
+    const arr_10 = Array.from(Array(1).keys());
 
     return (
         <div className="viewed">

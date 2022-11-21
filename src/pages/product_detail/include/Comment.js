@@ -437,13 +437,13 @@ function Comment() {
                             </Link>
                         </li>
                         <li>
-                            <Link className="page-active" to="/detail">1</Link>
+                            <Link className="page-active" to="/:slug">1</Link>
                         </li>
                         <li>
-                            <Link to="/detail">2</Link>
+                            <Link to="/:slug">2</Link>
                         </li>
                         <li>
-                            <Link to="/detail">3</Link>
+                            <Link to="/:slug">3</Link>
                         </li>
                         <li>
                             <Link to ="detail">

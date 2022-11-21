@@ -26,7 +26,7 @@ function ProductSummary({ deal, disCount }) {
                     return (
                         <>
                             <div className="dashboard-product--item" >
-                                <Link to="/detail" className="product-item">
+                                <Link to={item.pro_slug} className="product-item">
                                     <div className={`product-item--style ${!deal ? 'not-style' : ''}`}>
                                         <div className="thumbnail">
                                             <div className="thumbnail--product-img">
