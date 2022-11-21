@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ProductViewed from "../../components/common/product/ProductViewed";
-import Explore from "../../pages/product_detail/include/Explore";
 import Category from "../../pages/product_detail/include/Category";
 import Product from "../../pages/product_detail/include/Product";
 import SimilarProduct from "../product_detail/include/SimilarProduct";
@@ -9,25 +8,44 @@ import Comment from "./include/Comment";
 import {isWideScreen } from "../../helpers/screen";
 import DetailHeader from "./include/mobile/DetailHeader";
 import DetailFooter from "./include/mobile/DetailFooter";
+import { useParams } from "react-router";
+import categoryApi from "../../api/CategoryService";
+import productApi from "../../api/ProductService";
+import HomeSuggest from "../home/include/HomeSuggest";
 
 function ProductDetailPage() {
 
+    let { id } = useParams();
+    const [category, setCategory] = useState(null);
+    const [products, setProducts] = useState([]);
+
+    const getProductsDetail = async () => {
+        const response = await productApi.findById(id);
+        if(response.status === 200) {
+            setProducts(response.data);
+            setCategory(response.data.category); 
+        }
+    }
+
     useEffect(() => {
-        window.scrollTo(0, 0)
-      }, [])
+        window.scrollTo(0, 0);
+        getProductsDetail();
+      },[id]);
+
 
     return (
         <main className={isWideScreen()?'desktop':'mobile'}>
             {isWideScreen() && 
             <>
                 <div className="container">
-                    <Category/>
-                    <Product/>
+                    <Category category={category} products={products}/>
+                    <Product products={products}/>
                     <SimilarProduct/>
                     <ProductDescribe/>
                     <Comment/>
-                    <Explore status={true}/>
+                    <HomeSuggest/>
                     <ProductViewed/>
+                    
                 </div>
             </>    
             }
@@ -39,7 +57,7 @@ function ProductDetailPage() {
                         <SimilarProduct/>
                         <ProductDescribe/>
                         <Comment/>
-                        <Explore/>
+                        <HomeSuggest/>
                         <ProductViewed/>
                         <DetailFooter/>
                     </>

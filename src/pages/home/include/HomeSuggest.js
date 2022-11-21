@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Images from "../../../components/Image/Images";
-import ProductSummary from "../../../components/common/product/ProductSumary";
 import { Link } from "react-router-dom";
 import categoryApi from "../../../api/CategoryService";
 import Skeleton from "react-loading-skeleton";
 import productApi from "../../../api/ProductService";
-import { faTvAlt } from "@fortawesome/free-solid-svg-icons";
-import { tab } from "@testing-library/user-event/dist/tab";
 
 function HomeSuggest() {
 
@@ -36,12 +33,11 @@ function HomeSuggest() {
 
     console.log(tabNumber);
     const [products, setProducts] = useState([]);
-    const [loadingProduct, setLoadingProduct] = useState(true);
 
     const getProducts = async (params) => {
         const response = await productApi.getListsProducts(params);
         setProducts(response.data);
-        setLoadingProduct(false);
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -58,7 +54,7 @@ function HomeSuggest() {
                         {categories.map((item) => {
                             return (
                                 <>
-                                    <div className={`tab ${item.tab ? 'active' : ''}`} onClick={() => changeTab(item.id)}>
+                                    <div key={item.id} className={`tab ${item.tab ? 'active' : ''}`} onClick={() => changeTab(item.id)}>
                                         <Images alt="test" src={item.c_avatar} />
                                         <div className="tab-text fs-13">{item.c_name}</div>
                                     </div>
@@ -76,7 +72,7 @@ function HomeSuggest() {
                                     if (item2.pro_category_id == tabNumber) {
                                         return (
                                             <>
-                                                <Link to="/detail" className="product-item">
+                                                <Link to={item2.pro_slug} className="product-item">
                                                     <div className={`product-item--style ${!deal ? 'not-style' : ''}`}>
 
                                                         <div className="thumbnail">

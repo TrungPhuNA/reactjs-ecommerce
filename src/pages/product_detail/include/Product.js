@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import { isWideScreen } from "../../../helpers/screen";
 import React, { useState } from 'react';
 
-function Product() {
+function Product({products}) {
     const [count, setCount] = useState(0);
 
     return (
@@ -15,7 +15,7 @@ function Product() {
                 { isWideScreen() &&
                     <>
                         <div className="group-img">
-                            <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
+                            <img alt="/" src={ products?.pro_avatar }/>
                         </div>
                         <div className="review-img">
                             <Swiper 
@@ -114,13 +114,13 @@ function Product() {
                             <div className="product-brand">
                                 <span>
                                     <h6>Thương hiệu: </h6>
-                                    <Link to="/detail">Asano</Link>
+                                    <Link to="/:slug">Asano</Link>
                                 </span>
                             </div>
                         </>
                     }
                     {!isWideScreen() && <></>}
-                    <h1 class="product-title">Máy Lạnh Asanzo 1.5 HP S12N66 NON INVERTER - Hàng Chính Hãng - Giao Toàn Quốc</h1>
+                    <h1 class="product-title">{ products?.pro_name }</h1>
                     <div className="below-title">
                         <div className="below-rate">
                             <div className="star-on">
@@ -137,9 +137,9 @@ function Product() {
                     <div className="content-body-left">
                         <div className="price-and-icon">
                             <div className="price-">
-                                <div className="current-price">5.450.000 đ</div>
+                                <div className="current-price">{ products?.pro_price }</div>
                                 <div className="last-price">6.500.000 đ</div>
-                                <div className="discount-rate">-16%</div>
+                                <div className="discount-rate">{ products?.pro_discount_value }</div>
                             </div>
                             <div className="-icon">
                                 <div className="thuong-asa">

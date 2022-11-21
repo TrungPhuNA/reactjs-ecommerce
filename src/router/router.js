@@ -33,7 +33,7 @@ export const routes = () => {
             element: <CategoryPage />
         },
         {
-            path: 'detail',
+            path: '/:slug-:id',
             element: <ProductDetailPage />
         },
         {
