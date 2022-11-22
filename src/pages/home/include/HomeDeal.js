@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 
@@ -13,12 +13,7 @@ import { useCountdown } from "../../../hook/useCountDown";
 import ProductSummary from "../../../components/common/product/ProductSumary";
 import { isWideScreen } from "../../../helpers/screen";
 
-const settingsSlide = {
-    slidesPerView: 5,
-    navigation: true,
-    modules: [Navigation],
-    className: "deal-hot-swiper"
-}
+
 const settingSlide2 = {
     slidesPerView: 1,
     loop: true,
@@ -33,9 +28,9 @@ const settingSlide2 = {
     modules: [Pagination, Autoplay, Lazy],
     className: "brand-swiper"
 }
+
 function HomeDeal() {
 
-    const [deal, setDeal] = useState([]);
     const [hours, minutes, seconds] = useCountdown('2022-10-7');
     const deal_right = [
         {
@@ -83,13 +78,7 @@ function HomeDeal() {
                             <Link to="/">Xem thêm</Link>
                         </div>
                         <div className="body">
-                            <Swiper {...settingsSlide}>
-                                {
-                                    <SwiperSlide >
-                                        <ProductSummary deal={true} />
-                                    </SwiperSlide>
-                                }
-                            </Swiper>
+                            <ProductSummary deal={true} />
                         </div>
                     </div>
                 }

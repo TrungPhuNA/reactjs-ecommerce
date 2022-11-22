@@ -31,7 +31,6 @@ function HomeSuggest() {
         setCategories(title);
     }
 
-    console.log(tabNumber);
     const [products, setProducts] = useState([]);
 
     const getProducts = async (params) => {
@@ -39,6 +38,8 @@ function HomeSuggest() {
         setProducts(response.data);
         setLoading(false);
     };
+
+    
 
     useEffect(() => {
         getProducts();
@@ -51,15 +52,14 @@ function HomeSuggest() {
                 <div className="suggestion__title">
                     <h2>Gợi ý hôm nay</h2>
                     <div className="suggestion__title-list">
-                        {categories.map((item) => {
-                            return (
+                        {categories.map((item, i) => {
+                            return (i<8) ? 
                                 <>
                                     <div key={item.id} className={`tab ${item.tab ? 'active' : ''}`} onClick={() => changeTab(item.id)}>
                                         <Images alt="test" src={item.c_avatar} />
                                         <div className="tab-text fs-13">{item.c_name}</div>
                                     </div>
-                                </>
-                            )
+                                </> : null;
                         })
                         }
                     </div>
@@ -72,7 +72,7 @@ function HomeSuggest() {
                                     if (item2.pro_category_id == tabNumber) {
                                         return (
                                             <>
-                                                <Link to={item2.pro_slug} className="product-item">
+                                                <Link to={`/${item2.pro_slug}-${item2.id}`} className="product-item">
                                                     <div className={`product-item--style ${!deal ? 'not-style' : ''}`}>
 
                                                         <div className="thumbnail">

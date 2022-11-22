@@ -137,9 +137,9 @@ function Product({products}) {
                     <div className="content-body-left">
                         <div className="price-and-icon">
                             <div className="price-">
-                                <div className="current-price">{ products?.pro_price }</div>
-                                <div className="last-price">6.500.000 đ</div>
-                                <div className="discount-rate">{ products?.pro_discount_value }</div>
+                                <div className="current-price">{ products?.pro_price } ₫</div>
+                                <div className="last-price">{ products?.pro_discount_value !== 0 ? '20.000 đ' : null }</div>
+                                <div className="discount-rate">{ products?.pro_discount_value !== 0 ? products?.pro_discount_value + '%' : null }</div>
                             </div>
                             <div className="-icon">
                                 <div className="thuong-asa">
@@ -180,7 +180,7 @@ function Product({products}) {
 
                                 <div className="shipping-fee">
                                     <div className="fee-name">Vận chuyển: </div>
-                                    <div className="fee-current"> 338.000đ</div>
+                                    <div className="fee-current"> 338.000₫</div>
                                     <div className="fee-origin">358.000đ </div>
                                 </div>
                             </div>

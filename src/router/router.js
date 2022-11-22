@@ -21,6 +21,7 @@ import UpdSex from '../pages/account/include/mobile/UpdSex';
 import AccountInfoMob from '../pages/account/include/mobile/AccountInfoMob';
 import AccountSetting from '../pages/account/include/mobile/AccountSetting';
 import OrderManagementMob from '../pages/account/include/mobile/OrderManagementMob';
+import ShopCart from '../components/common/ShopCart';
 
 export const routes = () => {
     return [
@@ -73,7 +74,7 @@ export const routes = () => {
             element: <UpdateEmail />
         },
         {
-            path: 'order',
+            path: '/order',
             element: <OrderManagement />
         },
         {
@@ -107,6 +108,10 @@ export const routes = () => {
         {
             path: '/updsex',
             element: <UpdSex />
+        },
+        {
+            path: '/cart',
+            element: <ShopCart />
         },
     ]
 }
