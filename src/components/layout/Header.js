@@ -43,7 +43,7 @@ function Header(props) {
         return (
             <div className="dropdown-list" onMouseLeave={() => setHideLogout(true)}>
                 <Link to="/info"><p>Thông tin cá nhân</p></Link>
-                <Link to="/"><p>Đơn hàng của tôi</p></Link>
+                <Link to="/order"><p>Đơn hàng của tôi</p></Link>
                 <Link to="/" onClick={()=>Logout()}><p>Đăng xuất</p></Link>
             </div>
         )
@@ -65,7 +65,7 @@ function Header(props) {
                         </span>
                     </div>
                     <div className="header-cart">
-                                <Link to="/">
+                                <Link to="/cart">
                                     <div className="header-cart-shotcut">
                                         <div className="cart-wrapper">
                                             <img src="https://salt.tikicdn.com/ts/upload/40/44/6c/b80ad73e5e84aeb71c08e5d8d438eaa1.png" alt="" className="cart-icon" />

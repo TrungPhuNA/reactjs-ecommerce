@@ -30,7 +30,15 @@ export default () => {
                                     )
                                     }
                                 </div>
-                                <div className="login-left-footer">
+                                
+                            </div>
+                            <div className="login-right">
+                                <img src="https://salt.tikicdn.com/ts/upload/eb/f3/a3/25b2ccba8f33a5157f161b6a50f64a60.png" alt="sad" width='203' height='203' />
+                                <div class="login-right-content">
+                                    <h4>Mua sắm tại Tiki</h4>
+                                    <span>Siêu ưu đãi mỗi ngày</span>
+                                </div>
+                                <div className="login-right-footer">
                                     <p className="login-footer-text1">
                                         <span>Hoặc tiếp tục bằng</span>
                                     </p>
@@ -43,13 +51,6 @@ export default () => {
                                         </li>
                                     </ul>
                                     <p class="note">Bằng việc tiếp tục, bạn đã chấp nhận <Link to="/">điều khoản sử dụng</Link></p>
-                                </div>
-                            </div>
-                            <div className="login-right">
-                                <img src="https://salt.tikicdn.com/ts/upload/eb/f3/a3/25b2ccba8f33a5157f161b6a50f64a60.png" alt="sad" width='203' height='203' />
-                                <div class="login-right-content">
-                                    <h4>Mua sắm tại Tiki</h4>
-                                    <span>Siêu ưu đãi mỗi ngày</span>
                                 </div>
                             </div>
                         </div>

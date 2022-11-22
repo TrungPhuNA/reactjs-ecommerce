@@ -9,7 +9,6 @@ import {isWideScreen } from "../../helpers/screen";
 import DetailHeader from "./include/mobile/DetailHeader";
 import DetailFooter from "./include/mobile/DetailFooter";
 import { useParams } from "react-router";
-import categoryApi from "../../api/CategoryService";
 import productApi from "../../api/ProductService";
 import HomeSuggest from "../home/include/HomeSuggest";
 
