@@ -109,7 +109,7 @@ function Header(props) {
                         <div className="logo-menu">
                             <div className="style-logo">
                                 <Link to="/" className="tiki-logo">
-                                    <img src="https://salt.tikicdn.com/ts/upload/ae/f5/15/2228f38cf84d1b8451bb49e2c4537081.png" alt="tiki logo" />
+                                    <img src={ '/logo.svg'}  alt="tiki logo" />
                                 </Link>
                             </div>
                         </div>
@@ -127,30 +127,6 @@ function Header(props) {
                         <div className="main-header--top__right">
                             {isUser()}
                         </div>
-                    </div>
-                </div>
-                <div className="main-header--bottom">
-                    <div className="cm-width main-header--bottom--title">
-                        <div className="left">
-                            <Link to="/" className="img-logo">
-                                <img src="https://salt.tikicdn.com/ts/upload/e5/1d/22/61ff572362f08ead7f34ce410a4a6f96.png" alt="" height="12" width="83" />
-                            </Link>
-                            <div className="left__link">
-                                <Link to="/" className="item-link">Trái cây</Link>
-                                <Link to="/" className="item-link">Thịt, trứng</Link>
-                                <Link to="/" className="item-link">rau củ quả</Link>
-                                <Link to="/" className="item-link">sữa, bơ, phô mai</Link>
-                                <Link to="/" className="item-link">hải sản</Link>
-                                <Link to="/" className="item-link">gạo, mỳ ăn liền</Link>
-                                <Link to="/" className="item-link">đồ uống, bia rượu</Link>
-                                <Link to="/" className="item-link">bánh kẹo</Link>
-                            </div>
-                        </div>
-
-                        <Link to="/" className="seller">
-                            <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icon-seller.svg" alt="" />
-                            <span>Bán hàng cùng tiki</span>
-                        </Link>
                     </div>
                 </div>
             </header>

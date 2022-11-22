@@ -27,13 +27,10 @@ function HomePage() {
             {isWideScreen() &&
                 <>
                     <HomeCategory />
-                    <HomeAdv />
                     <HomeDeal />
-                    <FamousCategory check={true} />
-                    <HomeBanner number={4} />
-                    <HomeBrand />
-                    <FamousCategory check={false} />
                     <HomeBanner />
+                    <FamousCategory check={true} />
+                    <HomeBrand />
                     <HomeSuggest />
                 </>
             }
@@ -46,7 +43,7 @@ function HomePage() {
                     {(!search && !login) &&
                         <>
                             <MobileHeader search={search} setSearch={setSearch} />
-                            <HomeAdv />
+                            {/*<HomeAdv />*/}
                             <HomeDeal />
                             <FamousCategory check={true} />
                             <HomeBanner number={4} />

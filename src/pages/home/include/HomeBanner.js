@@ -5,38 +5,35 @@ import {Link } from "react-router-dom";
 function HomeBanner({number}) {
     return (
         <div className="cm-width">
-            {number === 4 && 
-                    <>
+            {number === 4 &&
+                <>
                     <div className="home-banner--top">
                         <Link to="/">
-                            <Images src="https://salt.tikicdn.com/ts/banner/57/8a/27/d7380cdcf25a5542e5fea4a0a8d0b465.png" alt="top-1" />
-                        </Link>
-                        <Link to="/"> 
-                            <Images src="https://salt.tikicdn.com/ts/banner/57/8a/27/d7380cdcf25a5542e5fea4a0a8d0b465.png" alt="222" />
+                            <Images src="https://media.hasaki.vn/hsk/1639446173415x130_laneige.jpg" alt="top-1" />
                         </Link>
                         <Link to="/">
-                            <Images src="https://salt.tikicdn.com/ts/banner/57/8a/27/d7380cdcf25a5542e5fea4a0a8d0b465.png" alt="333" />
+                            <Images src="https://media.hasaki.vn/hsk/1640663436415x130_shu%20uemura.jpg" alt="222" />
                         </Link>
                         <Link to="/">
-                            <Images src="https://salt.tikicdn.com/ts/banner/57/8a/27/d7380cdcf25a5542e5fea4a0a8d0b465.png" alt="4" />
+                            <Images src="https://media.hasaki.vn/hsk/1665475978elc_415x130.jpg" alt="333" />
                         </Link>
                     </div>
-                        
-                    </>
-                }
-            {number !== 4 && 
+
+                </>
+            }
+            {number !== 4 &&
                 <>
-                <div className="home-banner">
-                    <Link to="/">
-                        <Images src="https://salt.tikicdn.com/ts/banner/72/38/3c/5653a85c9e0c79503051cadcbefad23b.png" alt="23" />
-                    </Link>
-                    <Link to="/">
-                        <Images src="https://salt.tikicdn.com/ts/banner/72/38/3c/5653a85c9e0c79503051cadcbefad23b.png" alt="123" />
-                    </Link>
-                    <Link to="/">
-                        <Images src="https://salt.tikicdn.com/ts/banner/72/38/3c/5653a85c9e0c79503051cadcbefad23b.png" alt="123" />
-                    </Link>
-                </div>
+                    <div className="home-banner">
+                        <Link to="/">
+                            <Images src="https://media.hasaki.vn/hsk/1639446173415x130_laneige.jpg" alt="23" />
+                        </Link>
+                        <Link to="/">
+                            <Images src="https://media.hasaki.vn/hsk/1640663436415x130_shu%20uemura.jpg" alt="123" />
+                        </Link>
+                        <Link to="/">
+                            <Images src="https://media.hasaki.vn/hsk/1665475978elc_415x130.jpg" alt="123" />
+                        </Link>
+                    </div>
                 </>
             }
         </div>
