@@ -9,6 +9,8 @@ function HomeSuggest() {
 
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [loadingProduct, setLoadingProduct] = useState(true);
+    const [products, setProducts] = useState([]);
 
     const getCategories = async (params) => {
         const response = await categoryApi.getListsCategory(params);
@@ -16,33 +18,25 @@ function HomeSuggest() {
         setLoading(false);
     };
 
-    useEffect(() => {
-        getCategories();
-    }, []);
-
     const [tabNumber, setTabNumber] = useState();
     function changeTab(tabNumber) {
         let title = categories.map(item => {
-            item.tab = item.id === tabNumber ? true : false;
-            console.log(tabNumber)
+            item.tab = item.id === tabNumber;
             setTabNumber(tabNumber);
             return item
         })
         setCategories(title);
     }
 
-    const [products, setProducts] = useState([]);
-
     const getProducts = async (params) => {
         const response = await productApi.getListsProducts(params);
         setProducts(response.data);
-        setLoading(false);
+        setLoadingProduct(false);
     };
-
-    
 
     useEffect(() => {
         getProducts();
+        getCategories();
     }, []);
 
     const [deal, setDeal] = useState(false);
@@ -53,70 +47,65 @@ function HomeSuggest() {
                     <h2>Gợi ý hôm nay</h2>
                     <div className="suggestion__title-list">
                         {categories.map((item, i) => {
-                            return (i<8) ? 
-                                <>
-                                    <div key={item.id} className={`tab ${item.tab ? 'active' : ''}`} onClick={() => changeTab(item.id)}>
-                                        <Images alt="test" src={item.c_avatar} />
-                                        <div className="tab-text fs-13">{item.c_name}</div>
-                                    </div>
-                                </> : null;
-                        })
+                            return (i<8) ?
+                                <div key={i} className={`tab ${item.tab ? 'active' : ''}`} onClick={() => changeTab(item.id)}>
+                                    <Images alt="test" src={item.c_avatar} />
+                                    <div className="tab-text fs-13">{item.c_name}</div>
+                                </div> : null;
+                            })
                         }
                     </div>
                 </div>
                 <div className="suggestion__product">
                     <div className="content">
                         <div className="dashboard-product--item" >
-                            {products.map((item2) => {
+                            {products.map((item2, i) => {
                                 {
                                     if (item2.pro_category_id == tabNumber) {
                                         return (
-                                            <>
-                                                <Link to={`/${item2.pro_slug}-${item2.id}`} className="product-item">
-                                                    <div className={`product-item--style ${!deal ? 'not-style' : ''}`}>
+                                            <Link key={i} to={`/${item2.pro_slug}-${item2.id}`} className="product-item">
+                                                <div className={`product-item--style ${!deal ? 'not-style' : ''}`}>
 
-                                                        <div className="thumbnail">
-                                                            <div className="thumbnail--product-img">
-                                                                <Images src={item2.pro_avatar} alt="333" />
-                                                            </div>
+                                                    <div className="thumbnail">
+                                                        <div className="thumbnail--product-img">
+                                                            <Images src={item2.pro_avatar} alt="333" />
                                                         </div>
-                                                        <div className="infor">
-                                                            {!deal &&
-                                                                <>
-                                                                    <div className="name">
-                                                                        <h3 className="fs-10">{item2.pro_name}</h3>
+                                                    </div>
+                                                    <div className="infor">
+                                                        {!deal &&
+                                                            <>
+                                                                <div className="name">
+                                                                    <h3 className="fs-10">{item2.pro_name}</h3>
+                                                                </div>
+                                                                <div className={`price-discount ${item2.prodiscount_value !== 0 ? 'has-discount' : ''}`}>
+                                                                    <div className="price-discount__price">
+                                                                        {item2.pro_price} ₫
                                                                     </div>
+                                                                </div>
+                                                            </>
+                                                        }
+                                                        {deal &&
+                                                            <>
+                                                                <div className="deal">
                                                                     <div className={`price-discount ${item2.prodiscount_value !== 0 ? 'has-discount' : ''}`}>
                                                                         <div className="price-discount__price">
                                                                             {item2.pro_price} ₫
                                                                         </div>
-                                                                    </div>
-                                                                </>
-                                                            }
-                                                            {deal &&
-                                                                <>
-                                                                    <div className="deal">
-                                                                        <div className={`price-discount ${item2.prodiscount_value !== 0 ? 'has-discount' : ''}`}>
-                                                                            <div className="price-discount__price">
-                                                                                {item2.pro_price} ₫
-                                                                            </div>
-                                                                            <div className="price-discount__discount">
-                                                                                {item2.pro_discount_value ? item2.pro_discount_value + '%' : ''}
-                                                                            </div>
+                                                                        <div className="price-discount__discount">
+                                                                            {item2.pro_discount_value ? item2.pro_discount_value + '%' : ''}
                                                                         </div>
                                                                     </div>
-                                                                </>
-                                                            }
-                                                        </div>
+                                                                </div>
+                                                            </>
+                                                        }
                                                     </div>
-                                                </Link>
-                                            </>)
+                                                </div>
+                                            </Link>
+                                        )
                                     }
                                 }
-                            })
-                            }
+                            })}
                         </div>
-
                     </div>
                     <Link to="/" className="view-more">
                         Xem thêm
@@ -128,7 +117,7 @@ function HomeSuggest() {
     return (
         <div className="cm-width">
             <div className={`suggestion`}>
-                {loading === false ? (
+                {loadingProduct === false ? (
                     getSuggestTitle()
                 ) : (
                     <div className="body-loading-cate" style={{ padding: "10px 15px", display: "flex" }}>

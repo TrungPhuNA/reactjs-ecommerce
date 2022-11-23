@@ -46,7 +46,8 @@ function CategoryPage() {
 
     const getProductsByCategory = async () => {
         let params = {
-            category_id: id
+            category_id: id,
+            page_size: 18
         }
         const response = await productApi.getListsProducts(params);
         if(response.status === 200) {
@@ -55,20 +56,20 @@ function CategoryPage() {
         }
     }
 
-    const [adv,setAdv] = useState([]);
-    useEffect(() => {
-        const data = [
-            {
-                src:"https://salt.tikicdn.com/cache/w1080/ts/banner/b3/6d/bd/3538eb353010d41cd0533e7804a347ac.jpg.webp",
-                title:'Ngon'
-            },
-            {
-                src:"https://salt.tikicdn.com/cache/w1080/ts/banner/19/eb/19/b05a27bf2a1db86b74bcac1fe4be115c.png.webp",
-                title:'Ngon'
-            },
-        ]
-        setAdv(data);
-    },[])
+    // const [adv,setAdv] = useState([]);
+    // useEffect(() => {
+    //     const data = [
+    //         {
+    //             src:"https://salt.tikicdn.com/cache/w1080/ts/banner/b3/6d/bd/3538eb353010d41cd0533e7804a347ac.jpg.webp",
+    //             title:'Ngon'
+    //         },
+    //         {
+    //             src:"https://salt.tikicdn.com/cache/w1080/ts/banner/19/eb/19/b05a27bf2a1db86b74bcac1fe4be115c.png.webp",
+    //             title:'Ngon'
+    //         },
+    //     ]
+    //     setAdv(data);
+    // },[])
 
     const handleChangeSort = (event) => {
         let sortType = event.currentTarget.getAttribute('data-sort-type');
@@ -100,19 +101,19 @@ function CategoryPage() {
                                         <h1>{ category?.c_name || <Skeleton count={1} />}</h1>
                                     </div>
 
-                                    <div className="adv-slide">
-                                        <Swiper {...settingsSlide}>
-                                            {
-                                                adv.map((item,index) => {
-                                                    return(
-                                                        <SwiperSlide key={index}>
-                                                            {<img alt="/" src={item.src}/>}
-                                                        </SwiperSlide>
-                                                    )
-                                                })
-                                            }
-                                        </Swiper>
-                                    </div>
+                                    {/*<div className="adv-slide">*/}
+                                    {/*    <Swiper {...settingsSlide}>*/}
+                                    {/*        {*/}
+                                    {/*            adv.map((item,index) => {*/}
+                                    {/*                return(*/}
+                                    {/*                    <SwiperSlide key={index}>*/}
+                                    {/*                        {<img alt="/" src={item.src}/>}*/}
+                                    {/*                    </SwiperSlide>*/}
+                                    {/*                )*/}
+                                    {/*            })*/}
+                                    {/*        }*/}
+                                    {/*    </Swiper>*/}
+                                    {/*</div>*/}
 
                                     <div className="search-summary-category">
                                         <div className="summary-top">

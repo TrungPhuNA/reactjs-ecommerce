@@ -3,9 +3,9 @@ import axiosClient from './axiosClient';
 const productApi = {
 	async getListsProducts(params) {
 		try {
-			console.log('------------ params: ', params);
 			const newParams = { ...params }
 			const url = `product/lists`;
+			console.log('--------- newParams: ', newParams);
 			const response = await axiosClient.get(url, {
 				params: {...newParams},
 			})
