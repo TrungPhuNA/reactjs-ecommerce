@@ -24,6 +24,7 @@
     "react-lazy-load-image-component": "^1.5.5",
     "react-lazyload": "^3.2.0",
     "react-loading-skeleton": "^3.1.0",
+    "react-query": "^3.39.2",
     "react-redux": "^8.0.2",
     "react-router": "^6.3.0",
     "react-scripts": "^5.0.1",
