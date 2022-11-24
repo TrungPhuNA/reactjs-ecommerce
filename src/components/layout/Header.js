@@ -12,6 +12,10 @@ function Header(props) {
     const [user, setUser] = useState();
     const [name, setName] = useState();
 
+    const [list, setList] = useState([]);
+    const [count, setCount] = useState(0);
+    
+
     async function getUser() {
         fetch("https://api-ecm.123code.net/api/auth/profile", {
             method: 'GET',
@@ -27,8 +31,23 @@ function Header(props) {
         });
     }
 
+    async function getListOrder() {
+        fetch("https://api-ecm.123code.net/api/transaction/lists", {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem('accessToken'),
+            }
+        }).then((result) => {
+            result.json().then((res) => {
+                setList(res.data);
+            })
+        });
+    }
+
     useEffect(() => {
         getUser();
+        getListOrder();
     }, []);
 
     const navigate = useNavigate();
@@ -70,7 +89,7 @@ function Header(props) {
                                         <div className="cart-wrapper">
                                             <img src="https://salt.tikicdn.com/ts/upload/40/44/6c/b80ad73e5e84aeb71c08e5d8d438eaa1.png" alt="" className="cart-icon" />
                                             <span className="cart-number">
-                                                9
+                                                {count}
                                             </span>
                                         </div>
                                         <span className="cart-title">Giỏ hàng</span>
