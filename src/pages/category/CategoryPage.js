@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import Category from './include/desktop/Category';
 import Container from './include/desktop/Container';
+import Products from './include/desktop/Products';
 
 import {isWideScreen } from "../../helpers/screen";
 import MobileCategoryHeader from "./include/mobile/MobileCategoryHeader";
@@ -9,18 +10,17 @@ import categoryApi from '../../api/CategoryService';
 import productApi from '../../api/ProductService';
 import {Link, useSearchParams} from 'react-router-dom';
 
-import {Swiper, SwiperSlide} from 'swiper/react';
-import Products from './include/desktop/Products';
-import {Navigation} from 'swiper';
+// import {Swiper, SwiperSlide} from 'swiper/react';
+// import {Navigation} from 'swiper';
 import Skeleton from 'react-loading-skeleton';
 import SidebarFilter from '../../components/common/sidebar/SidebarFinter';
 
-const settingsSlide = {
-    slidesPerView:1,
-    navigation:true,
-    modules:[Navigation],
-    className:"adv-swiper",
-}
+// const settingsSlide = {
+//     slidesPerView:1,
+//     navigation:true,
+//     modules:[Navigation],
+//     className:"adv-swiper",
+// }
 
 function CategoryPage() {
 
@@ -32,7 +32,7 @@ function CategoryPage() {
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
         getCategoryDetail();
         getProductsByCategory();
     }, [id])
@@ -43,7 +43,7 @@ function CategoryPage() {
             setCategory(response.data);
         }
     }
-
+    
     const getProductsByCategory = async () => {
         let params = {
             category_id: id,
@@ -185,7 +185,10 @@ function CategoryPage() {
                                             </div>
                                         </div>
                                     ) : (
-                                        <Products products={products}/>
+                                        <>
+                                            <Products products={products}/>
+                                            
+                                        </>
                                     )}
                                 </div>
                             </div>
