@@ -28,6 +28,7 @@
             color: rgb(36, 36, 36);
             border-bottom: 1px solid rgb(224, 224, 224);
             padding: 10px 0px;
+
         }
 
         .continue {
@@ -160,6 +161,19 @@
                         position: relative;
                         border-bottom: 1px solid rgb(224, 224, 224);
                         margin-bottom: 20px;
+
+                    }
+
+                    
+                    input.error {
+                        border-color: red;
+                    }
+
+                    .input-feedback {
+                        color: rgb(235, 54, 54);
+                        margin-top: -15px;
+                        font-size: 12px;
+                        margin-bottom: 10px;
                     }
 
                     .text-title {
@@ -285,4 +299,10 @@
 
 
     }
+}
+
+.unauth {
+    color: rgb(235, 54, 54);
+    margin-top: 10px;
+    font-size: 12px;
 }
