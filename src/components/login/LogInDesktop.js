@@ -9,29 +9,29 @@ function LogInDesktop() {
 
     async function loginUser(e) {
         e.preventDefault();
-        let item = { username, password };
-        let result = await fetch("https://api-ecm.123code.net/api/auth/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(item),
-        });
-        result = await result.json();
+        try {
+            let item = { username, password };
+            let result = await fetch("https://api-ecm.123code.net/api/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(item),
+            });
+            result = await result.json();
 
-        localStorage.setItem("info", JSON.stringify(result.message));
+            localStorage.setItem("user", JSON.stringify(result.data));
+            const token = localStorage.getItem("user");
+            const tokenString = JSON.parse(token);
+            localStorage.setItem("accessToken", tokenString.accessToken);
 
-        localStorage.setItem("user", JSON.stringify(result.data));
-        const token = localStorage.getItem("user");
-        const tokenString = JSON.parse(token);
-        localStorage.setItem("accessToken", tokenString.accessToken);
-
-        if (localStorage.getItem("accessToken") !== null) {
-            window.location.reload();
+            if (result.status === 200) {
+                window.location.reload();
+            }
+        } catch (e) {
+            setNoti(true);
         }
-        if (localStorage.getItem("info") !== 'Success') {
-            setNoti(true)
-        }
+
 
     }
 
@@ -53,19 +53,19 @@ function LogInDesktop() {
 
                     return errors;
                 }}
-                // validationSchema={Yup.object().shape({
-                //     username: Yup.string().required("Tên đăng nhập không được bỏ trống"),
-                //     password: Yup.string()
-                //         .required("Mật khẩu không được để trống")
-                //         .min(
-                //             6,
-                //             "Password is too short - should be 6 chars minimum."
-                //         )
-                //         .matches(
-                //             /(?=.*[0-9])/,
-                //             "Password must contain a number."
-                //         ),
-                // })}
+            // validationSchema={Yup.object().shape({
+            //     username: Yup.string().required("Tên đăng nhập không được bỏ trống"),
+            //     password: Yup.string()
+            //         .required("Mật khẩu không được để trống")
+            //         .min(
+            //             6,
+            //             "Password is too short - should be 6 chars minimum."
+            //         )
+            //         .matches(
+            //             /(?=.*[0-9])/,
+            //             "Password must contain a number."
+            //         ),
+            // })}
             >
                 {(props) => {
                     const { touched, errors, handleBlur } = props;
@@ -125,18 +125,18 @@ function LogInDesktop() {
                                     </div>
                                 )}
                             </div>
-                        
+
                             <button type="submit" onClick={loginUser}>
                                 Tiếp tục
                             </button>
 
-                            { noti ? (<>
+                            {noti ? (<>
                                 <div className="unauth">Sai tên đăng nhập hoặc mật khẩu!</div>
-                            </>) 
-                            : 
-                            (<></>)
+                            </>)
+                                :
+                                (<></>)
                             }
-                            
+
                         </form>
                     );
                 }}
