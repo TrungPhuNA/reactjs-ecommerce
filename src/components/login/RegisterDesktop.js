@@ -11,29 +11,37 @@ function RegisterDesktop() {
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const [address, setAddress] = useState("");
+    const [noti, setNoti] = useState(false);
 
     async function signUp(e) {
         e.preventDefault();
-        let item = {name, email, username, phone, password, address}
-        let result = await fetch("https://api-ecm.123code.net/api/auth/register", {
-            method: "POST",
-            headers: { 
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(item)
-        });
-        result = await result.json();
-        localStorage.setItem("info", JSON.stringify(result));
-        localStorage.setItem('user', JSON.stringify(result.data));
-        const token = localStorage.getItem('user');
-        const tokenString = JSON.parse(token);
-        localStorage.setItem('accessToken', tokenString.accessToken);
+        try {
+            let item = { name, email, username, phone, password, address }
+            let result = await fetch("https://api-ecm.123code.net/api/auth/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(item)
+            });
+            result = await result.json();
 
-        if (localStorage.getItem('accessToken') !== null)  {
-            window.location.reload();
-        } else  {
+            localStorage.setItem('user', JSON.stringify(result.data));
+            const token = localStorage.getItem('user');
+            const tokenString = JSON.parse(token);
+            localStorage.setItem('accessToken', tokenString.accessToken);
 
+            if (result.status === 200 && result.status !== 500) {
+                window.location.reload();
+            } else {
+                localStorage.clear();
+                setNoti(true);
+            }
+        } catch (e) {
+            localStorage.clear();
+            setNoti(true);
         }
+
     }
 
     return (
@@ -46,19 +54,19 @@ function RegisterDesktop() {
                 validate={() => {
                     let errors = {};
 
-                    if (!name) 
+                    if (!name)
                         errors.name = "Họ và tên không được bỏ trống!";
 
-                    if (!username) 
+                    if (!username)
                         errors.username = "Tên đăng nhập không được bỏ trống!";
 
-                    if (!address) 
+                    if (!address)
                         errors.address = "Địa chỉ không được bỏ trống!";
-                        
+
                     const phoneRegex = /[0-9]/;
-                    if (!phone) 
+                    if (!phone)
                         errors.phone = "Số điện thoại không được bỏ trống!";
-                    else if (phone.length<10 || !phoneRegex.test(phone))
+                    else if (phone.length < 10 || !phoneRegex.test(phone))
                         errors.phone = "Số điện thoại không hợp lệ!";
 
                     if (!email) {
@@ -79,28 +87,28 @@ function RegisterDesktop() {
 
                     return errors;
                 }}
-                // validationSchema={Yup.object().shape({
-                //     name: Yup.string().required("Họ và tên không được bỏ trống"),
-                //     username: Yup.string().required("Tên đăng nhập không được bỏ trống"),
-                //     email: Yup.string().email().required("Email không được bỏ trống"),
-                //     password: Yup.string()
-                //         .required("Mật khẩu không được để trống")
-                //         .min(
-                //             6,
-                //             "Password is too short - should be 6 chars minimum."
-                //         )
-                //         .matches(
-                //             /(?=.*[0-9])/,
-                //             "Password must contain a number."
-                //         ),
-                //     phone: Yup.string()
-                //         .required("Số điện thoại không được bỏ trống")
-                //         .min(
-                //             10,
-                //             "Số điện thoại không hợp lệ"
-                //         ),
-                //     address: Yup.string().required("Địa chỉ không được bỏ trống"),
-                // })}
+            // validationSchema={Yup.object().shape({
+            //     name: Yup.string().required("Họ và tên không được bỏ trống"),
+            //     username: Yup.string().required("Tên đăng nhập không được bỏ trống"),
+            //     email: Yup.string().email().required("Email không được bỏ trống"),
+            //     password: Yup.string()
+            //         .required("Mật khẩu không được để trống")
+            //         .min(
+            //             6,
+            //             "Password is too short - should be 6 chars minimum."
+            //         )
+            //         .matches(
+            //             /(?=.*[0-9])/,
+            //             "Password must contain a number."
+            //         ),
+            //     phone: Yup.string()
+            //         .required("Số điện thoại không được bỏ trống")
+            //         .min(
+            //             10,
+            //             "Số điện thoại không hợp lệ"
+            //         ),
+            //     address: Yup.string().required("Địa chỉ không được bỏ trống"),
+            // })}
             >
                 {(props) => {
                     const {
@@ -245,6 +253,14 @@ function RegisterDesktop() {
                             <button type="submit" onClick={signUp}>
                                 Tiếp tục
                             </button>
+
+                            {noti ? (<>
+                                <div className="unauth">Thông tin chưa đúng hoặc đã tồn tại. Vui lòng nhập lại!</div>
+                            </>)
+                                :
+                                (<></>)
+                            }
+
                         </form>
                     );
                 }}
