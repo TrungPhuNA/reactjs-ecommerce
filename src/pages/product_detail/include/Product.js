@@ -6,8 +6,38 @@ import "swiper/css/navigation";
 import { isWideScreen } from "../../../helpers/screen";
 import React, { useState } from 'react';
 
-function Product({products}) {
-    const [count, setCount] = useState(0);
+function Product({ products }) {
+    const [count, setCount] = useState(1);
+
+    const addToCart = () => {
+        let cart = localStorage.getItem('cart');
+        if (!cart) {
+            let arrCart = [];
+            products.quantity = count;
+            arrCart.push(products);
+            localStorage.setItem('cart', JSON.stringify(arrCart));
+        } else {
+            cart = JSON.parse(cart);
+            let isEqual = false;
+            cart.map((item, i) => {
+                if (item.id === products.id) {
+                    item.quantity += products.quantity;
+                    cart[i] = item;
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    isEqual = true;
+                    return false;
+                }
+            });
+
+            if (isEqual === false) {
+                products.quantity += count;
+                cart.push(products);
+                localStorage.setItem('cart', JSON.stringify(cart));
+            }
+        };
+
+        
+    }
 
     return (
         <div className="product-detail">
@@ -201,16 +231,16 @@ function Product({products}) {
                             <div className="count">
                                 <p>Số Lượng</p>
                                 <div className="group-input">
-                                    <button className="disable" onClick={() => setCount(count - 1)}>
+                                    <button disabled={`${count < 2 ? 'true' : ''}`} className={`${count < 2 ? 'disable' : 'enable'}`} onClick={() => setCount(count - 1)}>
                                         <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg" width="20" height="20"/>
                                     </button>
                                     <input type="text" value={count} className="input"></input>
-                                    <button onClick={() => setCount(count + 1)}>
+                                    <button className='enable' onClick={() => setCount(count + 1)}>
                                         <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg" width="20" height="20" />
                                     </button>
                                 </div>
                                 <div className="group-button">
-                                    <button className="btnadd">Chọn Mua</button>
+                                    <button className="btnadd" onClick={addToCart}>Chọn Mua</button>
                                     <button className="btnpay">
                                         Trả góp
                                         <span>454.166 đ/tháng</span>

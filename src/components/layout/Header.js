@@ -3,9 +3,46 @@ import { isWideScreen } from "../../helpers/screen";
 import BoxSearch from "../common/BoxSearch";
 import { Link, useNavigate } from "react-router-dom";
 import Popup from "reactjs-popup";
-import LoginDesktop from "../login/LogIn";
+import Login from "../login/LogIn";
 
 function Header(props) {
+
+    const [cart, setCart] = useState([]);
+
+    const getCart = () => {
+        let cart = localStorage.getItem('cart');
+        cart = JSON.parse(cart);
+        setCart(cart);
+    }
+    
+    useEffect(() => {
+        getCart();
+    },[]);
+
+    function ShoppingCart() {
+        return(
+            <div className="header-cart">
+                <Link to={`${isUser ? '/cart' : ''}`}>
+                    <div className="header-cart-shotcut">
+                        <div className="cart-wrapper">
+                            <img
+                                src="https://salt.tikicdn.com/ts/upload/40/44/6c/b80ad73e5e84aeb71c08e5d8d438eaa1.png"
+                                alt=""
+                                className="cart-icon"
+                            />
+                            <span className="cart-number">
+                                0
+                            </span>
+                        </div>
+                        <span className="cart-title">
+                            Giỏ hàng
+                        </span>
+                    </div>
+                </Link>
+            </div>
+        )
+    }
+
     const [showSearchDesktop, setShowSearchDesktop] = useState(false);
     const [hideLogout, setHideLogout] = useState(true);
  
@@ -188,7 +225,7 @@ function Header(props) {
                                                         </div>
                                                     }
                                                 >
-                                                    <LoginDesktop />
+                                                    <Login />
                                                 </Popup>
                                             </span>
                                             <span className="account-label">
@@ -206,23 +243,11 @@ function Header(props) {
                                         </span>
                                     </div>
                                     <div className="header-cart">
-                                        <Link to="/cart">
-                                            <div className="header-cart-shotcut">
-                                                <div className="cart-wrapper">
-                                                    <img
-                                                        src="https://salt.tikicdn.com/ts/upload/40/44/6c/b80ad73e5e84aeb71c08e5d8d438eaa1.png"
-                                                        alt=""
-                                                        className="cart-icon"
-                                                    />
-                                                    <span className="cart-number">
-                                                        0
-                                                    </span>
-                                                </div>
-                                                <span className="cart-title">
-                                                    Giỏ hàng
-                                                </span>
-                                            </div>
-                                        </Link>
+                                        <Popup modal trigger={
+                                            ShoppingCart()
+                                        }>
+                                            <Login/>
+                                        </Popup>
                                     </div>
                                 </>)
                             }
