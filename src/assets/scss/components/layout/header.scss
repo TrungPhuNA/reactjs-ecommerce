@@ -56,6 +56,7 @@
             -webkit-box-pack: center;
             justify-content: center;
             font-family: Roboto, Helvetica, Arial, sans-serif;
+            cursor: pointer;
 
             img {
                 width: 20px;
@@ -63,6 +64,21 @@
                 margin: 0px 8px 0px 0px;
             }
         }
+    }
+
+    .search-list {
+
+
+        img {
+            margin-right: 5px;
+            margin-bottom: 5px;
+            padding-bottom: 5px;
+            padding-top: 5px;
+        }
+    }
+
+    .search-list:hover {
+        background-color: rgb(233, 246, 255);
     }
 
     &__right {
@@ -196,6 +212,7 @@
 
             a {
                 text-decoration: none;
+
                 p {
                     cursor: pointer;
                     display: flex;
