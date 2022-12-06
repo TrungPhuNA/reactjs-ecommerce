@@ -10,7 +10,7 @@ import Images from "../Image/Images";
 function Header() {
 
     function ShoppingCart() {
-        return(
+        return (
             <div className="header-cart">
                 <Link to={`${isUser ? '/cart' : ''}`}>
                     <div className="header-cart-shotcut">
@@ -35,7 +35,7 @@ function Header() {
 
     const [showSearchDesktop, setShowSearchDesktop] = useState(false);
     const [hideLogout, setHideLogout] = useState(true);
- 
+
     const [user, setUser] = useState();
     const [name, setName] = useState();
     const [isUser, setIsUser] = useState(false);
@@ -45,27 +45,27 @@ function Header() {
     // const [count, setCount] = useState(0);
 
     function getUser() {
-        if (localStorage.getItem('accessToken') ) {
+        if (localStorage.getItem('accessToken')) {
             setIsUser(true)
             return fetch("https://api-ecm.123code.net/api/auth/profile", {
-                    method: 'GET',
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: "Bearer " + localStorage.getItem('accessToken'),
-                    }
-                }).then((result) => {
-                    result.json().then((res) => {
-                        setUser(res);
-                        setName(res.data.name);
-                    })
-                });
-        }    
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + localStorage.getItem('accessToken'),
+                }
+            }).then((result) => {
+                result.json().then((res) => {
+                    setUser(res);
+                    setName(res.data.name);
+                })
+            });
+        }
     }
 
     useEffect(() => {
         getUser();
-    },[])
-    
+    }, [])
+
     // async function getListOrder() {
     //     fetch("https://api-ecm.123code.net/api/transaction/lists", {
     //         method: 'GET',
@@ -93,17 +93,23 @@ function Header() {
             <div className="dropdown-list" onMouseLeave={() => setHideLogout(true)}>
                 <Link to="/info"><p>Thông tin cá nhân</p></Link>
                 <Link to="/order"><p>Đơn hàng của tôi</p></Link>
-                <Link to="/" onClick={()=>Logout()}><p>Đăng xuất</p></Link>
+                <Link to="/" onClick={() => Logout()}><p>Đăng xuất</p></Link>
             </div>
         )
     }
 
     const [dataList, setDataList] = useState([]);
     const [searchInput, setSearchInput] = useState("");
+    const [arr] = useState([]);
+
+    const saveSearch = () => {
+        arr.push({ name: searchInput });
+        console.log(arr);
+    }
 
     const getData = async () => {
         const response = await productApi.getListsProducts();
-        if(response.status === 200) {
+        if (response.status === 200) {
             setDataList(response.data);
         }
     }
@@ -124,7 +130,7 @@ function Header() {
                     <div className="main-header--top pfpi">
                         <div className="logo-menu">
                             <div className="style-logo">
-                                <Link to="/" className="tiki-logo">
+                                <Link to="/" className="tiki-logo" onClick={() => setSearchInput('')}>
                                     <img src={"/logo.svg"} alt="tiki logo" />
                                 </Link>
                             </div>
@@ -149,14 +155,14 @@ function Header() {
                                     handleChange
                                 }
                             />
-                            { searchInput.length !== 0 ? (
+                            {searchInput.length !== 0 ? (
                                 <Link to={`/search&q=${searchInput}`}>
                                     <button className="pointer">
-                                    <img
-                                        src="https://salt.tikicdn.com/ts/upload/ed/5e/b8/8538366274240326978318348ea8af7c.png"
-                                        alt=""
-                                    />
-                                    Tìm Kiếm
+                                        <img
+                                            src="https://salt.tikicdn.com/ts/upload/ed/5e/b8/8538366274240326978318348ea8af7c.png"
+                                            alt=""
+                                        />
+                                        Tìm Kiếm
                                     </button>
                                 </Link>
                             ) : (
@@ -170,23 +176,32 @@ function Header() {
                             )
                             }
                             {showSearchDesktop && isWideScreen() && (
-                                <div className={`${(showSearchDesktop && isWideScreen()) ? 'search-complete':'search-mobile'}`}>
+                                <div className={`${(showSearchDesktop && isWideScreen()) ? 'search-complete' : 'search-mobile'}`}>
                                     <div className="search-suggest" onClick={() => setShowSearchDesktop(false)}>
-                                        { searchInput.length > 0 && 
-                                            <Link to={`/search&q=${searchInput}`}>
-                                                <Images src="https://salt.tikicdn.com/ts/upload/e8/aa/26/42a11360f906c4e769a0ff144d04bfe1.png" alt="icon-search"/>
+                                        {searchInput.length > 0 &&
+                                            <Link to={`/search&q=${searchInput}`} className="search-list" onClick={saveSearch}>
+                                                <Images src="https://salt.tikicdn.com/ts/upload/e8/aa/26/42a11360f906c4e769a0ff144d04bfe1.png" alt="icon-search" />
                                                 <p>{searchInput}</p>
                                             </Link>
                                         }
-                                        { dataList.filter(item => item.pro_name.toLowerCase().match(searchInput)).map((item) => {
-                                            return(                                                  
-                                                <Link to={`${item.pro_slug}-${item.id}`} >
-                                                    <Images src="https://salt.tikicdn.com/ts/upload/e8/aa/26/42a11360f906c4e769a0ff144d04bfe1.png" alt="icon-search"/>
+                                        {arr.filter(item => item.name.match(searchInput)).map((item) => {
+                                            return (
+                                                <Link to={`/search&q=${item.name}`} className="search-list">
+                                                    <Images src="https://salt.tikicdn.com/ts/upload/90/fa/09/9deed3e3186254637b5ca648f3032665.png" alt="icon-search" />
+                                                    <p>{item.name}</p>
+                                                </Link>
+                                            )
+                                        })
+                                        }
+                                        {dataList.filter(item => item.pro_name.toLowerCase().match(searchInput)).slice(0, 5).map((item) => {
+                                            return (
+                                                <Link to={`${item.pro_slug}-${item.id}`} className="search-list" onClick={() => setSearchInput('')} >
+                                                    <img src={item.pro_avatar} alt="icon-product" width='35' height='35' />
                                                     <p>{item.pro_name}</p>
                                                 </Link>
                                             );
                                         })}
-                                        <div className="show-more">Xem thêm <DownOutlined /></div>   
+                                        <div className="show-more">Xem thêm <DownOutlined /></div>
                                     </div>
                                 </div>
                             )}
@@ -246,7 +261,7 @@ function Header() {
                                         </Link>
                                     </div>
                                 </>
-                                ) : (
+                            ) : (
                                 <>
                                     <div className="header-user-shortcut">
                                         <img
@@ -285,7 +300,7 @@ function Header() {
                                         <Popup modal trigger={
                                             ShoppingCart()
                                         }>
-                                            <Login/>
+                                            <Login />
                                         </Popup>
                                     </div>
                                 </>)
