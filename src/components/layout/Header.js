@@ -171,10 +171,10 @@ function Header() {
                             }
                             {showSearchDesktop && isWideScreen() && (
                                 <div className={`${(showSearchDesktop && isWideScreen()) ? 'search-complete':'search-mobile'}`}>
-                                    <div className="search-suggest">
+                                    <div className="search-suggest" onClick={() => setShowSearchDesktop(false)}>
                                         { searchInput.length > 0 && 
-                                            <Link to={`/search&q=${searchInput}`} >
-                                            <Images src="https://salt.tikicdn.com/ts/upload/e8/aa/26/42a11360f906c4e769a0ff144d04bfe1.png" alt="icon-search"/>
+                                            <Link to={`/search&q=${searchInput}`}>
+                                                <Images src="https://salt.tikicdn.com/ts/upload/e8/aa/26/42a11360f906c4e769a0ff144d04bfe1.png" alt="icon-search"/>
                                                 <p>{searchInput}</p>
                                             </Link>
                                         }
