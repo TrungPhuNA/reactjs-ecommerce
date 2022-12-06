@@ -151,7 +151,7 @@ function SearchPage() {
                                         </div>
                                     ) : (
                                         <>
-                                            <Products products={products}/>
+                                            <Products products={products} searchInput={searchInput}/>
                                             
                                         </>
                                     )}
