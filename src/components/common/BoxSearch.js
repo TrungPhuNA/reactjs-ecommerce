@@ -1,26 +1,18 @@
 import { DownOutlined } from "@ant-design/icons";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { isWideScreen } from "../../helpers/screen";
 import Images from "../Image/Images";
-// import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import productApi from '../../api/ProductService';
 
 export default function BoxSearch(props) {
 
     const arr = Array.from(Array(6).keys());
+
+    
     return (
-        <div className={`${(props.showSearchDesktop && isWideScreen()) ? 'search-complete':'search-mobile'}`}>
-            <div className="search-suggest">
-                { arr.map((item,key) => {
-                    return(
-                        <a href="/" key={key}>
-                            <Images src="https://salt.tikicdn.com/ts/upload/e8/aa/26/42a11360f906c4e769a0ff144d04bfe1.png" alt="icon-search"/>
-                            <p>Tai nghe</p>
-                        </a>
-                    );
-                })}
-                <div className="show-more">Xem thêm <DownOutlined /></div>   
-            </div>
-            <div className="search-style">
+        
+            {/* <div className="search-style">
                 <div className="search-popular">
                     <div className="wrapper-header">
                         <Images src="https://salt.tikicdn.com/ts/upload/4f/03/a0/2455cd7c0f3aef0c4fd58aa7ff93545a.png" alt="header"/>
@@ -52,8 +44,6 @@ export default function BoxSearch(props) {
                         })}
                     </div>
                 </div>
-
-            </div>    
-        </div>
+            </div>     */}
     );
 }

@@ -30,7 +30,7 @@ function Product({ products }) {
             });
 
             if (isEqual === false) {
-                products.quantity += count;
+                products.quantity = count;
                 cart.push(products);
                 localStorage.setItem('cart', JSON.stringify(cart));
             }

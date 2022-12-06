@@ -22,6 +22,7 @@ import AccountInfoMob from '../pages/account/include/mobile/AccountInfoMob';
 import AccountSetting from '../pages/account/include/mobile/AccountSetting';
 import OrderManagementMob from '../pages/account/include/mobile/OrderManagementMob';
 import ShopCart from '../components/common/ShopCart';
+import SearchPage from '../pages/search/SearchPage';
 
 export const routes = () => {
     return [
@@ -112,6 +113,10 @@ export const routes = () => {
         {
             path: '/cart',
             element: <ShopCart />
+        },
+        {
+            path: '/search&q=:searchInput',
+            element: <SearchPage />
         },
     ]
 }
