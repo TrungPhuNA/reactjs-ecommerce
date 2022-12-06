@@ -1,13 +1,13 @@
 import React, {useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
 
 function ShopCart() {
-
+    
     const [count, setCount] = useState(0);
     const [cart, setCart] = useState([]);
-    const nagivate = useNavigate();
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [checked, isChecked] = useState(false);
 
     const getCart = () => {
         let cart = localStorage.getItem('cart');
@@ -24,10 +24,16 @@ function ShopCart() {
     //         console.log(item);
     // })}
 
-    const getProductList = () => {
-        
+    function handleCheck(e) {
+        if (e.target.checked) {
+            isChecked(true);
+            console.log('ok')
+        } else {
+            isChecked(false);
+            console.log('no')
+        }
     }
-    
+
     return (
         <>
             <div className="sc-container">
@@ -48,7 +54,7 @@ function ShopCart() {
                             <span>Đơn giá</span>
                             <span>Số lượng</span>
                             <span>Thành tiền</span>
-                            <span><img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg" alt="deleted" /></span>
+                            <span onClick={() => localStorage.removeItem('cart')}><img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg" alt="deleted" /></span>
                         </div>
                         <div className="left-content-container">
                             <div className="seller-group">
@@ -73,9 +79,9 @@ function ShopCart() {
                                                         <div className="col1">
                                                             <div className="product-detail">
                                                                 <div className="product-checkbox">
-                                                                    <input type="checkbox" />
+                                                                    <input type="checkbox" onClick={handleCheck}/>
                                                                 </div>
-                                                                <Link to={`${item.pro_slug}-${item.id}`}>
+                                                                <Link to={`/${item.pro_slug}-${item.id}`}>
                                                                     <img
                                                                         alt="sda"
                                                                         src={item.avatar}
@@ -85,7 +91,7 @@ function ShopCart() {
                                                                 </Link>
                                                                 <div className="product-content">
                                                                     <Link
-                                                                        to={`${item.pro_slug}-${item.id}`}
+                                                                        to={`/${item.pro_slug}-${item.id}`}
                                                                         className="product-name"
                                                                     >
                                                                         {item.pro_name}
@@ -212,18 +218,20 @@ function ShopCart() {
                                                         <div className="col3">
                                                             <div className="count">
                                                                 <div className="group-input">
-                                                                    <button disabled={`${count < 2 ? '{true}' : ''}`} className={`${count < 2 ? 'disable' : 'enable'}`} onClick={() => setCount(count - 1)}>
+                                                                    <button disabled={`${item.quantity < 2 ? '{true}' : ''}`} className={`${item.quantity < 2 ? 'disable' : 'enable'}`} onClick={() => item.quantity - 1}>
                                                                         <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg" width="20" height="20"/>
                                                                     </button>
-                                                                    <input type="text" value={count === 0 ? setCount(item.quantity) : count} className="input"></input>
-                                                                    <button className='enable' onClick={() => setCount(count + 1)}>
+                                                                    <input type="text" value={item.quantity} className="input"></input>
+                                                                    <button className='enable' onClick={() => item.quantity + 1}>
                                                                         <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg" width="20" height="20" />
                                                                     </button>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div className="col4">
-                                                            <span>{count === 0 ? item.pro_price * item.quantity : item.pro_price * count} ₫</span>
+                                                            <span>
+                                                                {item.pro_price * item.quantity} ₫
+                                                            </span>
                                                         </div>
                                                         <div className="col5">
                                                             <span>

@@ -1,23 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { isWideScreen } from "../../helpers/screen";
-import BoxSearch from "../common/BoxSearch";
 import { Link, useNavigate } from "react-router-dom";
 import Popup from "reactjs-popup";
 import Login from "../login/LogIn";
+import productApi from "../../api/ProductService";
+import { DownOutlined } from "@ant-design/icons";
+import Images from "../Image/Images";
 
-function Header(props) {
-
-    const [cart, setCart] = useState([]);
-
-    const getCart = () => {
-        let cart = localStorage.getItem('cart');
-        cart = JSON.parse(cart);
-        setCart(cart);
-    }
-    
-    useEffect(() => {
-        getCart();
-    },[]);
+function Header() {
 
     function ShoppingCart() {
         return(
@@ -50,11 +40,12 @@ function Header(props) {
     const [name, setName] = useState();
     const [isUser, setIsUser] = useState(false);
 
+
     // const [list, setList] = useState([]);
     // const [count, setCount] = useState(0);
 
     function getUser() {
-        if (localStorage.getItem('accessToken')) {
+        if (localStorage.getItem('accessToken') ) {
             setIsUser(true)
             return fetch("https://api-ecm.123code.net/api/auth/profile", {
                     method: 'GET',
@@ -107,6 +98,25 @@ function Header(props) {
         )
     }
 
+    const [dataList, setDataList] = useState([]);
+    const [searchInput, setSearchInput] = useState("");
+
+    const getData = async () => {
+        const response = await productApi.getListsProducts();
+        if(response.status === 200) {
+            setDataList(response.data);
+        }
+    }
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        setSearchInput(e.target.value);
+    }
+
     return (
         <>
             <header className="main-header">
@@ -127,29 +137,58 @@ function Header(props) {
                         >
                             <input
                                 placeholder="Bạn đang tìm kiếm gì"
-                                type="text"
+                                type="search"
+                                value={searchInput}
                                 onClick={() => {
                                     setShowSearchDesktop(true);
                                 }}
                                 onKeyDown={() => {
                                     setShowSearchDesktop(true);
                                 }}
-                                onChange={() => {
-                                    setShowSearchDesktop(true);
-                                }}
+                                onChange={
+                                    handleChange
+                                }
                             />
-                            <button className="pointer">
-                                <img
-                                    src="https://salt.tikicdn.com/ts/upload/ed/5e/b8/8538366274240326978318348ea8af7c.png"
-                                    alt=""
-                                />
-                                Tìm Kiếm
-                            </button>
+                            { searchInput.length !== 0 ? (
+                                <Link to={`/search&q=${searchInput}`}>
+                                    <button className="pointer">
+                                    <img
+                                        src="https://salt.tikicdn.com/ts/upload/ed/5e/b8/8538366274240326978318348ea8af7c.png"
+                                        alt=""
+                                    />
+                                    Tìm Kiếm
+                                    </button>
+                                </Link>
+                            ) : (
+                                <button className="pointer">
+                                    <img
+                                        src="https://salt.tikicdn.com/ts/upload/ed/5e/b8/8538366274240326978318348ea8af7c.png"
+                                        alt=""
+                                    />
+                                    Tìm Kiếm
+                                </button>
+                            )
+                            }
                             {showSearchDesktop && isWideScreen() && (
-                                <BoxSearch
-                                    setShowSearchDesktop={setShowSearchDesktop}
-                                    showSearchDesktop={showSearchDesktop}
-                                />
+                                <div className={`${(showSearchDesktop && isWideScreen()) ? 'search-complete':'search-mobile'}`}>
+                                    <div className="search-suggest">
+                                        { searchInput.length > 0 && 
+                                            <Link to={`/search&q=${searchInput}`} >
+                                            <Images src="https://salt.tikicdn.com/ts/upload/e8/aa/26/42a11360f906c4e769a0ff144d04bfe1.png" alt="icon-search"/>
+                                                <p>{searchInput}</p>
+                                            </Link>
+                                        }
+                                        { dataList.filter(item => item.pro_name.toLowerCase().match(searchInput)).map((item) => {
+                                            return(                                                  
+                                                <Link to={`${item.pro_slug}-${item.id}`} >
+                                                    <Images src="https://salt.tikicdn.com/ts/upload/e8/aa/26/42a11360f906c4e769a0ff144d04bfe1.png" alt="icon-search"/>
+                                                    <p>{item.pro_name}</p>
+                                                </Link>
+                                            );
+                                        })}
+                                        <div className="show-more">Xem thêm <DownOutlined /></div>   
+                                    </div>
+                                </div>
                             )}
                         </div>
                         <div className="main-header--top__right">
