@@ -6,7 +6,7 @@ import Pagination from "../../../components/common/Pagination";
 
 let PageSize = 6;
 
-function Products({products}) {
+function Products({products, searchInput}) {
 
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -20,7 +20,7 @@ function Products({products}) {
         <div className="product-container">
             <div className="suggestion__product">
                 <div className="content">
-                    {currentTableData.map((item, index) => (
+                    {currentTableData.filter(item => item.pro_name.toLowerCase().match(searchInput)).map((item, index) => (
                         <div className="dashboard-product--item" key={index}>
                             <Link
                                 to={`/${item.pro_slug}-${item.id}`}
