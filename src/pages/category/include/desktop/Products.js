@@ -15,6 +15,7 @@ function Products({products}) {
         const lastPageIndex = firstPageIndex + PageSize;
         return products.slice(firstPageIndex, lastPageIndex);
     }, [currentPage]);
+    
 
     return (
         <div className="product-container">
