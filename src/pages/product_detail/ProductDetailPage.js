@@ -17,12 +17,14 @@ function ProductDetailPage() {
     let { id } = useParams();
     const [category, setCategory] = useState(null);
     const [products, setProducts] = useState([]);
+    const [pro_price, setPro_Price] = useState([])
 
     const getProductsDetail = async () => {
         const response = await productApi.findById(id);
         if(response.status === 200) {
             setProducts(response.data);
-            setCategory(response.data.category); 
+            setCategory(response.data.category);
+            setPro_Price(response.data.pro_price.toLocaleString()) 
         }
     }
 
@@ -38,7 +40,7 @@ function ProductDetailPage() {
             <>
                 <div className="container">
                     <Category category={category} products={products}/>
-                    <Product products={products}/>
+                    <Product products={products} pro_price={pro_price}/>
                     <SimilarProduct/>
                     <ProductDescribe/>
                     <Comment/>
