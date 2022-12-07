@@ -209,8 +209,9 @@
                 }
 
                 .login-right {
-                    background: linear-gradient(136deg, rgb(240, 248, 255) -1%, rgb(219, 238, 255) 85%);
+                    background: white;
                     width: 300px;
+                    border-left: 1px solid #dedede;
                     -webkit-box-align: center;
                     align-items: center;
                     -webkit-box-pack: center;

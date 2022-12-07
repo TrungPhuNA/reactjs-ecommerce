@@ -30,12 +30,12 @@ export default () => {
                                     )
                                     }
                                 </div>
-                                
+
                             </div>
                             <div className="login-right">
-                                <img src="https://salt.tikicdn.com/ts/upload/eb/f3/a3/25b2ccba8f33a5157f161b6a50f64a60.png" alt="sad" width='203' height='203' />
+                                {/*<img src="https://salt.tikicdn.com/ts/upload/eb/f3/a3/25b2ccba8f33a5157f161b6a50f64a60.png" alt="sad" width='203' height='203' />*/}
                                 <div class="login-right-content">
-                                    <h4>Mua sắm tại Tiki</h4>
+                                    <h4>Mua sắm tại Hasaki</h4>
                                     <span>Siêu ưu đãi mỗi ngày</span>
                                 </div>
                                 <div className="login-right-footer">
