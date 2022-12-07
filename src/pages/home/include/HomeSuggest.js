@@ -95,7 +95,7 @@ function HomeSuggest() {
                                                                     </div>
                                                                     <div className={`price-discount ${item2.prodiscount_value !== 0 ? 'has-discount' : ''}`}>
                                                                         <div className="price-discount__price">
-                                                                            {item2.pro_price} ₫
+                                                                            {item2.pro_price.toLocaleString()} ₫
                                                                         </div>
                                                                     </div>
                                                                 </>
@@ -105,7 +105,7 @@ function HomeSuggest() {
                                                                     <div className="deal">
                                                                         <div className={`price-discount ${item2.prodiscount_value !== 0 ? 'has-discount' : ''}`}>
                                                                             <div className="price-discount__price">
-                                                                                {item2.pro_price} ₫
+                                                                                {item2.pro_price.toLocaleString()} ₫
                                                                             </div>
                                                                             <div className="price-discount__discount">
                                                                                 {item2.pro_discount_value ? item2.pro_discount_value + '%' : ''}
@@ -143,7 +143,7 @@ function HomeSuggest() {
                                                                         </div>
                                                                         <div className={`price-discount ${item2.prodiscount_value !== 0 ? 'has-discount' : ''}`}>
                                                                             <div className="price-discount__price">
-                                                                                {item2.pro_price} ₫
+                                                                                {item2.pro_price.toLocaleString()} ₫
                                                                             </div>
                                                                         </div>
                                                                     </>
@@ -153,7 +153,7 @@ function HomeSuggest() {
                                                                         <div className="deal">
                                                                             <div className={`price-discount ${item2.prodiscount_value !== 0 ? 'has-discount' : ''}`}>
                                                                                 <div className="price-discount__price">
-                                                                                    {item2.pro_price} ₫
+                                                                                    {item2.pro_price.toLocaleString()} ₫
                                                                                 </div>
                                                                                 <div className="price-discount__discount">
                                                                                     {item2.pro_discount_value ? item2.pro_discount_value + '%' : ''}

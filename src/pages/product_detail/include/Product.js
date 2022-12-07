@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import { isWideScreen } from "../../../helpers/screen";
 import React, { useState } from 'react';
 
-function Product({ products }) {
+function Product({ products, pro_price }) {
     const [count, setCount] = useState(1);
 
     const addToCart = () => {
@@ -167,7 +167,7 @@ function Product({ products }) {
                     <div className="content-body-left">
                         <div className="price-and-icon">
                             <div className="price-">
-                                <div className="current-price">{ products?.pro_price } ₫</div>
+                                <div className="current-price">{ pro_price } ₫</div>
                                 <div className="last-price">{ products?.pro_discount_value !== 0 ? '20.000 đ' : null }</div>
                                 <div className="discount-rate">{ products?.pro_discount_value !== 0 ? products?.pro_discount_value + '%' : null }</div>
                             </div>

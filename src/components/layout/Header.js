@@ -123,6 +123,18 @@ function Header() {
         setSearchInput(e.target.value);
     }
 
+    const [cart, setCart] = useState([]);
+
+    const getCart = () => {
+        let cart = localStorage.getItem('cart');
+        cart = JSON.parse(cart);
+        setCart(cart);
+    }
+    
+    useEffect(() => {
+        getCart();
+    },[cart]);
+
     return (
         <>
             <header className="main-header">
@@ -130,7 +142,11 @@ function Header() {
                     <div className="main-header--top pfpi">
                         <div className="logo-menu">
                             <div className="style-logo">
-                                <Link to="/" className="tiki-logo" onClick={() => setSearchInput('')}>
+                                <Link
+                                    to="/"
+                                    className="tiki-logo"
+                                    onClick={() => setSearchInput("")}
+                                >
                                     <img src={"/logo.svg"} alt="tiki logo" />
                                 </Link>
                             </div>
@@ -151,9 +167,7 @@ function Header() {
                                 onKeyDown={() => {
                                     setShowSearchDesktop(true);
                                 }}
-                                onChange={
-                                    handleChange
-                                }
+                                onChange={handleChange}
                             />
                             {searchInput.length !== 0 ? (
                                 <Link to={`/search&q=${searchInput}`}>
@@ -173,35 +187,86 @@ function Header() {
                                     />
                                     Tìm Kiếm
                                 </button>
-                            )
-                            }
+                            )}
                             {showSearchDesktop && isWideScreen() && (
-                                <div className={`${(showSearchDesktop && isWideScreen()) ? 'search-complete' : 'search-mobile'}`}>
-                                    <div className="search-suggest" onClick={() => setShowSearchDesktop(false)}>
-                                        {searchInput.length > 0 &&
-                                            <Link to={`/search&q=${searchInput}`} className="search-list" onClick={saveSearch}>
-                                                <Images src="https://salt.tikicdn.com/ts/upload/e8/aa/26/42a11360f906c4e769a0ff144d04bfe1.png" alt="icon-search" />
+                                <div
+                                    className={`${
+                                        showSearchDesktop && isWideScreen()
+                                            ? "search-complete"
+                                            : "search-mobile"
+                                    }`}
+                                >
+                                    <div
+                                        className="search-suggest"
+                                        onClick={() =>
+                                            setShowSearchDesktop(false)
+                                        }
+                                    >
+                                        {searchInput.length > 0 && (
+                                            <Link
+                                                to={`/search&q=${searchInput}`}
+                                                className="search-list"
+                                                onClick={saveSearch}
+                                            >
+                                                <Images
+                                                    src="https://salt.tikicdn.com/ts/upload/e8/aa/26/42a11360f906c4e769a0ff144d04bfe1.png"
+                                                    alt="icon-search"
+                                                />
                                                 <p>{searchInput}</p>
                                             </Link>
-                                        }
-                                        {arr.filter(item => item.name.match(searchInput)).map((item) => {
-                                            return (
-                                                <Link to={`/search&q=${item.name}`} className="search-list">
-                                                    <Images src="https://salt.tikicdn.com/ts/upload/90/fa/09/9deed3e3186254637b5ca648f3032665.png" alt="icon-search" />
-                                                    <p>{item.name}</p>
-                                                </Link>
+                                        )}
+                                        {arr
+                                            .filter((item) =>
+                                                item.name
+                                                    .toLowerCase()
+                                                    .match(searchInput)
                                             )
-                                        })
-                                        }
-                                        {dataList.filter(item => item.pro_name.toLowerCase().match(searchInput)).slice(0, 5).map((item) => {
-                                            return (
-                                                <Link to={`${item.pro_slug}-${item.id}`} className="search-list" onClick={() => setSearchInput('')} >
-                                                    <img src={item.pro_avatar} alt="icon-product" width='35' height='35' />
-                                                    <p>{item.pro_name}</p>
-                                                </Link>
-                                            );
-                                        })}
-                                        <div className="show-more">Xem thêm <DownOutlined /></div>
+                                            .slice(0, 2)
+                                            .map((item) => {
+                                                return (
+                                                    <Link
+                                                        to={`/search&q=${item.name}`}
+                                                        className="search-list"
+                                                    >
+                                                        <Images
+                                                            src="https://salt.tikicdn.com/ts/upload/90/fa/09/9deed3e3186254637b5ca648f3032665.png"
+                                                            alt="icon-search"
+                                                        />
+                                                        <p>{item.name}</p>
+                                                    </Link>
+                                                );
+                                            })}
+                                        {dataList
+                                            .filter((item) =>
+                                                item.pro_name
+                                                    .toLowerCase()
+                                                    .match(searchInput)
+                                            )
+                                            .slice(0, 5)
+                                            .map((item) => {
+                                                return (
+                                                    <Link
+                                                        to={`${item.pro_slug}-${item.id}`}
+                                                        className="search-list"
+                                                        onClick={() =>
+                                                            setSearchInput("")
+                                                        }
+                                                    >
+                                                        <img
+                                                            src={
+                                                                item.pro_avatar
+                                                            }
+                                                            alt="icon-product"
+                                                            width="35"
+                                                            height="35"
+                                                        />
+                                                        <p>{item.pro_name}</p>
+                                                    </Link>
+                                                );
+                                            })}
+                                        <div className="show-more">
+                                            Xem thêm <DownOutlined />
+                                        </div>
                                     </div>
                                 </div>
                             )}
@@ -251,7 +316,7 @@ function Header() {
                                                         className="cart-icon"
                                                     />
                                                     <span className="cart-number">
-                                                        0
+                                                        { !localStorage.getItem('cart') ? (<>0</>) : (<>{cart.length}</>)}
                                                     </span>
                                                 </div>
                                                 <span className="cart-title">
@@ -263,48 +328,42 @@ function Header() {
                                 </>
                             ) : (
                                 <>
-                                    <div className="header-user-shortcut">
-                                        <img
-                                            className="profile"
-                                            src="https://salt.tikicdn.com/ts/upload/67/de/1e/90e54b0a7a59948dd910ba50954c702e.png"
-                                            alt=""
-                                        />
-                                        <span className="user-style">
-                                            <span className="user-style__title">
-                                                <Popup
-                                                    modal
-                                                    trigger={
+                                    <Popup
+                                        modal
+                                        trigger={
+                                            <div className="header-user-shortcut">
+                                                <img
+                                                    className="profile"
+                                                    src="https://salt.tikicdn.com/ts/upload/67/de/1e/90e54b0a7a59948dd910ba50954c702e.png"
+                                                    alt=""
+                                                />
+                                                <span className="user-style">
+                                                    <span className="user-style__title">
                                                         <div>
                                                             Đăng nhập/Đăng ký
                                                         </div>
-                                                    }
-                                                >
-                                                    <Login />
-                                                </Popup>
-                                            </span>
-                                            <span className="account-label">
-                                                <Link
-                                                    to=""
-                                                    style={{ color: "white" }}
-                                                >
-                                                    <span>Tài khoản</span>
-                                                </Link>
-                                                <img
-                                                    src="https://salt.tikicdn.com/ts/upload/d7/d4/a8/34939af2da1ceeeae9f95b7485784233.png"
-                                                    alt="arrowIcon"
-                                                />
-                                            </span>
-                                        </span>
-                                    </div>
+                                                    </span>
+                                                    <span className="account-label">
+                                                        <span>Tài khoản</span>
+                                                        <img
+                                                            src="https://salt.tikicdn.com/ts/upload/d7/d4/a8/34939af2da1ceeeae9f95b7485784233.png"
+                                                            alt="arrowIcon"
+                                                        />
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        }
+                                    >
+                                        <Login />
+                                    </Popup>
+
                                     <div className="header-cart">
-                                        <Popup modal trigger={
-                                            ShoppingCart()
-                                        }>
+                                        <Popup modal trigger={ShoppingCart()}>
                                             <Login />
                                         </Popup>
                                     </div>
-                                </>)
-                            }
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>

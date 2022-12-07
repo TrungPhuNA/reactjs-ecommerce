@@ -85,11 +85,11 @@ function ProductSummary({ deal, disCount }) {
                                                             >
                                                                 <div className="price-discount__price">
                                                                     {
-                                                                        item.pro_price
+                                                                        item.pro_price.toLocaleString()
                                                                     }{" "}
                                                                     ₫
                                                                 </div>
-                                                                <div className="price-discount__discount">
+                                                                <div className={`${item.pro_discount_value !== 0 ? 'price-discount__discount' : ''}`}>
                                                                     {item.pro_discount_value
                                                                         ? item.pro_discount_value +
                                                                           "%"
