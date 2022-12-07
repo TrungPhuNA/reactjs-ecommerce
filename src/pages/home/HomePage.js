@@ -4,7 +4,6 @@ import FamousCategory from "./include/FamousCategory";
 import HomeSuggest from "./include/HomeSuggest";
 import HomeBrand from "./include/HomeBrand";
 import HomeDeal from "./include/HomeDeal";
-import HomeAdv from "./include/HomeAdv";
 import HomeCategory from "./include/HomeCategory";
 import Images from "../../components/Image/Images";
 import { isWideScreen } from "../../helpers/screen";

@@ -29,23 +29,18 @@ export default function Footers(){
                         </p>
                     </div>
                     <div className="block">
-                        <h4>Về tiki</h4>
-                        <Link to="/" className="small-text">Giới thiệu Tiki</Link>
-                        <Link to="/" className="small-text">Tuyển dụng</Link>
-                        <Link to="/" className="small-text">Chính sách bảo mật thanh toán</Link>
-                        <Link to="/" className="small-text">Chính sách bảo mật thông tin cá nhân</Link>
-                        <Link to="/" className="small-text">Chính sách giải quyết khiếu nại</Link>
-                        <Link to="/" className="small-text">Điều khoản sử dụng</Link>
-                        <Link to="/" className="small-text">Giới thiệu Tiki Xu</Link>
-                        <Link to="/" className="small-text">SEP - Mua sắm có lời</Link>
-                        <Link to="/" className="small-text">Tiếp thị liên kết cùng Tiki</Link>
-                        <Link to="/" className="small-text">Bán hàng doanh nghiệp</Link>
-                        <Link to="/" className="small-text">Điều kiện vận chuyển</Link>
+                        <h4>Về chúng tôi</h4>
+
+
+
+                        <Link to="/" className="small-text">Địa chỉ:Ký túc xá bách khoa, Trần đại nghĩa,  thành phố Hà Nội.</Link>
+                        <Link to="/" className="small-text">Số điện thoại: 1900-3107</Link>
+                        <Link to="/" className="small-text">CEmail: Tataa@hasaki.com</Link>
                     </div>
                     <div className="block">
                         <h4>Hợp tác và liên hệ</h4>
                         <Link to="/" className="small-text">Quy chế hoạt động Sàn GDTMĐT</Link>
-                        <Link to="/" className="small-text">Bán hàng cùng Tiki</Link>
+                        <Link to="/" className="small-text">Bán hàng cùng Hasaki</Link>
                         <h4>Chứng nhận bởi</h4>
                         <div className="d-flex">
                         <Link to="/">
@@ -58,25 +53,25 @@ export default function Footers(){
                     </div>
                     <div className="block">
                         <h4>Phương thức thanh toán</h4>
-                        <p className="payment">
-                            <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />
-                            <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />
-                            <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />
-                            <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />
-                            <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />
-                            <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />
-                            <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />
-                            <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />
-                            <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />
-                            <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />
-                            <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />
-                            <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />
-                        </p>
+                        {/*<p className="payment">*/}
+                        {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
+                        {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
+                        {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
+                        {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
+                        {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
+                        {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
+                        {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
+                        {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
+                        {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
+                        {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
+                        {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
+                        {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
+                        {/*</p>*/}
                         <h4>Dịch vụ giao hàng</h4>
                         <p>
-                            <Link to="/">
-                            <img src="https://static.wixstatic.com/media/6e68b4_245b828eb23a404b9aba586a8fb0292c~mv2.png/v1/crop/x_39,y_33,w_200,h_99/fill/w_110,h_54,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/images.png" width="68" height="33" alt="test" />
-                            </Link>
+                            {/*<Link to="/">*/}
+                            {/*<img src="https://static.wixstatic.com/media/6e68b4_245b828eb23a404b9aba586a8fb0292c~mv2.png/v1/crop/x_39,y_33,w_200,h_99/fill/w_110,h_54,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/images.png" width="68" height="33" alt="test" />*/}
+                            {/*</Link>*/}
                         </p>
                     </div>
                     <div className="block">
@@ -94,15 +89,15 @@ export default function Footers(){
                         </p>
                         <h4 className="store-title">Tải ứng dụng trên điện thoại</h4>
                         <div className="d-flex">
-                            <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/qrcode.png" height="80" width="80" alt="test" />
-                            <div className="dowload-app">
-                            <Link to="/">
-                                <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/appstore.png" width="122" alt="test" />
-                            </Link>
-                            <Link to="/">
-                                <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/playstore.png" width="122" alt="test" />
-                            </Link>
-                            </div>
+                            {/*<img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/qrcode.png" height="80" width="80" alt="test" />*/}
+                            {/*<div className="dowload-app">*/}
+                            {/*<Link to="/">*/}
+                            {/*    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/appstore.png" width="122" alt="test" />*/}
+                            {/*</Link>*/}
+                            {/*<Link to="/">*/}
+                            {/*    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/playstore.png" width="122" alt="test" />*/}
+                            {/*</Link>*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                 </div>
