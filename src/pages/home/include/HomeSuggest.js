@@ -52,7 +52,7 @@ function HomeSuggest() {
                             <>
                                 {categories.map((item, i) => {
                                     return (i < 8) ?
-                                        <div className={`tab ${item.id == categories[0].id ? 'active' : ''}`} onClick={() => { changeTab(item.id); setDefaultCate(false) }}>
+                                        <div key={i} className={`tab ${item.id == categories[0].id ? 'active' : ''}`} onClick={() => { changeTab(item.id); setDefaultCate(false) }}>
                                             <Images alt="test" src={item.c_avatar} />
                                             <div className="tab-text fs-13">{item.c_name}</div>
                                         </div> : null;
@@ -62,7 +62,7 @@ function HomeSuggest() {
                             <>
                                 {categories.map((item, i) => {
                                     return (i < 8) ?
-                                        <div className={`tab ${item.tab ? 'active' : ''}`} onClick={() => changeTab(item.id)}>
+                                        <div key={i} className={`tab ${item.tab ? 'active' : ''}`} onClick={() => changeTab(item.id)}>
                                             <Images alt="test" src={item.c_avatar} />
                                             <div className="tab-text fs-13">{item.c_name}</div>
                                         </div> : null;

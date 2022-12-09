@@ -85,9 +85,9 @@ function HomeDeal() {
                 <div className="deal-hot--right">
                     <Swiper {...settingSlide2}>
                         {
-                            deal_right.map((item, index) => {
+                            deal_right.map((item, i) => {
                                 return (
-                                    <SwiperSlide key={index}>
+                                    <SwiperSlide key={i}>
                                         {item.type === 2 && <img src={item.src} height="274" width="488" alt="1212" />}
                                     </SwiperSlide>
                                 )

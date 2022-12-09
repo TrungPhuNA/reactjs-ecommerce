@@ -5,38 +5,49 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { isWideScreen } from "../../../helpers/screen";
 import React, { useState } from 'react';
+import { addToCart } from '../../../store/cartSlice';
+import { useDispatch } from 'react-redux';
 
 function Product({ products, pro_price }) {
+
     const [count, setCount] = useState(1);
 
-    const addToCart = () => {
-        let cart = localStorage.getItem('cart');
-        if (!cart) {
-            let arrCart = [];
-            products.quantity = count;
-            arrCart.push(products);
-            localStorage.setItem('cart', JSON.stringify(arrCart));
-        } else {
-            cart = JSON.parse(cart);
-            let isEqual = false;
-            cart.map((item, i) => {
-                if (item.id === products.id) {
-                    item.quantity += products.quantity;
-                    cart[i] = item;
-                    localStorage.setItem('cart', JSON.stringify(cart));
-                    isEqual = true;
-                    return false;
-                }
-            });
+    // const addToCart = () => {
+    //     let cart = localStorage.getItem('cart');
+    //     if (!cart) {
+    //         let arrCart = [];
+    //         products.quantity = count;
+    //         arrCart.push(products);
+    //         localStorage.setItem('cart', JSON.stringify(arrCart));
+    //     } else {
+    //         cart = JSON.parse(cart);
+    //         let isEqual = false;
+    //         cart.map((item, i) => {
+    //             if (item.id === products.id) {
+    //                 item.quantity += products.quantity;
+    //                 cart[i] = item;
+    //                 localStorage.setItem('cart', JSON.stringify(cart));
+    //                 isEqual = true;
+    //                 return false;
+    //             }
+    //         });
 
-            if (isEqual === false) {
-                products.quantity = count;
-                cart.push(products);
-                localStorage.setItem('cart', JSON.stringify(cart));
-            }
-        };
+    //         if (isEqual === false) {
+    //             products.quantity = count;
+    //             cart.push(products);
+    //             localStorage.setItem('cart', JSON.stringify(cart));
+    //         }
+    //     };
 
 
+    // }
+
+    const dispatch = useDispatch();
+    
+    const addToCartRedux = async () => {
+        products.quantity = count;
+        dispatch(addToCart(products));
+        console.log(products);
     }
 
     return (
@@ -55,32 +66,12 @@ function Product({ products, pro_price }) {
                         {/*        navigation={true}*/}
                         {/*        pagination={{ clickable: true }}*/}
                         {/*        className="review-swiper">*/}
-                        {/*        <div class="swiper-button-prev"/>*/}
+                        {/*        <div className="swiper-button-prev"/>*/}
                         {/*        <SwiperSlide>*/}
                         {/*            <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>*/}
                         {/*        </SwiperSlide>*/}
                         {/*        <SwiperSlide>*/}
-                        {/*            <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/2a/3b/a1/694060a125c0d42ba5d2fafc511b6ec3.jpg.webp"/>*/}
-                        {/*        </SwiperSlide>*/}
-                        {/*        <SwiperSlide>*/}
-                        {/*            <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>*/}
-                        {/*        </SwiperSlide>*/}
-                        {/*        <SwiperSlide>*/}
-                        {/*            <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/2a/3b/a1/694060a125c0d42ba5d2fafc511b6ec3.jpg.webp"/>*/}
-                        {/*        </SwiperSlide>*/}
-                        {/*        <SwiperSlide>*/}
-                        {/*            <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>*/}
-                        {/*        </SwiperSlide>*/}
-                        {/*        <SwiperSlide>*/}
-                        {/*            <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/2a/3b/a1/694060a125c0d42ba5d2fafc511b6ec3.jpg.webp"/>*/}
-                        {/*        </SwiperSlide>*/}
-                        {/*        <SwiperSlide>*/}
-                        {/*            <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>*/}
-                        {/*        </SwiperSlide>*/}
-                        {/*        <SwiperSlide>*/}
-                        {/*            <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/2a/3b/a1/694060a125c0d42ba5d2fafc511b6ec3.jpg.webp"/>*/}
-                        {/*        </SwiperSlide>*/}
-                        {/*        <div class="swiper-button-next"/>*/}
+                        {/*        <div className="swiper-button-next"/>*/}
                         {/*    </Swiper>*/}
                         {/*</div>*/}
                         <div className="share-product">
@@ -103,32 +94,14 @@ function Product({ products, pro_price }) {
                                 navigation={true}
                                 pagination={{ clickable: true }}
                                 className="review-swiper">
-                                <div class="swiper-button-prev"/>
+                                <div className="swiper-button-prev"/>
                                 <SwiperSlide>
                                     <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/2a/3b/a1/694060a125c0d42ba5d2fafc511b6ec3.jpg.webp"/>
                                 </SwiperSlide>
-                                <SwiperSlide>
-                                    <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/2a/3b/a1/694060a125c0d42ba5d2fafc511b6ec3.jpg.webp"/>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/2a/3b/a1/694060a125c0d42ba5d2fafc511b6ec3.jpg.webp"/>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"/>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/2a/3b/a1/694060a125c0d42ba5d2fafc511b6ec3.jpg.webp"/>
-                                </SwiperSlide>
-                                <div class="swiper-button-next"/>
+                                <div className="swiper-button-next"/>
                             </Swiper>
                         </div>
                     </>
@@ -150,7 +123,7 @@ function Product({ products, pro_price }) {
                         </>
                     }
                     {!isWideScreen() && <></>}
-                    <h1 class="product-title">{ products?.pro_name }</h1>
+                    <h1 className="product-title">{ products?.pro_name }</h1>
                     <div className="below-title">
                         <div className="below-rate">
                             <div className="star-on">
@@ -196,7 +169,7 @@ function Product({ products, pro_price }) {
                             {/*        <span>Giao đến </span>*/}
                             {/*        <span className="Adress">Q. Hoàn Kiếm, P. Hàng Trống, Hà Nội</span>*/}
                             {/*        <span> - </span>*/}
-                            {/*        <span class="addr-change">Đổi địa chỉ</span>*/}
+                            {/*        <span className="addr-change">Đổi địa chỉ</span>*/}
                             {/*    </div>*/}
                             {/*</div>*/}
                             {/*<div className="deli-inner">*/}
@@ -231,16 +204,16 @@ function Product({ products, pro_price }) {
                             <div className="count">
                                 <p>Số Lượng</p>
                                 <div className="group-input">
-                                    <button disabled={`${count < 2 ? 'true' : ''}`} className={`${count < 2 ? 'disable' : 'enable'}`} onClick={() => setCount(count - 1)}>
+                                    <button disabled={`${count < 2 ? '{true}' : ''}`} className={`${count < 2 ? 'disable' : 'enable'}`} onClick={() => setCount(count -1)}>
                                         <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg" width="20" height="20"/>
                                     </button>
-                                    <input type="text" value={count} className="input"></input>
-                                    <button className='enable' onClick={() => setCount(count + 1)}>
+                                    <input type="text" defaultValue={count} className="input"></input>
+                                    <button className='enable' onClick={()=> setCount(count + 1)}>
                                         <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg" width="20" height="20" />
                                     </button>
                                 </div>
                                 <div className="group-button">
-                                    <button className="btnadd" onClick={addToCart}>Chọn Mua</button>
+                                    <button className="btnadd" onClick={addToCartRedux}>Chọn Mua</button>
                                     {/*<button className="btnpay">*/}
                                     {/*    Trả góp*/}
                                     {/*    <span>454.166 đ/tháng</span>*/}

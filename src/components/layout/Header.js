@@ -6,6 +6,7 @@ import Login from "../login/LogIn";
 import productApi from "../../api/ProductService";
 import { DownOutlined } from "@ant-design/icons";
 import Images from "../Image/Images";
+import { useSelector } from 'react-redux';
 
 function Header() {
 
@@ -40,9 +41,10 @@ function Header() {
     const [name, setName] = useState();
     const [isUser, setIsUser] = useState(false);
 
+    const navigate = useNavigate();
 
-    // const [list, setList] = useState([]);
-    // const [count, setCount] = useState(0);
+    const cart = useSelector((state) => state.cartReduce.listCart);
+
 
     function getUser() {
         if (localStorage.getItem('accessToken')) {
@@ -65,22 +67,6 @@ function Header() {
     useEffect(() => {
         getUser();
     }, [])
-
-    // async function getListOrder() {
-    //     fetch("https://api-ecm.123code.net/api/transaction/lists", {
-    //         method: 'GET',
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             Authorization: "Bearer " + localStorage.getItem('accessToken'),
-    //         }
-    //     }).then((result) => {
-    //         result.json().then((res) => {
-    //             setList(res.data);
-    //         })
-    //     });
-    // }
-
-    const navigate = useNavigate();
 
     function Logout() {
         localStorage.clear();
@@ -123,17 +109,7 @@ function Header() {
         setSearchInput(e.target.value);
     }
 
-    const [cart, setCart] = useState([]);
 
-    const getCart = () => {
-        let cart = localStorage.getItem('cart');
-        cart = JSON.parse(cart);
-        setCart(cart);
-    }
-    
-    useEffect(() => {
-        getCart();
-    },[cart]);
 
     return (
         <>
@@ -222,8 +198,8 @@ function Header() {
                                                     .match(searchInput)
                                             )
                                             .slice(0, 2)
-                                            .map((item) => {
-                                                return (
+                                            .map((item) => 
+                                                (
                                                     <Link
                                                         to={`/search&q=${item.name}`}
                                                         className="search-list"
@@ -234,8 +210,8 @@ function Header() {
                                                         />
                                                         <p>{item.name}</p>
                                                     </Link>
-                                                );
-                                            })}
+                                                )
+                                            )}
                                         {dataList
                                             .filter((item) =>
                                                 item.pro_name
@@ -243,8 +219,8 @@ function Header() {
                                                     .match(searchInput)
                                             )
                                             .slice(0, 5)
-                                            .map((item) => {
-                                                return (
+                                            .map((item) => 
+                                                (
                                                     <Link
                                                         to={`${item.pro_slug}-${item.id}`}
                                                         className="search-list"
@@ -262,8 +238,8 @@ function Header() {
                                                         />
                                                         <p>{item.pro_name}</p>
                                                     </Link>
-                                                );
-                                            })}
+                                                )
+                                            )}
                                         <div className="show-more">
                                             Xem thêm <DownOutlined />
                                         </div>
@@ -316,7 +292,7 @@ function Header() {
                                                         className="cart-icon"
                                                     />
                                                     <span className="cart-number">
-                                                        { !localStorage.getItem('cart') ? (<>0</>) : (<>{cart.length}</>)}
+                                                        { cart ? cart.length : 0 }
                                                     </span>
                                                 </div>
                                                 <span className="cart-title">

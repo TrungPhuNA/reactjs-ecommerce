@@ -34,7 +34,7 @@ export default () => {
                             </div>
                             <div className="login-right">
                                 {/*<img src="https://salt.tikicdn.com/ts/upload/eb/f3/a3/25b2ccba8f33a5157f161b6a50f64a60.png" alt="sad" width='203' height='203' />*/}
-                                <div class="login-right-content">
+                                <div className="login-right-content">
                                     <h4>Mua sắm tại Hasaki</h4>
                                     <span>Siêu ưu đãi mỗi ngày</span>
                                 </div>
@@ -50,7 +50,7 @@ export default () => {
                                             <img src="https://salt.tikicdn.com/ts/upload/1c/ac/e8/141c68302262747f5988df2aae7eb161.png" alt="ads" width="38" height="38" />
                                         </li>
                                     </ul>
-                                    <p class="note">Bằng việc tiếp tục, bạn đã chấp nhận <Link to="/">điều khoản sử dụng</Link></p>
+                                    <p className="note">Bằng việc tiếp tục, bạn đã chấp nhận <Link to="/">điều khoản sử dụng</Link></p>
                                 </div>
                             </div>
                         </div>

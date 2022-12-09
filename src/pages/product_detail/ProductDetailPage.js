@@ -45,7 +45,7 @@ function ProductDetailPage() {
                     <ProductDescribe/>
                     <Comment/>
                     <HomeSuggest/>
-                    <ProductViewed/>
+                    {/* <ProductViewed/> */}
                     
                 </div>
             </>    
@@ -59,7 +59,7 @@ function ProductDetailPage() {
                         <ProductDescribe/>
                         <Comment/>
                         <HomeSuggest/>
-                        <ProductViewed/>
+                        {/* <ProductViewed/> */}
                         <DetailFooter/>
                     </>
             }  

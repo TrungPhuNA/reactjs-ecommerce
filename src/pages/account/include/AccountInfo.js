@@ -96,15 +96,15 @@ function AccountInfo() {
                                                     <div className="form-control">
                                                         <label>Họ & Tên</label>
                                                         <div className="input-label">
-                                                            <input className="input" type="text" name="fullName" maxlength="128" placeholder="Thêm họ tên"
-                                                                value={name} onChange={(e) => setName(e.target.value)}
+                                                            <input className="input" type="text" name="fullName" maxLength="128" placeholder="Thêm họ tên"
+                                                                defaultValue={name} onChange={(e) => setName(e.target.value)}
                                                             />
                                                         </div>
                                                     </div>
                                                     <div className="form-control">
                                                         <label className="input-label">Địa chỉ</label>
-                                                        <input className="input" type="text" name="userName" maxlength="128" placeholder="Nhập địa chỉ"
-                                                            value={address} onChange={(e) => setAddress(e.target.value)}
+                                                        <input className="input" type="text" name="userName" maxLength="128" placeholder="Nhập địa chỉ"
+                                                            defaultValue={address} onChange={(e) => setAddress(e.target.value)}
                                                         />
                                                     </div>
                                                 </div>
@@ -202,23 +202,23 @@ function AccountInfo() {
                                             <div className="form-control">
                                                 <label className="input-label1">Giới tính</label>
                                                 <label className="check-label">
-                                                    <input className="check-input" type="radio" name="gender" value="male"/>
+                                                    <input className="check-input" type="radio" name="gender" defaultValue="male"/>
                                                     <span className="span-input">Nam</span>
                                                 </label>
                                                 <label className="check-label">
-                                                    <input className="check-input" type="radio" name="gender" value="female"/>
+                                                    <input className="check-input" type="radio" name="gender" defaultValue="female"/>
                                                     <span className="span-input">Nữ</span>
                                                 </label>
                                                 <label className="check-label">
-                                                    <input className="check-input" type="radio" name="gender" value="other"/>
+                                                    <input className="check-input" type="radio" name="gender" defaultValue="other"/>
                                                     <span className="span-input">Khác</span>
                                                 </label>
                                             </div>
                                             <div className="form-control">
                                                 <label className="input-label1">Quốc tịch</label>
                                                 <div className="input-region">
-                                                    <input className="input-with-icon-right" name="nationality" maxlength="128" placeholder="Chọn quốc tịch" readonly="" value="Việt Nam"></input>
-                                                    <svg class="icon-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.30806 6.43306C3.55214 6.18898 3.94786 6.18898 4.19194 6.43306L10 12.2411L15.8081 6.43306C16.0521 6.18898 16.4479 6.18898 16.6919 6.43306C16.936 6.67714 16.936 7.07286 16.6919 7.31694L10.4419 13.5669C10.1979 13.811 9.80214 13.811 9.55806 13.5669L3.30806 7.31694C3.06398 7.07286 3.06398 6.67714 3.30806 6.43306Z" fill="#808089"></path></svg>
+                                                    <input className="input-with-icon-right" name="nationality" maxLength="128" placeholder="Chọn quốc tịch" readOnly="" defaultValue="Việt Nam"></input>
+                                                    <svg className="icon-right" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M3.30806 6.43306C3.55214 6.18898 3.94786 6.18898 4.19194 6.43306L10 12.2411L15.8081 6.43306C16.0521 6.18898 16.4479 6.18898 16.6919 6.43306C16.936 6.67714 16.936 7.07286 16.6919 7.31694L10.4419 13.5669C10.1979 13.811 9.80214 13.811 9.55806 13.5669L3.30806 7.31694C3.06398 7.07286 3.06398 6.67714 3.30806 6.43306Z" fill="#808089"></path></svg>
                                                 </div>
                                             </div>
                                             <div className="form-control">
@@ -230,7 +230,7 @@ function AccountInfo() {
                                 </div>
                                 <div className="info-vertical"/>
                                 <div className="info-right">
-                                    <span class="info-title">Số điện thoại và Email</span>
+                                    <span className="info-title">Số điện thoại và Email</span>
                                     <div className="list-container">
                                         <div className="listitem">
                                             <div className="listitem-info">
@@ -263,7 +263,7 @@ function AccountInfo() {
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="info-title">Bảo mật</span>
+                                    <span className="info-title">Bảo mật</span>
                                     <div className="list-container">
                                         <div className="listitem">
                                             <div className="listitem-info">
@@ -294,7 +294,7 @@ function AccountInfo() {
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="info-title">Liên kết mạng xã hội</span>
+                                    <span className="info-title">Liên kết mạng xã hội</span>
                                     <div className="list-container">
                                         <div className="listitem">
                                             <div className="listitem-info">

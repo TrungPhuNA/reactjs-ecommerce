@@ -1,19 +1,17 @@
 import React, {useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Provider, useDispatch } from "react-redux";
+import { getCart, decrementQuantity, incrementQuantity, removeItem } from '../../store/cartSlice';
+import { store } from '../../store/store';
     
 
 function ShopCart() {
-    
-    const [count, setCount] = useState(0);
+
     const [cart, setCart] = useState([]);
     const [checked, isChecked] = useState(false);
     const [total] = useState([]);
     
-    const getCart = () => {
-        let cart = localStorage.getItem('cart');
-        cart = JSON.parse(cart);
-        setCart(cart);
-    }
+    const dispatch = useDispatch();
     
     useEffect(() => {
         getCart();
@@ -30,7 +28,7 @@ function ShopCart() {
     }
 
     return (
-        <>
+        <Provider store={store}>
             <div className="sc-container">
                 <div className="main-title">
                     <h4>Giỏ hàng</h4>
@@ -50,18 +48,15 @@ function ShopCart() {
                         <div className="left-content-container">
                             <div className="list-cart">
                                 { cart ? (
-                                    cart.map((item, i) => {
-                                        if (checked === true ) {
-                                            total += item.pro_price * item.quantity;
-                                        }
-                                        return (
+                                    cart.map((item, index) => 
+                                        (
                                             <>
-                                                <div className="product-item">
+                                                <div className="product-item"  key={index}>
                                                     <div className="row">
                                                         <div className="col1">
                                                             <div className="product-detail">
                                                                 <div className="product-checkbox">
-                                                                    <input type="checkbox" checked={ checked === true ? 'checked' : '' }/>
+                                                                    <input type="checkbox"/>
                                                                 </div>
                                                                 <Link to={`/${item.pro_slug}-${item.id}`}>
                                                                     <img
@@ -87,11 +82,11 @@ function ShopCart() {
                                                         <div className="col3">
                                                             <div className="count">
                                                                 <div className="group-input">
-                                                                    <button disabled={`${item.quantity < 2 ? '{true}' : ''}`} className={`${item.quantity < 2 ? 'disable' : 'enable'}`} onClick={item.quantity - 1}>
+                                                                    <button disabled={`${item.quantity < 2 ? '{true}' : ''}`} className={`${item.quantity < 2 ? 'disable' : 'enable'}`} onClick={() => dispatch(incrementQuantity(item))}>
                                                                         <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg" width="20" height="20"/>
                                                                     </button>
                                                                     <input type="text" value={item.quantity} className="input"></input>
-                                                                    <button className='enable' onClick={item.quantity + 1}>
+                                                                    <button className='enable' onClick={ () => dispatch(decrementQuantity(item)) }>
                                                                         <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg" width="20" height="20" />
                                                                     </button>
                                                                 </div>
@@ -107,15 +102,14 @@ function ShopCart() {
                                                                 <img
                                                                     src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
                                                                     alt="deleted"
-                                                                    
+                                                                    onClick={() => dispatch(removeItem)}
                                                                 />
                                                             </span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </>
-                                        );
-                                    })
+                                        ))
                                 ) : (<></>)
                                 }
                             </div>
@@ -173,7 +167,7 @@ function ShopCart() {
                     </div>
                 </div>
             </div>
-        </>
+        </Provider>
     )
 }
 

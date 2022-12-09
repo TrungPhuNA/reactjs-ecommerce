@@ -108,7 +108,7 @@ function Explore({status}) {
                 {getSuggestTitle()}
                 <div className="suggestion__product">
                     <div className="content">
-                        { arr_10.map(item => {
+                        { arr_10.map(() => {
                                 return (
                                     <ProductSummary
                                         disCount={disCount}
