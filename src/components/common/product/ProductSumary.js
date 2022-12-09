@@ -27,14 +27,13 @@ function ProductSummary({ deal, disCount }) {
     return (
         <>
             <Swiper {...settingsSlide}>
-                {products.map((item) => {
-                    return (
-                        <>
-                            <SwiperSlide>
+                {products.map((item, index) => 
+                    (
+                        <SwiperSlide  key={index}>
                                 <div className="dashboard-product--item">
                                     <Link
                                         to={`/${item.pro_slug}-${item.id}`}
-                                        className="product-item"
+                                        className="product-item" 
                                     >
                                         <div
                                             className={`product-item--style ${
@@ -103,10 +102,9 @@ function ProductSummary({ deal, disCount }) {
                                         </div>
                                     </Link>
                                 </div>
-                            </SwiperSlide>
-                        </>
-                    );
-                })}
+                        </SwiperSlide>
+                    )
+                )}
             </Swiper>
         </>
     );

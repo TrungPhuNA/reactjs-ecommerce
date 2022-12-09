@@ -82,7 +82,7 @@ function UpdatePassword() {
                                         />
                                         <img onClick={ShowPassword} className="img-pass" src='https://frontend.tikicdn.com/_desktop-next/static/img/account/eye.png' alt="ds" width="24" height="24"/>
                                     </div>
-                                    <div class="hint-pass-new"> Mật khẩu phải dài từ 8 đến 32 ký tự, bao gồm chữ và số</div>
+                                    <div className="hint-pass-new"> Mật khẩu phải dài từ 8 đến 32 ký tự, bao gồm chữ và số</div>
                                     
                                 </div>
                                 <div className="form-pass-control">

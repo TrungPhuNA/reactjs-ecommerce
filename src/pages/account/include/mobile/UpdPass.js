@@ -7,7 +7,7 @@ function UpdPass() {
             <header className="header-as-title">
                 <Link to="/infomob" >
                     <button className="btn-back">
-                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="30" height="30" width="30" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>
+                        <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" size="30" height="30" width="30" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>
                     </button>
                 </Link>
                 <div className="mob-as-title">Đổi mật khẩu</div>
@@ -34,7 +34,7 @@ function UpdPass() {
                             <input className="input-pass-box1" placeholder="Nhập mật khẩu mới" type="search"></input>
                             <img className="img-pass" src='https://frontend.tikicdn.com/_desktop-next/static/img/account/eye.png' alt="ds" width="24" height="24" />
                         </div>
-                        <div class="hint-pass-new"> Mật khẩu phải dài từ 8 đến 32 ký tự, bao gồm chữ và số</div>
+                        <div className="hint-pass-new"> Mật khẩu phải dài từ 8 đến 32 ký tự, bao gồm chữ và số</div>
 
                     </div>
                     <div className="form-pass-control">

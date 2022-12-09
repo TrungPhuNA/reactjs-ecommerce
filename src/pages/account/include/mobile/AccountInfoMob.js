@@ -7,7 +7,7 @@ function AccountInfoMob() {
             <header className="header-as-title">
                 <Link to="/accsetting" >
                     <button className="btn-back">
-                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="30" height="30" width="30" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>    
+                        <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" size="30" height="30" width="30" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>    
                     </button>    
                 </Link>  
                 <div className="mob-as-title">Thông Tin Tài Khoản</div>
@@ -17,10 +17,10 @@ function AccountInfoMob() {
             </header>
             <main className="main-as">
                 <div className="header-avatar">
-                    <input type="file" id="myFile" name="myFile" accept="image/*" class="image-input"/>
+                    <input type="file" id="myFile" name="myFile" accept="image/*" className="image-input"/>
                     <div className="header-avatar-view">
-                        <img src="https://salt.tikicdn.com/cache/512x512/ts/avatar/b9/42/e9/5d6bd301d4a6fb334877b9ae5082f483.jpg" alt="avatar" class="avatar"/>
-                        <div class="edit"><img src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/edit.png" class="edit_img" alt="" width='10' height='10'/></div>
+                        <img src="https://salt.tikicdn.com/cache/512x512/ts/avatar/b9/42/e9/5d6bd301d4a6fb334877b9ae5082f483.jpg" alt="avatar" className="avatar"/>
+                        <div className="edit"><img src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/edit.png" className="edit_img" alt="" width='10' height='10'/></div>
                     </div>
                 </div>
                 <Link to="/updname" className="account-info-mob">
