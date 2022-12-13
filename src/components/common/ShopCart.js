@@ -1,29 +1,71 @@
-import React, {useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Provider, useDispatch } from "react-redux";
-import { getCart, decrementQuantity, incrementQuantity, removeItem } from '../../store/cartSlice';
+import { Provider, useDispatch, useSelector } from "react-redux";
+import { decrementQuantity, incrementQuantity, removeItem, removeAll } from '../../store/cartSlice';
 import { store } from '../../store/store';
-    
+import authApi from '../../api/AuthService';
+import cartApi from '../../api/CartService';
+
 
 function ShopCart() {
 
-    const [cart, setCart] = useState([]);
-    const [checked, isChecked] = useState(false);
-    const [total] = useState([]);
-    
+    const cart = useSelector((state) => state.cartReduce.listCart);
+    let price_total = 0;
     const dispatch = useDispatch();
-    
-    useEffect(() => {
-        getCart();
-    },[cart]);
+    const [checked, isChecked] = useState(false);
+    const [checkedAll, isCheckedAll] = useState(false);
+    const [checkItem, setCheckItem] = useState(false);
 
-    function handleCheckAll(e) {
-        if (e.target.checked) {
-            isChecked(true);
-            console.log('checked')
-        } else {
-            isChecked(false);
-            console.log('uncheck')
+    function handleCheckAll() {
+        isChecked(!checked);
+        isCheckedAll(!checkedAll);
+    }
+
+    function getTotal() {
+        if (checked === true) {
+            cart.map((item, index) => {
+                price_total += item.quantity * item.pro_price;
+            })
+            console.log('Total = ', price_total)
+            return price_total.toLocaleString();
+        }
+    }
+
+    const Order = async () => {
+        let order = {};
+        let transactions = [];
+        console.log('------------- cart: ', cart);
+        let total = 0;
+        cart.forEach((item, index) => {
+            transactions.push({
+                id: item.id,
+                name: item.pro_name,
+                quantity: item.quantity,
+                discount_type: "money",
+                discount_value: 0,
+                price: item.pro_price,
+                total_price: item.pro_price
+            });
+
+            total += (item.pro_price * item.quantity);
+        });
+
+        const getUser = await authApi.getProfile();
+        if (getUser.status === 200) {
+            order.name = getUser.data.name;
+            order.phone = getUser.data.phone;
+            order.address = getUser.data.address;
+        }
+        order.products = transactions;
+        order.note = "_";
+        order.total_price = total;
+
+        const createCart = await cartApi.createTransaction(order);
+        if (createCart.status === 200) {
+            dispatch(removeAll());
+        }
+        if (createCart.status === 500 && createCart.message === 'error') {
+            console.log('Error create!!!');
         }
     }
 
@@ -37,7 +79,7 @@ function ShopCart() {
                     <div className="left-content">
                         <div className="left-content-header">
                             <label>
-                                <input type='checkbox'  onClick={handleCheckAll}/>
+                                <input type='checkbox' onClick={handleCheckAll} />
                                 <span>Tất cả</span>
                             </label>
                             <span>Đơn giá</span>
@@ -47,69 +89,69 @@ function ShopCart() {
                         </div>
                         <div className="left-content-container">
                             <div className="list-cart">
-                                { cart ? (
-                                    cart.map((item, index) => 
-                                        (
-                                            <>
-                                                <div className="product-item"  key={index}>
-                                                    <div className="row">
-                                                        <div className="col1">
-                                                            <div className="product-detail">
-                                                                <div className="product-checkbox">
-                                                                    <input type="checkbox"/>
-                                                                </div>
-                                                                <Link to={`/${item.pro_slug}-${item.id}`}>
-                                                                    <img
-                                                                        alt="sda"
-                                                                        src={item.pro_avatar}
-                                                                        width="80"
-                                                                        height="80"
-                                                                    />
-                                                                </Link>
-                                                                <div className="product-content">
-                                                                    <Link
-                                                                        to={`/${item.pro_slug}-${item.id}`}
-                                                                        className="product-name"
-                                                                    >
-                                                                        {item.pro_name}
-                                                                    </Link>
-                                                                </div>
+                                {cart ? (
+                                    cart.map((item, index) =>
+                                    (
+                                        <>
+                                            <div className="product-item" key={index}>
+                                                <div className="row">
+                                                    <div className="col1">
+                                                        <div className="product-detail">
+                                                            <div className="product-checkbox">
+                                                                <input key={index.toString()} type="checkbox" checked={`${checkedAll === true ? 'checked' : ''}`} readOnly />
                                                             </div>
-                                                        </div>
-                                                        <div className="col2">
-                                                            <span>{item.pro_price.toLocaleString()} ₫</span>
-                                                        </div>
-                                                        <div className="col3">
-                                                            <div className="count">
-                                                                <div className="group-input">
-                                                                    <button disabled={`${item.quantity < 2 ? '{true}' : ''}`} className={`${item.quantity < 2 ? 'disable' : 'enable'}`} onClick={() => dispatch(incrementQuantity(item))}>
-                                                                        <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg" width="20" height="20"/>
-                                                                    </button>
-                                                                    <input type="text" value={item.quantity} className="input"></input>
-                                                                    <button className='enable' onClick={ () => dispatch(decrementQuantity(item)) }>
-                                                                        <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg" width="20" height="20" />
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col4">
-                                                            <span>
-                                                                {(item.pro_price * item.quantity).toLocaleString()} ₫
-                                                            </span>
-                                                        </div>
-                                                        <div className="col5" >
-                                                            <span>
+                                                            <Link to={`/${item.pro_slug}-${item.id}`}>
                                                                 <img
-                                                                    src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
-                                                                    alt="deleted"
-                                                                    onClick={() => dispatch(removeItem)}
+                                                                    alt="sda"
+                                                                    src={item.pro_avatar}
+                                                                    width="80"
+                                                                    height="80"
                                                                 />
-                                                            </span>
+                                                            </Link>
+                                                            <div className="product-content">
+                                                                <Link
+                                                                    to={`/${item.pro_slug}-${item.id}`}
+                                                                    className="product-name"
+                                                                >
+                                                                    {item.pro_name}
+                                                                </Link>
+                                                            </div>
                                                         </div>
                                                     </div>
+                                                    <div className="col2">
+                                                        <span>{item.pro_price.toLocaleString()} ₫</span>
+                                                    </div>
+                                                    <div className="col3">
+                                                        <div className="count">
+                                                            <div className="group-input">
+                                                                <button disabled={`${item.quantity < 2 ? '{true}' : ''}`} className={`${item.quantity < 2 ? 'disable' : 'enable'}`} onClick={() => dispatch(decrementQuantity(item))}>
+                                                                    <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg" width="20" height="20" />
+                                                                </button>
+                                                                <input type="text" value={item.quantity} className="input" readOnly ></input>
+                                                                <button className='enable' onClick={() => dispatch(incrementQuantity(item))}>
+                                                                    <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg" width="20" height="20" />
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col4">
+                                                        <span>
+                                                            {(item.pro_price * item.quantity).toLocaleString()} ₫
+                                                        </span>
+                                                    </div>
+                                                    <div className="col5" >
+                                                        <span>
+                                                            <img
+                                                                src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
+                                                                alt="deleted"
+                                                                onClick={() => dispatch(removeItem(item))}
+                                                            />
+                                                        </span>
+                                                    </div>
                                                 </div>
-                                            </>
-                                        ))
+                                            </div>
+                                        </>
+                                    ))
                                 ) : (<></>)
                                 }
                             </div>
@@ -140,7 +182,7 @@ function ShopCart() {
                                             Tạm tính
                                         </div>
                                         <div className="price-value">
-                                            {total.toLocaleString()} đ
+                                            0 đ
                                         </div>
                                     </li>
                                     <li>
@@ -155,14 +197,14 @@ function ShopCart() {
                                 <div className="price-total">
                                     <span>Tổng tiền</span>
                                     <div className="price-content">
-                                        <span>{total.toLocaleString()} đ</span>
+                                        <span>{getTotal()} đ</span>
                                         <span className="price-note">
                                             (Đã bao gồm VAT nếu có)
                                         </span>
                                     </div>
                                 </div>
                             </div>
-                            <button className="btn-buy">Mua hàng</button>
+                            <button className="btn-buy" onClick={Order}>Mua hàng</button>
                         </div>
                     </div>
                 </div>
