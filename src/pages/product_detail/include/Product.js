@@ -144,14 +144,6 @@ function Product({ products, pro_price }) {
                                 <div className="last-price">{products?.pro_discount_value !== 0 ? '20.000 đ' : null}</div>
                                 <div className="discount-rate">{products?.pro_discount_value !== 0 ? products?.pro_discount_value + '%' : null}</div>
                             </div>
-                            <div className="-icon">
-                                <div className="thuong-asa">
-                                    <img alt="/" width="13" height="16" src="https://salt.tikicdn.com/ts/upload/df/e2/b4/063c4d55ca380f818547f00f5175d39f.png" />
-                                    <span className="asa-text">Thưởng 109,00 ASA (~ 34.117đ)</span>
-                                    <span className="asa-icon"></span>
-                                </div>
-                                <img alt="/" src="https://salt.tikicdn.com/ts/upload/43/01/71/d74d0e9e37a9bb14f35dcc0c816d2038.gif" width="42" />
-                            </div>
                         </div>
                         {/*<div className="coupon-seperate"/>*/}
                         {/*<div className="coupon">*/}
@@ -163,8 +155,9 @@ function Product({ products, pro_price }) {
                         {/*        <img alt="/" src="https://salt.tikicdn.com/ts/upload/63/43/b6/472934eece91531f0855b86a00a3b1a1.png"/>*/}
                         {/*    </div>*/}
                         {/*</div>*/}
-                        <div className="addr-deli">
-                            {/*<div className="change-addr">*/}
+                        
+                        {/* <div className="addr-deli"> */}
+                            {/* <div className="change-addr">*/}
                             {/*    <div>*/}
                             {/*        <span>Giao đến </span>*/}
                             {/*        <span className="Adress">Q. Hoàn Kiếm, P. Hàng Trống, Hà Nội</span>*/}
@@ -186,9 +179,9 @@ function Product({ products, pro_price }) {
                             {/*        <div className="fee-current"> 338.000₫</div>*/}
                             {/*        <div className="fee-origin">358.000đ </div>*/}
                             {/*    </div>*/}
-                            {/*</div>*/}
-
-                            {isWideScreen() &&
+                            {/*</div> */}
+                            
+                            {/* {isWideScreen() &&
                                 <>
                                     <div className="btnchat">
                                         <span>Chat với nhà bán về cách lắp đặt</span>
@@ -196,7 +189,7 @@ function Product({ products, pro_price }) {
                                     </div>
                                 </>}
                             {!isWideScreen && <div></div>}
-                        </div>
+                        </div> */}
 
                         {isWideScreen() &&
                             <>
@@ -225,7 +218,7 @@ function Product({ products, pro_price }) {
                         {!isWideScreen() && <div></div>}
                     </div>
 
-                    {isWideScreen() &&
+                    {isWideScreen() && 
                         <>
                             {/*<div className="content-body-right">*/}
                             {/*    <div className="current-seller">*/}
@@ -329,7 +322,7 @@ function Product({ products, pro_price }) {
                         </>
                     }
                     {!isWideScreen() &&
-                        <div></div>
+                        <></>
                     }
                 </div>
             </div>
