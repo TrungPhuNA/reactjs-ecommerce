@@ -69,7 +69,8 @@ function Header() {
     }, [])
 
     function Logout() {
-        localStorage.clear();
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('user');
         window.location.reload();
         navigate("/");
     }
