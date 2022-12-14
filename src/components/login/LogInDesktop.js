@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
+import { useDispatch } from "react-redux";
+import { setTokenLogin } from "../../store/authSlice";
 
 
 function LogInDesktop() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [noti, setNoti] = useState(false);
+    const dispatch = useDispatch();
 
     async function loginUser(e) {
         e.preventDefault();
@@ -20,12 +23,14 @@ function LogInDesktop() {
             });
             result = await result.json();
 
-            localStorage.setItem("user", JSON.stringify(result.data));
-            const token = localStorage.getItem("user");
-            const tokenString = JSON.parse(token);
-            localStorage.setItem("accessToken", tokenString.accessToken);
+            
 
             if (result.status === 200) {
+                localStorage.setItem("user", JSON.stringify(result.data));
+                const token = localStorage.getItem("user");
+                const tokenString = JSON.parse(token);
+                localStorage.setItem("accessToken", tokenString.accessToken);
+                dispatch(setTokenLogin(tokenString.accessToken));
                 window.location.reload();
             }
         } catch (e) {

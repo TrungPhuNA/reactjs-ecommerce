@@ -5,7 +5,7 @@ const cartApi = {
         try {
             const url = `transaction/create`;
             const response = await axiosClient.post(url, data);
-            console.log('------------- createTransaction@response: ', response)
+            console.log('------------- createTransaction@response: ', response);
             if (response.status === 200 || response.status === 201) {
                 return response.data;
             }

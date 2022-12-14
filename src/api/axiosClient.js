@@ -1,38 +1,43 @@
 import axios from 'axios';
-// require('dotenv').config();
+// import { getDataLocalStorageByKey, remoteDataLocalStorageByKey } from '../helpers/function';
 
-// const URL_API = process.env.URL_API;
-// console.log('----------- URL_API: ', URL_API);
 const axiosClient = axios.create({
-	// baseURL: 'http://localhost:3006/api',
 	baseURL: 'https://api-ecm.123code.net/api',
 	headers: {
-		'content-type': 'application/json',
+		'Content-Type': 'application/json',
 	}
 })
-//
-// export const axiosClient = () => {
-// 	axios.defaults.baseURL = 'https://api-ecm.123code.net/api';
-// 	axios.interceptors.response.use(
-// 		function (response) {
-// 			if (response.data) {
-// 				// return success
-// 				if (response.status === 200 || response.status === 201) {
-// 					return response;
-// 				}
-// 				// reject errors & warnings
-// 				return Promise.reject(response);
-// 			}
-//
-// 			// default fallback
-// 			return Promise.reject(response);
-// 		},
-// 		function (error) {
-// 			// if the server throws an error (404, 500 etc.)
-// 			return Promise.reject(error);
+
+// let infoToken = getDataLocalStorageByKey('data');
+// console.log('infoToken', infoToken);
+// let token = (infoToken && infoToken.accessToken) ? infoToken.accessToken : ''
+
+if (localStorage.getItem('accessToken')) {
+	axiosClient.defaults.headers.common['Authorization'] =  'Bearer ' + localStorage.getItem('accessToken');
+}
+
+// axiosClient.interceptors.response.use(
+// 	function (response) {
+// 		if (
+// 			(response.data && response.data.error_code === 401) ||
+// 			(response.data && response.data.code === 401) ||
+// 			(response.data && response.data.statusCode === 401) ||
+// 			(response.data && response.data.status === 401)
+// 		) {
+// 			console.log('----------axiosClient@response ', response);
+// 			remoteDataLocalStorageByKey('data');
 // 		}
-// 	);
-// };
+// 		return response
+// 	},
+// 	function (error) {
+// 		if (error?.response?.status === 401 && error?.response?.data?.statusCode === 401) {
+// 			console.log('---------- hết hạn token hoạc chưa login => axiosClient@response ', error);
+// 			// remoteDataLocalStorageByKey('data')
+// 		}
+// 		return Promise.reject(error)
+// 	}
+// )
+
 
 
 export default axiosClient;

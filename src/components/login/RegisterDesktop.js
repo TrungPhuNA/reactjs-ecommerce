@@ -26,12 +26,11 @@ function RegisterDesktop() {
             });
             result = await result.json();
 
-            localStorage.setItem('user', JSON.stringify(result.data));
-            const token = localStorage.getItem('user');
-            const tokenString = JSON.parse(token);
-            localStorage.setItem('accessToken', tokenString.accessToken);
-
             if (result.status === 200 && result.status !== 500) {
+                localStorage.setItem('user', JSON.stringify(result.data));
+                const token = localStorage.getItem('user');
+                const tokenString = JSON.parse(token);
+                localStorage.setItem('accessToken', tokenString.accessToken);
                 window.location.reload();
             } else {
                 localStorage.clear();

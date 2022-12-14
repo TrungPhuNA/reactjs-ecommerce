@@ -14,7 +14,7 @@ function ShopCart() {
     const dispatch = useDispatch();
     const [checked, isChecked] = useState(false);
     const [checkedAll, isCheckedAll] = useState(false);
-    const [checkItem, setCheckItem] = useState(false);
+    // const [checkItem, setCheckItem] = useState(false);
 
     function handleCheckAll() {
         isChecked(!checked);
@@ -57,9 +57,10 @@ function ShopCart() {
             order.address = getUser.data.address;
         }
         order.products = transactions;
-        order.note = "_";
+        order.note = "abc";
         order.total_price = total;
-
+        console.log('order -----------: ',order);
+        console.log(localStorage.getItem('accessToken'));
         const createCart = await cartApi.createTransaction(order);
         if (createCart.status === 200) {
             dispatch(removeAll());
@@ -190,7 +191,7 @@ function ShopCart() {
                                             Giảm giá
                                         </div>
                                         <div className="price-value">
-                                            0đ
+                                            0 đ
                                         </div>
                                     </li>
                                 </ul>
