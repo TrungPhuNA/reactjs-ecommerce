@@ -1,6 +1,27 @@
 import axiosClient from './axiosClient';
 
 const cartApi = {
+
+    async getTransaction(params) {
+        try {
+			const newParams = { ...params }
+			const url = `transaction/lists`;
+			console.log('--------- newParams: ', newParams);
+			const response = await axiosClient.get(url, {
+				params: {...newParams},
+			})
+
+			if (response.status === 200) {
+				return response.data;
+			}
+		} catch (e) {
+			console.log('--------------- getOrderList@Error ', e);
+		}
+
+		return  {
+			status: 501
+		}
+    },
     async createTransaction(data) {
         try {
             const url = `transaction/create`;
@@ -16,7 +37,8 @@ const cartApi = {
         return {
             status: 501
         }
-    }
+    },
+
 }
 
 export default cartApi;

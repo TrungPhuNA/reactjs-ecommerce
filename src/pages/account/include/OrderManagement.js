@@ -1,8 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SideNavBar from "./SideNavBar";
 import {Link} from 'react-router-dom';
+import cartApi from "../../../api/CartService";
+import authApi from "../../../api/AuthService";
 
 function OrderManagement() {
+
+    const [orderList, setOrderList] = useState([]);
+    const [isActive, setIsActive] = useState(false)
+
+    const getOrderList = async () => {
+        let order = [];
+        const getUser = await authApi.getProfile();
+        const response = await cartApi.getTransaction();
+        console.log(response.data)
+        if (getUser.status === 200) {
+            response.data.forEach(item => {
+                if (item.t_name === getUser.data.name) {
+                    order.push(item);
+                }
+            });
+            console.log('danh sach don hang: ',order)
+        }
+        setOrderList(order);
+            
+    }
+
+    useEffect(() => {
+        getOrderList();
+    },[]);
+
+    function changeTab() {
+        
+    }
+
+
     return(
         <>
             <div className="container">
@@ -33,7 +65,25 @@ function OrderManagement() {
                             <div className="search-input-right">Tìm đơn hàng</div>
                         </div>
                         <div className="order-container">
-                            
+                            { orderList.length > 0 ? 
+                                orderList.map((item, index) => (
+                                    <>
+                                        <div className="list-order" key={index}>
+                                            <p>Đơn hàng số {item.id}</p>
+                                            <p>Tổng tiền: {item.t_total_money} ₫</p>
+                                        </div>
+                                        <div className="group-btn-order">
+                                            <button className="btn-order">Xóa</button>
+                                            <button className="btn-order">Chỉnh sửa</button>
+                                        </div>
+                                        <div className="list-seperate"/>
+                                    </>
+                                ))
+                                : 
+                                (<>
+                                    <img className='empty-icon'src="https://frontend.tikicdn.com/_desktop-next/static/img/account/empty-order.png" alt='empty'/>
+                                    <div className='empty-order'>Chưa có đơn hàng</div>
+                                </>)}
                         </div>
                     </div>  
                 </div>
