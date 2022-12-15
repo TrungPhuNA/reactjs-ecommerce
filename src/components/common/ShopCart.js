@@ -80,7 +80,7 @@ function ShopCart() {
 
     const handleClose = () => {
         setIsShow(false);
-        //navigate('/');
+        navigate('/');
     }
 
     return (
