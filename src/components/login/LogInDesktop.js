@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { setTokenLogin } from "../../store/authSlice";
+import Popup from "reactjs-popup";
 
 
 function LogInDesktop() {
@@ -32,9 +33,11 @@ function LogInDesktop() {
                 localStorage.setItem("accessToken", tokenString.accessToken);
                 dispatch(setTokenLogin(tokenString.accessToken));
                 window.location.reload();
+            } else {
+                setNoti(true);
             }
         } catch (e) {
-            setNoti(true);
+            console.log('---Erorlogin');
         }
 
 

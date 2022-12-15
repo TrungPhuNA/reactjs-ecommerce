@@ -25,6 +25,7 @@ import SidebarFilter from '../../components/common/sidebar/SidebarFinter';
 function CategoryPage() {
 
     let { id } = useParams();
+    console.log(id);
     const [category, setCategory] = useState(null);
     const [products, setProducts] = useState([]);
 
@@ -121,8 +122,8 @@ function CategoryPage() {
                                                 <div className="tabs-list">
                                                     { isWideScreen() &&
                                                         <>
-                                                            <Link to="" onClick={handleChangeSort} className="tabs-list" data-sort-type="price" data-sort-value={"desc"} >Giá Thấp Đến Cao</Link>
-                                                            <Link to="" onClick={handleChangeSort} className="tabs-list" data-sort-type="price" data-sort-value={"asc"} >Giá Cao Đến Thấp</Link>
+                                                            <Link to='' onClick={handleChangeSort} className="tabs-list" data-sort-type="price" data-sort-value={"desc"} >Giá Thấp Đến Cao</Link>
+                                                            <Link to='' onClick={handleChangeSort} className="tabs-list" data-sort-type="price" data-sort-value={"asc"} >Giá Cao Đến Thấp</Link>
                                                         </>
                                                     }
                                                     { !isWideScreen() &&
@@ -136,7 +137,7 @@ function CategoryPage() {
                                                 </div>
                                             </div>
 
-                                            <div className="search-navigate">
+                                            {/* <div className="search-navigate">
                                                 <div className="paging">
                                                     <span className="current">1</span>
                                                     &#47;
@@ -147,7 +148,7 @@ function CategoryPage() {
                                                     <img alt="/" src="https://salt.tikicdn.com/ts/brickv2og/b0/c0/37/55863dd4fac41fc53a8ad943545973b1.png"/>
                                                     <img className="right" alt="/" src="https://salt.tikicdn.com/ts/brickv2og/a8/b5/3b/3c2faee1a219b651e8bf39b1e57b9bbc.png"/>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
 
                                         <div className="summary-bottom">

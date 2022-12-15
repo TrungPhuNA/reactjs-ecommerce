@@ -42,7 +42,7 @@ export default function SidebarFilter()  {
 					)}
 				</div>
 
-				<div className="sidebar-service">
+				{/* <div className="sidebar-service">
 					<h4>Dịch vụ</h4>
 					<label>
 						<input type="checkbox"/>
@@ -155,7 +155,7 @@ export default function SidebarFilter()  {
 						<input type="checkbox"/>
 						<p>Hàng Nội Địa</p>
 					</label>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	)
