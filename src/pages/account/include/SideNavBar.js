@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import '../../../fontawesome';
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 class SideNavBar extends React.Component {
     // state = {
@@ -74,7 +74,7 @@ class SideNavBar extends React.Component {
                                 <ul>
                                     <Link to='/order'>
                                         <li> 
-                                            <FontAwesomeIcon className="iimg" icon={faUser} />
+                                            <FontAwesomeIcon className="iimg" icon={faShoppingCart} />
                                             <div className="li-text">Quản lý đơn hàng</div>
                                         </li>
                                     </Link>

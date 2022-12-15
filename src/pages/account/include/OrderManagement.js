@@ -15,7 +15,7 @@ function OrderManagement() {
         const response = await cartApi.getTransaction();
         console.log(response.data)
         if (getUser.status === 200) {
-            response.data.forEach(item => {
+            response.data.forEach((item, index) => {
                 if (item.t_name === getUser.data.name) {
                     order.push(item);
                 }
@@ -33,7 +33,6 @@ function OrderManagement() {
     function changeTab() {
         
     }
-
 
     return(
         <>
@@ -74,7 +73,7 @@ function OrderManagement() {
                                         </div>
                                         <div className="group-btn-order">
                                             <button className="btn-order">Xóa</button>
-                                            <button className="btn-order">Chỉnh sửa</button>
+                                            <button className="btn-order"><Link to={`./orderdetail/id=${item.id}`} style={{color: 'white'}}>Xem chi tiết</Link></button>
                                         </div>
                                         <div className="list-seperate"/>
                                     </>

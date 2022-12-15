@@ -83,7 +83,7 @@ export const routes = () => {
             element: <OrderManagementMob />
         },
         {
-            path: 'order/orderdetail',
+            path: 'order/orderdetail/id=:id',
             element: <OrderDetail />
         },
         {

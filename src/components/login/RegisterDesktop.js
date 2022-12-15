@@ -37,8 +37,7 @@ function RegisterDesktop() {
                 setNoti(true);
             }
         } catch (e) {
-            localStorage.clear();
-            setNoti(true);
+            console.log('----Eror signup!');
         }
 
     }

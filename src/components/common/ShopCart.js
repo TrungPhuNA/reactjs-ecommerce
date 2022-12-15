@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { decrementQuantity, incrementQuantity, removeItem, removeAll } from '../../store/cartSlice';
 import { store } from '../../store/store';
 import authApi from '../../api/AuthService';
 import cartApi from '../../api/CartService';
+import Popup from 'reactjs-popup';
 
 
 function ShopCart() {
@@ -15,6 +16,8 @@ function ShopCart() {
     const [checked, isChecked] = useState(false);
     const [checkedAll, isCheckedAll] = useState(false);
     // const [checkItem, setCheckItem] = useState(false);
+    const [isShow, setIsShow] = useState(false);
+    const [alert, setAlert] = useState(false);
 
     function handleCheckAll() {
         isChecked(!checked);
@@ -62,14 +65,26 @@ function ShopCart() {
         console.log('order -----------: ',order);
         const createCart = await cartApi.createTransaction(order);
         if (createCart.status === 200) {
+            setIsShow(true)
+            isCheckedAll(false)
             dispatch(removeAll());
+        } else {
+            setAlert(true);
         }
         if (createCart.status === 500 && createCart.message === 'error') {
             console.log('Error create!!!');
         }
     }
 
+    const navigate = useNavigate();
+
+    const handleClose = () => {
+        setIsShow(false);
+        //navigate('/');
+    }
+
     return (
+        
         <Provider store={store}>
             <div className="sc-container">
                 <div className="main-title">
@@ -205,6 +220,33 @@ function ShopCart() {
                                 </div>
                             </div>
                             <button className="btn-buy" onClick={Order}>Mua hàng</button>
+                            { isShow ? (
+                                <div className='alert-cart'>
+                                    <div className="alert-cart-container">
+                                        <div className="alert-cart-content">
+                                            <div>
+                                                <img width='20' height='20' alt='sc' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL3KoNpySX6KZDN0GJtebbCnuYtu2FIClZGA&usqp=CAU'/>
+                                                <h4>Đặt hàng thành công</h4>                              
+                                            </div>
+                                            <button className="button-close1" onClick={handleClose}>Đóng</button>
+                                        </div>
+                                    </div>
+                                </div>           
+                            ) : (<>
+                                    { alert ? 
+                                        (<div className='alert-cart'>
+                                            <div className="alert-cart-container">
+                                                <div className="alert-cart-content">
+                                                <img width='20' height='20' alt='sc' src='https://cdn-icons-png.flaticon.com/512/6659/6659895.png'/>
+                                                    <h4>Đặt hàng thất bại</h4>
+                                                    <button className="button-close2" onClick={() => {setIsShow(false); setAlert(false)}}>Đóng</button>
+                                                </div>
+                                            </div>
+                                        </div> ) 
+                                        : (<></>)
+                                    }
+                                </>)
+                            }
                         </div>
                     </div>
                 </div>

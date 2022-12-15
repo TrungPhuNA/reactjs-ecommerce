@@ -76,18 +76,19 @@
                 font-size: 14px;
                 padding: 12px 16px;
                 position: relative;
+
                 @media (max-width: 1024px) {
                     justify-content: space-between;
                 }
             }
-            
+
             a:hover {
                 color: rgb(11, 116, 229);
                 font-weight: 500;
                 position: relative;
             }
 
-                .active::after {
+            .active::after {
                 content: "";
                 display: block;
                 position: absolute;

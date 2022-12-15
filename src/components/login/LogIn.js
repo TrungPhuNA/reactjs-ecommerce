@@ -6,7 +6,7 @@ import LogInDesktop from './LogInDesktop';
 export default () => {
 
     const [isShow, setIsShow] = useState(true)
-    const [isRegister, setIsRegister] = useState(true);
+    const [isRegister, setIsRegister] = useState(false);
 
     return (
         <>
@@ -17,15 +17,15 @@ export default () => {
                             <button className="button-close" onClick={() => setIsShow(false)}><img src="https://salt.tikicdn.com/ts/upload/fe/20/d7/6d7764292a847adcffa7251141eb4730.png" alt="sdf" /></button>
                             <div className="login-left">
                                 <div className="login-left-content">
-                                    {isRegister ? (
-                                        <>
-                                            <RegisterDesktop/>
-                                            <p className="login-with-login"><Link onClick={() => setIsRegister(false)}>Đăng nhập bằng email</Link></p>
-                                        </>
-                                    ) : (
+                                    {isRegister === false ? (
                                         <>
                                             <LogInDesktop/>
                                             <p className="login-with-login">Bạn chưa có tài khoản? <Link onClick={() => setIsRegister(true)}>Đăng ký</Link></p>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <RegisterDesktop/>
+                                            <p className="login-with-login"><Link onClick={() => setIsRegister(false)}>Đăng nhập bằng email</Link></p>
                                         </>
                                     )
                                     }

@@ -47,9 +47,9 @@ export const cartSlice = createSlice({
             state.listCart = removeItem;
             localStorage.setItem('cart', JSON.stringify(state.listCart))
         },
-        removeAll: (state) => {
-            state.listsCart = [];
-            localStorage.setItem('cart', JSON.stringify(state.listsCart));
+        removeAll: (state, action) => {
+            state.listCart = [];
+            localStorage.setItem('cart', JSON.stringify(state.listCart));
         }
     }
 })

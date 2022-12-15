@@ -47,21 +47,30 @@ function Header() {
 
 
     function getUser() {
-        if (localStorage.getItem('accessToken')) {
-            setIsUser(true)
-            return fetch("https://api-ecm.123code.net/api/auth/profile", {
-                method: 'GET',
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: "Bearer " + localStorage.getItem('accessToken'),
-                }
-            }).then((result) => {
-                result.json().then((res) => {
-                    setUser(res);
-                    setName(res.data.name);
-                })
-            });
+        try {
+            if (localStorage.getItem('accessToken')) {
+                setIsUser(true)
+                return fetch("https://api-ecm.123code.net/api/auth/profile", {
+                    method: 'GET',
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: "Bearer " + localStorage.getItem('accessToken'),
+                    }
+                }).then((result) => {
+                    result.json().then((res) => {
+                        if (res.statusCode !== 401) {
+                            setUser(res);
+                            setName(res.data.name);
+                        } else {
+                            return Logout();
+                        }    
+                    })
+                });
+            }
+        } catch (e) {
+            console.log('-----Expired');
         }
+        
     }
 
     useEffect(() => {
