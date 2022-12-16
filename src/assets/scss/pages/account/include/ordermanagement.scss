@@ -74,9 +74,9 @@
     padding: 35px;
 
     .empty-icon {
-        width: 200;
-        height: 200;
-        justify-content: center;
+        width: 200px;
+        height: 200px;
+        align-self: center;
     }
     
     .empty-order {
@@ -84,6 +84,7 @@
         color: rgb(56, 56, 61);
         font-size: 16px;
         font-weight: 400;
+        align-self: center;
     }
 
     .list-order {

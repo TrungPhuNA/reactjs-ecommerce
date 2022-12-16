@@ -38,7 +38,22 @@ const cartApi = {
             status: 501
         }
     },
+    async deleteTransaction(id) {
+        try {
+            const url = `transaction/delete/${id}`;
+            const response = await axiosClient.delete(url);
+            console.log('------------- deleteTransaction@response: ', response);
+            if (response.status === 200 || response.status === 201) {
+                return response.data;
+            }
+        } catch (e) {
+            console.log('--------------- createTransaction@Error ', e);
+        }
 
+        return {
+            status: 501
+        }
+    }
 }
 
 export default cartApi;

@@ -6,6 +6,45 @@ import authApi from "../../../api/AuthService";
 
 function OrderManagement() {
 
+    const [tabs, setTabs] = useState([]);
+
+    useEffect(() => {
+        let data = [
+            {
+                id: 1,
+                title: 'Tất cả đơn',
+                status: true,
+            },
+            {
+                id: 2,
+                title: 'Chờ thanh toán',
+                status: false,
+            },
+            {
+                id: 3,
+                title: 'Đang xử lý',
+                status: false,
+            },
+            {
+                id: 4,
+                title: 'Đang vận chuyển',
+                status: false,
+            },
+            {
+                id: 5,
+                title: 'Đã giao',
+                status: false,
+            },
+            {
+                id: 6,
+                title: 'Đã hủy',
+                status: false,
+            },
+        ]
+        setTabs(data)
+    }, []);
+    
+
     const [orderList, setOrderList] = useState([]);
     const [isActive, setIsActive] = useState(false)
 
@@ -26,12 +65,24 @@ function OrderManagement() {
             
     }
 
+    const removeOrder = async (id) => {
+        const response = await cartApi.deleteTransaction(id);
+        if(response.status === 200) {
+            console.log('Xoa thanh cong!');
+        }
+    }
+
     useEffect(() => {
         getOrderList();
     },[]);
 
-    function changeTab() {
-        
+    function changeTab(tabNumber) {
+        let tab = tabs.map(item => {
+            item.status = item.id === tabNumber ? true : false;
+            setTabs(tabNumber);
+            return item;
+        })
+        setTabs(tab);
     }
 
     return(
@@ -45,18 +96,13 @@ function OrderManagement() {
                 <div className="page-container">
                 <SideNavBar/>
                     <div className="right-container">
-                    <Link to="orderdetail">
                         <div className="heading-title">
                             Đơn hàng của tôi
                         </div>
-                    </Link>
-                        <div className="order-tablist">
-                            <div className="order-tab-active">Tất cả đơn</div>
-                            <div className="order-tab">Chờ thanh toán</div>
-                            <div className="order-tab">Đang xử lý</div>
-                            <div className="order-tab">Đang vận chuyển</div>
-                            <div className="order-tab">Đã giao</div>
-                            <div className="order-tab">Đã hủy</div>
+                        <div className="order-tablist"> 
+                            { tabs.map((item, index) => (
+                                <div className={`order-tab${item.status ? '-active' : ''}`} key={item.id.toString()} onClick={() => changeTab(item.id)}>{item.title}</div>
+                            ))}
                         </div>
                         <div className="order-search-input">
                             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" color="#808089" className="icon-left" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
@@ -65,14 +111,15 @@ function OrderManagement() {
                         </div>
                         <div className="order-container">
                             { orderList.length > 0 ? 
-                                orderList.map((item, index) => (
+                                orderList.map((item, index) => 
+                                (
                                     <>
                                         <div className="list-order" key={index}>
                                             <p>Đơn hàng số {item.id}</p>
                                             <p>Tổng tiền: {item.t_total_money} ₫</p>
                                         </div>
                                         <div className="group-btn-order">
-                                            <button className="btn-order">Xóa</button>
+                                            <button className="btn-order" onClick={() => removeOrder(item.id)}>Xóa</button>
                                             <button className="btn-order"><Link to={`./orderdetail/id=${item.id}`} style={{color: 'white'}}>Xem chi tiết</Link></button>
                                         </div>
                                         <div className="list-seperate"/>
@@ -82,7 +129,8 @@ function OrderManagement() {
                                 (<>
                                     <img className='empty-icon'src="https://frontend.tikicdn.com/_desktop-next/static/img/account/empty-order.png" alt='empty'/>
                                     <div className='empty-order'>Chưa có đơn hàng</div>
-                                </>)}
+                                </>)
+                            }
                         </div>
                     </div>  
                 </div>
