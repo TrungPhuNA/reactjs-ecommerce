@@ -8,7 +8,7 @@ import MobileCategoryHeader from "./include/mobile/MobileCategoryHeader";
 import {useParams} from 'react-router';
 import categoryApi from '../../api/CategoryService';
 import productApi from '../../api/ProductService';
-import {Link, useSearchParams} from 'react-router-dom';
+import {Link, useSearchParams , useLocation } from 'react-router-dom';
 
 // import {Swiper, SwiperSlide} from 'swiper/react';
 // import {Navigation} from 'swiper';
@@ -25,18 +25,17 @@ import SidebarFilter from '../../components/common/sidebar/SidebarFinter';
 function CategoryPage() {
 
     let { id } = useParams();
-    console.log(id);
     const [category, setCategory] = useState(null);
     const [products, setProducts] = useState([]);
 
     const [loadingProduct, setLoadingProduct] = useState(true);
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams({});
 
     useEffect(() => {
         window.scrollTo(0, 0);
         getCategoryDetail();
         getProductsByCategory();
-    }, [id])
+    }, [])
 
     const getCategoryDetail = async () => {
         const response = await categoryApi.findById(id);
@@ -57,21 +56,6 @@ function CategoryPage() {
         }
     }
 
-    // const [adv,setAdv] = useState([]);
-    // useEffect(() => {
-    //     const data = [
-    //         {
-    //             src:"https://salt.tikicdn.com/cache/w1080/ts/banner/b3/6d/bd/3538eb353010d41cd0533e7804a347ac.jpg.webp",
-    //             title:'Ngon'
-    //         },
-    //         {
-    //             src:"https://salt.tikicdn.com/cache/w1080/ts/banner/19/eb/19/b05a27bf2a1db86b74bcac1fe4be115c.png.webp",
-    //             title:'Ngon'
-    //         },
-    //     ]
-    //     setAdv(data);
-    // },[])
-
     const handleChangeSort = (event) => {
         let sortType = event.currentTarget.getAttribute('data-sort-type');
         let sortValue = event.currentTarget.getAttribute('data-sort-value');
@@ -84,9 +68,14 @@ function CategoryPage() {
         event.currentTarget.classList.add("active");
         if (sortType === 'price')
         {
-            setSearchParams({price: sortValue});
+            let pramsPrice = {'price': sortValue};
+            setSearchParams({...pramsPrice})
+            console.log('-------- sortValue', sortValue);
         }
+       
     }
+    console.log('---searchParams', searchParams);
+    
 
     return (
         <main className={isWideScreen() ? 'desktop' : 'mobile'}>
@@ -102,28 +91,28 @@ function CategoryPage() {
                                         <h1>{ category?.c_name || <Skeleton count={1} />}</h1>
                                     </div>
 
-                                    {/*<div className="adv-slide">*/}
-                                    {/*    <Swiper {...settingsSlide}>*/}
-                                    {/*        {*/}
-                                    {/*            adv.map((item,index) => {*/}
-                                    {/*                return(*/}
-                                    {/*                    <SwiperSlide key={index}>*/}
-                                    {/*                        {<img alt="/" src={item.src}/>}*/}
-                                    {/*                    </SwiperSlide>*/}
-                                    {/*                )*/}
-                                    {/*            })*/}
-                                    {/*        }*/}
-                                    {/*    </Swiper>*/}
-                                    {/*</div>*/}
-
                                     <div className="search-summary-category">
                                         <div className="summary-top">
                                             <div className="top-tabs">
                                                 <div className="tabs-list">
                                                     { isWideScreen() &&
                                                         <>
-                                                            <Link to='' onClick={handleChangeSort} className="tabs-list" data-sort-type="price" data-sort-value={"desc"} >Giá Thấp Đến Cao</Link>
-                                                            <Link to='' onClick={handleChangeSort} className="tabs-list" data-sort-type="price" data-sort-value={"asc"} >Giá Cao Đến Thấp</Link>
+                                                            <Link to={`?${searchParams}`} 
+                                                                onClick={handleChangeSort} 
+                                                                className="tabs-list" 
+                                                                data-sort-type="price" 
+                                                                data-sort-value={"desc"} 
+                                                            >
+                                                                Giá Thấp Đến Cao
+                                                            </Link>
+                                                            <Link to={`?${searchParams}`}
+                                                                onClick={handleChangeSort} 
+                                                                className="tabs-list" 
+                                                                data-sort-type="price" 
+                                                                data-sort-value={"asc"} 
+                                                            >
+                                                                Giá Cao Đến Thấp
+                                                            </Link>
                                                         </>
                                                     }
                                                     { !isWideScreen() &&
@@ -136,31 +125,6 @@ function CategoryPage() {
                                                     }
                                                 </div>
                                             </div>
-
-                                            {/* <div className="search-navigate">
-                                                <div className="paging">
-                                                    <span className="current">1</span>
-                                                    &#47;
-                                                    <span className="last">50</span>
-                                                </div>
-
-                                                <div className="list-arrow">
-                                                    <img alt="/" src="https://salt.tikicdn.com/ts/brickv2og/b0/c0/37/55863dd4fac41fc53a8ad943545973b1.png"/>
-                                                    <img className="right" alt="/" src="https://salt.tikicdn.com/ts/brickv2og/a8/b5/3b/3c2faee1a219b651e8bf39b1e57b9bbc.png"/>
-                                                </div>
-                                            </div> */}
-                                        </div>
-
-                                        <div className="summary-bottom">
-                                            <p className="itemsticky">
-                                                <img alt="/" src="https://salt.tikicdn.com/ts/upload/b3/21/cf/c6525bcd44b3bb1b793277cc98487799.png" height="12" width="38.5"/>
-                                            </p>
-                                            <p className="itemsticky">
-                                                <img alt="/" src="https://salt.tikicdn.com/ts/upload/08/41/4d/70e65420f4cd6203d36865b87adc2bf3.png" height="12" width="31"/>
-                                            </p>
-                                            <p className="itemsticky">
-                                                <img alt="/" src="https://salt.tikicdn.com/ts/upload/e9/14/26/52318ad1543ad9d3ee5b633b3df0750d.png" height="12" width="62"/>
-                                            </p>
                                         </div>
                                     </div>
 

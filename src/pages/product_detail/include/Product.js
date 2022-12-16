@@ -4,14 +4,15 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { isWideScreen } from "../../../helpers/screen";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { addToCart } from '../../../store/cartSlice';
 import { useDispatch } from 'react-redux';
 
 function Product({ products, pro_price }) {
 
     const [count, setCount] = useState(1);
-
+    
+    
     // const addToCart = () => {
     //     let cart = localStorage.getItem('cart');
     //     if (!cart) {
@@ -47,8 +48,10 @@ function Product({ products, pro_price }) {
     const addToCartRedux = async () => {
         products.quantity = count;
         dispatch(addToCart(products));
+        setCount(1);
         console.log(products);
     }
+
 
     return (
         <div className="product-detail">
@@ -116,8 +119,8 @@ function Product({ products, pro_price }) {
                         <>
                             <div className="product-brand">
                                 <span>
-                                    <h6>Thương hiệu: </h6>
-                                    <Link to="/:slug">Asano</Link>
+                                    <h6>Thương hiệu:</h6>
+                                    <Link to=""> Hasaki</Link>
                                 </span>
                             </div>
                         </>
@@ -200,7 +203,7 @@ function Product({ products, pro_price }) {
                                             <button disabled={`${count < 2 ? '{true}' : ''}`} className={`${count < 2 ? 'disable' : 'enable'}`} onClick={() => setCount(count - 1)}>
                                                 <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg" width="20" height="20" />
                                             </button>
-                                            <input type="text" value={count} className="input"></input>
+                                            <input type="text" value={count} className="input" readOnly></input>
                                             <button className='enable' onClick={() => setCount(count + 1)}>
                                                 <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg" width="20" height="20" />
                                             </button>
