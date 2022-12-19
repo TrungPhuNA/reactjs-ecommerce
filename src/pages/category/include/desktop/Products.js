@@ -56,7 +56,6 @@ function Products({products}) {
                                         <>
                                             <div className="badge-service"></div>
                                             <div className="name">
-                                                <p>Ad</p>
                                                 <h3 className="fs-10">
                                                     {item.pro_name}
                                                 </h3>

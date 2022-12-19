@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { decrementQuantity, incrementQuantity, removeItem, removeAll } from '../../store/cartSlice';
 import { store } from '../../store/store';
 import authApi from '../../api/AuthService';
 import cartApi from '../../api/CartService';
-import Popup from 'reactjs-popup';
-
 
 function ShopCart() {
 
@@ -59,14 +57,17 @@ function ShopCart() {
             order.phone = getUser.data.phone;
             order.address = getUser.data.address;
         }
-        order.products = transactions;
-        order.note = "abc";
-        order.total_price = total;
-        console.log('order -----------: ',order);
+        if (checkedAll === true) {
+            order.products = transactions;
+            order.note = "abc";
+            order.total_price = total;
+            console.log('order -----------: ',order);
+        }
+       
         const createCart = await cartApi.createTransaction(order);
         if (createCart.status === 200) {
-            setIsShow(true)
-            isCheckedAll(false)
+            setIsShow(true)  
+            isCheckedAll(false);
             dispatch(removeAll());
         } else {
             setAlert(true);
@@ -76,11 +77,11 @@ function ShopCart() {
         }
     }
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    const handleClose = () => {
+    const handleClose = () => {   
+        isCheckedAll(false);
         setIsShow(false);
-        navigate('/');
     }
 
     return (

@@ -208,11 +208,12 @@ function Header() {
                                                     .match(searchInput)
                                             )
                                             .slice(0, 2)
-                                            .map((item) => 
+                                            .map((item, index) => 
                                                 (
                                                     <Link
                                                         to={`/search&q=${item.name}`}
                                                         className="search-list"
+                                                        key={index}
                                                     >
                                                         <Images
                                                             src="https://salt.tikicdn.com/ts/upload/90/fa/09/9deed3e3186254637b5ca648f3032665.png"
@@ -229,7 +230,7 @@ function Header() {
                                                     .match(searchInput)
                                             )
                                             .slice(0, 5)
-                                            .map((item) => 
+                                            .map((item, index) => 
                                                 (
                                                     <Link
                                                         to={`${item.pro_slug}-${item.id}`}
@@ -237,6 +238,7 @@ function Header() {
                                                         onClick={() =>
                                                             setSearchInput("")
                                                         }
+                                                        key={index}
                                                     >
                                                         <img
                                                             src={

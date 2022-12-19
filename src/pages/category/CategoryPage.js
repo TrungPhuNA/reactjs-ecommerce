@@ -97,7 +97,8 @@ function CategoryPage() {
                                                 <div className="tabs-list">
                                                     { isWideScreen() &&
                                                         <>
-                                                            <Link to={`?${searchParams}`} 
+                                                            <Link to={`?price=asc`}
+                                                            // {`?${searchParams}`} 
                                                                 onClick={handleChangeSort} 
                                                                 className="tabs-list" 
                                                                 data-sort-type="price" 
@@ -105,7 +106,8 @@ function CategoryPage() {
                                                             >
                                                                 Giá Thấp Đến Cao
                                                             </Link>
-                                                            <Link to={`?${searchParams}`}
+                                                            <Link to={`?price=desc`}
+                                                            // {`?${searchParams}`}
                                                                 onClick={handleChangeSort} 
                                                                 className="tabs-list" 
                                                                 data-sort-type="price" 

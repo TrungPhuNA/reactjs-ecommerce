@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SideNavBar from "./SideNavBar";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import cartApi from "../../../api/CartService";
 import authApi from "../../../api/AuthService";
 
@@ -46,13 +46,11 @@ function OrderManagement() {
     
 
     const [orderList, setOrderList] = useState([]);
-    const [isActive, setIsActive] = useState(false)
 
     const getOrderList = async () => {
         let order = [];
         const getUser = await authApi.getProfile();
         const response = await cartApi.getTransaction();
-        console.log(response.data)
         if (getUser.status === 200) {
             response.data.forEach((item, index) => {
                 if (item.t_name === getUser.data.name) {
@@ -77,7 +75,7 @@ function OrderManagement() {
     },[]);
 
     function changeTab(tabNumber) {
-        let tab = tabs.map(item => {
+        let tab = tabs.map((item, index) => {
             item.status = item.id === tabNumber ? true : false;
             setTabs(tabNumber);
             return item;
@@ -101,7 +99,7 @@ function OrderManagement() {
                         </div>
                         <div className="order-tablist"> 
                             { tabs.map((item, index) => (
-                                <div className={`order-tab${item.status ? '-active' : ''}`} key={item.id.toString()} onClick={() => changeTab(item.id)}>{item.title}</div>
+                                <div className={`order-tab${item.status ? '-active' : ''}`} key={index} onClick={() => changeTab(item.id)}>{item.title}</div>
                             ))}
                         </div>
                         <div className="order-search-input">
@@ -120,6 +118,7 @@ function OrderManagement() {
                                         </div>
                                         <div className="group-btn-order">
                                             <button className="btn-order" onClick={() => removeOrder(item.id)}>Xóa</button>
+                                            <button className="btn-order"><Link to={`./orderdetail/id=${item.id}`} style={{color: 'white'}}>Chỉnh sửa</Link></button>
                                             <button className="btn-order"><Link to={`./orderdetail/id=${item.id}`} style={{color: 'white'}}>Xem chi tiết</Link></button>
                                         </div>
                                         <div className="list-seperate"/>
