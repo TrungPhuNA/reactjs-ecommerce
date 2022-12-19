@@ -47,7 +47,7 @@ const cartApi = {
                 return response.data;
             }
         } catch (e) {
-            console.log('--------------- createTransaction@Error ', e);
+            console.log('--------------- deleteTransaction@Error ', e);
         }
 
         return {

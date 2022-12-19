@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ProductViewed from "../../components/common/product/ProductViewed";
 import Category from "../../pages/product_detail/include/Category";
 import Product from "../../pages/product_detail/include/Product";
 import SimilarProduct from "../product_detail/include/SimilarProduct";
@@ -18,6 +17,7 @@ function ProductDetailPage() {
     const [category, setCategory] = useState();
     const [products, setProducts] = useState();
     const [pro_price, setPro_Price] = useState()
+    const [loading, setLoading] = useState(true)
 
     const getProductsDetail = async () => {
         const response = await productApi.findById(id);
@@ -25,6 +25,7 @@ function ProductDetailPage() {
             setProducts(response.data);
             setCategory(response.data.category);
             setPro_Price(response.data.pro_price.toLocaleString())
+            setLoading(false);
         }
     }
 
@@ -40,12 +41,11 @@ function ProductDetailPage() {
                 <>
                     <div className="container">
                         <Category category={category} products={products} />
-                        <Product products={products} pro_price={pro_price} />
+                        <Product products={products} pro_price={pro_price} loading={loading}/>
                         <SimilarProduct />
                         <ProductDescribe />
                         <Comment />
                         <HomeSuggest />
-                        {/* <ProductViewed/> */}
 
                     </div>
                 </>
@@ -59,7 +59,6 @@ function ProductDetailPage() {
                     <ProductDescribe />
                     <Comment />
                     <HomeSuggest />
-                    {/* <ProductViewed/> */}
                     <DetailFooter />
                 </>
             }
