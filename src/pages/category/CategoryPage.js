@@ -35,7 +35,7 @@ function CategoryPage() {
         window.scrollTo(0, 0);
         getCategoryDetail();
         getProductsByCategory();
-    }, [])
+    }, [id])
 
     const getCategoryDetail = async () => {
         const response = await categoryApi.findById(id);
@@ -153,7 +153,7 @@ function CategoryPage() {
                                         </div>
                                     ) : (
                                         <>
-                                            <Products products={products}/>
+                                            <Products products={products} id={id} category={category}/>
                                             
                                         </>
                                     )}

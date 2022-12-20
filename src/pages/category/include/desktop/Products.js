@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from "react";
+import React, {useState, useMemo, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import Images from '../../../../components/Image/Images';
 import {currencyFormat, priceDiscount} from '../../../../helpers/function';
@@ -6,7 +6,7 @@ import Pagination from "../../../../components/common/Pagination";
 
 let PageSize = 6;
 
-function Products({products}) {
+function Products({products, id}) {
 
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -14,8 +14,7 @@ function Products({products}) {
         const firstPageIndex = (currentPage - 1) * PageSize;
         const lastPageIndex = firstPageIndex + PageSize;
         return products.slice(firstPageIndex, lastPageIndex);
-    }, [currentPage]);
-    
+    }, [currentPage, id]);
 
     return (
         <div className="product-container">
@@ -81,22 +80,11 @@ function Products({products}) {
                                                     </div>
                                                 )}
                                             </div>
-
-                                            <div className="badge-under-price"></div>
-                                            <div className="badge-benefit"></div>
-                                            <div className="badge-add-info"></div>
                                         </>
                                     </div>
                                 </div>
                             </Link>
                         </div>
-
-                        // <ProductSummary
-                        //     disCount={disCount}
-                        //     setDistCount={setDistCount}
-                        //     deal={false}
-                        //     price={undefined} sold={undefined}
-                        // />
                     ))}
                 </div>
                 <Pagination

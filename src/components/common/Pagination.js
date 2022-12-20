@@ -2,6 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import { usePagination, DOTS } from "../../hook/usePagination";
 import "../../assets/scss/components/common/pagination.scss";
+import { Link } from "react-router-dom";
 
 const Pagination = (props) => {
     const {
@@ -49,25 +50,21 @@ const Pagination = (props) => {
             >
                 <div className="arrow left" />
             </li>
-            {paginationRange.map((pageNumber, index) => {
-                // If the pageItem is a DOT, render the DOTS unicode character
-                if (pageNumber === DOTS) {
-                    <li className="pagination-item dots" >&#8230;</li>;
-                }
-
+            {paginationRange.map((pageNumber, index) => 
                 // Render our Page Pills
-                return (
-                    <li
-                        className={classnames("pagination-item", {
-                            selected: pageNumber === currentPage,
-                        })}
-                        onClick={() => onPageChange(pageNumber)}
-                        key={index}
-                    >
-                        {pageNumber}
-                    </li>
-                );
-            })}
+                (
+                    <Link to={`?page=${pageNumber}`} key={index}>
+                        <li 
+                            className={classnames("pagination-item", {
+                                selected: pageNumber === currentPage,
+                            })}
+                            onClick={() => onPageChange(pageNumber)}
+                        >
+                            {pageNumber}
+                        </li>
+                    </Link>
+                )
+            )}
             {/*  Right Navigation arrow */}
             <li
                 className={classnames("pagination-item", {
