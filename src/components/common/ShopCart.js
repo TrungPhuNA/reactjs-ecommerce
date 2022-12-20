@@ -11,25 +11,15 @@ function ShopCart() {
     const cart = useSelector((state) => state.cartReduce.listCart);
     let price_total = 0;
     const dispatch = useDispatch();
-    const [checked, isChecked] = useState(false);
-    const [checkedAll, isCheckedAll] = useState(false);
-    // const [checkItem, setCheckItem] = useState(false);
     const [isShow, setIsShow] = useState(false);
     const [alert, setAlert] = useState(false);
 
-    function handleCheckAll() {
-        isChecked(!checked);
-        isCheckedAll(!checkedAll);
-    }
-
     function getTotal() {
-        if (checked === true) {
-            cart.map((item, index) => {
-                price_total += item.quantity * item.pro_price;
-            })
-            console.log('Total = ', price_total)
-            return price_total.toLocaleString();
-        }
+        cart.map((item, index) => {
+            price_total += item.quantity * item.pro_price;
+        })
+        console.log('Total = ', price_total);
+        return price_total.toLocaleString();
     }
 
     const Order = async () => {
@@ -57,17 +47,15 @@ function ShopCart() {
             order.phone = getUser.data.phone;
             order.address = getUser.data.address;
         }
-        if (checkedAll === true) {
-            order.products = transactions;
-            order.note = "abc";
-            order.total_price = total;
-            console.log('order -----------: ',order);
-        }
+
+        order.products = transactions;
+        order.note = "abc";
+        order.total_price = total;
+        console.log('order -----------: ',order);
        
         const createCart = await cartApi.createTransaction(order);
         if (createCart.status === 200) {
-            setIsShow(true)  
-            isCheckedAll(false);
+            setIsShow(true);
             dispatch(removeAll());
         } else {
             setAlert(true);
@@ -80,7 +68,6 @@ function ShopCart() {
     // const navigate = useNavigate();
 
     const handleClose = () => {   
-        isCheckedAll(false);
         setIsShow(false);
     }
 
@@ -95,8 +82,7 @@ function ShopCart() {
                     <div className="left-content">
                         <div className="left-content-header">
                             <label>
-                                <input type='checkbox' onClick={handleCheckAll} />
-                                <span>Tất cả</span>
+                                <span>Sản phẩm</span>
                             </label>
                             <span>Đơn giá</span>
                             <span>Số lượng</span>
@@ -113,9 +99,6 @@ function ShopCart() {
                                                 <div className="row">
                                                     <div className="col1">
                                                         <div className="product-detail">
-                                                            <div className="product-checkbox">
-                                                                <input key={index.toString()} type="checkbox" checked={`${checkedAll === true ? 'checked' : ''}`} readOnly />
-                                                            </div>
                                                             <Link to={`/${item.pro_slug}-${item.id}`}>
                                                                 <img
                                                                     alt="sda"
@@ -213,7 +196,7 @@ function ShopCart() {
                                 <div className="price-total">
                                     <span>Tổng tiền</span>
                                     <div className="price-content">
-                                        <span>{checked === false ? '0 đ' : getTotal() + " đ"}</span>
+                                        <span>{getTotal() + ' đ'}</span>
                                         <span className="price-note">
                                             (Đã bao gồm VAT nếu có)
                                         </span>
