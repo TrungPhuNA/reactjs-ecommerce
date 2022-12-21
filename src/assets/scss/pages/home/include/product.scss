@@ -145,7 +145,7 @@
             display: flex;
 
             .tab {
-                width: 80px;
+                width: 125px;
 
                 img {
                     width: 40px;
@@ -169,7 +169,7 @@
 
             .content {
                 width: 100vw;
-                display: grid;
+                // display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 align-self: stretch;
                 background-color: rgb(255, 255, 255);
@@ -207,7 +207,7 @@
                 margin-bottom: 40px;
             }
         }
-    }
+    }    
 
     .dashboard-product--item {
         width: 100% !important;
@@ -297,8 +297,8 @@
 
                         h3 {
                             font-weight: 400;
-                            font-size: 12px !important;
-                            line-height: 16px;
+                            font-size: 16px !important;
+                            line-height: 22px;
                             color: rgb(56, 56, 61);
                             margin: 0px;
                             word-break: break-word;
@@ -415,6 +415,16 @@
         @media (max-width: 1024px) {
             width: 100%;
             position: relative;
+
+            .product-item {
+                width: 380px;          
+            }
+        }
+
+        @media (max-width: 767px) {
+            .product-item {
+                width: 410px;          
+            }
         }
     }
 

@@ -10,20 +10,20 @@ function HomeBanner({ number }) {
           <div className="home-banner--top">
             <Link to="/">
               <Images
-                src="https://media.hasaki.vn/hsk/1639446173415x130_laneige.jpg"
-                alt="top-1"
+                src="https://img.freepik.com/premium-psd/banner-sport-shoes-sale-social-media-post-facebook-web-banner-template_70055-854.jpg?w=2000"
+                alt="23"
               />
             </Link>
             <Link to="/">
               <Images
-                src="https://media.hasaki.vn/hsk/1640663436415x130_shu%20uemura.jpg"
-                alt="222"
+                src="https://img.freepik.com/premium-psd/banner-sport-shoes-sale-social-media-post-facebook-web-banner-template_70055-853.jpg?w=2000"
+                alt="123"
               />
             </Link>
             <Link to="/">
               <Images
-                src="https://media.hasaki.vn/hsk/1665475978elc_415x130.jpg"
-                alt="333"
+                src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/2bbcfa99737217.5ef9be3dbb9a9.jpg"
+                alt="123"
               />
             </Link>
           </div>

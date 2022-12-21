@@ -33,6 +33,8 @@ function App() {
     });
   };
 
+  const [isDark, setIsDark] = useState(false);
+
   return (
     <div className="layout">
       <Provider store={store}>
@@ -40,7 +42,8 @@ function App() {
           <Header showLogin={showLogin} setShowLogin={setShowLogin} />
         )}
         {route_item}
-        {isWideScreen() && <Footers />}
+        {/* {isWideScreen() && <Footers />} */}
+        <Footers />
 
         <div className={`scrollToTop ${off_fixed}`} onClick={onClickActive}>
           <i className="fa fa-chevron-up"></i>
