@@ -71,7 +71,7 @@
                                 border-radius: 8px;
                                 width: 598px;
                                 height: 201px;
-                                object-fit: cover;
+                                object-fit: scale-down;
                             }
                         }
                     }
@@ -559,6 +559,10 @@
             height: 100%;
             display: flex;
             align-items: center;
+        }
+
+        .position-relative:hover {
+           color: #DC39FC;
         }
 
         .swiper-button-disabled {

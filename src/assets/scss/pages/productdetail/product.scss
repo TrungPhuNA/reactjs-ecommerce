@@ -27,13 +27,24 @@
     flex-direction: column;
     position: relative;
 
+    overflow: hidden;
+
     img {
         position: relative;
         display: flex;
         width: 444px;
         height: 444px;
         cursor: pointer;
+
+        -webkit-transition: all .8s ease;
+        -moz-transition: all .8s ease;
+        -ms-transition: all .8s ease;
+        transition: all .8s ease;
     }
+}
+
+.group-img img:hover{
+    transform: scale(1.5);
 }
 
 .review-img1 {
@@ -533,8 +544,15 @@
 
                     .btnadd {
                         color: rgb(255, 255, 255);
-                        background-color: rgb(255, 57, 69);
+                        // background-color: rgb(255, 57, 69);
+                        background-color: #6345ed;
                         border: none;
+                    }
+
+                    .btnadd:hover {
+                        color: rgb(255, 255, 255);
+                        border: none;
+                        background: linear-gradient(132.71deg, #6345ED 18.12%, #DC39FC 81.74%);
                     }
 
                     .btnpay {
