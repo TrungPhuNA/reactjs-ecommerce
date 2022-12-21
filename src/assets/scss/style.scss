@@ -73,7 +73,7 @@ html {
   
   header {
     position: relative;
-    background: #e91e63;
+    background: linear-gradient(132.71deg, #6345ED 18.12%, #DC39FC 81.74%);
     z-index: 999;
   }
   .cm-width {
@@ -137,3 +137,199 @@ html {
       padding: 0px;
     }
   }
+
+  
+// icon scrolltop
+.scrollToTop{
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    border: solid 1px #FFF;
+    border-radius: 50%;
+    cursor: pointer;
+    background: #dc39fc;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    bottom: 2%;
+    right: 1%;
+    z-index: 9999;
+}
+
+.is_dark .scrollToTop {
+    background: #fff;
+    color: #5142FC;
+}
+
+.off-fixed {
+    opacity: 0;
+    visibility: hidden;
+}
+
+// css topbarHeader
+.topbar-inner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+
+  .topbar-left{
+    display: flex;
+
+    .hotline{
+      display: flex;
+      margin-left: 20px;
+  
+      .icon{
+        margin: auto;
+        padding-right: 5px;
+
+        img{
+          width: 80%;
+        }
+      }
+
+      .p-phone{
+        cursor: pointer;
+        position: relative;
+      }
+
+      .copy:hover:before {
+        content: "Copy";
+        padding: 10px ;
+        border-radius: 3px;
+        font-weight: 600;
+
+        position: absolute;
+        min-width: 35px;
+        height: 25px;
+        top: 20px;
+        left: 60px;
+        right: 0;
+        color: #fff;
+        display: block;
+        background: rgba(70,67,67,.55);
+        line-height: 25px;
+        font-size: 1rem;
+      }
+
+      .copied:hover:before {
+        content: "Copied";
+        background: #e91e63;
+        padding: 10px ;
+        border-radius: 3px;
+        font-size: 1rem;
+        font-weight: 600;
+
+        position: absolute;
+        min-width: 45px;
+        height: 25px;
+        top: 20px;
+        left: 60px;
+        right: 0;
+        color: #fff;
+        display: block;
+        line-height: 25px;
+        font-size: 1rem;
+      }
+
+      .p-first {
+        font-weight: 600;
+        color: #fff;
+      }
+
+      p{
+        margin: 5px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+  }
+
+
+}
+
+// css header main rightt
+.header-mode{
+  margin-left: 5%;
+
+  .mode_switcher {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    .f-center{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+    }
+  
+    a {
+      background: #343444;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      min-width: 35px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+  
+      img{
+        border: 0;
+        width: 60%;
+      }
+    }
+
+    a.is_active {
+      background: #6345ed;
+    }
+  }
+}
+
+// css footer
+footer{
+  .widget-social ul {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  
+    li {
+      margin-right: 10px;
+  
+      a {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        font-size: 13px;
+        cursor: pointer;
+      }
+
+      a:hover{
+        background: linear-gradient(132.71deg, #6345ED 18.12%, #DC39FC 81.74%);
+        color: #fff;
+      } 
+    }
+
+    li:nth-child(1) a {
+        background: linear-gradient(132.71deg, #6345ED 18.12%, #DC39FC 81.74%);
+        color: #fff;
+    }
+  }
+}
+
