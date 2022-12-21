@@ -1,0 +1,150 @@
+.heading-title-bold {
+    font-weight: 600;
+}
+
+.heading-date {
+    font-size: 14px;
+    line-height: 32px;
+    font-weight: 600;
+    margin-left: 770px;
+}
+
+.heading-detail {
+    font-weight: 600;
+}
+
+.heading-detail-container1 {
+    display: flex;
+    -webkit-box-align: center;
+    
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+
+    .left-container1 {
+        width: 20%;
+       
+    }
+
+    .right-container2 {
+        width: 80%;
+    }
+}
+
+.heading-detail-container2 {
+    display: flex;
+    margin-top: 20px;
+
+    .order-box-content {
+        width: 33.33%;
+    }
+
+    .box-content {
+        width: 100%;
+        background-color: white;
+        height: 150px;
+        margin-top: 20px;
+        padding: 15px;
+
+        .box-main {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .box-sub {
+            margin-top: 15px;
+        }
+    }
+
+    .seperate-box {
+        width: 1%;
+    }
+}
+
+.heading-detail-container3 {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    padding: 20px;
+    height: 75px;
+    margin-top: 20px;
+    flex-direction: column;
+
+    .detail-title {
+        display: flex;
+        width: 100%;
+        
+        .title-tab1 {
+            width: 50%;
+            padding: 12px 0px; 
+            color: rgb(128, 128, 137);
+        }
+
+        .title-tab2 {
+            width: 10%;
+            padding: 12px 0px;
+            color: rgb(128, 128, 137);
+        }
+
+        .title-tab3 {
+            width: 20%;
+            padding: 12px 0px;
+            text-align: right; 
+            color: rgb(128, 128, 137);
+        }
+    }
+}
+
+.heading-detail-container4 {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    padding: 15px 20px;
+    border-top: 1px solid rgb(242, 242, 242);
+    
+    .title-tab1 {
+        display: flex;
+        width: 50%;
+        padding: 15px 130px 15px 0px; 
+        color: rgb(128, 128, 137);
+
+        .tab1-img {
+            margin-right: 10px;
+        }
+
+        .tab1-btn {
+            margin-top: 10px;
+            
+            button {
+                cursor: pointer;
+                margin-right: 10px;
+                padding: 8px 15px;
+                border-color: #0080FF;
+                border-radius: 3px;
+                background-color: white;
+                color: #0080FF;
+                border-width: 1px;
+            }
+
+            button:hover {
+                background-color: #0080FF;
+                color: white;
+            }
+        }
+        
+    }
+
+    .title-tab2 {
+        width: 10%;
+        padding: 12px 0px;
+        color: rgb(128, 128, 137);
+    }
+
+    .title-tab3 {
+        width: 20%;
+        padding: 12px 0px;
+        text-align: right; 
+        color: rgb(128, 128, 137);
+    }
+}

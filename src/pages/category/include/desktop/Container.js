@@ -8,6 +8,7 @@ import Products from "../desktop/Products";
 import {Link } from "react-router-dom";
 // import Skeleton from "react-loading-skeleton";
 import { useNavigate } from "react-router-dom";
+import { isWideScreen } from "../../../../helpers/screen";
 
 const settingsSlide = {
     slidesPerView:1,
@@ -28,20 +29,11 @@ function Container({status}) {
     function ListTitle() {
         const title = [
             'Tivi',
-            'Âm thanh & Phụ kiện Tivi',
-            'Máy giặt',
-            'Máy sấy quần áo',
-            'Máy rửa chén',
-            'Máy lạnh - Máy điều hòa',
-            'Máy nước nóng',
-            'Tủ lạnh',
-            'Tủ đông - Tủ mát',
-            'Tủ ướp rượu',
-            'Phụ kiện điện lạnh'
+            'Âm thanh & Phụ kiện Tivi'
         ];
         return (
             <>
-                <ul>{title.map((item) => <ListItem title={item} />)}</ul>
+                <ul>{title.map((item, key) => <ListItem title={item} />)}</ul>
             </>
         )
     }
@@ -67,7 +59,6 @@ function Container({status}) {
     return(
         <div className="container">
             <div className="category-view">
-
                 <div className="sidebar">
                     <div>
                         <div className="sidebar-title">
@@ -75,19 +66,13 @@ function Container({status}) {
                         </div>
 
                         <div className="sidebar-list">
-                            <ListTitle/>
-                        </div>
-
-                        <div className="sidebar-address">
-                            <h4>Địa chỉ nhận hàng</h4>
-                            <div className="address">Q. Hoàn Kiếm, P. Hàng Trống, Hà Nội</div>
-                            <div className="address-change">Đổi địa chỉ</div>
+                            <ListTitle key={1}/>
                         </div>
 
                         <div className="sidebar-service">
                             <h4>Dịch vụ</h4>
                             <label>
-                                <input type="checkbox" onChange={() => navigate("/&pp") }/>
+                                <input type="checkbox" onChange={() => navigate("") }/>
                                 <img className="filter-icon" alt="/" src="https://salt.tikicdn.com/ts/upload/b3/21/cf/c6525bcd44b3bb1b793277cc98487799.png"/>
                                 <span>Giao siêu tốc 2h</span>
                             </label>
@@ -122,25 +107,9 @@ function Container({status}) {
                                 <input type="checkbox"/>
                                 <p>Hà Nội</p>
                             </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Hồ Chí Minh</p>
-                            </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Ninh Bình</p>
-                            </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Đồng Nai</p>
-                            </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Bắc Giang</p>
-                            </label>
                             <div className="more">
                                 <Link to="*">
-                                    Xem thêm    
+                                    Xem thêm
                                     <img alt="/" src="https://w7.pngwing.com/pngs/523/1012/png-transparent-arrow-computer-icons-encapsulated-postscript-drop-down-list-arrow-blue-angle-text-thumbnail.png"/>
                                 </Link>
                             </div>
@@ -212,7 +181,7 @@ function Container({status}) {
                             </label>
                             <div className="more">
                                 <Link to="*">
-                                    Xem thêm    
+                                    Xem thêm
                                     <img alt="/" src="https://w7.pngwing.com/pngs/523/1012/png-transparent-arrow-computer-icons-encapsulated-postscript-drop-down-list-arrow-blue-angle-text-thumbnail.png"/>
                                 </Link>
                             </div>
@@ -242,37 +211,21 @@ function Container({status}) {
                             </label>
                             <div className="more">
                                 <Link to="*">
-                                    Xem thêm    
+                                    Xem thêm
                                     <img alt="/" src="https://w7.pngwing.com/pngs/523/1012/png-transparent-arrow-computer-icons-encapsulated-postscript-drop-down-list-arrow-blue-angle-text-thumbnail.png"/>
                                 </Link>
                             </div>
                         </div>
-                        
+
                         <div className="sidebar-contributor">
                             <h4>Nhà cung cấp</h4>
                             <label>
                                 <input type="checkbox"/>
                                 <p>Tiki Trading</p>
                             </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Điện Tử Siêu Nhỏ</p>
-                            </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Dien Tu Hoang Thinh</p>
-                            </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Điện máy City</p>
-                            </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Shop Phước Trần</p>
-                            </label>
                             <div className="more">
                                 <Link to="*">
-                                    Xem thêm    
+                                    Xem thêm
                                     <img alt="/" src="https://w7.pngwing.com/pngs/523/1012/png-transparent-arrow-computer-icons-encapsulated-postscript-drop-down-list-arrow-blue-angle-text-thumbnail.png"/>
                                 </Link>
                             </div>
@@ -283,10 +236,6 @@ function Container({status}) {
                             <label>
                                 <input type="checkbox"/>
                                 <p>Hàng Nội Địa</p>
-                            </label>
-                            <label>
-                                <input type="checkbox"/>
-                                <p>Hàng Quốc Tế</p>
                             </label>
                         </div>
                     </div>
@@ -305,7 +254,7 @@ function Container({status}) {
                                     adv.map((item,index) => {
                                         return(
                                             <SwiperSlide key={index}>
-                                                {<img alt="/" src={item.src}/>}  
+                                                {<img alt="/" src={item.src}/>}
                                             </SwiperSlide>
                                         )
                                     })
@@ -317,26 +266,38 @@ function Container({status}) {
                                 <div className="summary-top">
                                     <div className="top-tabs">
                                         <div className="tabs-list">
-                                            <Link to="*" className="active">Phổ Biến</Link>
-                                            <Link to="*" className="active">Bán Chạy</Link>
-                                            <Link to="*" className="active">Hàng Mới</Link>
-                                            <Link to="*" className="active">Giá Thấp Đến Cao</Link>
-                                            <Link to="*" className="active">Giá Cao Đến Thấp</Link>
+                                        { isWideScreen() &&
+                                            <>
+                                                <Link to="category" className="active">Phổ Biến</Link>
+                                                <Link to="category" className="active">Bán Chạy</Link>
+                                                <Link to="category" className="active">Hàng Mới</Link>
+                                                <Link to="category" className="active">Giá Thấp Đến Cao</Link>
+                                                <Link to="category" className="active">Giá Cao Đến Thấp</Link>
+                                            </>
+                                        }
+                                        { !isWideScreen() &&
+                                            <>
+                                                <Link to="category" className="active">Phổ Biến</Link>
+                                                <Link to="category" className="active">Bán Chạy</Link>
+                                                <Link to="category" className="active">Hàng Mới</Link>
+                                                <Link to="category" className="active">Giá <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M3.43306 0.308058C3.67714 0.0639806 4.07286 0.0639806 4.31694 0.308058L6.81694 2.80806C7.06102 3.05214 7.06102 3.44786 6.81694 3.69194C6.57286 3.93602 6.17714 3.93602 5.93306 3.69194L4.5 2.25888V10.125C4.5 10.4702 4.22018 10.75 3.875 10.75C3.52982 10.75 3.25 10.4702 3.25 10.125V2.25888L1.81694 3.69194C1.57286 3.93602 1.17714 3.93602 0.933058 3.69194C0.688981 3.44786 0.688981 3.05214 0.933058 2.80806L3.43306 0.308058ZM9.5 11.7411V3.25C9.5 2.90482 9.77982 2.625 10.125 2.625C10.4702 2.625 10.75 2.90482 10.75 3.25V11.7411L12.1831 10.3081C12.4271 10.064 12.8229 10.064 13.0669 10.3081C13.311 10.5521 13.311 10.9479 13.0669 11.1919L10.5669 13.6919C10.3229 13.936 9.92714 13.936 9.68306 13.6919L7.18306 11.1919C6.93898 10.9479 6.93898 10.5521 7.18306 10.3081C7.42714 10.064 7.82286 10.064 8.06694 10.3081L9.5 11.7411Z" fill="#38383D"></path></svg></Link>
+                                            </>
+                                        }
                                         </div>
-                                    </div> 
+                                    </div>
 
                                     <div className="search-navigate">
                                         <div className="paging">
                                             <span className="current">1</span>
                                             &#47;
-                                            <span className="last">50</span>    
-                                        </div>    
+                                            <span className="last">50</span>
+                                        </div>
 
                                         <div className="list-arrow">
                                             <img alt="/" src="https://salt.tikicdn.com/ts/brickv2og/b0/c0/37/55863dd4fac41fc53a8ad943545973b1.png"/>
                                             <img className="right" alt="/" src="https://salt.tikicdn.com/ts/brickv2og/a8/b5/3b/3c2faee1a219b651e8bf39b1e57b9bbc.png"/>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
 
                                 <div className="summary-bottom">
@@ -351,7 +312,7 @@ function Container({status}) {
                                     </p>
                                 </div>
                         </div>
-                        
+
                         <Products/>
 
                         <div className="paging-nav">
@@ -359,14 +320,14 @@ function Container({status}) {
 
                                 <li><Link className="noactive"  href="/">
                                     <img alt="/" src="https://salt.tikicdn.com/ts/brickv2og/79/0d/0a/c49a190b24f4b799e16fadae76d76ce8.png" height="20" width="16"/>
-                                </Link></li>                                
+                                </Link></li>
                                 <li><Link to="*" className="curr">1</Link></li>
                                 <li><Link to="*">2</Link></li>
                                 <li><Link to="*">3</Link></li>
                                 <li><Link to="*">4</Link></li>
                                 <li><Link to="*">5</Link></li>
                                 <li><Link to="*">
-                                    <img className="noactive" alt="." src="https://salt.tikicdn.com/ts/brickv2og/c5/f9/d0/b4e49aa9576a35e347fbdeec0df9e350.png" width="20" height="20"/>    
+                                    <img className="noactive" alt="." src="https://salt.tikicdn.com/ts/brickv2og/c5/f9/d0/b4e49aa9576a35e347fbdeec0df9e350.png" width="20" height="20"/>
                                 </Link></li>
                                 <li><Link to="*">50</Link></li>
                                 <li><Link to="*">

@@ -154,4 +154,10 @@ footer {
       width: 100% !important;
     }
   }
+
+  @media (max-width: 768px) {
+    footer .d-flexs{
+      display: block;
+    }
+  }
   
