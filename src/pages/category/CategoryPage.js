@@ -2,39 +2,37 @@ import React, {useEffect, useState, useMemo} from 'react';
 import Category from './include/desktop/Category';
 import Container from './include/desktop/Container';
 import Products from './include/desktop/Products';
-
 import {isWideScreen } from "../../helpers/screen";
 import MobileCategoryHeader from "./include/mobile/MobileCategoryHeader";
 import {useParams} from 'react-router';
 import categoryApi from '../../api/CategoryService';
 import productApi from '../../api/ProductService';
-import {Link, useSearchParams , useLocation } from 'react-router-dom';
-
-// import {Swiper, SwiperSlide} from 'swiper/react';
-// import {Navigation} from 'swiper';
+import {Link, useSearchParams } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import SidebarFilter from '../../components/common/sidebar/SidebarFinter';
-
-// const settingsSlide = {
-//     slidesPerView:1,
-//     navigation:true,
-//     modules:[Navigation],
-//     className:"adv-swiper",
-// }
 
 function CategoryPage() {
 
     let { id } = useParams();
     const [category, setCategory] = useState(null);
     const [products, setProducts] = useState([]);
+    const [productsAsc, setProductsAsc] = useState([]);
+    const [productsDesc, setProductsDesc] = useState([]);
 
     const [loadingProduct, setLoadingProduct] = useState(true);
-    const [searchParams, setSearchParams] = useSearchParams({});
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const [show, setShow] = useState(true);
+    const [sortAsc, setSortAsc] = useState(false);
+    const [sortDesc, setSortDesc] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
         getCategoryDetail();
         getProductsByCategory();
+        setShow(true);
+        setSortAsc(false);
+        setSortDesc(false);
     }, [id])
 
     const getCategoryDetail = async () => {
@@ -65,17 +63,44 @@ function CategoryPage() {
             tl.classList.remove('active');
         });
 
-        event.currentTarget.classList.add("active");
+        // sevent.currentTarget.classList.add("active");
         if (sortType === 'price')
         {
             let pramsPrice = {'price': sortValue};
             setSearchParams({...pramsPrice})
             console.log('-------- sortValue', sortValue);
         }
-       
+
+        if (sortValue === 'asc') {
+            handleSortAsc();
+        } else if (sortValue === 'desc') {
+            handleSortDesc();
+        } else if (!sortValue) {
+            event.currentTarget.classList.remove("active");
+        }
     }
     console.log('---searchParams', searchParams);
     
+    const handleSortAsc = () => {
+        const sortedArr = [...products].sort((a, b) => a.pro_price > b.pro_price ? 1 : -1);
+        setProductsAsc(sortedArr);
+        console.log('--Asc', productsAsc);
+        setSortAsc(true);
+        setShow(false);
+        setSortDesc(false);
+        return productsAsc;
+    }
+
+    const handleSortDesc = () => {
+        const sortedArr = [...productsAsc].reverse();
+        setProductsDesc(sortedArr);
+        console.log('--Desc', productsDesc);
+        setSortAsc(false);
+        setShow(false);
+        setSortDesc(true);
+        return productsDesc;
+    }
+
 
     return (
         <main className={isWideScreen() ? 'desktop' : 'mobile'}>
@@ -100,18 +125,18 @@ function CategoryPage() {
                                                             <Link to={`?price=asc`}
                                                             // {`?${searchParams}`} 
                                                                 onClick={handleChangeSort} 
-                                                                className="tabs-list" 
+                                                                className={`tabs-list ${sortAsc===true?'active':''}`} 
                                                                 data-sort-type="price" 
-                                                                data-sort-value={"desc"} 
+                                                                data-sort-value={"asc"} 
                                                             >
                                                                 Giá Thấp Đến Cao
                                                             </Link>
                                                             <Link to={`?price=desc`}
                                                             // {`?${searchParams}`}
                                                                 onClick={handleChangeSort} 
-                                                                className="tabs-list" 
+                                                                className={`tabs-list ${sortDesc===true?'active':''}`} 
                                                                 data-sort-type="price" 
-                                                                data-sort-value={"asc"} 
+                                                                data-sort-value={"desc"} 
                                                             >
                                                                 Giá Cao Đến Thấp
                                                             </Link>
@@ -153,8 +178,15 @@ function CategoryPage() {
                                         </div>
                                     ) : (
                                         <>
-                                            <Products products={products} id={id} category={category}/>
-                                            
+                                            <Products 
+                                                products={products} 
+                                                id={id} 
+                                                productsAsc={productsAsc} 
+                                                productsDesc={productsDesc}
+                                                show={show}
+                                                sortAsc={sortAsc}
+                                                sortDesc={sortDesc}
+                                            />    
                                         </>
                                     )}
                                 </div>
