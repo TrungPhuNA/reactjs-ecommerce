@@ -67,9 +67,10 @@
     &--logo {
         display: flex;
         flex: 1 1 0%;
-        padding: 8px 0px;
+        padding: 8px 0px 16px;
         -webkit-box-align: center;
         align-items: center;
+        justify-content: space-between;
     }
     &--search {
         display: flex;
