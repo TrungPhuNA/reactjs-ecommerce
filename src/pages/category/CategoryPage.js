@@ -63,7 +63,7 @@ function CategoryPage() {
             tl.classList.remove('active');
         });
 
-        // sevent.currentTarget.classList.add("active");
+        // event.currentTarget.classList.add("active");
         if (sortType === 'price')
         {
             let pramsPrice = {'price': sortValue};

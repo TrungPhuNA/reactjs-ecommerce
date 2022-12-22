@@ -4,8 +4,7 @@ import Images from '../../../../components/Image/Images';
 import {currencyFormat, priceDiscount} from '../../../../helpers/function';
 import Pagination from "../../../../components/common/Pagination";
 
-let PageSize = 6;
-
+let PageSize = 12;
 function Products({products, id, show, sortAsc, sortDesc, productsAsc, productsDesc}) {
 
     const [currentPage, setCurrentPage] = useState(1);

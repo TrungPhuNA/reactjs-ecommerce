@@ -257,11 +257,11 @@ function Header() {
     return (
       <>
         <div className="main-header--top__right header-mode">
-          <div class="mode_switcher ">
-            <a class="light f-center">
+          <div className="mode_switcher ">
+            <a className="light f-center">
               <img alt="light" src={"/iconHeader/sun.png"} id="light" />
             </a>
-            <a class="dark f-center is_active">
+            <a className="dark f-center is_active">
               <img alt="dark" src="/iconHeader/moon.png" id="moon_dark" />
             </a>
           </div>

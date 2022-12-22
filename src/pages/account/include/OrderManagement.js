@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SideNavBar from "./SideNavBar";
-import { Link } from 'react-router-dom';
+import { Link, useNavigation } from 'react-router-dom';
 import cartApi from "../../../api/CartService";
 import authApi from "../../../api/AuthService";
 import Skeleton from "react-loading-skeleton";
@@ -48,6 +48,7 @@ function OrderManagement() {
     
 
     const [orderList, setOrderList] = useState([]);
+    const navigate = useNavigation();
 
     const getOrderList = async () => {
         let order = [];
@@ -61,6 +62,8 @@ function OrderManagement() {
             });
             setLoading(false);
             console.log('danh sach don hang: ',order)
+        } else {
+            navigate('/');
         }
         setOrderList(order);
             
@@ -75,7 +78,7 @@ function OrderManagement() {
 
     useEffect(() => {
         getOrderList();
-    },[]);
+    },[removeOrder()]);
 
     function changeTab(tabNumber) {
         let tab = tabs.map((item, index) => {
@@ -133,9 +136,10 @@ function OrderManagement() {
                                     { orderList.length > 0 ? 
                                         orderList.map((item, index) => 
                                         (
-                                            <>
-                                                <div className="list-order" key={index}>
+                                            <div className="list-item" key={index}>
+                                                <div className="list-order">
                                                     <p>Đơn hàng số {item.id}</p>
+                                                    <p>Họ và tên: {item.t_name}</p>
                                                     <p>Tổng tiền: {item.t_total_money} ₫</p>
                                                 </div>
                                                 <div className="group-btn-order">
@@ -144,7 +148,7 @@ function OrderManagement() {
                                                     <button className="btn-order"><Link to={`./orderdetail/id=${item.id}`} style={{color: 'white'}}>Xem chi tiết</Link></button>
                                                 </div>
                                                 <div className="list-seperate"/>
-                                            </>
+                                            </div>
                                         ))
                                         : 
                                         (<>
