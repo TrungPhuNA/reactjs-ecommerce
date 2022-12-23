@@ -8,6 +8,9 @@ import { DownOutlined } from "@ant-design/icons";
 import Images from "../Image/Images";
 import { useSelector } from "react-redux";
 
+import ThemeBtn from "../ThemeBtn/ThemeBtn";
+import { useTheme } from "../utils/useTheme";
+
 function Header() {
   function ShoppingCart() {
     return (
@@ -253,26 +256,12 @@ function Header() {
     );
   };
 
-  const HeaderMainRight = () => {
-    return (
-      <>
-        <div className="main-header--top__right header-mode">
-          <div className="mode_switcher ">
-            <a className="light f-center">
-              <img alt="light" src={"/iconHeader/sun.png"} id="light" />
-            </a>
-            <a className="dark f-center is_active">
-              <img alt="dark" src="/iconHeader/moon.png" id="moon_dark" />
-            </a>
-          </div>
-        </div>
-      </>
-    );
-  };
+  const theme = useTheme();
+
 
   return (
     <>
-      <header className="main-header">
+      <header className={`main-header ${theme}`}>
         <div className="cm-width ">
           <TopHeader />
           <div className="header-main">
@@ -313,7 +302,7 @@ function Header() {
                         src="https://salt.tikicdn.com/ts/upload/ed/5e/b8/8538366274240326978318348ea8af7c.png"
                         alt=""
                       />
-                      Tìm Kiếm
+                      <span>Tìm kiếm</span>
                     </button>
                   </Link>
                 ) : (
@@ -322,7 +311,7 @@ function Header() {
                       src="https://salt.tikicdn.com/ts/upload/ed/5e/b8/8538366274240326978318348ea8af7c.png"
                       alt=""
                     />
-                    Tìm Kiếm
+                    <span>Tìm kiếm</span>
                   </button>
                 )}
                 {showSearchDesktop && isWideScreen() && (
@@ -397,7 +386,9 @@ function Header() {
                 )}
               </div>
               {/* headermain -right */}
-              <HeaderMainRight />
+              <div className="main-header--top__right header-mode">
+                <ThemeBtn />
+              </div>
             </div>
           </div>
         </div>

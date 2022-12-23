@@ -12,6 +12,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap');
 @import "./components/common/shopcart.scss";
 
+@import "./stylesTheme/light-dark-theme";
 
 html {
     line-height: 1.15;
@@ -24,6 +25,8 @@ html {
   body {
     overflow-x: hidden;
     margin: 0px;
+    background-color: var(--bgBody);
+    transition: background-color 0.5s ease;
   }
   input,
   button,
@@ -58,7 +61,7 @@ html {
   }
   
   a {
-    color: rgb(11, 116, 229);
+    // color: rgb(11, 116, 229);
     text-decoration: none;
   }
   img {
@@ -73,18 +76,18 @@ html {
   
   header {
     position: relative;
-    background: linear-gradient(132.71deg, #6345ED 18.12%, #DC39FC 81.74%);
+    background: var(--bgHeader);
     z-index: 999;
   }
   .cm-width {
     width: 1270px;
-    padding-right: 30px;
+    // padding-right: 30px;
     margin-right: auto;
     margin-left: auto;
   }
   .pfpi {
       display: flex;
-      padding: 8px 0 10px;
+      padding: 8px 0 20px;
       height: auto;
       position: relative;
       z-index: 2;
@@ -253,7 +256,7 @@ html {
 
 // css header main rightt
 .header-mode{
-  margin-left: 5%;
+  margin-left: 3%;
 
   .mode_switcher {
     display: flex;
@@ -333,3 +336,9 @@ footer{
   }
 }
 
+//404_page_error
+.page_error{
+  img{
+    width: 100%;
+  }
+}

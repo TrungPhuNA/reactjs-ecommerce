@@ -11,6 +11,8 @@ import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay, Lazy } from "swiper";
 import Images from "../../../components/Image/Images";
 
+import { useTheme } from "../../../components/utils/useTheme";
+
 const settingsSlide = {
   slidesPerView: 4,
   spaceBetween: 0,
@@ -34,78 +36,117 @@ function HomeBrand() {
   useEffect(() => {
     const data = [
       {
-        // src: "https://cdn3.dhht.vn/wp-content/uploads/2021/09/anhbia-10-thuong-hieu-giay-viet-nam-duoc-ua-chuong-nhat-hien-nay.jpg",
         src: "https://theme.hstatic.net/1000110092/1000546214/14/brand_img1.png?v=71",
-        title: "Ngon",
+        title: "Puma",
+        des: "It appears you are located in Vietnam, however you are about to enter the United States online store. Please note, items in the United States online store can only ship to addresses within United States.",
       },
       {
-        // src: "https://bizweb.dktcdn.net/thumb/grande/100/347/092/articles/giay-sneaker-la-gi-1.jpg?v=1599104206663",
         src: "https://theme.hstatic.net/1000110092/1000546214/14/brand_img2.png?v=71",
-        title: "Ngon",
+        title: "Li-ning",
+        des: "Prompted by the desire to outfit Chinese athletes in a national brand at the Olympic games, esteemed gymnast Li-Ning founded his eponymous label in 1990. Since its inception, the label has flourished into an international sportswear leader, exhibiting its authentic take on athleisure on the world stage. ",
       },
       {
-        // src: "https://drake.vn/image/catalog/H%C3%ACnh%20content/hinh-anh-giay-vans/hinh-anh-giay-vans-9.jpg",
         src: "https://theme.hstatic.net/1000110092/1000546214/14/brand_img4.png?v=71",
-        title: "Ngon",
+        title: "Converse",
+        des: "Their most influential model, the Chuck Taylor All Star high-top—named after the Basketball Hall of Famer—is a quintessentially American classic favored by basketball players and iconic members of rock subcultures alike. This signature men’s canvas sneaker has continued to evolve through a panoply of sought-after collaborations with brands including Comme des Garçons and Maison Margiela",
       },
       {
-        // src: "https://giaygiare.vn/upload/images/top-5-mau-giay-adidas-nam-tot-nhat-nam-2019.jpg",
         src: "https://theme.hstatic.net/1000110092/1000546214/14/brand_img5.png?v=71",
-        title: "Ngon",
+        title: "Adidas",
+        des: "Four tournaments in the making. Lionel Messi prepares for FIFA World Cup 2022™ with an impossible rondo.",
       },
       {
-        // src: "https://lh5.googleusercontent.com/Ogj-eOA4EIuOO-NgGjCwd40xmpcxUSQ0mFHPqmsmJCCNKHbzFGu23HBFsatpebPU8rSrYTG2mnJYSqI9AGnAzEWDK8pjWUEDIV_b7hdiRhA2yfDNbf33z8tZ9K3iEMJQ7F8Tmfls=s0",
         src: "https://theme.hstatic.net/1000110092/1000546214/14/brand_img6.png?v=71",
-        title: "Ngon",
+        title: "Nike",
+        des: "This holiday, give more than a gift Give the joy of possibility. Inspire a special someone to chase that runner's high. To dance like nobody's watching To feel stronger. To be better.",
       },
+
       {
-        // src: "https://cdn.vuahanghieu.com/unsafe/0x0/left/top/smart/filters:quality(90)/https://cdn.vuahanghieu.com/unsafe/823x0/left/top/smart/filters:quality(90)/https://admin.vuahanghieu.com/upload/news/2020/12/lich-su-hinh-thanh-va-phat-trien-cua-ong-trum-adidas-21122020095928.jpg",
-        src: "https://theme.hstatic.net/1000110092/1000546214/14/brand_img7.png?v=71",
-        title: "Ngon",
-      },
-      {
-        // src: "https://saigonsneaker.com/wp-content/uploads/2018/09/new-balance-crt-300-do-xanh-574-996-trang-xam-navy-saigon-sneaker.jpg",
         src: "https://cdn.elly.vn/uploads/2021/05/09222258/nhung-dieu-thu-vi-ve-giay-new-balance.2.jpg",
-        title: "Ngon",
+        title: "New-Balance",
+        des: "A holographic emblem can be found on the collar and an embroidered orange Jumpman is stitched onto the white leather tongue",
       },
     ];
     setBrand(data);
   }, []);
+
+  const theme = useTheme();
   return (
-    <div className="cm-width">
-      <div className="famous-brand">
-        <div className="famous-brand--header">
-          <div className="main-title d-flex fs-20">
-            <Images
-              src="https://salt.tikicdn.com/ts/upload/33/0f/67/de89fab36546a63a8f3a8b7d038bff81.png"
-              alt="aaa"
-            />
-            <div className="main-title__text">Thương Hiệu Chính Hãng</div>
+    <>
+      {/* <div className="cm-width">
+        <div className="famous-brand">
+          <div className="famous-brand--header">
+            <div className="main-title d-flex fs-20">
+              <Images
+                src="https://salt.tikicdn.com/ts/upload/33/0f/67/de89fab36546a63a8f3a8b7d038bff81.png"
+                alt="aaa"
+              />
+              <div className="main-title__text">Thương Hiệu Chính Hãng</div>
+            </div>
+            <Link to="/" className="see-more">
+              Xem thêm
+            </Link>
           </div>
-          <Link to="/" className="see-more">
-            Xem thêm
-          </Link>
+          <div className="brand-slide">
+            <Swiper {...settingsSlide}>
+              {brand.map((item, index) => {
+                return (
+                  <SwiperSlide key={index}>
+                    <div className="brand-item">
+                      <Link to="/">
+                        <div className="position-relative">
+                          <Images src={item.src} alt={item.title} />
+                          <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                        </div>
+                      </Link>
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </div>
         </div>
-        <div className="brand-slide">
-          <Swiper {...settingsSlide}>
-            {brand.map((item, index) => {
-              return (
-                <SwiperSlide key={index}>
-                  <div className="brand-item">
-                    <Link to="/">
-                      <div className="position-relative">
-                        <Images src={item.src} alt={item.title} />
-                        <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+      </div> */}
+
+      <div className="cm-width">
+        <div className={`famous-brand ${theme}`}>
+          <div className="row">
+            <div className="famous-brand--header">
+              <div className="main-title d-flex fs-20">
+                <Images
+                  src="https://salt.tikicdn.com/ts/upload/33/0f/67/de89fab36546a63a8f3a8b7d038bff81.png"
+                  alt="aaa"
+                />
+                <div className="main-title__text">Thương Hiệu Chính Hãng</div>
+              </div>
+              <button>
+                <Link to="/" className="see-more">
+                  Xem thêm &gt;&gt;&gt;
+                </Link>
+              </button>
+            </div>
+            <div className="brand-slide">
+              {brand.map((item, index) => {
+                const { src, title, des } = item;
+                return (
+                  <div className="col-lg-4 col-md-6 col-12" key={index}>
+                    <div className="sc-category">
+                      <div className="card-media">
+                        <img src={src} alt="imgBrand" />
                       </div>
-                    </Link>
+                      <div className="card-content">
+                        <h5>{title}</h5>
+                        <p>{des}</p>
+                      </div>
+                    </div>
                   </div>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default HomeBrand;

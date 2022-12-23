@@ -7,6 +7,10 @@ import { isWideScreen } from "../../helpers/screen";
 import { store } from "../../store/store";
 import { Provider } from "react-redux";
 
+import ThemeBtn from "../ThemeBtn/ThemeBtn";
+
+import { useTheme } from "../utils/useTheme";
+
 function App() {
   const route_item = useRoutes(routes());
   const [showLogin, setShowLogin] = useState(false);
@@ -33,10 +37,10 @@ function App() {
     });
   };
 
-  const [isDark, setIsDark] = useState(false);
+  const theme = useTheme();
 
   return (
-    <div className="layout">
+    <div className={`layout ${theme}`}>
       <Provider store={store}>
         {isWideScreen() && (
           <Header showLogin={showLogin} setShowLogin={setShowLogin} />
