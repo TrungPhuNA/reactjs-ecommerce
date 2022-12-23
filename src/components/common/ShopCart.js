@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { decrementQuantity, incrementQuantity, removeItem, removeAll } from '../../store/cartSlice';
 import { store } from '../../store/store';
@@ -13,7 +13,7 @@ function ShopCart() {
     const dispatch = useDispatch();
     const [isShow, setIsShow] = useState(false);
     const [alert, setAlert] = useState(false);
-    const navigate = useNavigation();
+    const navigate = useNavigate();
 
     function getTotal() {
         cart.map((item, index) => {
@@ -49,6 +49,7 @@ function ShopCart() {
             order.address = getUser.data.address;
         } else {
             navigate('/');
+            window.location.reload();
         }
 
         order.products = transactions;

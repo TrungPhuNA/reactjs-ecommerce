@@ -13,8 +13,8 @@ import Skeleton from "react-loading-skeleton";
 
 function AccountInfo() {
     useEffect(() => {
-            window.scrollTo(0, 0)
-        }, [])
+        window.scrollTo(0, 0)
+    }, [])
 
     const [user, setUser] = useState([]);
     const [name, setName] = useState("");

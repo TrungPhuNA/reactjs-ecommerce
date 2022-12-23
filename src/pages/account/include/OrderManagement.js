@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
 import SideNavBar from "./SideNavBar";
-import { Link, useNavigation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import cartApi from "../../../api/CartService";
 import authApi from "../../../api/AuthService";
 import Skeleton from "react-loading-skeleton";
 
 function OrderManagement() {
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const [tabs, setTabs] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [del, setDel] = useState(true);
+    const [viewMore, setViewMore] = useState(false);
+    const [isShow, setIsShow] = useState(false);
 
     useEffect(() => {
         let data = [
@@ -48,7 +55,6 @@ function OrderManagement() {
     
 
     const [orderList, setOrderList] = useState([]);
-    const navigate = useNavigation();
 
     const getOrderList = async () => {
         let order = [];
@@ -62,23 +68,25 @@ function OrderManagement() {
             });
             setLoading(false);
             console.log('danh sach don hang: ',order)
-        } else {
-            navigate('/');
         }
-        setOrderList(order);
-            
+        setOrderList(order);      
     }
 
     const removeOrder = async (id) => {
         const response = await cartApi.deleteTransaction(id);
         if(response.status === 200) {
-            console.log('Xoa thanh cong!');
+            setDel(!del);
+            setIsShow(true);
         }
+    }
+
+    const handleClose = () => {   
+        setIsShow(false);
     }
 
     useEffect(() => {
         getOrderList();
-    },[removeOrder()]);
+    },[del]);
 
     function changeTab(tabNumber) {
         let tab = tabs.map((item, index) => {
@@ -131,25 +139,75 @@ function OrderManagement() {
                                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" color="#808089" className="icon-left" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
                                     <input className="search-input-bar" name="search" placeholder="Tìm đơn hàng theo Mã đơn hàng, Nhà bán hoặc Tên sản phẩm" type="search"></input>
                                     <div className="search-input-right">Tìm đơn hàng</div>
-                                </div>
+                                </div> 
                                 <div className="order-container">
                                     { orderList.length > 0 ? 
                                         orderList.map((item, index) => 
-                                        (
-                                            <div className="list-item" key={index}>
-                                                <div className="list-order">
-                                                    <p>Đơn hàng số {item.id}</p>
-                                                    <p>Họ và tên: {item.t_name}</p>
-                                                    <p>Tổng tiền: {item.t_total_money} ₫</p>
+                                            <>
+                                                <div className="list-item" key={index}>
+                                                    <div className="list-order">
+                                                        <span>Đơn hàng số {item.id}</span>            
+                                                    </div>
+                                                    {item.orders.map((item2, index) => 
+                                                        viewMore === true ? (
+                                                            item2.products.map((item3, index) => (
+                                                                <div key={index}>   
+                                                                    <div className="list-product" >
+                                                                        <div className="list-product-info">
+                                                                            <img src={item3.pro_avatar} alt='z' width='100px' height='100px'/>
+                                                                            <div className="list-product-name">
+                                                                                <span><Link to={`/${item3.pro_slug}-${item3.id}`} style={{color: 'black'}}>{item3.pro_name}</Link></span>
+                                                                                <span className="number">x{item2.od_qty}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="list-product-price">
+                                                                            <span>{(item2.od_price * item2.od_qty).toLocaleString()} ₫</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        ))
+                                                        ) : ( index < 2 &&
+                                                            item2.products.map((item3, index) => (
+                                                                <div key={index}>   
+                                                                    <div className="list-product" >
+                                                                        <div className="list-product-info">
+                                                                            <img src={item3.pro_avatar} alt='z' width='100px' height='100px'/>
+                                                                            <div className="list-product-name">
+                                                                                <span><Link to={`/${item3.pro_slug}-${item3.id}`} style={{color: 'black'}}>{item3.pro_name}</Link></span>
+                                                                                <span className="number">x{item2.od_qty}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="list-product-price">
+                                                                            <span>{(item2.od_price * item2.od_qty).toLocaleString()} ₫</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            ))
+                                                        )
+                                                    )}
+                                                    {(item.orders.length -2) > 0 && 
+                                                        viewMore === false ? 
+                                                        (
+                                                            <>
+                                                                <div className='view-more'>
+                                                                    <button onClick={() => setViewMore(true)}>
+                                                                        Xem thêm {item.orders.length-2} sản phẩm
+                                                                    </button>
+                                                                </div>
+                                                            </>
+                                                        ) : (<></>)}
+                                                    <div className="list-total">
+                                                        <span>Tổng tiền:</span> {item.t_total_money.toLocaleString()} ₫
+                                                    </div>
+                                                    <div className="group-btn-order">
+                                                        <button className="btn-order" onClick={() => removeOrder(item.id)}>Xóa</button>
+                                                        <Link to=''><button className="btn-order">Mua lại</button></Link>
+                                                        <Link to={`./orderdetail/id=${item.id}`}><button className="btn-order">Xem chi tiết</button></Link>
+                                                    </div>
+                                                    <div className="list-seperate"/>
                                                 </div>
-                                                <div className="group-btn-order">
-                                                    <button className="btn-order" onClick={() => removeOrder(item.id)}>Xóa</button>
-                                                    <button className="btn-order"><Link to={`./orderdetail/id=${item.id}`} style={{color: 'white'}}>Chỉnh sửa</Link></button>
-                                                    <button className="btn-order"><Link to={`./orderdetail/id=${item.id}`} style={{color: 'white'}}>Xem chi tiết</Link></button>
-                                                </div>
-                                                <div className="list-seperate"/>
-                                            </div>
-                                        ))
+                                            </>
+                                        )
                                         : 
                                         (<>
                                             <img className='empty-icon'src="https://frontend.tikicdn.com/_desktop-next/static/img/account/empty-order.png" alt='empty'/>
@@ -159,6 +217,19 @@ function OrderManagement() {
                                 </div>
                             </div>  
                         </div>
+                        { isShow === true && (
+                            <div className='alert-cart'>
+                                <div className="alert-cart-container">
+                                    <div className="alert-cart-content">
+                                        <div>
+                                            <img width='20' height='20' alt='sc' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL3KoNpySX6KZDN0GJtebbCnuYtu2FIClZGA&usqp=CAU'/>
+                                            <h4>Xóa thành công</h4>                              
+                                        </div>
+                                        <button className="button-close1" onClick={handleClose}>Đóng</button>
+                                    </div>
+                                </div>
+                            </div>           
+                        )}
                     </div>
                 </>)
             }
