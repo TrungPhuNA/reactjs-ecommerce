@@ -53,6 +53,18 @@ const cartApi = {
         return {
             status: 501
         }
+    },
+    async showTransaction(id) {
+        try {
+            const url = `transaction/show/${id}`;
+            const response = await axiosClient.get(url);
+            console.log('------------- showTransaction@response: ', response);
+            if (response.status === 200 || response.status === 201) {
+                return response.data;
+            }
+        } catch (e) {
+            console.log('---------------showTransaction@Error ', e);
+        }
     }
 }
 

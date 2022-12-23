@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
 import { Provider, useDispatch, useSelector } from "react-redux";
 import {
   decrementQuantity,

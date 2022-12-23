@@ -13,6 +13,7 @@ import Skeleton from "react-loading-skeleton";
 import { useTheme } from "../../../components/utils/useTheme";
 
 function AccountInfo() {
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
