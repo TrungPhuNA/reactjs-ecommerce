@@ -1,6 +1,6 @@
 .suggestion {
     background: rgb(245, 245, 250);
-    margin-top: 16px;
+    margin-top: 30px;
     border-radius: 4px;
 
     &__title {
@@ -8,22 +8,87 @@
         background: rgb(245, 245, 250);
         border-radius: 4px 4px 0px 0px;
         flex-direction: column;
+        padding: 0 10px;
 
         position: sticky;
         top: 1px;
         z-index: 998;
 
-        h2 {
+        // css icon
+        .group{
             display: flex;
-            padding: 10px 16px;
+            padding: 10px;
+            margin: 5px;
             background-color: white;
             flex: 1 1 0%;
-            font-size: 20px;
-            line-height: 28px;
-            text-transform: capitalize;
-            margin-bottom: 4px;
             border-radius: 4px;
-            font-weight: initial;
+
+
+            h2 {
+                font-size: 24px;
+                font-weight: 550;
+                text-transform: capitalize;
+                line-height: 28px;
+            }
+            .icon {
+                position        : relative;
+                width           : 12px;
+                height          : 12px;
+                border-radius   : 50%;
+                margin-right    : 21px;
+                margin-left     : 8px;
+                margin-top      : 15px;
+                background-color: #FF0000;
+    
+                
+            }
+            .icon::after {
+                content      : '';
+                position     : absolute;
+                top          : 50%;
+                left         : 50%;
+                transform    : translate(-50%, -50%);
+                width        : 26px;
+                height       : 26px;
+                border-radius: 50%;
+                border       : 2px solid #FF0000;
+            }
+    
+            .ripple::before {
+                content                : "";
+                position               : absolute;
+                -webkit-animation-delay: .3s;
+                animation-delay        : .3s;
+            }
+            
+            .ripple::after {
+                content                : "";
+                position               : absolute;
+                -webkit-animation-delay: .15s;
+                animation-delay        : .15s;
+            }
+            
+            .ripple::before,
+            .ripple::after {
+                position             : absolute;
+                top                  : 50%;
+                left                 : 50%;
+                width                : 26px;
+                height               : 26px;
+                border-radius        : 50%;
+                -ms-border-radius    : 50%;
+                -webkit-border-radius: 50%;
+                -moz-border-radius   : 50%;
+                -ms-border-radius    : 50%;
+                -o-border-radius     : 50%;
+                transform            : translate(-50%, -50%);
+                -ms-box-shadow       : 0 0 0 0 rgba(195, 16, 16, 0.6);
+                -o-box-shadow        : 0 0 0 0 rgba(195, 16, 16, 0.6);
+                box-shadow           : 0 0 0 0 rgba(195, 16, 16, 0.6);
+                -webkit-animation    : ripple 1.5s infinite;
+                animation            : ripple 1.5s infinite;
+            }
+            // end css icon   
         }
 
         &-list {
@@ -82,7 +147,7 @@
         -webkit-box-align: center;
         align-items: center;
         background: white;
-        padding: 0px 0px 16px;
+        padding: 0px 5px 16px;
         border-radius: 0px 0px 4px 4px;
 
         .content {
@@ -232,13 +297,15 @@
 
             &--style {
                 display: flex;
-                padding: 12px;
+                padding: 15px;
                 color: rgb(56, 56, 61);
                 text-decoration: none;
                 flex-direction: column;
                 -webkit-box-pack: justify;
                 width: 100%;
                 height: 100%;
+                background: rgba(99, 69, 237, 0.07);
+                margin: 5px;
 
                 .thumbnail {
                     flex-shrink: 0;
@@ -432,3 +499,13 @@
         justify-content: space-between;
     }
 }
+
+@keyframes ripple {
+    70% {
+      box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
+    }
+  
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+  }

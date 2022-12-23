@@ -29,8 +29,8 @@ function HomePage() {
           <HomeDeal />
           <HomeBanner />
           <FamousCategory check={true} />
-          <HomeBrand />
           <HomeSuggest />
+          <HomeBrand />
         </>
       )}
 
