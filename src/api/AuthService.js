@@ -5,6 +5,7 @@ const authApi = {
         try {
             const url = `auth/profile`;
             const response = await axiosClient.get(url)
+            console.log('----------- getProfile@response: ', response);
             if (response.status === 200) {
                 return response.data;
             }

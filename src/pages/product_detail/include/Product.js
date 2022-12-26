@@ -6,15 +6,20 @@ import "swiper/css/navigation";
 import { isWideScreen } from "../../../helpers/screen";
 import React, { useState } from 'react';
 import { addToCart } from '../../../store/cartSlice';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Skeleton from "react-loading-skeleton";
 
 function Product({ products, pro_price, loading }) {
 
     const [count, setCount] = useState(1);
     const dispatch = useDispatch();
+    const dataToken = useSelector((state) => state.authReduce.token);
 
     const addToCartRedux = async () => {
+        if (!dataToken || !dataToken.accessToken) {
+            alert(' Đăng nhập để có thể mua hàng');
+            return;
+        }
         products.quantity = count;
         dispatch(addToCart(products));
         setCount(1);
@@ -27,9 +32,9 @@ function Product({ products, pro_price, loading }) {
             <div className="product-detail">
                 <Skeleton height={400} width={500} style={{ margin: "10px"}}/>
                 <div>
-                   <Skeleton height={30} width={700} style={{ marginTop: "10px"}}/> 
-                   <Skeleton height={30} width={400} style={{ marginTop: "10px"}}/> 
-                   <Skeleton height={30} width={300} style={{ marginTop: "10px"}}/> 
+                   <Skeleton height={30} width={700} style={{ marginTop: "10px"}}/>
+                   <Skeleton height={30} width={400} style={{ marginTop: "10px"}}/>
+                   <Skeleton height={30} width={300} style={{ marginTop: "10px"}}/>
                 </div>
             </div>
         ) : (
@@ -121,7 +126,7 @@ function Product({ products, pro_price, loading }) {
                             {/*        <img alt="/" src="https://salt.tikicdn.com/ts/upload/63/43/b6/472934eece91531f0855b86a00a3b1a1.png"/>*/}
                             {/*    </div>*/}
                             {/*</div>*/}
-                            
+
                             {/* <div className="addr-deli"> */}
                                 {/* <div className="change-addr">*/}
                                 {/*    <div>*/}
@@ -146,7 +151,7 @@ function Product({ products, pro_price, loading }) {
                                 {/*        <div className="fee-origin">358.000đ </div>*/}
                                 {/*    </div>*/}
                                 {/*</div> */}
-                                
+
                                 {/* {isWideScreen() &&
                                     <>
                                         <div className="btnchat">
@@ -184,7 +189,7 @@ function Product({ products, pro_price, loading }) {
                             {!isWideScreen() && <div></div>}
                         </div>
 
-                        {isWideScreen() && 
+                        {isWideScreen() &&
                             <>
                                 {/*<div className="content-body-right">*/}
                                 {/*    <div className="current-seller">*/}
@@ -292,7 +297,7 @@ function Product({ products, pro_price, loading }) {
                         }
                     </div>
                 </div>
-            </div>   
+            </div>
         )
         }
     </>)

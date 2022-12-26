@@ -4,13 +4,14 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import '../../../fontawesome';
 import { faUser, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import {BASE_URL} from '../../../components/utils/useTheme';
 
 function SideNavBar() {
 
     const [name, setName] = useState("");
-    
+
     async function getUser() {
-        fetch("https://api-ecm.123code.net/api/auth/profile", {
+        fetch(`${BASE_URL}/auth/profile`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -44,11 +45,11 @@ function SideNavBar() {
                             {/* <ul>
                                 <Link to='/info'>
                                     <li
-                                    onClick={() => this.handleClick(links.id)}   
+                                    onClick={() => this.handleClick(links.id)}
                                     className={
                                         (link.id === activeLink ? "is-active" : "no-active")
                                     }
-                                    > 
+                                    >
                                         <FontAwesomeIcon className="iimg" icon={faUser} />
                                         {link.name}
                                         {link.id}
@@ -58,7 +59,7 @@ function SideNavBar() {
                         <div>
                             <ul>
                                 <Link to='/info'>
-                                    <li> 
+                                    <li>
                                         <FontAwesomeIcon className="iimg" icon={faUser} />
                                         <div className="li-text">Thông tin của tôi</div>
                                     </li>
@@ -66,7 +67,7 @@ function SideNavBar() {
                             </ul>
                             <ul>
                                 <Link to='/order'>
-                                    <li> 
+                                    <li>
                                         <FontAwesomeIcon className="iimg" icon={faShoppingCart} />
                                         <div className="li-text">Quản lý đơn hàng</div>
                                     </li>

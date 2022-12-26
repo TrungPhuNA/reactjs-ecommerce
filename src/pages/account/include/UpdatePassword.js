@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {BASE_URL} from '../../../components/utils/useTheme';
 
 function UpdatePassword() {
 
@@ -8,7 +9,7 @@ function UpdatePassword() {
     const [password, setPassword] = useState("");
 
     async function getUser() {
-        fetch("https://api-ecm.123code.net/api/auth/profile", {
+        fetch(`${BASE_URL}/auth/profile`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -28,7 +29,7 @@ function UpdatePassword() {
 
     async function updatePassword() {
         let item = {password_old, password_new, password_confirm}
-        fetch("https://api-ecm.123code.net/api/user/update-password", {
+        fetch(`${BASE_URL}/user/update-password`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
@@ -63,13 +64,13 @@ function UpdatePassword() {
                                         Mật khẩu hiện tại
                                     </label>
                                     <div className="input-pass-box">
-                                        <input className="input-pass-box1" placeholder="Nhập mật khẩu hiện tại" 
+                                        <input className="input-pass-box1" placeholder="Nhập mật khẩu hiện tại"
                                             type={showPass ? "text" : "password"}
                                             value={password_old} onChange={(e) => setPassword_old(e.target.value)}
                                         />
                                         <img onClick={ShowPassword} className="img-pass" src='https://frontend.tikicdn.com/_desktop-next/static/img/account/eye.png' alt="ds" width="24" height="24"/>
                                     </div>
-                                    
+
                                 </div>
                                 <div className="form-pass-control">
                                     <label className="input-pass-label">
@@ -83,7 +84,7 @@ function UpdatePassword() {
                                         <img onClick={ShowPassword} className="img-pass" src='https://frontend.tikicdn.com/_desktop-next/static/img/account/eye.png' alt="ds" width="24" height="24"/>
                                     </div>
                                     <div className="hint-pass-new"> Mật khẩu phải dài từ 8 đến 32 ký tự, bao gồm chữ và số</div>
-                                    
+
                                 </div>
                                 <div className="form-pass-control">
                                     <label className="input-pass-label">
@@ -101,7 +102,7 @@ function UpdatePassword() {
                             </form>
                         </div>
                     </div>
-                </div>   
+                </div>
             ) : (<></>)}
         </>
     )

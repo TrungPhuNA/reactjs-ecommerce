@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import SideNavBar from "./SideNavBar";
 import { Link } from 'react-router-dom';
 import cartApi from "../../../api/CartService";
-import authApi from "../../../api/AuthService";
 import Skeleton from "react-loading-skeleton";
 
 function OrderManagement() {
@@ -52,24 +51,18 @@ function OrderManagement() {
         ]
         setTabs(data)
     }, []);
-    
+
 
     const [orderList, setOrderList] = useState([]);
 
     const getOrderList = async () => {
-        let order = [];
-        const getUser = await authApi.getProfile();
+
         const response = await cartApi.getTransaction();
-        if (getUser.status === 200) {
-            response.data.forEach((item, index) => {
-                if (item.t_name === getUser.data.name) {
-                    order.push(item);
-                }
-            });
+        console.log('--------- response: ', response);
+        if (response.status === 200) {
             setLoading(false);
-            console.log('danh sach don hang: ',order)
+            setOrderList(response.data);
         }
-        setOrderList(order);      
     }
 
     const removeOrder = async (id) => {
@@ -80,7 +73,7 @@ function OrderManagement() {
         }
     }
 
-    const handleClose = () => {   
+    const handleClose = () => {
         setIsShow(false);
     }
 
@@ -116,7 +109,7 @@ function OrderManagement() {
                         </div>
                     </div>
                 </div>
-                ) : 
+                ) :
                 (<>
                     <div className="container">
                         <div className="category-title">
@@ -130,7 +123,7 @@ function OrderManagement() {
                                 <div className="heading-title">
                                     Đơn hàng của tôi
                                 </div>
-                                <div className="order-tablist"> 
+                                <div className="order-tablist">
                                     { tabs.map((item, index) => (
                                         <div className={`order-tab${item.status ? '-active' : ''}`} key={index} onClick={() => changeTab(item.id)}>{item.title}</div>
                                     ))}
@@ -139,19 +132,19 @@ function OrderManagement() {
                                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" color="#808089" className="icon-left" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
                                     <input className="search-input-bar" name="search" placeholder="Tìm đơn hàng theo Mã đơn hàng, Nhà bán hoặc Tên sản phẩm" type="search"></input>
                                     <div className="search-input-right">Tìm đơn hàng</div>
-                                </div> 
+                                </div>
                                 <div className="order-container">
-                                    { orderList.length > 0 ? 
-                                        orderList.map((item, index) => 
+                                    { orderList.length > 0 ?
+                                        orderList.map((item, index) =>
                                             <>
                                                 <div className="list-item" key={index}>
                                                     <div className="list-order">
-                                                        <span>Đơn hàng số {item.id}</span>            
+                                                        <span>Đơn hàng số {item.id}</span>
                                                     </div>
-                                                    {item.orders.map((item2, index) => 
+                                                    {item.orders.map((item2, index) =>
                                                         viewMore === true ? (
                                                             item2.products.map((item3, index) => (
-                                                                <div key={index}>   
+                                                                <div key={index}>
                                                                     <div className="list-product" >
                                                                         <div className="list-product-info">
                                                                             <img src={item3.pro_avatar} alt='z' width='100px' height='100px'/>
@@ -168,7 +161,7 @@ function OrderManagement() {
                                                         ))
                                                         ) : ( index < 2 &&
                                                             item2.products.map((item3, index) => (
-                                                                <div key={index}>   
+                                                                <div key={index}>
                                                                     <div className="list-product" >
                                                                         <div className="list-product-info">
                                                                             <img src={item3.pro_avatar} alt='z' width='100px' height='100px'/>
@@ -185,8 +178,8 @@ function OrderManagement() {
                                                             ))
                                                         )
                                                     )}
-                                                    {(item.orders.length -2) > 0 && 
-                                                        viewMore === false ? 
+                                                    {(item.orders.length -2) > 0 &&
+                                                        viewMore === false ?
                                                         (
                                                             <>
                                                                 <div className='view-more'>
@@ -208,14 +201,14 @@ function OrderManagement() {
                                                 </div>
                                             </>
                                         )
-                                        : 
+                                        :
                                         (<>
                                             <img className='empty-icon'src="https://frontend.tikicdn.com/_desktop-next/static/img/account/empty-order.png" alt='empty'/>
                                             <div className='empty-order'>Chưa có đơn hàng</div>
                                         </>)
                                     }
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                         { isShow === true && (
                             <div className='alert-cart'>
@@ -223,12 +216,12 @@ function OrderManagement() {
                                     <div className="alert-cart-content">
                                         <div>
                                             <img width='20' height='20' alt='sc' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL3KoNpySX6KZDN0GJtebbCnuYtu2FIClZGA&usqp=CAU'/>
-                                            <h4>Xóa thành công</h4>                              
+                                            <h4>Xóa thành công</h4>
                                         </div>
                                         <button className="button-close1" onClick={handleClose}>Đóng</button>
                                     </div>
                                 </div>
-                            </div>           
+                            </div>
                         )}
                     </div>
                 </>)

@@ -1,14 +1,14 @@
 import React, { useState} from 'react';
 
 function UpdatePhoneNum() {
- 
+
     const [isShow, setIsShow] = useState(true);
 
     const [user, setUser] = useState([]);
     const [phone, setPhone] = useState("");
 
     async function getUser() {
-        fetch("https://api-ecm.123code.net/api/auth/profile", {
+        fetch(`${BASE_URL}/auth/profile`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -24,9 +24,9 @@ function UpdatePhoneNum() {
 
     async function updatePhone() {
         let item = { phone };
-        fetch("https://api-ecm.123code.net/api/user/update-phone", {
+        fetch(`${BASE_URL}/user/update-phone`, {
             method: "PUT",
-            headers: { 
+            headers: {
                 "Content-Type": "application/json",
                 Authorization: "Bearer " + localStorage.getItem('accessToken'),
             },
@@ -54,7 +54,7 @@ function UpdatePhoneNum() {
                                 </label>
                                 <div className="input-pn-box">
                                     <img src='https://frontend.tikicdn.com/_desktop-next/static/img/account/phone.png' alt="ds" width="24" height="24"/>
-                                    <input maxlength="10" placeholder="Nhập số điện thoại" type="search" 
+                                    <input maxlength="10" placeholder="Nhập số điện thoại" type="search"
                                         value={phone} onChange={(e) => setPhone(e.target.value)}
                                     />
                                 </div>

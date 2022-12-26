@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {BASE_URL} from '../../../components/utils/useTheme';
 
 function UpdateEmail() {
 
@@ -7,9 +8,9 @@ function UpdateEmail() {
     const [user, setUser] = useState([]);
     const [email, setEmail] = useState();
 
-    
+
     async function getUser() {
-        fetch("https://api-ecm.123code.net/api/auth/profile", {
+        fetch(`${BASE_URL}/auth/profile`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -25,9 +26,9 @@ function UpdateEmail() {
 
     async function updateEmail() {
         let item = { email };
-        fetch("https://api-ecm.123code.net/api/user/update-email", {
+        fetch(`${BASE_URL}/user/update-email`, {
             method: "PUT",
-            headers: { 
+            headers: {
                 "Content-Type": "application/json",
                 Authorization: "Bearer " + localStorage.getItem('accessToken'),
             },
@@ -41,7 +42,7 @@ function UpdateEmail() {
     }
 
     return (
-        <>  
+        <>
             { isShow ? (
                 <div className="right-container">
                     <div className="info-popup">
@@ -64,7 +65,7 @@ function UpdateEmail() {
                             </form>
                         </div>
                     </div>
-                </div> 
+                </div>
             ) : (<></>)}
         </>
     )

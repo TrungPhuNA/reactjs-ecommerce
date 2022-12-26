@@ -15,3 +15,6 @@ export const useTheme = () => {
 
   return theme;
 };
+
+
+export const BASE_URL = 'http://localhost:3006/api';

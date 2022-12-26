@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { setTokenLogin } from "../../store/authSlice";
-import Popup from "reactjs-popup";
+import authApi from '../../api/AuthService';
 
 
 function LogInDesktop() {
@@ -15,23 +15,15 @@ function LogInDesktop() {
         e.preventDefault();
         try {
             let item = { username, password };
-            let result = await fetch("https://api-ecm.123code.net/api/auth/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(item),
-            });
-            result = await result.json();
-
-            
-
-            if (result.status === 200) {
-                localStorage.setItem("user", JSON.stringify(result.data));
+            let results = await authApi.login(item);
+            console.log('--------- results: ', results);
+            if (results.status === 200) {
+                localStorage.setItem("user", JSON.stringify(results.data));
                 const token = localStorage.getItem("user");
                 const tokenString = JSON.parse(token);
                 localStorage.setItem("accessToken", tokenString.accessToken);
-                dispatch(setTokenLogin(tokenString.accessToken));
+                dispatch(setTokenLogin(results.data));
+                // dispatch(setTokenLogin(tokenString.accessToken));
                 window.location.reload();
             } else {
                 setNoti(true);

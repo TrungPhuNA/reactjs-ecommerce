@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Formik } from "formik";
 import * as EmailValidator from "email-validator";
+import authApi from '../../api/AuthService';
 // import * as Yup from "yup";
 
 function RegisterDesktop() {
@@ -17,14 +18,7 @@ function RegisterDesktop() {
         e.preventDefault();
         try {
             let item = { name, email, username, phone, password, address }
-            let result = await fetch("https://api-ecm.123code.net/api/auth/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(item)
-            });
-            result = await result.json();
+            let result = await authApi.register(item);
 
             if (result.status === 200 && result.status !== 500) {
                 localStorage.setItem('user', JSON.stringify(result.data));
@@ -311,7 +305,7 @@ function RegisterDesktop() {
                         onChange={(e) => setAddress(e.target.value)}
                         maxlength="10"
                     />
-                </div> 
+                </div>
                 <button type="submit" onClick={signUp}>
                     Tiếp tục
                 </button> */}
