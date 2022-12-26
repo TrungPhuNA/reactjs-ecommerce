@@ -194,7 +194,7 @@ function OrderManagement() {
                                                     </div>
                                                     <div className="group-btn-order">
                                                         <button className="btn-order" onClick={() => removeOrder(item.id)}>Xóa</button>
-                                                        <Link to=''><button className="btn-order">Mua lại</button></Link>
+                                                        {/* <Link to=''><button className="btn-order">Mua lại</button></Link> */}
                                                         <Link to={`./orderdetail/id=${item.id}`}><button className="btn-order">Xem chi tiết</button></Link>
                                                     </div>
                                                     <div className="list-seperate"/>

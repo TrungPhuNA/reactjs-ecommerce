@@ -10,7 +10,8 @@ function UpdateEmail() {
 
 
     async function getUser() {
-        fetch(`${BASE_URL}/auth/profile`, {
+        // fetch(`${BASE_URL}/auth/profile`, {
+            fetch(`https://api-ecm.123code.net/api/auth/profile`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -26,7 +27,8 @@ function UpdateEmail() {
 
     async function updateEmail() {
         let item = { email };
-        fetch(`${BASE_URL}/user/update-email`, {
+        // fetch(`${BASE_URL}/user/update-email`, {
+            fetch(`https://api-ecm.123code.net/api/user/update-email`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

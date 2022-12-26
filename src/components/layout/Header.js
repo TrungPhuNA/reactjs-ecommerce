@@ -47,7 +47,7 @@ function Header() {
 		try {
 			if (localStorage.getItem("accessToken")) {
 				setIsUser(true);
-				return fetch(`${BASE_URL}/auth/profile`, {
+				return fetch(`https://api-ecm.123code.net/api/auth/profile`, {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",

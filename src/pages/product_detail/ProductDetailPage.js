@@ -44,7 +44,7 @@ function ProductDetailPage() {
                         <Product products={products} pro_price={pro_price} loading={loading}/>
                         <SimilarProduct />
                         <ProductDescribe />
-                        <Comment />
+                        <Comment id={id} products={products}/>
                         <HomeSuggest />
 
                     </div>
