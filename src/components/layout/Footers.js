@@ -33,6 +33,7 @@ export default function Footers() {
                   type="email"
                   placeholder="Nhập địa chỉ email của bạn"
                   required
+                  readOnly
                 />
                 <button
                   name="submit"

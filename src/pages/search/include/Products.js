@@ -1,26 +1,39 @@
-import React, {useState, useMemo} from "react";
+import React, {useState, useMemo, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import Images from '../../../components/Image/Images';
 import {currencyFormat, priceDiscount} from '../../../helpers/function';
 import Pagination from "../../../components/common/Pagination";
 
-let PageSize = 6;
-
+let Page_Size = 12
 function Products({products, searchInput}) {
 
     const [currentPage, setCurrentPage] = useState(1);
+    const [searchProducts, setSearchProducts] = useState([]);
 
-    const currentTableData = useMemo(() => {
-        const firstPageIndex = (currentPage - 1) * PageSize;
-        const lastPageIndex = firstPageIndex + PageSize;
-        return products.slice(firstPageIndex, lastPageIndex);
-    }, [currentPage]);
+    const getSearchProducts = () => {
+        setSearchProducts(products.filter(item => item.pro_name.toLowerCase().match(searchInput)));
+        return searchProducts;
+    }
 
+    const currentTableData = () => {
+        const firstPageIndex = (currentPage - 1) * Page_Size;
+        const lastPageIndex = firstPageIndex + Page_Size;
+        return searchProducts.slice(firstPageIndex, lastPageIndex);
+    };
+
+    console.log(searchProducts)
+    useEffect(() => {
+        setCurrentPage(1);
+        getSearchProducts();
+        currentTableData();
+    }, [searchInput]);
+
+    console.log(searchProducts)
     return (
         <div className="product-container">
             <div className="suggestion__product">
                 <div className="content">
-                    {currentTableData.filter(item => item.pro_name.toLowerCase().match(searchInput)).map((item, index) => (
+                    {currentTableData().map((item, index) => (
                         <div className="dashboard-product--item" key={index}>
                             <Link
                                 to={`/${item.pro_slug}-${item.id}`}
@@ -102,8 +115,8 @@ function Products({products, searchInput}) {
                 <Pagination
                     className="pagination-bar"
                     currentPage={currentPage}
-                    totalCount={products.length}
-                    pageSize={PageSize}
+                    totalCount={searchProducts.length}
+                    pageSize={Page_Size}
                     onPageChange={(page) => setCurrentPage(page)}
                 />
             </div>

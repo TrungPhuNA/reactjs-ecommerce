@@ -5,7 +5,8 @@ const axiosClient = axios.create({
 	// baseURL: 'http://localhost:3006/api',
 	headers: {
 		'Content-Type': 'application/json',
-	}
+	},
+	body: JSON.stringify(),
 })
 
 // let infoToken = getDataLocalStorageByKey('data');

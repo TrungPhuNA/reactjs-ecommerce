@@ -18,7 +18,7 @@ function Comment({id, products}) {
     const [content, setContent] = useState();
     const [auth, setAuth] = useState(false);
 
-    const [vote, setVote] = useState([])
+    const [vote, setVote] = useState([]);
 
     const [percent1, setPercent1] = useState(0);
     const [percent2, setPercent2] = useState(0);
@@ -36,7 +36,7 @@ function Comment({id, products}) {
     useEffect(() => {
         getUser();
         getRate();
-    })
+    }, [])
 
     const getRate = async () => {
         const response = await ratingApi.getListRateByProducts(id);
@@ -226,7 +226,7 @@ function Comment({id, products}) {
                                     <img alt="/" src="https://dienanhtrongtamtay.com/wp-content/uploads/2021/04/Icon-la-gi.jpg" width="48" height="48"/>
                                 </div>
                                 <div>
-                                    <div className="user-name">Nguyễn Trần Hoàng</div>
+                                    <div className="user-name">User {item.v_user_id}</div>
                                     {/* <div className="user-date">Đã tham gia 2 tuần</div> */}
                                 </div>
                             </div>
