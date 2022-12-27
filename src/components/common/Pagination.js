@@ -50,10 +50,13 @@ const Pagination = (props) => {
             >
                 <div className="arrow left" />
             </li>
-            {paginationRange.map((pageNumber, index) => 
+            { paginationRange.map((pageNumber, index) => {
+                if (pageNumber === DOTS) 
+                    <li className="pagination-item dots" >&#8230;</li>;
+                
                 // Render our Page Pills
-                (
-                    <Link to={`?page=${pageNumber}`} key={index}>
+                return (     
+                    <Link to={pageNumber !== DOTS ? `?page=${pageNumber}` : '...'} key={index}>
                         <li 
                             className={classnames("pagination-item", {
                                 selected: pageNumber === currentPage,
@@ -64,7 +67,7 @@ const Pagination = (props) => {
                         </li>
                     </Link>
                 )
-            )}
+            })}
             {/*  Right Navigation arrow */}
             <li
                 className={classnames("pagination-item", {

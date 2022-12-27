@@ -11,7 +11,7 @@ function SideNavBar() {
     const [name, setName] = useState("");
 
     async function getUser() {
-        fetch(`${BASE_URL}/auth/profile`, {
+        fetch(`https://api-ecm.123code.net/api/auth/profile`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

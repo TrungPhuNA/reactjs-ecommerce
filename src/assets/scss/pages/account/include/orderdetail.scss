@@ -7,7 +7,7 @@
     line-height: 32px;
     font-weight: 600;
     margin-left: 770px;
-}
+}   
 
 .heading-detail {
     font-weight: 600;
@@ -21,13 +21,14 @@
     width: 100%;
     padding: 15px;
     margin-top: 20px;
+    border-bottom: 1px solid rgb(242, 242, 242);
 
     .left-container1 {
         width: 20%;
        
     }
 
-    .right-container2 {
+    .right-container1 {
         width: 80%;
     }
 }
@@ -38,6 +39,10 @@
 
     .order-box-content {
         width: 33.33%;
+    }
+
+    .box-title {
+        font-weight: 600;
     }
 
     .box-content {
@@ -59,6 +64,7 @@
 
     .seperate-box {
         width: 1%;
+        border-left: 1px solid rgb(242, 242, 242);
     }
 }
 

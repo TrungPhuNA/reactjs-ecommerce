@@ -102,26 +102,6 @@
                     background-color: rgb(128, 128, 137);
                     border-radius: 99em;
                 }
-
-                .bar-rate5{
-                    position: absolute;
-                    left: 0px;
-                    top: 0px;
-                    bottom: 0px;
-                    background-color: rgb(128, 128, 137);
-                    border-radius: 99em;
-                    width:91%;
-                }
-
-                .bar-rate4{
-                    position: absolute;
-                    left: 0px;
-                    top: 0px;
-                    bottom: 0px;
-                    background-color: rgb(128, 128, 137);
-                    border-radius: 99em;
-                    width:9%;
-                }
             }
         }
     }
@@ -188,6 +168,26 @@
                 align-items: center;
                 user-select: none;
             }
+        }
+    }
+
+    .rate-container {
+        border-top: 1px solid rgb(242, 242, 242);
+        padding: 32px 48px;
+        flex-direction: column;
+
+        button {
+            background-color: #2f80ed;
+            color: #fff;
+            border: 1px solid #2f80ed;
+            border-radius: 4px;
+            display: block;
+            line-height: 17px;
+            padding: 11px 5px;
+            text-align: center;
+            width: 20%;
+            margin-left: 40%;
+            cursor: pointer;
         }
     }
 
@@ -418,5 +418,95 @@
         }
 
 
+    }
+}
+
+.rate-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1500;
+    background: rgba(0,0,0,.75);
+    margin: auto;
+
+    .rate-form {
+        background-color: #fff;
+        border-radius: 8px;
+        left: 50%;
+        position: fixed;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        z-index: 1551;
+        overflow-y: auto;
+        max-height: 90vh;
+        width: 530px;
+
+        .rate-form-header {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 25px 20px 15px 45px;
+
+            p {
+                font-weight: bold;
+                line-height: 20px;
+            }
+
+            .rate-close {
+                position: absolute;
+                top: 16px;
+                right: 20px;
+                cursor: pointer;
+            }
+        }
+
+        .rate-form-content {
+            padding: 0 45px;
+
+            .rate { 
+                display: flex;
+                margin: 20px 0 0;
+                justify-content: center;
+            }
+
+            .rate-info {
+                margin-top: 10px;
+
+                span {
+                    margin-left: 5px;
+                }
+            }
+
+            .rate-input {
+
+                margin-top: 20px;
+                margin-bottom: 30px;
+                
+                textarea {
+                    background-color: #ffff;
+                    border-radius: 4px 4px 0 0;
+                    resize: none;
+                    border: 1px solid #e0e0e0;
+                    color: #666;
+                    height: 150px;
+                    padding: 10px;
+                    width: 100%;
+                    word-wrap: break-word;
+                    word-break: break-all;
+                }
+
+                button {
+                    margin-top: 10px;
+                    margin-left: 36.5%;
+                    padding: 10px 20px;
+                    border: none;
+                    background-color: #2f80ed;
+                    color: #fff;
+                    border: 1px solid #2f80ed;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+            }
+        }
     }
 }

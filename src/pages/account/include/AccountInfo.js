@@ -26,7 +26,8 @@ function AccountInfo() {
 	const [loading, setLoading] = useState(true);
 
 	async function getUser() {
-		fetch(`${BASE_URL}/auth/profile`, {
+		// fetch(`${BASE_URL}/auth/profile`, {
+			fetch(`https://api-ecm.123code.net/api/auth/profile`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -51,7 +52,8 @@ function AccountInfo() {
 	async function updateInfo(e) {
 		e.preventDefault();
 		let item = { name, address };
-		fetch(`${BASE_URL}/user/update-info`, {
+		// fetch(`${BASE_URL}/user/update-info`, {
+		fetch(`https://api-ecm.123code.net/api/user/update-info`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
