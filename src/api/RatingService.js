@@ -7,7 +7,7 @@ const ratingApi = {
 			const response = await axiosClient.post(url, data)
 
 			if (response.status === 201) {
-				return response;
+				return response.data;
 			}
 		} catch (e) {
 			console.log('--------------- CreateRate@Error ', e);
@@ -16,11 +16,11 @@ const ratingApi = {
 
 	async getListRateByProducts(id) {
 		try {
-			const url = `vote/lists?page=1&page_size=10&product_id=${id}`;
+			const url = `vote/lists?page=1&page_size=20&product_id=${id}`;
 			const response = await axiosClient.get(url)
 
 			if (response.status === 200) {
-				return response;
+				return response.data;
 			}
 		} catch (e) {
 			console.log('--------------- getRate@Error ', e);
