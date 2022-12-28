@@ -43,7 +43,7 @@ function ProductDetailPage() {
                         <Category category={category} products={products} />
                         <Product products={products} pro_price={pro_price} loading={loading}/>
                         <SimilarProduct />
-                        <ProductDescribe />
+                        <ProductDescribe products={products}/>
                         <Comment id={id} products={products}/>
                         <HomeSuggest />
 
