@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { setTokenLogin } from "../../store/authSlice";
 import authApi from '../../api/AuthService';
@@ -30,7 +29,7 @@ function LogInDesktop() {
             } else {
                 if (!username)
                     setUsernameError("Tên đăng nhặp không được bỏ trống!");
-                if (!password)    
+                if (!password)
                     setPasswordError("Mật khẩu không được bỏ trống!");
                 if (username && password)
                     setNoti(true);
@@ -48,98 +47,70 @@ function LogInDesktop() {
                 <h4>Xin chào,</h4>
                 <p>Đăng nhập</p>
             </div>
-            <Formik
-                validate={() => {
-                    if (!username)
-                        setUsernameError("Tên đăng nhặp không được bỏ trống!");
 
-                    if (!password)
-                        setPasswordError("Mật khẩu không được bỏ trống!");
-                }}
-            // validationSchema={Yup.object().shape({
-            //     username: Yup.string().required("Tên đăng nhập không được bỏ trống"),
-            //     password: Yup.string()
-            //         .required("Mật khẩu không được để trống")
-            //         .min(
-            //             6,
-            //             "Password is too short - should be 6 chars minimum."
-            //         )
-            //         .matches(
-            //             /(?=.*[0-9])/,
-            //             "Password must contain a number."
-            //         ),
-            // })}
-            >
-                {(props) => {
-                    const { errors, handleBlur } = props;
-                    return (
-                        <form>
-                            <div className="left-content-heading-input">
-                                <label
-                                    className="text-title"
-                                    htmlFor="username"
-                                >
-                                    Tên đăng nhập
-                                </label>
-                                <input
-                                    name="username"
-                                    type="text"
-                                    placeholder="Nhập tên đăng nhập"
-                                    value={username}
-                                    onChange={(e) =>
-                                        { setUsername(e.target.value); setUsernameError('') }
-                                    }
-                                    className={
-                                        usernameError &&
-                                        "error"
-                                    }
-                                />
-                                {usernameError && (
-                                    <div className="input-feedback">
-                                        {usernameError}
-                                    </div>
-                                )}
-                                <label
-                                    className="text-title"
-                                    htmlFor="password"
-                                >
-                                    Mật khẩu
-                                </label>
-                                <input
-                                    name="password"
-                                    type="password"
-                                    placeholder="Nhập mật khẩu"
-                                    value={password}
-                                    onChange={(e) =>
-                                        { setPassword(e.target.value); setPasswordError(''); }
-                                    }
-                                    className={
-                                        passwordError &&
-                                        "error"
-                                    }
-                                />
-                                {passwordError && (
-                                    <div className="input-feedback">
-                                        {passwordError}
-                                    </div>
-                                )}
-                            </div>
+            <form>
+                <div className="left-content-heading-input">
+                    <label
+                        className="text-title"
+                        htmlFor="username"
+                    >
+                        Tên đăng nhập
+                    </label>
+                    <input
+                        name="username"
+                        type="text"
+                        placeholder="Nhập tên đăng nhập"
+                        value={username}
+                        onChange={(e) => { setUsername(e.target.value); setUsernameError('') }
+                        }
+                        className={
+                            usernameError &&
+                            "error"
+                        }
+                    />
+                    {usernameError && (
+                        <div className="input-feedback">
+                            {usernameError}
+                        </div>
+                    )}
+                    <label
+                        className="text-title"
+                        htmlFor="password"
+                    >
+                        Mật khẩu
+                    </label>
+                    <input
+                        name="password"
+                        type="password"
+                        placeholder="Nhập mật khẩu"
+                        value={password}
+                        onChange={(e) => { setPassword(e.target.value); setPasswordError(''); }
+                        }
+                        className={
+                            passwordError &&
+                            "error"
+                        }
+                    />
+                    {passwordError && (
+                        <div className="input-feedback">
+                            {passwordError}
+                        </div>
+                    )}
+                </div>
 
-                            <button type="submit" onClick={loginUser}>
-                                Tiếp tục
-                            </button>
+                <button type="submit" onClick={loginUser}>
+                    Tiếp tục
+                </button>
 
-                            {noti === true ? (<>
-                                <div className="unauth">Sai tên đăng nhập hoặc mật khẩu!</div>
-                            </>)
-                                :
-                                (<></>)
-                            }
+                {noti === true ? (<>
+                    <div className="unauth">Sai tên đăng nhập hoặc mật khẩu!</div>
+                </>)
+                    :
+                    (<></>)
+                }
 
-                        </form>
-                    );
-                }}
-            </Formik>
+            </form>
+
         </>
     );
 }
