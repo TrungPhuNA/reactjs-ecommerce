@@ -50,8 +50,21 @@
                 &--product-img {
                     position: relative;
                     width: 100%;
-                    // padding-bottom: 100%;
 
+                    overflow: hidden;
+                    margin: 0 auto;
+                    img{
+                        height:130px;
+                        width: 100%;
+                        -webkit-transition: all .8s ease;
+                        -moz-transition: all .8s ease;
+                        -ms-transition: all .8s ease;
+                        transition: all .8s ease;
+                    }
+                }
+
+                &--product-img img:hover{
+                    transform: scale(1.5);
                 }
             }
 

@@ -8,7 +8,7 @@ const NoPage = () => {
 
   return (
     <div className="page_error">
-      <img src={"/iconHeader/404.jpg"} alt="404_Error" />
+      <img src={"/img/404.jpg"} alt="404_Error" />
 
       <Outlet />
     </div>

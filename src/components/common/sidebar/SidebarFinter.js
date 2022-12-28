@@ -1,48 +1,54 @@
-import {Link} from 'react-router-dom';
-import React, {useEffect, useState} from 'react';
-import categoryApi from '../../../api/CategoryService';
-import Skeleton from 'react-loading-skeleton';
+import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import categoryApi from "../../../api/CategoryService";
+import Skeleton from "react-loading-skeleton";
 
-export default function SidebarFilter()  {
-	const [categoriesSidebar, setCategories] = useState([]);
-	const [loadingCategories, SetLoadingCategories] = useState(true);
+export default function SidebarFilter() {
+  const [categoriesSidebar, setCategories] = useState([]);
+  const [loadingCategories, SetLoadingCategories] = useState(true);
 
-	useEffect(() => {
-		getCategoriesSidebar();
-	},[])
+  useEffect(() => {
+    getCategoriesSidebar();
+  }, []);
 
-	const getCategoriesSidebar = async (params) => {
-		const response = await categoryApi.getListsCategory(params);
-		setCategories(response.data);
-		SetLoadingCategories(false);
-	}
+  const getCategoriesSidebar = async (params) => {
+    const response = await categoryApi.getListsCategory(params);
+    setCategories(response.data);
+    SetLoadingCategories(false);
+  };
 
-	return (
-		<div className="sidebar">
-			<div>
-				<div className="sidebar-title">
-					<h4>Danh mục sản phẩm</h4>
-				</div>
+  return (
+    <div className="sidebar">
+      <div>
+        <div className="sidebar-title">
+          <h4>Danh mục sản phẩm</h4>
+        </div>
 
-				<div className="sidebar-list">
-					{ loadingCategories === false ? (
-						<ul>
-							{ categoriesSidebar.map(( item, index) => (
-								<li key={index}>
-									<Link title={item.c_name} to={'/category/' + (item.c_slug) + '-' + item.id}> { item.c_name} </Link>
-								</li>
-							))}
-						</ul>
-					) : (
-						<ul>
-							<li>
-								<Skeleton count={5} height={10} />
-							</li>
-						</ul>
-					)}
-				</div>
+        <div className="sidebar-list">
+          {loadingCategories === false ? (
+            <ul>
+              {categoriesSidebar.map((item, index) => (
+                <li key={index}>
+                  <Link
+                    title={item.c_name}
+                    to={"/category/" + item.c_slug + "/" + item.id}
+                  >
+                    {" "}
+                    {item.c_name}{" "}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <ul>
+              <li>
+                <Skeleton count={5} height={10} />
+              </li>
+            </ul>
+          )}
+        </div>
 
-				{/* <div className="sidebar-service">
+        {/* <div className="sidebar-service">
 					<h4>Dịch vụ</h4>
 					<label>
 						<input type="checkbox"/>
@@ -156,7 +162,7 @@ export default function SidebarFilter()  {
 						<p>Hàng Nội Địa</p>
 					</label>
 				</div> */}
-			</div>
-		</div>
-	)
+      </div>
+    </div>
+  );
 }

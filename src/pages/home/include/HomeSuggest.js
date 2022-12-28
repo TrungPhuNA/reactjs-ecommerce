@@ -104,7 +104,7 @@ function HomeSuggest() {
                       return (
                         <Link
                           key={i}
-                          to={`/${item2.pro_slug}-${item2.id}`}
+                          to={`/${item2.pro_slug}/${item2.id}`}
                           className="product-item"
                         >
                           <div
@@ -173,7 +173,7 @@ function HomeSuggest() {
                         return (
                           <Link
                             key={i}
-                            to={`/${item2.pro_slug}-${item2.id}`}
+                            to={`/${item2.pro_slug}/${item2.id}`}
                             className="product-item"
                           >
                             <div
