@@ -146,6 +146,7 @@ function OrderManagement() {
                     </div>
                   ))}
                 </div>
+
                 <div className="order-search-input">
                   <svg
                     stroke="currentColor"
@@ -236,6 +237,8 @@ function OrderManagement() {
                                           <span className="number">
                                             x{item2.od_qty}
                                           </span>
+
+
                                         </div>
                                       </div>
                                       <div className="list-product-price">

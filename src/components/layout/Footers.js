@@ -25,7 +25,7 @@ export default function Footers() {
                 id="subscribe-form"
                 action="#"
                 method="GET"
-                accept-charset="utf-8"
+                acceptCharset="utf-8"
                 className="form-submit"
               >
                 <input
@@ -35,6 +35,7 @@ export default function Footers() {
                   type="email"
                   placeholder="Nhập địa chỉ email của bạn"
                   required
+                  readOnly
                 />
                 <button
                   name="submit"

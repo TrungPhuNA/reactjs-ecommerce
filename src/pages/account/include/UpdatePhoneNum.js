@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { BASE_URL } from "../../../components/utils/useTheme";
+import React, { useState} from 'react';
+import {BASE_URL} from '../../../components/utils/useTheme';
+
 
 function UpdatePhoneNum() {
   const [isShow, setIsShow] = useState(true);
@@ -21,6 +22,7 @@ function UpdatePhoneNum() {
       });
     });
   }
+
 
   async function updatePhone() {
     let item = { phone };
@@ -75,6 +77,8 @@ function UpdatePhoneNum() {
                   <button type="submit" onClick={updatePhone}>
                     Lưu thay đổi
                   </button>
+
+  
                 </div>
               </form>
             </div>

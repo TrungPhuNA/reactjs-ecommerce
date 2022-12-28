@@ -28,10 +28,13 @@ function ProductDetailPage() {
     }
   };
 
+
   useEffect(() => {
     window.scrollTo(0, 0);
     getProductsDetail();
   }, [id]);
+
+
 
   return (
     <main

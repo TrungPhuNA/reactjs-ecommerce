@@ -137,11 +137,109 @@ function OrderDetail() {
                     <div className="title-tab1">
                       <span>Sản phẩm</span>
                     </div>
+
                     <div className="title-tab2">
                       <span>Giá</span>
                     </div>
                     <div className="title-tab2">
                       <span>Số lượng</span>
+
+                    <div className="page-container">
+                        <SideNavBar/>
+                        <div className="right-container">
+                            <div className="heading-title">
+                                <span>Chi tiết đơn hàng #{id} </span>
+                                
+                                <span className="heading-title-bold"></span>
+                            </div>
+                            <div className="heading-date">
+                                Ngày đặt hàng: 00:00 2/11/2022
+                            </div>
+                            <div className="heading-detail">
+                                THÔNG BÁO
+                            </div>
+                            <div className="heading-detail-container1">
+                                <div className="left-container1">00:00 15/12/2022</div>
+                                <div className="right-container1">Giao hàng thành công</div>
+                            </div>
+                            <div className="heading-detail-container2">
+                                <div className="order-box-content">
+                                    <div className="box-title">ĐỊA CHỈ NGƯỜI NHẬN</div>
+                                    <div className="box-content">
+                                        <div className="box-main">{name}</div>
+                                        <div className="box-sub">Địa chỉ: {address}</div>
+                                        <div className="box-sub">Điện thoại: {phone}</div>
+                                    </div>
+                                </div>
+                                <div className="seperate-box"/>
+                                <div className="order-box-content">
+                                    <div className="box-title">HÌNH THỨC GIAO HÀNG</div>
+                                    <div className="box-content">
+                                        <div className="box-sub">Giao trong ngày</div>
+                                        <div className="box-sub">Giao trước: hh:mm ngày dd/mm/yy</div>
+                                        <div className="box-sub">Phí vận chuyển: 15.000đ</div>
+                                    </div>
+                                </div>
+                                <div className="seperate-box"/>
+                                <div className="order-box-content">
+                                    <div className="box-title">HÌNH THỨC THANH TOÁN</div>
+                                    <div className="box-content">
+                                        <div className="box-sub">Thanh toán tiền mặt khi nhận hàng</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="heading-detail-container3">
+                                <div className="detail-title">
+                                    <div className="title-tab1">
+                                        <span>Sản phẩm</span>
+                                    </div>
+                                    <div className="title-tab2">
+                                        <span>Giá</span>
+                                    </div>
+                                    <div className="title-tab2">
+                                        <span>Số lượng</span>
+                                    </div>
+                                    <div className="title-tab2">
+                                        <span>Giảm giá</span>
+                                    </div>
+                                    <div className="title-tab3">
+                                        <span>Tạm tính</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            { productList.map((item, index) => 
+                                item.products.map((item2, index) => (
+                                    <>
+                                        <div className="heading-detail-container4" key={index}>
+                                            <div className="title-tab1">
+                                                <img src={item2.pro_avatar} alt='img'/>
+                                                <div className="tab1-text">
+                                                    <Link to={`/${item2.pro_slug}/${item2.id}`} style={{color: 'black'}}>{item2.pro_name}</Link>
+                                                    <div className="tab1-btn">
+                                                        <Link to={`/${item2.pro_slug}-${item2.id}`}><button>Viết nhận xét</button></Link>
+                                                        <Link to={`/${item2.pro_slug}-${item2.id}`}><button>Mua lại</button></Link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="title-tab2">
+                                                <span>{item2.pro_price.toLocaleString()} ₫</span>
+                                            </div>
+                                            <div className="title-tab2">
+                                                <span>{item.od_qty}</span>
+                                            </div>
+                                            <div className="title-tab2">
+                                                <span>{item2.pro_discount_value} ₫</span>
+                                            </div>
+                                            <div className="title-tab3">
+                                                <span>{(item.od_price * item.od_qty).toLocaleString()} ₫</span>
+                                            </div>
+                                        </div>
+                                    </>
+                                )))
+                            }
+                        </div> 
+
                     </div>
                     <div className="title-tab2">
                       <span>Giảm giá</span>

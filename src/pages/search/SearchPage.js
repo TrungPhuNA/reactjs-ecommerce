@@ -5,7 +5,7 @@ import productApi from '../../api/ProductService';
 
 import {isWideScreen } from "../../helpers/screen";
 import MobileCategoryHeader from "../category/include/mobile/MobileCategoryHeader";
-import {Link, useParams, useSearchParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 import Skeleton from 'react-loading-skeleton';
 import SidebarFilter from '../../components/common/sidebar/SidebarFinter';
@@ -15,38 +15,26 @@ function SearchPage() {
     let { searchInput } = useParams();
 
     const [loadingProduct, setLoadingProduct] = useState(true);
-    const [searchParams, setSearchParams] = useSearchParams();
 
     const [products, setProducts] = useState([]);
+    //const [searchProducts, setSearchProducts] = useState([]);
 
-    const getSearchProduct = async () => {
-        const response = await productApi.getListsProducts()
+    const page = 1;
+    const page_size = 300;
+    
+    const getProducts = async () => {
+        const response = await productApi.getListsProductsByPage(page, page_size)
         if(response.status === 200) {
             setProducts(response.data);
             setLoadingProduct(false);
-        }
+        } 
+
     }
+
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-        getSearchProduct();
-    }, [])
-
-    const handleChangeSort = (event) => {
-        let sortType = event.currentTarget.getAttribute('data-sort-type');
-        let sortValue = event.currentTarget.getAttribute('data-sort-value');
-        const elementLinks = [...document.querySelectorAll('.tabs-list')];
-
-        elementLinks.map((tl) => {
-            tl.classList.remove('active');
-        });
-
-        event.currentTarget.classList.add("active");
-        if (sortType === 'price')
-        {
-            setSearchParams({price: sortValue});
-        }
-    }
+        getProducts();
+    }, [searchInput]);
 
     return (
         <main className={isWideScreen() ? 'desktop' : 'mobile'}>
@@ -80,54 +68,6 @@ function SearchPage() {
                                     {/*    </Swiper>*/}
                                     {/*</div>*/}
 
-                                    <div className="search-summary-category">
-                                        <div className="summary-top">
-                                            <div className="top-tabs">
-                                                <div className="tabs-list">
-                                                    { isWideScreen() &&
-                                                        <>
-                                                            <Link to="" onClick={handleChangeSort} className="tabs-list" data-sort-type="price" data-sort-value={"desc"} >Giá Thấp Đến Cao</Link>
-                                                            <Link to="" onClick={handleChangeSort} className="tabs-list" data-sort-type="price" data-sort-value={"asc"} >Giá Cao Đến Thấp</Link>
-                                                        </>
-                                                    }
-                                                    { !isWideScreen() &&
-                                                        <>
-                                                            <Link to="category" className="active">Phổ Biến</Link>
-                                                            <Link to="category" className="active">Bán Chạy</Link>
-                                                            <Link to="category" className="active">Hàng Mới</Link>
-                                                            <Link to="category" className="active">Giá <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M3.43306 0.308058C3.67714 0.0639806 4.07286 0.0639806 4.31694 0.308058L6.81694 2.80806C7.06102 3.05214 7.06102 3.44786 6.81694 3.69194C6.57286 3.93602 6.17714 3.93602 5.93306 3.69194L4.5 2.25888V10.125C4.5 10.4702 4.22018 10.75 3.875 10.75C3.52982 10.75 3.25 10.4702 3.25 10.125V2.25888L1.81694 3.69194C1.57286 3.93602 1.17714 3.93602 0.933058 3.69194C0.688981 3.44786 0.688981 3.05214 0.933058 2.80806L3.43306 0.308058ZM9.5 11.7411V3.25C9.5 2.90482 9.77982 2.625 10.125 2.625C10.4702 2.625 10.75 2.90482 10.75 3.25V11.7411L12.1831 10.3081C12.4271 10.064 12.8229 10.064 13.0669 10.3081C13.311 10.5521 13.311 10.9479 13.0669 11.1919L10.5669 13.6919C10.3229 13.936 9.92714 13.936 9.68306 13.6919L7.18306 11.1919C6.93898 10.9479 6.93898 10.5521 7.18306 10.3081C7.42714 10.064 7.82286 10.064 8.06694 10.3081L9.5 11.7411Z" fill="#38383D"></path></svg></Link>
-                                                        </>
-                                                    }
-                                                </div>
-                                            </div>
-
-                                            <div className="search-navigate">
-                                                <div className="paging">
-                                                    <span className="current">1</span>
-                                                    &#47;
-                                                    <span className="last">50</span>
-                                                </div>
-
-                                                <div className="list-arrow">
-                                                    <img alt="/" src="https://salt.tikicdn.com/ts/brickv2og/b0/c0/37/55863dd4fac41fc53a8ad943545973b1.png"/>
-                                                    <img className="right" alt="/" src="https://salt.tikicdn.com/ts/brickv2og/a8/b5/3b/3c2faee1a219b651e8bf39b1e57b9bbc.png"/>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="summary-bottom">
-                                            <p className="itemsticky">
-                                                <img alt="/" src="https://salt.tikicdn.com/ts/upload/b3/21/cf/c6525bcd44b3bb1b793277cc98487799.png" height="12" width="38.5"/>
-                                            </p>
-                                            <p className="itemsticky">
-                                                <img alt="/" src="https://salt.tikicdn.com/ts/upload/08/41/4d/70e65420f4cd6203d36865b87adc2bf3.png" height="12" width="31"/>
-                                            </p>
-                                            <p className="itemsticky">
-                                                <img alt="/" src="https://salt.tikicdn.com/ts/upload/e9/14/26/52318ad1543ad9d3ee5b633b3df0750d.png" height="12" width="62"/>
-                                            </p>
-                                        </div>
-                                    </div>
-
                                     { loadingProduct === true ? (
                                         <div className="product-container">
                                             <div className="suggestion__product">
@@ -151,8 +91,10 @@ function SearchPage() {
                                         </div>
                                     ) : (
                                         <>
-                                            <Products products={products} searchInput={searchInput}/>
-                                            
+                                            <Products 
+                                                products={products} 
+                                                searchInput={searchInput}
+                                            />
                                         </>
                                     )}
                                 </div>
