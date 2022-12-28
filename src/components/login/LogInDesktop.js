@@ -8,6 +8,8 @@ import authApi from '../../api/AuthService';
 function LogInDesktop() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [usernameError, setUsernameError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
     const [noti, setNoti] = useState(false);
     const dispatch = useDispatch();
 
@@ -26,7 +28,12 @@ function LogInDesktop() {
                 // dispatch(setTokenLogin(tokenString.accessToken));
                 window.location.reload();
             } else {
-                setNoti(true);
+                if (!username)
+                    setUsernameError("Tên đăng nhặp không được bỏ trống!");
+                if (!password)    
+                    setPasswordError("Mật khẩu không được bỏ trống!");
+                if (username && password)
+                    setNoti(true);
             }
         } catch (e) {
             console.log('---Erorlogin');
@@ -43,15 +50,11 @@ function LogInDesktop() {
             </div>
             <Formik
                 validate={() => {
-                    let errors = {};
-
                     if (!username)
-                        errors.username = "Tên đăng nhặp không được bỏ trống!";
+                        setUsernameError("Tên đăng nhặp không được bỏ trống!");
 
                     if (!password)
-                        errors.password = "Mật khẩu không được bỏ trống!";
-
-                    return errors;
+                        setPasswordError("Mật khẩu không được bỏ trống!");
                 }}
             // validationSchema={Yup.object().shape({
             //     username: Yup.string().required("Tên đăng nhập không được bỏ trống"),
@@ -68,7 +71,7 @@ function LogInDesktop() {
             // })}
             >
                 {(props) => {
-                    const { touched, errors, handleBlur } = props;
+                    const { errors, handleBlur } = props;
                     return (
                         <form>
                             <div className="left-content-heading-input">
@@ -84,18 +87,16 @@ function LogInDesktop() {
                                     placeholder="Nhập tên đăng nhập"
                                     value={username}
                                     onChange={(e) =>
-                                        setUsername(e.target.value)
+                                        { setUsername(e.target.value); setUsernameError('') }
                                     }
-                                    onBlur={handleBlur}
                                     className={
-                                        errors.username &&
-                                        touched.username &&
+                                        usernameError &&
                                         "error"
                                     }
                                 />
-                                {errors.username && touched.username && (
+                                {usernameError && (
                                     <div className="input-feedback">
-                                        {errors.username}
+                                        {usernameError}
                                     </div>
                                 )}
                                 <label
@@ -110,18 +111,16 @@ function LogInDesktop() {
                                     placeholder="Nhập mật khẩu"
                                     value={password}
                                     onChange={(e) =>
-                                        setPassword(e.target.value)
+                                        { setPassword(e.target.value); setPasswordError(''); }
                                     }
-                                    onBlur={handleBlur}
                                     className={
-                                        errors.password &&
-                                        touched.password &&
+                                        passwordError &&
                                         "error"
                                     }
                                 />
-                                {errors.password && touched.password && (
+                                {passwordError && (
                                     <div className="input-feedback">
-                                        {errors.password}
+                                        {passwordError}
                                     </div>
                                 )}
                             </div>
@@ -130,7 +129,7 @@ function LogInDesktop() {
                                 Tiếp tục
                             </button>
 
-                            {noti ? (<>
+                            {noti === true ? (<>
                                 <div className="unauth">Sai tên đăng nhập hoặc mật khẩu!</div>
                             </>)
                                 :

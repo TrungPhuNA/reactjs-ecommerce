@@ -323,7 +323,12 @@ function Header() {
                                         setShowSearchDesktop(true);
                                     }}
                                     onChange={handleChange}
-										
+                                    onKeyPress={event => {
+                                        if(event.key === 'Enter') {
+                                            navigate(`search&q=${searchInput}`);
+                                            setShowSearchDesktop(false);
+                                        }
+                                    }}
                                 />
                                 {searchInput.length !== 0 ? (
                                     <Link to={`/search&q=${searchInput}`}>

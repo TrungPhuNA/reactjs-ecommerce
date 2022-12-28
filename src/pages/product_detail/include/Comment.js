@@ -8,16 +8,26 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ratingApi from "../../../api/RatingService";
 import authApi from "../../../api/AuthService";
-import { integerPropType } from "@mui/utils";
+import Pagination from "../../../components/common/Pagination";
+
+let page = 1;
+let page_size = 100;
+let PageSize = 10;
 
 function Comment({ id, products }) {
 
     let product_id = Number(id);
 
+    const [refresh, setRefresh] = useState(true);
     const [showRate, setShowRate] = useState(false);
+    const [showUpdate, setShowUpdate] = useState(false);
+    const [alert, setAlert] = useState(false);
+
     const [rating, setRating] = useState(0);
     const [content, setContent] = useState();
     const [auth, setAuth] = useState(false);
+    const [userId, setUserId] = useState();
+    const [idVote, setIdVote] = useState();
 
     const [vote, setVote] = useState([]);
     const [countComment, setCountComment] = useState();
@@ -29,27 +39,43 @@ function Comment({ id, products }) {
     const [percent4, setPercent4] = useState(0);
     const [percent5, setPercent5] = useState(0);
 
+    const [currentPage, setCurrentPage] = useState(1);
+
+    function currentTableData() {
+        const firstPageIndex = (currentPage - 1) * PageSize;
+        const lastPageIndex = firstPageIndex + PageSize;
+        return vote.slice(firstPageIndex, lastPageIndex);
+    }
+
     const getUser = async () => {
         const response = await authApi.getProfile();
         if (response.status === 200) {
             setAuth(true);
+            setUserId(response.data.id)
         }
     }
 
     useEffect(() => {
-        getUser();
-        getRate();
-    }, [id])
-
-    const getRate = async () => {
+        setIdVote();
+        setCurrentPage(1);
         setPercent1(0);
         setPercent2(0);
         setPercent3(0);
         setPercent4(0);
         setPercent5(0);
+        getUser();
+        getRate();
+    }, [id, refresh])
+    
+    const getRate = async () => {
         let arr = [];
         let star = 0;
-        const response = await ratingApi.getListRateByProducts(id);
+        let star1 = 0;
+        let star2 = 0;
+        let star3 = 0;
+        let star4 = 0;
+        let star5 = 0;
+        const response = await ratingApi.getListRateByProducts(page, page_size, id);
         if (response.status === 200) {
             setVote(response.data);
         }
@@ -57,30 +83,39 @@ function Comment({ id, products }) {
             if (item.v_product_id == product_id) {
                 star += item.v_number;
                 arr.push(item);
-                switch (item.v_number) {
-                    case 1:
-                        setPercent1(percent1 + 1);
-                        break;
-                    case 2:
-                        setPercent2(percent2 + 1);
-                        break;
-                    case 3:
-                        setPercent3(percent3 + 1);
-                        break;
-                    case 4:
-                        setPercent4(percent4 + 1);
-                        break;
-                    case 5:
-                        setPercent5(percent5 + 1);
-                        break;
-                    default:
-                        break;
-                }
+                if (item.v_number == 1)
+                    star1 += 1;
+                if (item.v_number == 2)
+                    star2 += 1;
+                if (item.v_number == 3)
+                    star3 += 1;
+                if (item.v_number == 4)
+                    star4 += 1;
+                if (item.v_number == 5)
+                    star5 += 1;
             }
         })
         setCountComment(arr.length);
         setVoteStar(star);
+        setPercent1(star1);
+        setPercent2(star2);
+        setPercent3(star3);
+        setPercent4(star4);
+        setPercent5(star5);
         console.log(star);
+        console.log('star1:',star1);
+        console.log('star2:',star2);
+        console.log('star3:',star3);
+        console.log('star4:',star4);
+        console.log('star5:',star5);
+    }
+
+    const countRate = (index) => {
+        let tmp = [];
+        for(var i = 0; i<index; i++) {
+            tmp.push(<span style={{color: 'yellow'}}>&#9733;</span>);
+        }
+        return tmp;
     }
 
     const handleSubmit = async () => {
@@ -96,6 +131,29 @@ function Comment({ id, products }) {
         }
     }
 
+    const handleUpdateVote = async (idVote) => {
+        try {
+            let data = {
+                v_content: content,
+                v_number: rating,
+                v_product_id: product_id,
+            }
+            const response = await ratingApi.updateRateByProducts(idVote, data);
+            if (response.status === 200) {
+                setContent('');
+                setShowUpdate(false);
+            }
+        } catch {
+            setAlert(true);
+        }
+        
+        
+    }
+
+    const handleRefresh = () => {
+        setRefresh(!refresh);
+    }
+
     return (
         <div className="cmt-container">
             <div className="cmt-heading">
@@ -106,12 +164,8 @@ function Comment({ id, products }) {
                     <div className="review-rate">
                         <div className="rating">
                             <div className="rating-summary">
-                                <div className="rating-point">{(voteStar / countComment) || 0}</div>
+                                <div className="rating-point">{(voteStar / countComment).toFixed(1) || 0}</div>
                                 <div className="rating-stars">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 3L14.6198 8.81653L21 9.49342L16.239 13.7651L17.5623 20L12 16.8235L6.43769 20L7.761 13.7651L3 9.49342L9.38015 8.81653L12 3Z" stroke="#FFA142" fill="#FFD52E"></path><path fillRule="evenodd" clipRule="evenodd" d="M12 2L14.9109 8.50806L22 9.26543L16.71 14.045L18.1803 21.0211L12 17.467L5.81966 21.0211L7.29 14.045L2 9.26543L9.08906 8.50806L12 2ZM12 4.29426L9.72422 9.38228L4.18197 9.97439L8.31771 13.7111L7.16819 19.165L12 16.3864L16.8318 19.165L15.6823 13.7111L19.818 9.97439L14.2758 9.38228L12 4.29426Z" fill="#FFA142"></path></svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 3L14.6198 8.81653L21 9.49342L16.239 13.7651L17.5623 20L12 16.8235L6.43769 20L7.761 13.7651L3 9.49342L9.38015 8.81653L12 3Z" stroke="#FFA142" fill="#FFD52E"></path><path fillRule="evenodd" clipRule="evenodd" d="M12 2L14.9109 8.50806L22 9.26543L16.71 14.045L18.1803 21.0211L12 17.467L5.81966 21.0211L7.29 14.045L2 9.26543L9.08906 8.50806L12 2ZM12 4.29426L9.72422 9.38228L4.18197 9.97439L8.31771 13.7111L7.16819 19.165L12 16.3864L16.8318 19.165L15.6823 13.7111L19.818 9.97439L14.2758 9.38228L12 4.29426Z" fill="#FFA142"></path></svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 3L14.6198 8.81653L21 9.49342L16.239 13.7651L17.5623 20L12 16.8235L6.43769 20L7.761 13.7651L3 9.49342L9.38015 8.81653L12 3Z" stroke="#FFA142" fill="#FFD52E"></path><path fillRule="evenodd" clipRule="evenodd" d="M12 2L14.9109 8.50806L22 9.26543L16.71 14.045L18.1803 21.0211L12 17.467L5.81966 21.0211L7.29 14.045L2 9.26543L9.08906 8.50806L12 2ZM12 4.29426L9.72422 9.38228L4.18197 9.97439L8.31771 13.7111L7.16819 19.165L12 16.3864L16.8318 19.165L15.6823 13.7111L19.818 9.97439L14.2758 9.38228L12 4.29426Z" fill="#FFA142"></path></svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 3L14.6198 8.81653L21 9.49342L16.239 13.7651L17.5623 20L12 16.8235L6.43769 20L7.761 13.7651L3 9.49342L9.38015 8.81653L12 3Z" stroke="#FFA142" fill="#FFD52E"></path><path fillRule="evenodd" clipRule="evenodd" d="M12 2L14.9109 8.50806L22 9.26543L16.71 14.045L18.1803 21.0211L12 17.467L5.81966 21.0211L7.29 14.045L2 9.26543L9.08906 8.50806L12 2ZM12 4.29426L9.72422 9.38228L4.18197 9.97439L8.31771 13.7111L7.16819 19.165L12 16.3864L16.8318 19.165L15.6823 13.7111L19.818 9.97439L14.2758 9.38228L12 4.29426Z" fill="#FFA142"></path></svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 3L14.6198 8.81653L21 9.49342L16.239 13.7651L17.5623 20L12 16.8235L6.43769 20L7.761 13.7651L3 9.49342L9.38015 8.81653L12 3Z" stroke="#FFA142" fill="#FFD52E"></path><path fillRule="evenodd" clipRule="evenodd" d="M12 2L14.9109 8.50806L22 9.26543L16.71 14.045L18.1803 21.0211L12 17.467L5.81966 21.0211L7.29 14.045L2 9.26543L9.08906 8.50806L12 2ZM12 4.29426L9.72422 9.38228L4.18197 9.97439L8.31771 13.7111L7.16819 19.165L12 16.3864L16.8318 19.165L15.6823 13.7111L19.818 9.97439L14.2758 9.38228L12 4.29426Z" fill="#FFA142"></path></svg>
                                     <div className="rating-text">{countComment} nhận xét</div>
                                 </div>
@@ -188,7 +242,7 @@ function Comment({ id, products }) {
                     <div className="review-img">
                         {isWideScreen() &&
                             <>
-                                <div className="imgs">
+                                {/* <div className="imgs">
                                     <div className="imgs-header">
                                         Tất cả hình ảnh (100)
                                     </div>
@@ -200,18 +254,18 @@ function Comment({ id, products }) {
                                         <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg" />
                                         <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg" />
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="review-filter">
                                     <div className="filter-label">Lọc xem theo : </div>
                                     <div className="filter-inner">
                                         <span>Mới nhất</span>
                                         <span>Có hình ảnh</span>
                                         <span>Đã mua hàng</span>
-                                        <span>5 sao</span>
-                                        <span>4 sao</span>
-                                        <span>3 sao</span>
-                                        <span>2 sao</span>
-                                        <span>1 sao</span>
+                                        <span>5 &#9733;</span>
+                                        <span>4 &#9733;</span>
+                                        <span>3 &#9733;</span>
+                                        <span>2 &#9733;</span>
+                                        <span>1 &#9733;</span>
                                     </div>
                                 </div>
                             </>
@@ -249,14 +303,14 @@ function Comment({ id, products }) {
                                     </div>
                                     <div className="rate-input">
                                         <textarea type='text' value={content} onChange={(e) => setContent(e.target.value)} placeholder="Mời bạn chia sẻ thêm một số cảm nhận về sản phẩm ..." />
-                                        <button onClick={handleSubmit}>Gửi đánh giá</button>
+                                        <button onClick={() => {handleSubmit(); handleRefresh()}}>Gửi đánh giá</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </>
                 )}
-                {vote.map((item, index) =>
+                {currentTableData().map((item, index) =>
                     item.v_product_id == product_id && (
                         <div className="customer-comment" key={index}>
                             <div className="review-user">
@@ -282,7 +336,7 @@ function Comment({ id, products }) {
                             </div>
                             <div className="review-user-content">
                                 <div className="review-title">
-                                    <Rate rating={item.v_number} />
+                                    { countRate(item.v_number) }
                                 </div>
                                 <div className="review-check-icon">
                                     <img alt="/" src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/523/posts/32694/final_image/tutorial-preview-large.png" width="14" height="14" />
@@ -300,11 +354,56 @@ function Comment({ id, products }) {
                                 <span>Hữu ích (100)</span>
                             </span> */}
                                 <span className="thank">Bình luận</span>
-                                <span className="thank">Chia sẻ</span>
+                                {/* <span className="thank">Chia sẻ</span> */}
+                                { userId == item.v_user_id && <span className="thank" onClick={() => {setShowUpdate(true); setIdVote(item.id)}}>Chỉnh sửa</span>}
                             </div>
                         </div>
-                    ))}
-
+                ))}
+                {showUpdate === true && (
+                    <>
+                        <div className="rate-popup">
+                            <div className="rate-form">
+                                <div className="rate-form-header">
+                                    <p>Đánh giá</p>
+                                    <div className="rate-close" onClick={() => setShowUpdate(false)}>
+                                        <FontAwesomeIcon icon={faXmark} />
+                                    </div>
+                                </div>
+                                <div className="rate-form-content">
+                                    <div className="rate-info">
+                                        <img src={products.pro_avatar} alt='xad' width='50' height='50' />
+                                        <div>
+                                            <span>{products.pro_name}</span>
+                                        </div>
+                                    </div>
+                                    <div className="rate">
+                                        <Rate
+                                            rating={rating}
+                                            onRating={(rate) => setRating(rate)}
+                                        />
+                                    </div>
+                                    <div className="rate-input">
+                                        <textarea type='text' value={content} onChange={(e) => setContent(e.target.value)} placeholder="Mời bạn chia sẻ thêm một số cảm nhận về sản phẩm ..." />
+                                        { alert === true && <div style={{ textAlign: 'center', color: 'red',marginTop: '10px', fontSize: '12px', marginLeft: '12px'}}>Nội dung không được để trống!</div>}
+                                        <button onClick={() => {handleUpdateVote(idVote); handleRefresh()}}>Lưu chỉnh sửa</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                )}
+                { countComment > 10 && 
+                    <>
+                        <Pagination
+                            className="pagination-bar"
+                            currentPage={currentPage}
+                            totalCount={vote.length}
+                            pageSize={PageSize}
+                            onPageChange={(page) => setCurrentPage(page)}
+                        />
+                    </>
+                }  
+                
                 {/* <div className="review-pages">
                     <ul>
                         <li>

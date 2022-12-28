@@ -12,6 +12,12 @@ function RegisterDesktop() {
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const [address, setAddress] = useState("");
+    const [nameError, setNameError] = useState("");
+    const [emailError, setEmailError] = useState("");
+    const [usernameError, setUsernameError] = useState("");
+    const [phoneError, setPhoneError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+    const [addressError, setAddressError] = useState("");
     const [noti, setNoti] = useState(false);
 
     async function signUp(e) {
@@ -27,11 +33,26 @@ function RegisterDesktop() {
                 localStorage.setItem('accessToken', tokenString.accessToken);
                 window.location.reload();
             } else {
-                localStorage.clear();
-                setNoti(true);
+                if (!name) 
+                    setNameError('Tên không được bỏ trống!');
+                if (!email) 
+                    setEmailError('Email không được bỏ trống!');
+                if (!username) 
+                    setUsernameError('Tên đăng nhập không được bỏ trống!');
+                if (!phone) 
+                    setPhoneError('Số điện thoại không được bỏ trống!');
+                if (!password) 
+                    setPasswordError('Mật khẩu không được bỏ trống!');
+                if (!address) 
+                    setAddressError('Địa chỉ không được bỏ trống!');
+                if (name && email && username && phone && password && address) {
+                    setNoti(true);
+                    localStorage.clear();
+                }
+                console.log('ádasd')
             }
         } catch (e) {
-            console.log('----Eror signup!');
+            console.log('Dang ky that bai')
         }
 
     }
@@ -44,40 +65,31 @@ function RegisterDesktop() {
             </div>
             <Formik
                 validate={() => {
-                    let errors = {};
-
                     if (!name)
-                        errors.name = "Họ và tên không được bỏ trống!";
-
+                        setNameError("Họ và tên không được bỏ trống!");
                     if (!username)
-                        errors.username = "Tên đăng nhập không được bỏ trống!";
-
+                        setUsernameError("Tên đăng nhập không được bỏ trống!");
                     if (!address)
-                        errors.address = "Địa chỉ không được bỏ trống!";
-
+                        setAddressError("Địa chỉ không được bỏ trống!");
                     const phoneRegex = /[0-9]/;
                     if (!phone)
-                        errors.phone = "Số điện thoại không được bỏ trống!";
+                        setPhoneError("Số điện thoại không được bỏ trống!");
                     else if (phone.length < 10 || !phoneRegex.test(phone))
-                        errors.phone = "Số điện thoại không hợp lệ!";
-
+                        setPhoneError("Số điện thoại không hợp lệ!");
                     if (!email) {
-                        errors.email = "Email không được bỏ trống!";
+                        setEmailError("Email không được bỏ trống!");
                     } else if (!EmailValidator.validate(email)) {
-                        errors.email = "Invalid email address";
+                        setEmailError("Invalid email address");
                     }
 
                     const passwordRegex = /(?=.*[0-9])/;
                     if (!password) {
-                        errors.password = "Mật khẩu không được bỏ trống!";
+                        setPasswordError("Mật khẩu không được bỏ trống!");
                     } else if (password.length < 8) {
-                        errors.password = "Password must be 8 characters long.";
+                        setPasswordError("Password must be 8 characters long.");
                     } else if (!passwordRegex.test(password)) {
-                        errors.password =
-                            "Invalida password. Must contain one number";
+                        setPasswordError("Invalida password. Must contain one number");
                     }
-
-                    return errors;
                 }}
             // validationSchema={Yup.object().shape({
             //     name: Yup.string().required("Họ và tên không được bỏ trống"),
@@ -104,9 +116,7 @@ function RegisterDesktop() {
             >
                 {(props) => {
                     const {
-                        touched,
                         errors,
-                        handleBlur,
                     } = props;
                     return (
                         <form >
@@ -119,15 +129,14 @@ function RegisterDesktop() {
                                     type="text"
                                     placeholder="Nhập họ và tên"
                                     value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                    onBlur={handleBlur}
+                                    onChange={(e) => { setName(e.target.value); setNameError('') }}
                                     className={
-                                        errors.name && touched.name && "error"
+                                        nameError && "error"
                                     }
                                 />
-                                {errors.name && touched.name && (
+                                {nameError && (
                                     <div className="input-feedback">
-                                        {errors.name}
+                                        {nameError}
                                     </div>
                                 )}
                                 <label
@@ -141,19 +150,18 @@ function RegisterDesktop() {
                                     type="text"
                                     placeholder="Nhập tên đăng nhập"
                                     value={username}
-                                    onChange={(e) =>
-                                        setUsername(e.target.value)
-                                    }
-                                    onBlur={handleBlur}
+                                    onChange={(e) => {
+                                        setUsername(e.target.value);
+                                        setUsernameError('');
+                                    }}
                                     className={
-                                        errors.username &&
-                                        touched.username &&
+                                        usernameError &&
                                         "error"
                                     }
                                 />
-                                {errors.username && touched.username && (
+                                {usernameError && (
                                     <div className="input-feedback">
-                                        {errors.username}
+                                        {usernameError}
                                     </div>
                                 )}
                                 <label
@@ -167,19 +175,18 @@ function RegisterDesktop() {
                                     type="password"
                                     placeholder="Nhập mật khẩu"
                                     value={password}
-                                    onChange={(e) =>
-                                        setPassword(e.target.value)
-                                    }
-                                    onBlur={handleBlur}
+                                    onChange={(e) => {
+                                        setPassword(e.target.value);
+                                        setPasswordError('');
+                                    }}
                                     className={
-                                        errors.password &&
-                                        touched.password &&
+                                        passwordError && 
                                         "error"
                                     }
                                 />
-                                {errors.password && touched.password && (
+                                {passwordError && (
                                     <div className="input-feedback">
-                                        {errors.password}
+                                        {passwordError}
                                     </div>
                                 )}
                                 <label className="text-title" htmlFor="email">
@@ -190,15 +197,14 @@ function RegisterDesktop() {
                                     type="text"
                                     placeholder="Nhập email"
                                     value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    onBlur={handleBlur}
+                                    onChange={(e) => {setEmail(e.target.value); setEmailError('')}}
                                     className={
-                                        errors.email && touched.email && "error"
+                                        emailError && "error"
                                     }
                                 />
-                                {errors.email && touched.email && (
+                                {emailError && (
                                     <div className="input-feedback">
-                                        {errors.email}
+                                        {emailError}
                                     </div>
                                 )}
                                 <label className="text-title" htmlFor="phone">
@@ -209,15 +215,14 @@ function RegisterDesktop() {
                                     type="text"
                                     placeholder="Nhập số điện thoại"
                                     value={phone}
-                                    onChange={(e) => setPhone(e.target.value)}
-                                    onBlur={handleBlur}
+                                    onChange={(e) => {setPhone(e.target.value); setPhoneError('')}}
                                     className={
-                                        errors.phone && touched.phone && "error"
+                                        phoneError && "error"
                                     }
                                 />
-                                {errors.phone && touched.phone && (
+                                {phoneError && (
                                     <div className="input-feedback">
-                                        {errors.phone}
+                                        {phoneError}
                                     </div>
                                 )}
                                 <label className="text-title" htmlFor="address">
@@ -228,17 +233,15 @@ function RegisterDesktop() {
                                     type="text"
                                     placeholder="Nhập địa chỉ"
                                     value={address}
-                                    onChange={(e) => setAddress(e.target.value)}
-                                    onBlur={handleBlur}
+                                    onChange={(e) => {setAddress(e.target.value); setAddressError('')}}
                                     className={
-                                        errors.address &&
-                                        touched.address &&
+                                       addressError &&
                                         "error"
                                     }
                                 />
-                                {errors.address && touched.address && (
+                                {addressError && (
                                     <div className="input-feedback">
-                                        {errors.address}
+                                        {addressError}
                                     </div>
                                 )}
                             </div>
@@ -246,7 +249,7 @@ function RegisterDesktop() {
                                 Tiếp tục
                             </button>
 
-                            {noti ? (<>
+                            {noti === true ? (<>
                                 <div className="unauth">Thông tin chưa đúng hoặc đã tồn tại. Vui lòng nhập lại!</div>
                             </>)
                                 :
