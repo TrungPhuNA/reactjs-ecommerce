@@ -85,19 +85,21 @@ function CategoryPage() {
         const sortedArr = [...products].sort((a, b) => a.pro_price > b.pro_price ? 1 : -1);
         setProductsAsc(sortedArr);
         console.log('--Asc', productsAsc);
-        setSortAsc(true);
-        setShow(false);
+        setSortAsc(!sortAsc);
         setSortDesc(false);
+        if (sortAsc === false) 
+            setShow(true);
         return productsAsc;
     }
 
     const handleSortDesc = () => {
-        const sortedArr = [...productsAsc].reverse();
+        const sortedArr = [...products].sort((a, b) => a.pro_price > b.pro_price ? 1 : -1).reverse();
         setProductsDesc(sortedArr);
         console.log('--Desc', productsDesc);
         setSortAsc(false);
-        setShow(false);
-        setSortDesc(true);
+        setSortDesc(!sortDesc);
+        if (sortDesc === false) 
+            setShow(true);
         return productsDesc;
     }
 
@@ -122,7 +124,7 @@ function CategoryPage() {
                                                 <div className="tabs-list">
                                                     { isWideScreen() &&
                                                         <>
-                                                            <Link to={`?price=asc`}
+                                                            <Link to={`${ sortAsc === false  ? `?price=asc` : '?'}`}
                                                             // {`?${searchParams}`} 
                                                                 onClick={handleChangeSort} 
                                                                 className={`tabs-list ${sortAsc===true?'active':''}`} 
@@ -131,7 +133,7 @@ function CategoryPage() {
                                                             >
                                                                 Giá Thấp Đến Cao
                                                             </Link>
-                                                            <Link to={`?price=desc`}
+                                                            <Link to={`${ sortDesc === false  ? `?price=desc` : '?'}`}
                                                             // {`?${searchParams}`}
                                                                 onClick={handleChangeSort} 
                                                                 className={`tabs-list ${sortDesc===true?'active':''}`} 

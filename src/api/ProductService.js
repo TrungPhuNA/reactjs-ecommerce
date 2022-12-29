@@ -22,7 +22,7 @@ const productApi = {
 		}
 	},
 
-	async getListsProductsByPage(page, page_size, total_page) {
+	async getListsProductsByPage(page, page_size) {
 		try {
 			const url = `product/lists?page=${page}&page_size=${page_size}`;
 			const response = await axiosClient.get(url)

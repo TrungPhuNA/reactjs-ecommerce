@@ -87,8 +87,8 @@ function Product({ products, pro_price, loading }) {
                             <>
                                 <div className="product-brand">
                                     <span>
-                                        <h6>Thương hiệu:</h6>
-                                        <Link to=""> Hasaki</Link>
+                                        <h6>Thương hiệu : </h6>
+                                        <span style={{color: 'blue', cursor: 'pointer'}}>Hasaki</span>
                                     </span>
                                 </div>
                             </>
@@ -100,9 +100,10 @@ function Product({ products, pro_price, loading }) {
                                 <div className="star-on">
                                     &#9733;&#9733;&#9733;&#9733;&#9733;
                                 </div>
-                                <Link to="*">(Xem 11 đánh giá)</Link>
                                 <div className="below-seperate" />
-                                <div className="sold">Đã bán 65</div>
+                                <Link to="" onClick={() => window.scrollTo(0,1200)} style={{textDecoration: 'underline'}}>Xem đánh giá</Link>
+                                <div className="below-seperate" />
+                                <div className="sold">Đã bán 0</div>
                             </div>
                         </div>
                     </div>

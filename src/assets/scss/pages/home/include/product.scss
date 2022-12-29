@@ -1,12 +1,12 @@
 .suggestion {
-    background: rgb(245, 245, 250);
     margin-top: 30px;
     border-radius: 4px;
+    margin-bottom: 100px;
 
     &__title {
         display: flex;
         background: rgb(245, 245, 250);
-        border-radius: 4px 4px 0px 0px;
+        border-radius: 5px 5px 0px 0px;
         flex-direction: column;
         padding: 0 10px;
 
@@ -18,7 +18,7 @@
         .group{
             display: flex;
             padding: 10px;
-            margin: 5px;
+            margin: 5px 0px;
             background-color: white;
             flex: 1 1 0%;
             border-radius: 4px;
@@ -156,6 +156,7 @@
             align-self: stretch;
             background-color: rgb(255, 255, 255);
             border-top: 1px solid rgb(242, 242, 242);
+            margin-left: 6px;
 
             .dashboard-product--item {
                 width: 16.6667%;
@@ -283,17 +284,12 @@
         // background-color: rgb(245, 245, 250);
 
         .product-item {
+            display: flex;
+            color: rgb(36, 36, 36);
             text-decoration: none;
-            width: 200px;
-            position: relative;
-            cursor: pointer;
-            height: 100%;
-            background-color: white;
-
-            &:hover {
-                box-shadow: rgb(0 0 0 / 10%) 0px 0px 20px;
-                z-index: 1;
-            }
+            flex-direction: column;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
 
             &--style {
                 display: flex;
@@ -304,7 +300,6 @@
                 -webkit-box-pack: justify;
                 width: 100%;
                 height: 100%;
-                background: rgba(99, 69, 237, 0.07);
                 margin: 5px;
 
                 .thumbnail {

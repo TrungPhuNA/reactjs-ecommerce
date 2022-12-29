@@ -152,6 +152,12 @@
             display: flex;
             flex-wrap: wrap;
 
+            .filter-active {
+                background: rgb(240, 248, 255);
+                border: 1px solid rgb(26, 148, 255);
+                color: rgb(11, 116, 229);
+            }
+            
             span {
                 height: 32px;
                 font-weight: 500;
@@ -169,6 +175,8 @@
                 user-select: none;
             }
         }
+
+        
     }
 
     .rate-container {
