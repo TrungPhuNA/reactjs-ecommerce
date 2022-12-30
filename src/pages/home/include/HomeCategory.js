@@ -38,12 +38,12 @@ function HomeCategory() {
                     <Skeleton style={{ marginRight: "10px" }} count={1} height={20} width={100} />
                 </div>
             ) : (
-                categoriesHome.length > 0 && categoriesHome.map((item, index) => 
-                    (
-                        <Link to={'/category/' + (item.c_slug) + '-' + item.id} className="category-item" key={index}>
-                            <span>{item.c_name}</span>
-                        </Link>
-                    )
+                categoriesHome.length > 0 && categoriesHome.map((item, index) =>
+                (
+                    <Link to={'/category/' + (item.c_slug) + '-' + item.id} className="category-item" key={index}>
+                        <span>{item.c_name}</span>
+                    </Link>
+                )
                 )
             )}
         </div>

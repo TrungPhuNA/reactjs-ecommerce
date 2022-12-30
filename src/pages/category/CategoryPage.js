@@ -1,13 +1,13 @@
-import React, {useEffect, useState, useMemo} from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import Category from './include/desktop/Category';
 import Container from './include/desktop/Container';
 import Products from './include/desktop/Products';
-import {isWideScreen } from "../../helpers/screen";
+import { isWideScreen } from "../../helpers/screen";
 import MobileCategoryHeader from "./include/mobile/MobileCategoryHeader";
-import {useParams} from 'react-router';
+import { useParams } from 'react-router';
 import categoryApi from '../../api/CategoryService';
 import productApi from '../../api/ProductService';
-import {Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import SidebarFilter from '../../components/common/sidebar/SidebarFinter';
 
@@ -37,18 +37,18 @@ function CategoryPage() {
 
     const getCategoryDetail = async () => {
         const response = await categoryApi.findById(id);
-        if(response.status === 200) {
+        if (response.status === 200) {
             setCategory(response.data);
         }
     }
-    
+
     const getProductsByCategory = async () => {
         let params = {
             category_id: id,
             page_size: 18
         }
         const response = await productApi.getListsProducts(params);
-        if(response.status === 200) {
+        if (response.status === 200) {
             setProducts(response.data);
             setLoadingProduct(false);
         }
@@ -64,10 +64,9 @@ function CategoryPage() {
         });
 
         // event.currentTarget.classList.add("active");
-        if (sortType === 'price')
-        {
-            let pramsPrice = {'price': sortValue};
-            setSearchParams({...pramsPrice})
+        if (sortType === 'price') {
+            let pramsPrice = { 'price': sortValue };
+            setSearchParams({ ...pramsPrice })
             console.log('-------- sortValue', sortValue);
         }
 
@@ -80,14 +79,14 @@ function CategoryPage() {
         }
     }
     console.log('---searchParams', searchParams);
-    
+
     const handleSortAsc = () => {
         const sortedArr = [...products].sort((a, b) => a.pro_price > b.pro_price ? 1 : -1);
         setProductsAsc(sortedArr);
         console.log('--Asc', productsAsc);
         setSortAsc(!sortAsc);
         setSortDesc(false);
-        if (sortAsc === false) 
+        if (sortAsc === false)
             setShow(true);
         return productsAsc;
     }
@@ -98,7 +97,7 @@ function CategoryPage() {
         console.log('--Desc', productsDesc);
         setSortAsc(false);
         setSortDesc(!sortDesc);
-        if (sortDesc === false) 
+        if (sortDesc === false)
             setShow(true);
         return productsDesc;
     }
@@ -109,42 +108,42 @@ function CategoryPage() {
             {isWideScreen() &&
                 <>
                     <div className="container">
-                        <Category category={category}/>
+                        <Category category={category} />
                         <div className="category-view">
                             <SidebarFilter />
                             <div className="category-right">
                                 <div className="search-summary">
                                     <div className="title">
-                                        <h1>{ category?.c_name || <Skeleton count={1} />}</h1>
+                                        <h1>{category?.c_name || <Skeleton count={1} />}</h1>
                                     </div>
 
                                     <div className="search-summary-category">
                                         <div className="summary-top">
                                             <div className="top-tabs">
                                                 <div className="tabs-list">
-                                                    { isWideScreen() &&
+                                                    {isWideScreen() &&
                                                         <>
-                                                            <Link to={`${ sortAsc === false  ? `?price=asc` : '?'}`}
-                                                            // {`?${searchParams}`} 
-                                                                onClick={handleChangeSort} 
-                                                                className={`tabs-list ${sortAsc===true?'active':''}`} 
-                                                                data-sort-type="price" 
-                                                                data-sort-value={"asc"} 
+                                                            <Link to={`${sortAsc === false ? `?price=asc` : '?'}`}
+                                                                // {`?${searchParams}`} 
+                                                                onClick={handleChangeSort}
+                                                                className={`tabs-list ${sortAsc === true ? 'active' : ''}`}
+                                                                data-sort-type="price"
+                                                                data-sort-value={"asc"}
                                                             >
                                                                 Giá Thấp Đến Cao
                                                             </Link>
-                                                            <Link to={`${ sortDesc === false  ? `?price=desc` : '?'}`}
-                                                            // {`?${searchParams}`}
-                                                                onClick={handleChangeSort} 
-                                                                className={`tabs-list ${sortDesc===true?'active':''}`} 
-                                                                data-sort-type="price" 
-                                                                data-sort-value={"desc"} 
+                                                            <Link to={`${sortDesc === false ? `?price=desc` : '?'}`}
+                                                                // {`?${searchParams}`}
+                                                                onClick={handleChangeSort}
+                                                                className={`tabs-list ${sortDesc === true ? 'active' : ''}`}
+                                                                data-sort-type="price"
+                                                                data-sort-value={"desc"}
                                                             >
                                                                 Giá Cao Đến Thấp
                                                             </Link>
                                                         </>
                                                     }
-                                                    { !isWideScreen() &&
+                                                    {!isWideScreen() &&
                                                         <>
                                                             <Link to="category" className="active">Phổ Biến</Link>
                                                             <Link to="category" className="active">Bán Chạy</Link>
@@ -157,22 +156,22 @@ function CategoryPage() {
                                         </div>
                                     </div>
 
-                                    { loadingProduct === true ? (
+                                    {loadingProduct === true ? (
                                         <div className="product-container">
                                             <div className="suggestion__product">
                                                 <div className="content">
-                                                    <div className="" style={{ display:"flex", padding: "0 10px"}}>
-                                                        <div className="dashboard-product--item" style={{ marginTop:"10px", marginRight: "10px"}}>
+                                                    <div className="" style={{ display: "flex", padding: "0 10px" }}>
+                                                        <div className="dashboard-product--item" style={{ marginTop: "10px", marginRight: "10px" }}>
                                                             <Skeleton height={100} />
-                                                            <Skeleton height={10} style={{ marginTop: "10px"}} />
-                                                            <Skeleton height={10} style={{ marginTop: "5px"}} />
-                                                            <Skeleton height={10} style={{ marginTop: "5px"}} />
+                                                            <Skeleton height={10} style={{ marginTop: "10px" }} />
+                                                            <Skeleton height={10} style={{ marginTop: "5px" }} />
+                                                            <Skeleton height={10} style={{ marginTop: "5px" }} />
                                                         </div>
-                                                        <div className="dashboard-product--item" style={{ marginTop:"10px", marginRight: "10px"}}>
+                                                        <div className="dashboard-product--item" style={{ marginTop: "10px", marginRight: "10px" }}>
                                                             <Skeleton height={100} />
-                                                            <Skeleton height={10} style={{ marginTop: "10px"}} />
-                                                            <Skeleton height={10} style={{ marginTop: "5px"}} />
-                                                            <Skeleton height={10} style={{ marginTop: "5px"}} />
+                                                            <Skeleton height={10} style={{ marginTop: "10px" }} />
+                                                            <Skeleton height={10} style={{ marginTop: "5px" }} />
+                                                            <Skeleton height={10} style={{ marginTop: "5px" }} />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -180,15 +179,15 @@ function CategoryPage() {
                                         </div>
                                     ) : (
                                         <>
-                                            <Products 
-                                                products={products} 
-                                                id={id} 
-                                                productsAsc={productsAsc} 
+                                            <Products
+                                                products={products}
+                                                id={id}
+                                                productsAsc={productsAsc}
                                                 productsDesc={productsDesc}
                                                 show={show}
                                                 sortAsc={sortAsc}
                                                 sortDesc={sortDesc}
-                                            />    
+                                            />
                                         </>
                                     )}
                                 </div>
@@ -202,8 +201,8 @@ function CategoryPage() {
                 <>
                     <h2>Mobile</h2>
                     <>
-                        <MobileCategoryHeader/>
-                        <Container/>
+                        <MobileCategoryHeader />
+                        <Container />
                     </>
                 </>
             }

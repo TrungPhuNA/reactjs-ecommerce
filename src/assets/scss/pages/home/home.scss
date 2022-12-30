@@ -11,8 +11,9 @@
     box-shadow: 4px 4px 60px rgb(99 69 237 / 19%);
     border-radius: 30px;
 
-    .row{
+    .row {
         padding: 50px;
+
         .famous-brand--header {
             display: flex;
             height: 60px;
@@ -22,35 +23,35 @@
             justify-content: space-between;
             line-height: 28px;
             color: rgb(36, 36, 36);
-    
+
             button {
                 padding: 17px 34px;
                 border: unset;
                 background-size: 200% auto;
-                background: linear-gradient(132.71deg,#DC39FC 18.12%, #6345ED 81.74%);
+                background: linear-gradient(132.71deg, #DC39FC 18.12%, #6345ED 81.74%);
                 border-radius: 30px;
                 cursor: pointer;
-        
-                
-                .see-more{ 
+
+
+                .see-more {
                     font-size: 18px;
                     color: #fff;
                 }
             }
-        
-              button:hover{
+
+            button:hover {
                 background: #6345ED;
-              }
-    
+            }
+
             .main-title {
                 display: flex;
-    
+
                 img {
                     width: 24px;
                     height: 24px;
                 }
             }
-    
+
             .main-title__text {
                 margin: auto 0px auto 8px;
                 text-transform: capitalize;
@@ -59,12 +60,12 @@
                 color: var(--textColor);
             }
         }
-    
-        
+
+
         .brand-slide {
             display: flex;
             flex-wrap: wrap;
-    
+
             .col-12 {
                 -webkit-box-flex: 0;
                 -webkit-flex: 0 0 100%;
@@ -74,7 +75,7 @@
                 padding-right: 15px;
                 padding-left: 15px;
             }
-        
+
             @media (min-width: 768px) {
                 .col-md-6 {
                     -webkit-box-flex: 0;
@@ -86,7 +87,7 @@
                     padding-left: 15px;
                 }
             }
-        
+
             @media (min-width: 992px) {
                 .col-lg-4 {
                     -webkit-box-flex: 0;
@@ -116,18 +117,18 @@
                     align-items: center;
                 }
 
-                .card-content{
-                    h5{
+                .card-content {
+                    h5 {
                         color: var(--textColor);
                         margin-bottom: 10px;
                         font-size: 18px;
                     }
 
-                    p{
+                    p {
                         color: #616161;
                         display: -webkit-box;
                         -webkit-line-clamp: 3;
-                        -webkit-box-orient: vertical;  
+                        -webkit-box-orient: vertical;
                         overflow: hidden;
                     }
                 }
@@ -637,6 +638,7 @@
         height: 100%;
         padding: 10px 20px;
         text-align: center;
+        color: #616161;
     }
 
     .category-item:hover {
