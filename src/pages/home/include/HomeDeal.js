@@ -92,7 +92,7 @@ function HomeDeal() {
                   </Link>
                 </div>
               </div>
-              <Link to="/">Xem thêm</Link>
+              {/* <Link to="/">Xem thêm</Link> */}
             </div>
             <div className="body">
               <ProductSummary deal={true} />

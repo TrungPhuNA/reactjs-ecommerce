@@ -1,5 +1,4 @@
-
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { isWideScreen } from "../../../helpers/screen";
 import React from 'react';
 import { useEffect, useState } from "react";
@@ -22,6 +21,7 @@ function Comment({ id, products }) {
     const [showRate, setShowRate] = useState(false);
     const [showUpdate, setShowUpdate] = useState(false);
     const [alert, setAlert] = useState(false);
+    const [active, setActive] = useState(false)
 
     const [rating, setRating] = useState(0);
     const [content, setContent] = useState();
@@ -66,7 +66,7 @@ function Comment({ id, products }) {
         getUser();
         getRate();
     }, [id, refresh])
-    
+
     const getRate = async () => {
         let arr = [];
         let star = 0;
@@ -102,18 +102,18 @@ function Comment({ id, products }) {
         setPercent3(star3);
         setPercent4(star4);
         setPercent5(star5);
-        console.log(star);
-        console.log('star1:',star1);
-        console.log('star2:',star2);
-        console.log('star3:',star3);
-        console.log('star4:',star4);
-        console.log('star5:',star5);
+        console.log('totalstar: ', star);
+        console.log('star1: ', star1);
+        console.log('star2: ', star2);
+        console.log('star3: ', star3);
+        console.log('star4: ', star4);
+        console.log('star5: ', star5);
     }
 
     const countRate = (index) => {
         let tmp = [];
-        for(var i = 0; i<index; i++) {
-            tmp.push(<span style={{color: 'yellow'}}>&#9733;</span>);
+        for (var i = 0; i < index; i++) {
+            tmp.push(<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><path d="M7 1.75L8.52824 5.14298L12.25 5.53783L9.47275 8.02966L10.2447 11.6667L7 9.81372L3.75532 11.6667L4.52725 8.02966L1.75 5.53783L5.47176 5.14298L7 1.75Z" stroke="#FFA142" fill="#FFD52E"></path><path fillRule="evenodd" clipRule="evenodd" d="M6.99996 1.16675L8.69801 4.96312L12.8333 5.40491L9.74746 8.193L10.6052 12.2624L6.99996 10.1892L3.39476 12.2624L4.25246 8.193L1.16663 5.40491L5.30191 4.96312L6.99996 1.16675ZM6.99996 2.50507L5.67242 5.47308L2.43944 5.81848L4.85196 7.99821L4.18141 11.1797L6.99996 9.55882L9.81851 11.1797L9.14796 7.99821L11.5605 5.81848L8.3275 5.47308L6.99996 2.50507Z" fill="#FFA142"></path></svg>);
         }
         return tmp;
     }
@@ -146,13 +146,16 @@ function Comment({ id, products }) {
         } catch {
             setAlert(true);
         }
-        
-        
+
+
     }
 
     const handleRefresh = () => {
         setRefresh(!refresh);
     }
+
+    const [searchParams] = useSearchParams();
+    console.log(searchParams)
 
     return (
         <div className="cmt-container">
@@ -164,7 +167,7 @@ function Comment({ id, products }) {
                     <div className="review-rate">
                         <div className="rating">
                             <div className="rating-summary">
-                                <div className="rating-point">{(voteStar / countComment).toFixed(1) || 0}</div>
+                                <div className="rating-point">{(voteStar / countComment) ? ((voteStar / countComment).toFixed(1)) : 0}</div>
                                 <div className="rating-stars">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 3L14.6198 8.81653L21 9.49342L16.239 13.7651L17.5623 20L12 16.8235L6.43769 20L7.761 13.7651L3 9.49342L9.38015 8.81653L12 3Z" stroke="#FFA142" fill="#FFD52E"></path><path fillRule="evenodd" clipRule="evenodd" d="M12 2L14.9109 8.50806L22 9.26543L16.71 14.045L18.1803 21.0211L12 17.467L5.81966 21.0211L7.29 14.045L2 9.26543L9.08906 8.50806L12 2ZM12 4.29426L9.72422 9.38228L4.18197 9.97439L8.31771 13.7111L7.16819 19.165L12 16.3864L16.8318 19.165L15.6823 13.7111L19.818 9.97439L14.2758 9.38228L12 4.29426Z" fill="#FFA142"></path></svg>
                                     <div className="rating-text">{countComment} nhận xét</div>
@@ -258,8 +261,8 @@ function Comment({ id, products }) {
                                 <div className="review-filter">
                                     <div className="filter-label">Lọc xem theo : </div>
                                     <div className="filter-inner">
-                                        <span>Mới nhất</span>
-                                        <span>Có hình ảnh</span>
+                                        <span className={`${active === true ? 'filter-active' : ''}`} onClick={() => setActive(!active)}>Mới nhất</span>
+                                        <span >Có hình ảnh</span>
                                         <span>Đã mua hàng</span>
                                         <span>5 &#9733;</span>
                                         <span>4 &#9733;</span>
@@ -303,7 +306,7 @@ function Comment({ id, products }) {
                                     </div>
                                     <div className="rate-input">
                                         <textarea type='text' value={content} onChange={(e) => setContent(e.target.value)} placeholder="Mời bạn chia sẻ thêm một số cảm nhận về sản phẩm ..." />
-                                        <button onClick={() => {handleSubmit(); handleRefresh()}}>Gửi đánh giá</button>
+                                        <button onClick={() => { handleSubmit(); handleRefresh() }}>Gửi đánh giá</button>
                                     </div>
                                 </div>
                             </div>
@@ -316,7 +319,7 @@ function Comment({ id, products }) {
                             <div className="review-user">
                                 <div className="user-inner">
                                     <div className="user-avatar">
-                                        <img alt="/" src="https://dienanhtrongtamtay.com/wp-content/uploads/2021/04/Icon-la-gi.jpg" width="48" height="48" />
+                                        <img alt="/" src="https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg" width="48" height="48" />
                                     </div>
                                     <div>
                                         <div className="user-name">User {item.v_product_id}</div>
@@ -336,7 +339,7 @@ function Comment({ id, products }) {
                             </div>
                             <div className="review-user-content">
                                 <div className="review-title">
-                                    { countRate(item.v_number) }
+                                    {countRate(item.v_number)}
                                 </div>
                                 <div className="review-check-icon">
                                     <img alt="/" src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/523/posts/32694/final_image/tutorial-preview-large.png" width="14" height="14" />
@@ -355,10 +358,10 @@ function Comment({ id, products }) {
                             </span> */}
                                 <span className="thank">Bình luận</span>
                                 {/* <span className="thank">Chia sẻ</span> */}
-                                { userId == item.v_user_id && <span className="thank" onClick={() => {setShowUpdate(true); setIdVote(item.id)}}>Chỉnh sửa</span>}
+                                {userId == item.v_user_id && <span className="thank" onClick={() => { setShowUpdate(true); setIdVote(item.id) }}>Chỉnh sửa</span>}
                             </div>
                         </div>
-                ))}
+                    ))}
                 {showUpdate === true && (
                     <>
                         <div className="rate-popup">
@@ -384,15 +387,15 @@ function Comment({ id, products }) {
                                     </div>
                                     <div className="rate-input">
                                         <textarea type='text' value={content} onChange={(e) => setContent(e.target.value)} placeholder="Mời bạn chia sẻ thêm một số cảm nhận về sản phẩm ..." />
-                                        { alert === true && <div style={{ textAlign: 'center', color: 'red',marginTop: '10px', fontSize: '12px', marginLeft: '12px'}}>Nội dung không được để trống!</div>}
-                                        <button onClick={() => {handleUpdateVote(idVote); handleRefresh()}}>Lưu chỉnh sửa</button>
+                                        {alert === true && <div style={{ textAlign: 'center', color: 'red', marginTop: '10px', fontSize: '12px', marginLeft: '12px' }}>Nội dung không được để trống!</div>}
+                                        <button onClick={() => { handleUpdateVote(idVote); handleRefresh() }}>Lưu chỉnh sửa</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </>
                 )}
-                { countComment > 10 && 
+                {countComment > 10 &&
                     <>
                         <Pagination
                             className="pagination-bar"
@@ -402,8 +405,8 @@ function Comment({ id, products }) {
                             onPageChange={(page) => setCurrentPage(page)}
                         />
                     </>
-                }  
-                
+                }
+
                 {/* <div className="review-pages">
                     <ul>
                         <li>

@@ -3,8 +3,8 @@
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    // background-color: rgb(245, 245, 250);
+    background-color: white;
+    margin-bottom: 20px;
 
     .product-item {
         text-decoration: none;
@@ -12,6 +12,7 @@
         position: relative;
         cursor: pointer;
         background-color: white;
+        margin-right: 2px;
 
         &:hover {
             box-shadow: rgb(0 0 0 / 10%) 0px 0px 20px;
