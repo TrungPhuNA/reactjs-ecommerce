@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import RegisterDesktop from "./RegisterDesktop";
-import LogInDesktop from "./LogInDesktop";
+import LoginDesktop from "./LoginDesktop";
 
 export default () => {
     const [isShow, setIsShow] = useState(true);
@@ -26,8 +26,8 @@ export default () => {
                                 <div className="login-left-content">
                                     {isRegister === false ? (
                                         <>
-                                            <LogInDesktop />
-                                            <p className="login-with-login">
+                                            <LoginDesktop />
+                                            <div className="login-with-login">
                                                 Bạn chưa có tài khoản?{" "}
                                                 <p
                                                     onClick={() =>
@@ -36,12 +36,12 @@ export default () => {
                                                 >
                                                     Đăng ký
                                                 </p>
-                                            </p>
+                                            </div>
                                         </>
                                     ) : (
                                         <>
                                             <RegisterDesktop />
-                                            <p className="login-with-login">
+                                            <div className="login-with-login">
                                                 <p
                                                     onClick={() =>
                                                         setIsRegister(false)
@@ -49,7 +49,7 @@ export default () => {
                                                 >
                                                     Đăng nhập bằng email
                                                 </p>
-                                            </p>
+                                            </div>
                                         </>
                                     )}
                                 </div>

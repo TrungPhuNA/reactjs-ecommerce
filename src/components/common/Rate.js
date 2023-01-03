@@ -20,7 +20,7 @@ const Rate = ({ count, rating, color, onRating }) => {
         return Array(count)
             .fill(0)
             .map((_, i) => i + 1)
-            .map((idx) => (
+            .map((_,idx) => (
                 <FontAwesomeIcon
                     key={idx}
                     className="cursor-pointer"

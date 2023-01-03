@@ -32,6 +32,7 @@ function Comment({ id, products }) {
     const [vote, setVote] = useState([]);
     const [countComment, setCountComment] = useState();
     const [voteStar, setVoteStar] = useState(0);
+    const [number, setNumber] = useState();
 
     const [percent1, setPercent1] = useState(0);
     const [percent2, setPercent2] = useState(0);
@@ -75,11 +76,17 @@ function Comment({ id, products }) {
         let star3 = 0;
         let star4 = 0;
         let star5 = 0;
-        const response = await ratingApi.getListRateByProducts(page, page_size, id);
+        let params = {
+            page: page,
+            page_size: page_size, 
+            id: id,
+            number: number,
+        }
+        const response = await ratingApi.getListRateByProducts(params);
         if (response.status === 200) {
             setVote(response.data);
         }
-        response.data.forEach(item => {
+        response.data.forEach((item) => {
             if (item.v_product_id == product_id) {
                 star += item.v_number;
                 arr.push(item);
@@ -154,7 +161,26 @@ function Comment({ id, products }) {
         setRefresh(!refresh);
     }
 
-    const [searchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const handleChangeSort = (e) => {
+        let sortType = e.currentTarget.getAttribute('data-sort-type');
+        let sortValue = e.currentTarget.getAttribute('data-sort-value');
+
+        e.currentTarget.classList.add("filter-active");
+        if (sortType === 'number') {
+            setSearchParams({number: sortValue});
+            setNumber(sortValue);
+        }
+    }
+    // const updateParams = () => {
+    //     const params = {
+    //         sort: JSON.stringify(['pro_sale', 'desc', 'asc']),
+    //         number: voteStar,
+    //     }
+    //     setSearchParams(params);
+    //     JSON.parse(searchParams.get("sort"))?.join(", ")
+    // }
+
     console.log(searchParams)
 
     return (
@@ -261,14 +287,11 @@ function Comment({ id, products }) {
                                 <div className="review-filter">
                                     <div className="filter-label">Lọc xem theo : </div>
                                     <div className="filter-inner">
-                                        <span className={`${active === true ? 'filter-active' : ''}`} onClick={() => setActive(!active)}>Mới nhất</span>
-                                        <span >Có hình ảnh</span>
-                                        <span>Đã mua hàng</span>
-                                        <span>5 &#9733;</span>
-                                        <span>4 &#9733;</span>
-                                        <span>3 &#9733;</span>
-                                        <span>2 &#9733;</span>
-                                        <span>1 &#9733;</span>
+                                        <span onClick={handleChangeSort} data-sort-type="number" data-sort-value="5">5 &#9733;</span>
+                                        <span onClick={handleChangeSort} data-sort-type="number" data-sort-value="4">4 &#9733;</span>
+                                        <span onClick={handleChangeSort} data-sort-type="number" data-sort-value="3">3 &#9733;</span>
+                                        <span onClick={handleChangeSort} data-sort-type="number" data-sort-value="2">2 &#9733;</span>
+                                        <span onClick={handleChangeSort} data-sort-type="number" data-sort-value="1">1 &#9733;</span>
                                     </div>
                                 </div>
                             </>
