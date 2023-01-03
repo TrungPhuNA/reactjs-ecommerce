@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from 'react';
 import { Link } from "react-router-dom";
 
 import { Provider, useDispatch, useSelector } from "react-redux";
@@ -19,6 +19,7 @@ function ShopCart() {
 	const dispatch = useDispatch();
 	const [isShow, setIsShow] = useState(false);
 	const [alert, setAlert] = useState(false);
+	const [userLogin, setUserLogin] = useState(null);
 
 	function getTotal() {
 		cart.map((item, index) => {
@@ -27,6 +28,18 @@ function ShopCart() {
 		console.log("Total = ", price_total);
 		return price_total.toLocaleString();
 	}
+
+	const fetchUserLogin = async () => {
+		const user = await authApi.getProfile();
+		if (user.status === 200) {
+			setUserLogin(user.data);
+		}
+		console.log('---------------- user: ', user);
+	}
+
+	useEffect(() => {
+		fetchUserLogin().then(r => {});
+	}, []);
 
 	const Order = async () => {
 		let order = {};
@@ -215,11 +228,11 @@ function ShopCart() {
 										</Link>
 									</div>
 									<div className="info">
-										<p>hoang</p>
+										<p>{ userLogin?.name }</p>
 										<i />
-										<p>491515</p>
+										{/*<p>491515</p>*/}
 									</div>
-									<div className="address">Hà Nội</div>
+									<div className="address">{ userLogin?.address }</div>
 								</div>
 							</div>
 							<div className="calculate-price">
