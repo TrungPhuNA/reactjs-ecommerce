@@ -127,7 +127,6 @@ function Comment({ id, products }) {
         let paramsQuery = location.search;
         let query = new URLSearchParams(paramsQuery);
         let value = query.get('number');
-        let newValueNumber = '';
         console.log('============== value: ', value);
         if (value) {
             if ( vote_number != value) {
