@@ -18,7 +18,7 @@ const ratingApi = {
 		try {
 			const newParams = {...params}
 			const url = `vote/lists/?${params}`;
-			const response = await axiosClient.get(url)
+			const response = await axiosClient.get(url, params)
 
 			if (response.status === 200) {
 				return response.data;

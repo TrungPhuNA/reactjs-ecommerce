@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useRoutes, useSearchParams } from "react-router-dom";
 import { isWideScreen } from "../../../helpers/screen";
 import React from 'react';
 import { useEffect, useState } from "react";
@@ -76,11 +76,12 @@ function Comment({ id, products }) {
         let star3 = 0;
         let star4 = 0;
         let star5 = 0;
+
         let params = {
             page: page,
             page_size: page_size, 
             id: id,
-            number: number,
+            // number: number,
         }
         const response = await ratingApi.getListRateByProducts(params);
         if (response.status === 200) {
@@ -162,26 +163,29 @@ function Comment({ id, products }) {
     }
 
     const [searchParams, setSearchParams] = useSearchParams();
-    const handleChangeSort = (e) => {
-        let sortType = e.currentTarget.getAttribute('data-sort-type');
-        let sortValue = e.currentTarget.getAttribute('data-sort-value');
+    const params = new URLSearchParams(window.location.search);
+    // console.log(params.get('number'));
+    // const handleChangeSort = (e) => {
+    //     let sortType = e.currentTarget.getAttribute('data-sort-type');
+    //     let sortValue = e.currentTarget.getAttribute('data-sort-value');
 
-        e.currentTarget.classList.add("filter-active");
-        if (sortType === 'number') {
-            setSearchParams({number: sortValue});
-            setNumber(sortValue);
-        }
-    }
+    //     e.currentTarget.classList.add("filter-active");
+
+    //     if (params.get('number')) {
+    //         setSearchParams({number: sortValue}.join(','))
+    //     } else {
+    //         setSearchParams({number: sortValue});
+    //         setNumber(sortValue);
+    //     }
+    // }
+    
     // const updateParams = () => {
     //     const params = {
-    //         sort: JSON.stringify(['pro_sale', 'desc', 'asc']),
-    //         number: voteStar,
-    //     }
-    //     setSearchParams(params);
-    //     JSON.parse(searchParams.get("sort"))?.join(", ")
-    // }
+    //         number: JSON.stringify([1, 2, 3, 4, 5])
+    //     };
 
-    console.log(searchParams)
+    //     setSearchParams(params)
+    // }
 
     return (
         <div className="cmt-container">
@@ -287,11 +291,11 @@ function Comment({ id, products }) {
                                 <div className="review-filter">
                                     <div className="filter-label">Lọc xem theo : </div>
                                     <div className="filter-inner">
-                                        <span onClick={handleChangeSort} data-sort-type="number" data-sort-value="5">5 &#9733;</span>
-                                        <span onClick={handleChangeSort} data-sort-type="number" data-sort-value="4">4 &#9733;</span>
-                                        <span onClick={handleChangeSort} data-sort-type="number" data-sort-value="3">3 &#9733;</span>
-                                        <span onClick={handleChangeSort} data-sort-type="number" data-sort-value="2">2 &#9733;</span>
-                                        <span onClick={handleChangeSort} data-sort-type="number" data-sort-value="1">1 &#9733;</span>
+                                        <span data-sort-type="number" data-sort-value="5">5 &#9733;</span>
+                                        <span data-sort-type="number" data-sort-value="4">4 &#9733;</span>
+                                        <span data-sort-type="number" data-sort-value="3">3 &#9733;</span>
+                                        <span data-sort-type="number" data-sort-value="2">2 &#9733;</span>
+                                        <span data-sort-type="number" data-sort-value="1">1 &#9733;</span>
                                     </div>
                                 </div>
                             </>
