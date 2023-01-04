@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { isWideScreen } from "../../helpers/screen";
 import { Link, useNavigate } from "react-router-dom";
 import Popup from "reactjs-popup";
-import Login from "../login/LogIn";
+import Login from "../login/Login";
 import productApi from "../../api/ProductService";
 import { DownOutlined } from "@ant-design/icons";
 import Images from "../Image/Images";
@@ -12,25 +12,6 @@ import ThemeBtn from "../ThemeBtn/ThemeBtn";
 import { BASE_URL, useTheme } from "../utils/useTheme";
 
 function Header() {
-    function ShoppingCart() {
-        return (
-            <div className="header-cart">
-                <Link to={`${isUser ? "/cart" : ""}`}>
-                    <div className="header-cart-shotcut">
-                        <div className="cart-wrapper">
-                            <img
-                                src="https://salt.tikicdn.com/ts/upload/40/44/6c/b80ad73e5e84aeb71c08e5d8d438eaa1.png"
-                                alt=""
-                                className="cart-icon"
-                            />
-                            <span className="cart-number">0</span>
-                        </div>
-                        <span className="cart-title">Giỏ hàng</span>
-                    </div>
-                </Link>
-            </div>
-        );
-    }
 
     const [showSearchDesktop, setShowSearchDesktop] = useState(false);
     const [hideLogout, setHideLogout] = useState(true);
@@ -141,147 +122,6 @@ function Header() {
         }, 3000);
     };
     const status = copied ? "copied" : "copy";
-    const TopHeader = () => {
-        return (
-            <>
-                <div className="topbar_header">
-                    <div className="topbar-inner ">
-                        <div className="topbar-left ">
-                            <div className="hotline">
-                                <div className="icon">
-                                    <img src={"/iconHeader/clock.png"} />
-                                </div>
-                                <div className="hotline-content">
-                                    <p
-                                        ref={ref}
-                                        className={`p-first  ${status} p-phone`}
-                                        onClick={copyResult}
-                                    >
-                                        0385044649
-                                    </p>
-                                    <p>Hotline đặt hàng</p>
-                                </div>
-                            </div>
-
-                            <div className="hotline">
-                                <div className="icon">
-                                    <img src={"/iconHeader/clock.png"} />
-                                </div>
-                                <div className="hotline-content">
-                                    <p className="p-first">Thanh toán</p>
-                                    <p>khi nhận hàng</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="topbar-right">
-                            <div className="main-header--top__right">
-                                {isUser ? (
-                                    <>
-                                        <div className="logged">
-                                            <img
-                                                alt="sd"
-                                                src="https://salt.tikicdn.com/cache/512x512/ts/avatar/b9/42/e9/5d6bd301d4a6fb334877b9ae5082f483.jpg"
-                                                width="32"
-                                                height="32"
-                                            />
-                                            <span>
-                                                <span className="logged-user">
-                                                    Tài khoản
-                                                </span>
-                                                <span
-                                                    className="account-label1"
-                                                    onMouseMove={() =>
-                                                        setHideLogout(false)
-                                                    }
-                                                >
-                                                    <span>{name}</span>
-                                                    <img
-                                                        alt="s"
-                                                        src="https://salt.tikicdn.com/ts/upload/d7/d4/a8/34939af2da1ceeeae9f95b7485784233.png"
-                                                        width="16px"
-                                                        height="16px"
-                                                    />
-                                                </span>
-                                                {hideLogout ? (
-                                                    <></>
-                                                ) : (
-                                                    <>{showDropdownList()}</>
-                                                )}
-                                            </span>
-                                        </div>
-                                        <div className="header-cart">
-                                            <Link to="/cart">
-                                                <div className="header-cart-shotcut">
-                                                    <div className="cart-wrapper">
-                                                        <img
-                                                            src="https://salt.tikicdn.com/ts/upload/40/44/6c/b80ad73e5e84aeb71c08e5d8d438eaa1.png"
-                                                            alt=""
-                                                            className="cart-icon"
-                                                        />
-                                                        <span className="cart-number">
-                                                            {cart
-                                                                ? cart.length
-                                                                : 0}
-                                                        </span>
-                                                    </div>
-                                                    <span className="cart-title">
-                                                        Giỏ hàng
-                                                    </span>
-                                                </div>
-                                            </Link>
-                                        </div>
-                                    </>
-                                ) : (
-                                    <>
-                                        <Popup
-                                            modal
-                                            trigger={
-                                                <div className="header-user-shortcut">
-                                                    <img
-                                                        className="profile"
-                                                        src="https://salt.tikicdn.com/ts/upload/67/de/1e/90e54b0a7a59948dd910ba50954c702e.png"
-                                                        alt=""
-                                                    />
-                                                    <span className="user-style">
-                                                        <span className="user-style__title">
-                                                            <div>
-                                                                Đăng nhập/Đăng
-                                                                ký
-                                                            </div>
-                                                        </span>
-                                                        <span className="account-label">
-                                                            <span>
-                                                                Tài khoản
-                                                            </span>
-                                                            <img
-                                                                src="https://salt.tikicdn.com/ts/upload/d7/d4/a8/34939af2da1ceeeae9f95b7485784233.png"
-                                                                alt="arrowIcon"
-                                                            />
-                                                        </span>
-                                                    </span>
-                                                </div>
-                                            }
-                                        >
-                                            <Login />
-                                        </Popup>
-
-                                        <div className="header-cart">
-                                            <Popup
-                                                modal
-                                                trigger={ShoppingCart()}
-                                            >
-                                                <Login />
-                                            </Popup>
-                                        </div>
-                                    </>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </>
-        );
-    };
 
     const theme = useTheme();
 
@@ -289,7 +129,151 @@ function Header() {
         <>
             <header className={`main-header ${theme}`}>
                 <div className="cm-width ">
-                    <TopHeader />
+                    <div className="topbar_header">
+                        <div className="topbar-inner ">
+                            <div className="topbar-left ">
+                                <div className="hotline">
+                                    <div className="icon">
+                                        <img src={"/iconHeader/clock.png"} />
+                                    </div>
+                                    <div className="hotline-content">
+                                        <p
+                                            ref={ref}
+                                            className={`p-first  ${status} p-phone`}
+                                            onClick={copyResult}
+                                        >
+                                            0385044649
+                                        </p>
+                                        <p>Hotline đặt hàng</p>
+                                    </div>
+                                </div>
+
+                                <div className="hotline">
+                                    <div className="icon">
+                                        <img src={"/iconHeader/clock.png"} />
+                                    </div>
+                                    <div className="hotline-content">
+                                        <p className="p-first">Thanh toán</p>
+                                        <p>khi nhận hàng</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="topbar-right">
+                                <div className="main-header--top__right">
+                                    {isUser ? (
+                                        <>
+                                            <div className="logged">
+                                                <img
+                                                    alt="sd"
+                                                    src="https://salt.tikicdn.com/cache/512x512/ts/avatar/b9/42/e9/5d6bd301d4a6fb334877b9ae5082f483.jpg"
+                                                    width="32"
+                                                    height="32"
+                                                />
+                                                <span>
+                                                    <span className="logged-user">
+                                                        Tài khoản
+                                                    </span>
+                                                    <span
+                                                        className="account-label1"
+                                                        onMouseMove={() =>
+                                                            setHideLogout(false)
+                                                        }
+                                                    >
+                                                        <span>{name}</span>
+                                                        <img
+                                                            alt="s"
+                                                            src="https://salt.tikicdn.com/ts/upload/d7/d4/a8/34939af2da1ceeeae9f95b7485784233.png"
+                                                            width="16px"
+                                                            height="16px"
+                                                        />
+                                                    </span>
+                                                    {hideLogout ? (
+                                                        <></>
+                                                    ) : (
+                                                        <>{showDropdownList()}</>
+                                                    )}
+                                                </span>
+                                            </div>
+                                            <div className="header-cart">
+                                                <Link to="/cart">
+                                                    <div className="header-cart-shotcut">
+                                                        <div className="cart-wrapper">
+                                                            <img
+                                                                src="https://salt.tikicdn.com/ts/upload/40/44/6c/b80ad73e5e84aeb71c08e5d8d438eaa1.png"
+                                                                alt=""
+                                                                className="cart-icon"
+                                                            />
+                                                            <span className="cart-number">
+                                                                {cart
+                                                                    ? cart.length
+                                                                    : 0}
+                                                            </span>
+                                                        </div>
+                                                        <span className="cart-title">
+                                                            Giỏ hàng
+                                                        </span>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Popup
+                                                modal
+                                                trigger={
+                                                    <div className="header-user-shortcut">
+                                                        <img
+                                                            className="profile"
+                                                            src="https://salt.tikicdn.com/ts/upload/67/de/1e/90e54b0a7a59948dd910ba50954c702e.png"
+                                                            alt=""
+                                                        />
+                                                        <span className="user-style">
+                                                            <span className="user-style__title">
+                                                                    Đăng nhập/Đăng ký
+                                                            </span>
+                                                            <span className="account-label">
+                                                                <span>
+                                                                    Tài khoản
+                                                                </span>
+                                                                <img
+                                                                    src="https://salt.tikicdn.com/ts/upload/d7/d4/a8/34939af2da1ceeeae9f95b7485784233.png"
+                                                                    alt="arrowIcon"
+                                                                />
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                }
+                                            >
+                                                <Login />
+                                            </Popup>
+                                            <Popup 
+                                                modal
+                                                trigger={
+                                                <div className="header-cart" >
+                                                    <Link>
+                                                        <div className="header-cart-shotcut">
+                                                            <div className="cart-wrapper">
+                                                                <img
+                                                                    src="https://salt.tikicdn.com/ts/upload/40/44/6c/b80ad73e5e84aeb71c08e5d8d438eaa1.png"
+                                                                    alt=""
+                                                                    className="cart-icon"
+                                                                />
+                                                                <span className="cart-number">0</span>
+                                                            </div>
+                                                            <span className="cart-title">Giỏ hàng</span>
+                                                        </div>
+                                                    </Link>
+                                                </div>
+                                                }
+                                            >
+                                                <Login/>
+                                            </Popup>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div className="header-main">
                         <div className="main-header--top pfpi">
                             <div className="logo-menu">

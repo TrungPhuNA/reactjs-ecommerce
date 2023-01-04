@@ -22,7 +22,7 @@ function ShopCart() {
 	const [userLogin, setUserLogin] = useState(null);
 
 	function getTotal() {
-		cart.map((item, index) => {
+		cart.map((item) => {
 			price_total += item.quantity * item.pro_price;
 		});
 		console.log("Total = ", price_total);

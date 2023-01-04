@@ -4,7 +4,7 @@ import { setTokenLogin } from "../../store/authSlice";
 import authApi from '../../api/AuthService';
 
 
-function LogInDesktop() {
+function LoginDesktop() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [usernameError, setUsernameError] = useState('');
@@ -115,4 +115,4 @@ function LogInDesktop() {
     );
 }
 
-export default LogInDesktop;
+export default LoginDesktop;
