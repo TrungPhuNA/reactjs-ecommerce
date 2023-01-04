@@ -14,7 +14,7 @@ function HomeSuggest() {
     const [loadingProduct, setLoadingProduct] = useState(true);
     const [products, setProducts] = useState([]);
     const [defaultCate, setDefaultCate] = useState(true);
-    const [more, setMore] = useState(18);
+    const [more, setMore] = useState(12);
 
     const getCategories = async (params) => {
         const response = await categoryApi.getListsCategory(params);

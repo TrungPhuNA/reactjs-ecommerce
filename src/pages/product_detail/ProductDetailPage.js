@@ -16,8 +16,8 @@ function ProductDetailPage() {
     let { id } = useParams();
     const [category, setCategory] = useState();
     const [products, setProducts] = useState();
-    const [pro_price, setPro_Price] = useState()
-    const [loading, setLoading] = useState(true)
+    const [pro_price, setPro_Price] = useState();
+    const [loading, setLoading] = useState(true);
 
     const getProductsDetail = async () => {
         const response = await productApi.findById(id);

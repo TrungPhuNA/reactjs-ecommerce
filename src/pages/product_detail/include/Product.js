@@ -1,30 +1,33 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { isWideScreen } from "../../../helpers/screen";
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { addToCart } from '../../../store/cartSlice';
 import {useDispatch, useSelector} from 'react-redux';
 import Skeleton from "react-loading-skeleton";
+import Login from '../../../components/login/Login'
+import Popup from "reactjs-popup";
 
 function Product({ products, pro_price, loading }) {
 
+    let { id } = useParams();
     const [count, setCount] = useState(1);
     const dispatch = useDispatch();
-    const dataToken = useSelector((state) => state.authReduce.token);
+    // const dataToken = useSelector((state) => state.authReduce.token);
 
     const addToCartRedux = async () => {
-        if (!dataToken || !dataToken.accessToken) {
-            alert(' Đăng nhập để có thể mua hàng');
-            return;
-        }
         products.quantity = count;
         dispatch(addToCart(products));
         setCount(1);
         console.log(products);
     }
+
+    useEffect(() => {
+        setCount(1);
+    }, [id])
 
     return (
         <>
@@ -177,13 +180,25 @@ function Product({ products, pro_price, loading }) {
                                                     <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg" width="20" height="20" />
                                                 </button>
                                             </div>
-                                            <div className="group-button">
-                                                <button className="btnadd" onClick={addToCartRedux}>Chọn Mua</button>
-                                                {/*<button className="btnpay">*/}
-                                                {/*    Trả góp*/}
-                                                {/*    <span>454.166 đ/tháng</span>*/}
-                                                {/*</button>*/}
-                                            </div>
+                                            { localStorage.getItem('accessToken') ? (
+                                                <div className="group-button">
+                                                    <button className="btnadd" onClick={addToCartRedux}>Chọn Mua</button>
+                                                </div>
+                                            ) : (<>
+                                                <Popup 
+                                                    modal 
+                                                    trigger={
+                                                        <div className="group-button">
+                                                            <button className="btnadd">Chọn Mua</button>
+                                                        </div>
+                                                    }
+                                                >
+                                                    <Login/>
+                                                </Popup>
+                                            </>)
+
+                                            }
+                                            
                                         </div>
                                     </div>
                                 </>}
