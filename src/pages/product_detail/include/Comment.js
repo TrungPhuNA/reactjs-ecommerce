@@ -22,6 +22,7 @@ function Comment({ id, products }) {
     const [showRate, setShowRate] = useState(false);
     const [showUpdate, setShowUpdate] = useState(false);
     const [alert, setAlert] = useState(false);
+    const [active, setActive] = useState(false);
 
     const [rating, setRating] = useState(0);
     const [content, setContent] = useState();
@@ -32,6 +33,7 @@ function Comment({ id, products }) {
     const [vote, setVote] = useState([]);
     const [countComment, setCountComment] = useState();
     const [voteStar, setVoteStar] = useState(0);
+    const [number, setNumber] = useState();
 
     const [percent1, setPercent1] = useState(0);
     const [percent2, setPercent2] = useState(0);
@@ -122,6 +124,8 @@ function Comment({ id, products }) {
     }
 
     const handleClickVote = async (vote_number) => {
+        setNumber(vote_number);
+
         console.log('--------------- number: ', vote_number);
         let paramsQuery = location.search; console.log('paramsQuery',paramsQuery);
         let query = new URLSearchParams(paramsQuery); console.log('query', query);
@@ -130,10 +134,8 @@ function Comment({ id, products }) {
         if (value) {
             if ( vote_number != value) {
                 // kiem tra xem da co trong array chua
-                if (value.indexOf(vote_number)) {
-                    
-                    console.log('if ------------ coongj them');
-                    value += "," + vote_number
+                if (value.includes(vote_number)) {
+                    console.log('params da co');
                 } else {
                     console.log('else------------ coongj them');
                     value += "," + vote_number
