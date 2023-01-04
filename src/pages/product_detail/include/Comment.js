@@ -1,4 +1,4 @@
-import {Link, useLocation, useSearchParams, useNavigate, createSearchParams} from 'react-router-dom';
+import { Link, useLocation, useSearchParams, useNavigate, createSearchParams } from 'react-router-dom';
 import { isWideScreen } from "../../../helpers/screen";
 import React from 'react';
 import { useEffect, useState } from "react";
@@ -22,6 +22,7 @@ function Comment({ id, products }) {
     const [showRate, setShowRate] = useState(false);
     const [showUpdate, setShowUpdate] = useState(false);
     const [alert, setAlert] = useState(false);
+    // const [active, setActive] = useState(false);
 
     const [rating, setRating] = useState(0);
     const [content, setContent] = useState();
@@ -32,6 +33,7 @@ function Comment({ id, products }) {
     const [vote, setVote] = useState([]);
     const [countComment, setCountComment] = useState();
     const [voteStar, setVoteStar] = useState(0);
+    const [number, setNumber] = useState();
 
     const [percent1, setPercent1] = useState(0);
     const [percent2, setPercent2] = useState(0);
@@ -41,7 +43,7 @@ function Comment({ id, products }) {
 
     const [currentPage, setCurrentPage] = useState(1);
     const location = useLocation();
-    let [searchParams, setSearchParams] = useSearchParams();
+    let { searchParams } = useSearchParams();
     const navigate = useNavigate();
 
     function currentTableData() {
@@ -122,27 +124,31 @@ function Comment({ id, products }) {
     }
 
     const handleClickVote = async (vote_number) => {
+
         console.log('--------------- number: ', vote_number);
-        let paramsQuery = location.search; console.log('paramsQuery',paramsQuery);
-        let query = new URLSearchParams(paramsQuery); console.log('query', query);
+        let paramsQuery = location.search; console.log('paramsQuery', paramsQuery);
+        let query = new URLSearchParams(paramsQuery);
         let value = query.get('number');
         console.log('============== value: ', value);
         if (value) {
-            if ( vote_number != value) {
+            if (vote_number != value) {
                 // kiem tra xem da co trong array chua
-                if (value.indexOf(vote_number)) {
-                    
-                    console.log('if ------------ coongj them');
-                    value += "," + vote_number
+                if (value.includes(vote_number)) {
+                    if (',' + vote_number) {
+                        value = value.replace(',' + vote_number, '');
+                    }
+                    if (vote_number + ',') {
+                        value = value.replace(vote_number + ',', '');
+                    }
                 } else {
                     console.log('else------------ coongj them');
-                    value += "," + vote_number
+                    value += "," + vote_number;
                 }
-                // console.log('------------ coongj them');
-                // value += "," + vote_number
+            } else {
+                value = '';
             }
         } else {
-            value = vote_number
+            value = vote_number;
         }
         // có tồn tại number && value là gì
 
@@ -296,11 +302,11 @@ function Comment({ id, products }) {
                                 <div className="review-filter">
                                     <div className="filter-label">Lọc xem theo : </div>
                                     <div className="filter-inner">
-                                        <span onClick={ () => handleClickVote(5)}>5 &#9733;</span>
-                                        <span onClick={ () => handleClickVote(4)}>4 &#9733;</span>
-                                        <span onClick={ () => handleClickVote(3)}>3 &#9733;</span>
-                                        <span onClick={ () => handleClickVote(2)}>2 &#9733;</span>
-                                        <span onClick={ () => handleClickVote(1)}>1 &#9733;</span>
+                                        <span className='filter-' onClick={() => handleClickVote(5)} id='number'>5 &#9733;</span>
+                                        <span className='filter-' onClick={() => handleClickVote(4)} id='number'>4 &#9733;</span>
+                                        <span className='filter-' onClick={() => handleClickVote(3)} id='number'>3 &#9733;</span>
+                                        <span className='filter-' onClick={() => handleClickVote(2)} id='number'>2 &#9733;</span>
+                                        <span className='filter-' onClick={() => handleClickVote(1)} id='number'>1 &#9733;</span>
                                     </div>
                                 </div>
                             </>
