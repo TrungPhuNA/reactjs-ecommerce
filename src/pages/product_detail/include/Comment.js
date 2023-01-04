@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from "react-router-dom";
+import {Link, useLocation, useSearchParams, useNavigate, createSearchParams} from 'react-router-dom';
 import { isWideScreen } from "../../../helpers/screen";
 import React from 'react';
 import { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ratingApi from "../../../api/RatingService";
 import authApi from "../../../api/AuthService";
 import Pagination from "../../../components/common/Pagination";
+
 
 let page = 1;
 let page_size = 100;
@@ -40,6 +41,9 @@ function Comment({ id, products }) {
     const [percent5, setPercent5] = useState(0);
 
     const [currentPage, setCurrentPage] = useState(1);
+    const location = useLocation();
+    let [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
 
     function currentTableData() {
         const firstPageIndex = (currentPage - 1) * PageSize;
@@ -118,6 +122,33 @@ function Comment({ id, products }) {
         return tmp;
     }
 
+    const handleClickVote = async (vote_number) => {
+        console.log('--------------- number: ', vote_number);
+        let paramsQuery = location.search;
+        let query = new URLSearchParams(paramsQuery);
+        let value = query.get('number');
+        let newValueNumber = '';
+        console.log('============== value: ', value);
+        if (value) {
+            if ( vote_number != value) {
+                console.log('------------ coongj them');
+                value += "," + vote_number
+            }
+        } else  {
+            value = vote_number
+        }
+        // có tồn tại number && value là gì
+
+        console.log('--------------- value: ', value);
+        let params = {
+            number: decodeURIComponent(value),
+        };
+        const options = {
+            search: `?${createSearchParams(params)}`,
+        };
+        navigate(options, { replace: true });
+    }
+
     const handleSubmit = async () => {
         let data = {
             v_content: content,
@@ -153,9 +184,6 @@ function Comment({ id, products }) {
     const handleRefresh = () => {
         setRefresh(!refresh);
     }
-
-    const [searchParams] = useSearchParams();
-    console.log(searchParams)
 
     return (
         <div className="cmt-container">
@@ -264,11 +292,11 @@ function Comment({ id, products }) {
                                         <span className={`${active === true ? 'filter-active' : ''}`} onClick={() => setActive(!active)}>Mới nhất</span>
                                         <span >Có hình ảnh</span>
                                         <span>Đã mua hàng</span>
-                                        <span>5 &#9733;</span>
-                                        <span>4 &#9733;</span>
-                                        <span>3 &#9733;</span>
-                                        <span>2 &#9733;</span>
-                                        <span>1 &#9733;</span>
+                                        <span onClick={ () => handleClickVote(5)}>5 &#9733;</span>
+                                        <span onClick={ () => handleClickVote(4)}>4 &#9733;</span>
+                                        <span onClick={ () => handleClickVote(3)}>3 &#9733;</span>
+                                        <span onClick={ () => handleClickVote(2)}>2 &#9733;</span>
+                                        <span onClick={ () => handleClickVote(1)}>1 &#9733;</span>
                                     </div>
                                 </div>
                             </>
