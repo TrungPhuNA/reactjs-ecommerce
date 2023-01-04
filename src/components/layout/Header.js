@@ -364,7 +364,7 @@ function Header() {
                                                 .filter((item) =>
                                                     item.name
                                                         .toLowerCase()
-                                                        .match(searchInput)
+                                                        .match(searchInput.toLowerCase())
                                                 )
                                                 .slice(0, 2)
                                                 .map((item, index) => (
@@ -384,7 +384,7 @@ function Header() {
                                                 .filter((item) =>
                                                     item.pro_name
                                                         .toLowerCase()
-                                                        .match(searchInput)
+                                                        .match(searchInput.toLowerCase()    )
                                                 )
                                                 .slice(0, 5)
                                                 .map((item, index) => (

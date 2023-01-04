@@ -11,7 +11,7 @@ function Products({products, searchInput}) {
     const [searchProducts, setSearchProducts] = useState([]);
 
     const getSearchProducts = () => {
-        setSearchProducts(products.filter(item => item.pro_name.toLowerCase().match(searchInput)));
+        setSearchProducts(products.filter(item => item.pro_name.toLowerCase().match(searchInput.toLowerCase())));
         return searchProducts;
     }
 

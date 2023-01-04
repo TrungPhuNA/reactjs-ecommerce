@@ -22,7 +22,6 @@ function Comment({ id, products }) {
     const [showRate, setShowRate] = useState(false);
     const [showUpdate, setShowUpdate] = useState(false);
     const [alert, setAlert] = useState(false);
-    const [active, setActive] = useState(false)
 
     const [rating, setRating] = useState(0);
     const [content, setContent] = useState();
@@ -124,16 +123,25 @@ function Comment({ id, products }) {
 
     const handleClickVote = async (vote_number) => {
         console.log('--------------- number: ', vote_number);
-        let paramsQuery = location.search;
-        let query = new URLSearchParams(paramsQuery);
+        let paramsQuery = location.search; console.log('paramsQuery',paramsQuery);
+        let query = new URLSearchParams(paramsQuery); console.log('query', query);
         let value = query.get('number');
         console.log('============== value: ', value);
         if (value) {
             if ( vote_number != value) {
-                console.log('------------ coongj them');
-                value += "," + vote_number
+                // kiem tra xem da co trong array chua
+                if (value.indexOf(vote_number)) {
+                    
+                    console.log('if ------------ coongj them');
+                    value += "," + vote_number
+                } else {
+                    console.log('else------------ coongj them');
+                    value += "," + vote_number
+                }
+                // console.log('------------ coongj them');
+                // value += "," + vote_number
             }
-        } else  {
+        } else {
             value = vote_number
         }
         // có tồn tại number && value là gì
@@ -288,9 +296,6 @@ function Comment({ id, products }) {
                                 <div className="review-filter">
                                     <div className="filter-label">Lọc xem theo : </div>
                                     <div className="filter-inner">
-                                        <span className={`${active === true ? 'filter-active' : ''}`} onClick={() => setActive(!active)}>Mới nhất</span>
-                                        <span >Có hình ảnh</span>
-                                        <span>Đã mua hàng</span>
                                         <span onClick={ () => handleClickVote(5)}>5 &#9733;</span>
                                         <span onClick={ () => handleClickVote(4)}>4 &#9733;</span>
                                         <span onClick={ () => handleClickVote(3)}>3 &#9733;</span>
