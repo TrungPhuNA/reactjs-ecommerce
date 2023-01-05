@@ -10,6 +10,7 @@ import productApi from '../../api/ProductService';
 import { Link, useSearchParams } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import SidebarFilter from '../../components/common/sidebar/SidebarFinter';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 
 function CategoryPage() {
 
@@ -45,7 +46,7 @@ function CategoryPage() {
     const getProductsByCategory = async () => {
         let params = {
             category_id: id,
-            page_size: 18
+            page_size: 300,
         }
         const response = await productApi.getListsProducts(params);
         if (response.status === 200) {
@@ -74,7 +75,7 @@ function CategoryPage() {
             handleSortAsc();
         } else if (sortValue === 'desc') {
             handleSortDesc();
-        } else if (!sortValue) {
+        } else {
             event.currentTarget.classList.remove("active");
         }
     }
@@ -86,9 +87,9 @@ function CategoryPage() {
         console.log('--Asc', productsAsc);
         setSortAsc(!sortAsc);
         setSortDesc(false);
-        if (sortAsc === false)
-            setShow(true);
-        return productsAsc;
+        setShow(!show);
+        if (sortDesc === true)
+            setShow(false)
     }
 
     const handleSortDesc = () => {
@@ -97,9 +98,9 @@ function CategoryPage() {
         console.log('--Desc', productsDesc);
         setSortAsc(false);
         setSortDesc(!sortDesc);
-        if (sortDesc === false)
-            setShow(true);
-        return productsDesc;
+        setShow(!show)
+        if (sortAsc === true)
+            setShow(false)
     }
 
 
