@@ -100,13 +100,13 @@ function Product({ products, pro_price, loading }) {
                         <h1 className="product-title">{products?.pro_name || <Skeleton count={1}/>}</h1>
                         <div className="below-title">
                             <div className="below-rate">
-                                <div className="star-on">
-                                    &#9733;&#9733;&#9733;&#9733;&#9733;
+                                <div style={{fontSize: '15px', lineHeight: '24px', color: 'rgb(120, 120, 120)',}}>
+                                    {(products?.pro_review_star / products?.pro_review_total).toFixed(1)}<span  className="star-on">&#9733;</span>
                                 </div>
                                 <div className="below-seperate" />
                                 <Link to="" onClick={() => window.scrollTo(0,1200)} style={{textDecoration: 'underline'}}>Xem đánh giá</Link>
-                                <div className="below-seperate" />
-                                <div className="sold">Đã bán 0</div>
+                                {/* <div className="below-seperate" />
+                                <div className="sold">Đã bán {products?.pro_review_total}</div> */}
                             </div>
                         </div>
                     </div>

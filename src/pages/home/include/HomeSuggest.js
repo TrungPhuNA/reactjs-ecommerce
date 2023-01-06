@@ -19,7 +19,6 @@ function HomeSuggest() {
     const getCategories = async (params) => {
         const response = await categoryApi.getListsCategory(params);
         setCategories(response.data);
-        setLoading(false);
     };
 
     const [tabNum, setTabNum] = useState("");
@@ -40,6 +39,7 @@ function HomeSuggest() {
         );
         setProducts(response.data);
         setLoadingProduct(false);
+        // setLoading(false);
     };
 
     useEffect(() => {
@@ -105,41 +105,58 @@ function HomeSuggest() {
                         <div className="dashboard-product--item">
                             {defaultCate ? (
                                 <>
-                                    {products.slice(0,more).map((item2, i) => {
-                                        {
-                                            return (
-                                                <Link
-                                                    key={i}
-                                                    to={`/${item2.pro_slug}-${item2.id}`}
-                                                    className="product-item"
+                                    {products.slice(0,more).map((item2, i) => 
+                                        (
+                                            <Link
+                                                key={i}
+                                                to={`/${item2.pro_slug}-${item2.id}`}
+                                                className="product-item"
+                                            >
+                                                <div
+                                                    className={`product-item--style ${
+                                                        !deal
+                                                            ? "not-style"
+                                                            : ""
+                                                    }`}
                                                 >
-                                                    <div
-                                                        className={`product-item--style ${
-                                                            !deal
-                                                                ? "not-style"
-                                                                : ""
-                                                        }`}
-                                                    >
-                                                        <div className="thumbnail">
-                                                            <div className="thumbnail--product-img">
-                                                                <Images
-                                                                    src={
-                                                                        item2.pro_avatar
-                                                                    }
-                                                                    alt="333"
-                                                                />
-                                                            </div>
+                                                    <div className="thumbnail">
+                                                        <div className="thumbnail--product-img">
+                                                            <Images
+                                                                src={
+                                                                    item2.pro_avatar
+                                                                }
+                                                                alt="333"
+                                                            />
                                                         </div>
-                                                        <div className="infor">
-                                                            {!deal && (
-                                                                <>
-                                                                    <div className="name">
-                                                                        <h3 className="fs-10">
-                                                                            {
-                                                                                item2.pro_name
-                                                                            }
-                                                                        </h3>
+                                                    </div>
+                                                    <div className="infor">
+                                                        {!deal && (
+                                                            <>
+                                                                <div className="name">
+                                                                    <h3 className="fs-10">
+                                                                        {
+                                                                            item2.pro_name
+                                                                        }
+                                                                    </h3>
+                                                                </div>
+                                                                <div
+                                                                    className={`price-discount ${
+                                                                        item2.prodiscount_value !==
+                                                                        0
+                                                                            ? "has-discount"
+                                                                            : ""
+                                                                    }`}
+                                                                >
+                                                                    <div className="price-discount__price">
+                                                                        {item2.pro_price.toLocaleString()}{" "}
+                                                                        ₫
                                                                     </div>
+                                                                </div>
+                                                            </>
+                                                        )}
+                                                        {deal && (
+                                                            <>
+                                                                <div className="deal">
                                                                     <div
                                                                         className={`price-discount ${
                                                                             item2.prodiscount_value !==
@@ -152,40 +169,21 @@ function HomeSuggest() {
                                                                             {item2.pro_price.toLocaleString()}{" "}
                                                                             ₫
                                                                         </div>
-                                                                    </div>
-                                                                </>
-                                                            )}
-                                                            {deal && (
-                                                                <>
-                                                                    <div className="deal">
-                                                                        <div
-                                                                            className={`price-discount ${
-                                                                                item2.prodiscount_value !==
-                                                                                0
-                                                                                    ? "has-discount"
-                                                                                    : ""
-                                                                            }`}
-                                                                        >
-                                                                            <div className="price-discount__price">
-                                                                                {item2.pro_price.toLocaleString()}{" "}
-                                                                                ₫
-                                                                            </div>
-                                                                            <div className="price-discount__discount">
-                                                                                {item2.pro_discount_value
-                                                                                    ? item2.pro_discount_value +
-                                                                                      "%"
-                                                                                    : ""}
-                                                                            </div>
+                                                                        <div className="price-discount__discount">
+                                                                            {item2.pro_discount_value
+                                                                                ? item2.pro_discount_value +
+                                                                                    "%"
+                                                                                : ""}
                                                                         </div>
                                                                     </div>
-                                                                </>
-                                                            )}
-                                                        </div>
+                                                                </div>
+                                                            </>
+                                                        )}
                                                     </div>
-                                                </Link>
-                                            );
-                                        }
-                                    })}
+                                                </div>
+                                            </Link>
+                                        )
+                                    )}
                                 </>
                             ) : (
                                 <>
@@ -288,99 +286,174 @@ function HomeSuggest() {
                 {loadingProduct === false ? (
                     getSuggestTitle()
                 ) : (
-                    <div
-                        className="body-loading-cate"
-                        style={{ padding: "10px 15px", display: "flex" }}
-                    >
+                    <>
                         <div
-                            className="body-slide--list"
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                width: "auto",
-                                marginRight: "20px",
-                            }}
+                            className="body-loading-cate"
+                            style={{ display: "flex" }}
                         >
-                            <Skeleton
-                                count={1}
-                                height={50}
-                                width={100}
-                                style={{ display: "inline-block" }}
-                            />
-                            <Skeleton
-                                count={1}
-                                height={20}
-                                width={100}
-                                style={{ display: "inline-block" }}
-                            />
+                            <div
+                                className="body-slide--list"
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    width: "auto",
+                                    marginRight: "20px",
+                                }}
+                            >
+                                <Skeleton
+                                    count={1}
+                                    height={100}
+                                    width={1270}
+                                    style={{ display: "inline-block" }}
+                                />
+                            </div>
                         </div>
                         <div
-                            className="body-slide--list"
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                width: "auto",
-                                marginRight: "20px",
-                            }}
+                            className="body-loading-cate"
+                            style={{ display: "flex" }}
                         >
-                            <Skeleton
-                                count={1}
-                                height={50}
-                                width={100}
-                                style={{ display: "inline-block" }}
-                            />
-                            <Skeleton
-                                count={1}
-                                height={20}
-                                width={100}
-                                style={{ display: "inline-block" }}
-                            />
+                            <div
+                                className="body-slide--list"
+                                style={{
+                                    display: "flex",
+                                    width: "auto",
+                                    marginRight: "6.5px",
+                                }}
+                            >
+                                <Skeleton
+                                    count={1}
+                                    height={70}
+                                    width={153}
+                                    style={{ display: "inline-block" }}
+                                />
+                            </div>
+                            <div
+                                className="body-slide--list"
+                                style={{
+                                    display: "flex",
+                                    width: "auto",
+                                    marginRight: "6.5px",
+                                }}
+                            >
+                                <Skeleton
+                                    count={1}
+                                    height={70}
+                                    width={153}
+                                    style={{ display: "inline-block" }}
+                                />
+                            </div>
+                            <div
+                                className="body-slide--list"
+                                style={{
+                                    display: "flex",
+                                    width: "auto",
+                                    marginRight: "6.5px",
+                                }}
+                            >
+                                <Skeleton
+                                    count={1}
+                                    height={70}
+                                    width={153}
+                                    style={{ display: "inline-block" }}
+                                />
+                            </div>
+                            <div
+                                className="body-slide--list"
+                                style={{
+                                    display: "flex",
+                                    width: "auto",
+                                    marginRight: "6.5px",
+                                }}
+                            >
+                                <Skeleton
+                                    count={1}
+                                    height={70}
+                                    width={153}
+                                    style={{ display: "inline-block" }}
+                                />
+                            </div>
+                            <div
+                                className="body-slide--list"
+                                style={{
+                                    display: "flex",
+                                    width: "auto",
+                                    marginRight: "6.5px",
+                                }}
+                            >
+                                <Skeleton
+                                    count={1}
+                                    height={70}
+                                    width={153}
+                                    style={{ display: "inline-block" }}
+                                />
+                            </div>
+                            <div
+                                className="body-slide--list"
+                                style={{
+                                    display: "flex",
+                                    width: "auto",
+                                    marginRight: "6.5px",
+                                }}
+                            >
+                                <Skeleton
+                                    count={1}
+                                    height={70}
+                                    width={153}
+                                    style={{ display: "inline-block" }}
+                                />
+                            </div>
+                            <div
+                                className="body-slide--list"
+                                style={{
+                                    display: "flex",
+                                    width: "auto",
+                                    marginRight: "6.5px",
+                                }}
+                            >
+                                <Skeleton
+                                    count={1}
+                                    height={70}
+                                    width={153}
+                                    style={{ display: "inline-block" }}
+                                />
+                            </div>
+                            <div
+                                className="body-slide--list"
+                                style={{
+                                    display: "flex",
+                                    width: "auto",
+                                    marginRight: "6.5px",
+                                }}
+                            >
+                                <Skeleton
+                                    count={1}
+                                    height={70}
+                                    width={153}
+                                    style={{ display: "inline-block" }}
+                                />
+                            </div>
                         </div>
                         <div
-                            className="body-slide--list"
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                width: "auto",
-                                marginRight: "20px",
-                            }}
+                            className="body-loading-cate"
+                            style={{ display: "flex" }}
                         >
-                            <Skeleton
-                                count={1}
-                                height={50}
-                                width={100}
-                                style={{ display: "inline-block" }}
-                            />
-                            <Skeleton
-                                count={1}
-                                height={20}
-                                width={100}
-                                style={{ display: "inline-block" }}
-                            />
+                            <div
+                                className="body-slide--list"
+                                style={{
+                                    display: "flex",
+                                    marginTop: '10px',
+                                }}
+                            >
+                                <Skeleton
+                                    count={1}
+                                    height={500}
+                                    width={1270}
+                                />
+                            </div>
                         </div>
-                        <div
-                            className="body-slide--list"
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                width: "auto",
-                                marginRight: "20px",
-                            }}
-                        >
-                            <Skeleton
-                                count={1}
-                                height={50}
-                                width={100}
-                                style={{ display: "inline-block" }}
-                            />
-                            <Skeleton
-                                count={1}
-                                height={20}
-                                width={100}
-                                style={{ display: "inline-block" }}
-                            />
-                        </div>
-                    </div>
+                    </>
+                    
+                    
                 )}
             </div>
         </div>

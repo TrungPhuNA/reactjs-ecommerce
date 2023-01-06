@@ -22,6 +22,7 @@ function Comment({ id, products }) {
     const [showRate, setShowRate] = useState(false);
     const [showUpdate, setShowUpdate] = useState(false);
     const [alert, setAlert] = useState(false);
+    const [alertStar, setAlertStar] = useState(false);
     // const [active, setActive] = useState(false);
 
     const [rating, setRating] = useState(0);
@@ -47,7 +48,6 @@ function Comment({ id, products }) {
 
     const [currentPage, setCurrentPage] = useState(1);
     const location = useLocation();
-    let { searchParams } = useSearchParams();
     const navigate = useNavigate();
 
     function currentTableData() {
@@ -127,12 +127,36 @@ function Comment({ id, products }) {
         return tmp;
     }
 
-    const handleClickVote = async (vote_number) => {
-        console.log('--------------- number: ', vote_number);
+    const activeFilter = () => {
         let paramsQuery = location.search; console.log('paramsQuery', paramsQuery);
         let query = new URLSearchParams(paramsQuery);
         let value = query.get('number');
-        console.log('============== value: ', value);
+
+        if (value) {
+            if (value.includes(1))
+                setActive1(true); 
+            if (value.includes(2))
+                setActive2(true);
+            if (value.includes(3))
+                setActive3(true); 
+            if (value.includes(4))
+                setActive4(true); 
+            if (value.includes(5))
+                setActive5(true);  
+        }
+        
+    }
+
+    useEffect(() => {
+        activeFilter();
+    }, []);
+
+    const handleClickVote = async (vote_number) => {
+        console.log('--------------- number: ', vote_number);
+        let paramsQuery = location.search;
+        let query = new URLSearchParams(paramsQuery);
+        let value = query.get('number');
+
         if (value) {
             if (vote_number != value) {
                 // kiem tra xem da co trong array chua
@@ -173,25 +197,30 @@ function Comment({ id, products }) {
 
         console.log('--------------- value: ', value);
         let params = {
-            number: decodeURIComponent(value),
+            number: value,
         };
         const options = {
-            search: `?${createSearchParams(params)}`,
+            search: decodeURIComponent(`?${createSearchParams(params)}`),
         };
         navigate(options, { replace: true });
     }
 
     const handleSubmit = async () => {
-        let data = {
-            v_content: content,
-            v_number: rating,
-            v_product_id: product_id,
+        if (rating !== 0) {
+            let data = {
+                v_content: content,
+                v_number: rating,
+                v_product_id: product_id,
+            }
+            const response = await ratingApi.createRate(data);
+            if (response.status === 200) {
+                setContent('');
+                setShowRate(false);
+            }
+        } else {
+            setAlertStar(true);
         }
-        const response = await ratingApi.createRate(data);
-        if (response.status === 200) {
-            setContent('');
-            setShowRate(false);
-        }
+        
     }
 
     const handleUpdateVote = async (idVote) => {
@@ -355,6 +384,7 @@ function Comment({ id, products }) {
                                     </div>
                                     <div className="rate-input">
                                         <textarea type='text' value={content} onChange={(e) => setContent(e.target.value)} placeholder="Mời bạn chia sẻ thêm một số cảm nhận về sản phẩm ..." />
+                                        <p style={{ color: 'red', fontSize: 12, textAlign: 'center' }}>{ alertStar === true && 'Vui lòng chọn số sao!' }</p>
                                         <button onClick={() => { handleSubmit(); handleRefresh() }}>Gửi đánh giá</button>
                                     </div>
                                 </div>
@@ -411,7 +441,7 @@ function Comment({ id, products }) {
                                     <div className="rate">
                                         <Rate
                                             rating={rating}
-                                            onRating={(rate) => setRating(rate)}
+                                            // onRating={(rate) => setRating(rate)}
                                         />
                                     </div>
                                     <div className="rate-input">
