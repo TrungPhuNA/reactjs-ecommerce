@@ -3,6 +3,13 @@
     border-radius: 4px;
     margin-bottom: 100px;
 
+    @media (max-width: 1024px) {
+        .suggestion {
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+    }
+
     &__title {
         display: flex;
         background: rgb(245, 245, 250);
@@ -14,8 +21,10 @@
         top: 1px;
         z-index: 998;
 
+
+
         // css icon
-        .group{
+        .group {
             display: flex;
             padding: 10px;
             margin: 5px 0px;
@@ -24,70 +33,121 @@
             border-radius: 4px;
 
 
-            h2 {
+            .title {
                 font-size: 24px;
                 font-weight: 550;
                 text-transform: capitalize;
                 line-height: 28px;
             }
+
+            @media (max-width: 1024px) {
+                .title {
+                    font-size: 18px;
+                    font-weight: 550;
+                    text-transform: capitalize;
+                    line-height: 20px;
+                }
+            }
+
             .icon {
-                position        : relative;
-                width           : 12px;
-                height          : 12px;
-                border-radius   : 50%;
-                margin-right    : 21px;
-                margin-left     : 8px;
-                margin-top      : 15px;
-                background-color: #FF0000;
-    
-                
-            }
-            .icon::after {
-                content      : '';
-                position     : absolute;
-                top          : 50%;
-                left         : 50%;
-                transform    : translate(-50%, -50%);
-                width        : 26px;
-                height       : 26px;
+                position: relative;
+                width: 12px;
+                height: 12px;
                 border-radius: 50%;
-                border       : 2px solid #FF0000;
+                margin-right: 21px;
+                margin-left: 8px;
+                margin-top: 15px;
+                background-color: #FF0000;
+
+
             }
-    
+
+            .icon::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 26px;
+                height: 26px;
+                border-radius: 50%;
+                border: 2px solid #FF0000;
+            }
+
             .ripple::before {
-                content                : "";
-                position               : absolute;
+                content: "";
+                position: absolute;
                 -webkit-animation-delay: .3s;
-                animation-delay        : .3s;
+                animation-delay: .3s;
             }
-            
+
             .ripple::after {
-                content                : "";
-                position               : absolute;
+                content: "";
+                position: absolute;
                 -webkit-animation-delay: .15s;
-                animation-delay        : .15s;
+                animation-delay: .15s;
             }
-            
+
             .ripple::before,
             .ripple::after {
-                position             : absolute;
-                top                  : 50%;
-                left                 : 50%;
-                width                : 26px;
-                height               : 26px;
-                border-radius        : 50%;
-                -ms-border-radius    : 50%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 26px;
+                height: 26px;
+                border-radius: 50%;
+                -ms-border-radius: 50%;
                 -webkit-border-radius: 50%;
-                -moz-border-radius   : 50%;
-                -ms-border-radius    : 50%;
-                -o-border-radius     : 50%;
-                transform            : translate(-50%, -50%);
-                -ms-box-shadow       : 0 0 0 0 rgba(195, 16, 16, 0.6);
-                -o-box-shadow        : 0 0 0 0 rgba(195, 16, 16, 0.6);
-                box-shadow           : 0 0 0 0 rgba(195, 16, 16, 0.6);
-                -webkit-animation    : ripple 1.5s infinite;
-                animation            : ripple 1.5s infinite;
+                -moz-border-radius: 50%;
+                -ms-border-radius: 50%;
+                -o-border-radius: 50%;
+                transform: translate(-50%, -50%);
+                -ms-box-shadow: 0 0 0 0 rgba(195, 16, 16, 0.6);
+                -o-box-shadow: 0 0 0 0 rgba(195, 16, 16, 0.6);
+                box-shadow: 0 0 0 0 rgba(195, 16, 16, 0.6);
+                -webkit-animation: ripple 1.5s infinite;
+                animation: ripple 1.5s infinite;
             }
+
+            @media (max-width: 1024px) {
+                .icon {
+                    width: 10px;
+                    height: 10px;
+                    margin-right: 10px;
+                    margin-left: 5px;
+                    margin-top: 5px;
+                }
+
+                .icon::after {
+                    content: '';
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                    width: 16px;
+                    height: 16px;
+                    border-radius: 50%;
+                    border: 2px solid #FF0000;
+                }
+
+                .ripple::after {
+                    position: absolute;
+                    width: 16px;
+                    height: 16px;
+                    border-radius: 50%;
+                    -ms-border-radius: 50%;
+                    -webkit-border-radius: 50%;
+                    -moz-border-radius: 50%;
+                    -ms-border-radius: 50%;
+                    -o-border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    -ms-box-shadow: 0 0 0 0 rgba(195, 16, 16, 0.6);
+                    -o-box-shadow: 0 0 0 0 rgba(195, 16, 16, 0.6);
+                    box-shadow: 0 0 0 0 rgba(195, 16, 16, 0.6);
+                    -webkit-animation: ripple 1.5s infinite;
+                    animation: ripple 1.5s infinite;
+                }
+            }
+
+
             // end css icon   
         }
 
@@ -138,6 +198,23 @@
                     color: rgb(13, 92, 182);
                 }
             }
+
+            @media (max-width: 1024px) {
+                .tab {
+                    border: 1px solid white;
+                    background-color: white;
+                    display: flex;
+                    flex-direction: column;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    flex-shrink: 0;
+                    cursor: pointer;
+                    min-height: 50px;
+                    border-radius: 4px;
+                    padding: 4px 8px;
+                }
+            }
+
         }
     }
 
@@ -161,6 +238,8 @@
             .dashboard-product--item {
                 width: 16.6667%;
             }
+
+
         }
 
         .view-more {
@@ -188,11 +267,10 @@
     @media (max-width: 1024px) {
         min-height: 500px;
         background: white;
-        margin-top: 8px;
 
-        h2 {
+        .title {
             display: flex;
-            padding: 12px;
+            padding: 0;
             background-color: white;
             flex: 1 1 0%;
             font-size: 17px;
@@ -233,6 +311,12 @@
             // margin-bottom: 8px;
             // border-radius: 0px 0px 4px 4px;
 
+            @media (max-width: 1024px) {
+                &__product {
+                    padding: 0;
+                }
+            }
+
             .content {
                 width: 100vw;
                 // display: grid;
@@ -259,6 +343,13 @@
                 }
             }
 
+            @media (max-width: 1024px) {
+                .content {
+                    margin: 0;
+                }
+            }
+
+
             .view-more {
                 display: inline-block;
                 width: 100px;
@@ -273,7 +364,7 @@
                 margin-bottom: 40px;
             }
         }
-    }    
+    }
 
     .dashboard-product--item {
         width: 100% !important;
@@ -329,7 +420,7 @@
                         overflow: hidden;
                         margin: 0 auto;
 
-                        img{
+                        img {
                             width: 100%;
                             -webkit-transition: all .8s ease;
                             -moz-transition: all .8s ease;
@@ -338,7 +429,7 @@
                         }
                     }
 
-                    &--product-img img:hover{
+                    &--product-img img:hover {
                         transform: scale(1.5);
                     }
                 }
@@ -366,7 +457,7 @@
                             word-break: break-word;
                         }
 
-                        h3:hover{
+                        h3:hover {
                             color: #DC39FC;
                         }
                     }
@@ -479,13 +570,13 @@
             position: relative;
 
             .product-item {
-                width: 380px;          
+                width: 30%;
             }
         }
 
         @media (max-width: 767px) {
             .product-item {
-                width: 410px;          
+                width: 30%;
             }
         }
     }
@@ -497,10 +588,10 @@
 
 @keyframes ripple {
     70% {
-      box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
+        box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
     }
-  
+
     100% {
-      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
     }
-  }
+}

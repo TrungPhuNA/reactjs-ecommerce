@@ -42,9 +42,7 @@ function HomePage() {
               <MobileHeader search={search} setSearch={setSearch} />
               {/* <HomeAdv /> */}
               <HomeDeal />
-              <FamousCategory check={true} />
               <HomeBanner number={4} />
-              <HomeBrand />
               <FamousCategory check={false} />
               <HomeSuggest status={false} />
               <div className="home__background">

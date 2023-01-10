@@ -4,18 +4,10 @@ function MobileHeader(props) {
   return (
     <div className="mobile__header">
       <div className="mobile__header--logo">
-        <Link to="/" title="free-ship">
-          <img
-            src="https://salt.tikicdn.com/ts/upload/e5/1d/22/61ff572362f08ead7f34ce410a4a6f96.png"
-            alt="free"
-            width="97"
-            height="14"
-          />
-        </Link>
         <Link
           to="/"
           title="free-ship"
-          style={{ scale: "3", marginBottom: "5px" }}
+          style={{ scale: "3", marginBottom: "5px", marginLeft: 40, marginTop: 0 }}
         >
           <img src={"/logo.svg"} alt="free" width="40" />
         </Link>

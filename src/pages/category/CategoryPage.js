@@ -10,8 +10,6 @@ import productApi from '../../api/ProductService';
 import { Link, useSearchParams } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import SidebarFilter from '../../components/common/sidebar/SidebarFinter';
-import { faL } from '@fortawesome/free-solid-svg-icons';
-
 function CategoryPage() {
 
     let { id } = useParams();
