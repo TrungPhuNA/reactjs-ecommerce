@@ -57,7 +57,7 @@ function HomeSuggest() {
                             <div className="icon">
                                 <i className="ripple"></i>
                             </div>
-                            <h2>Gợi ý hôm nay</h2>
+                            <div className="title">Gợi ý hôm nay</div>
                         </div>
                     </div>
                     {/* <h2>Gợi ý hôm nay</h2> */}
@@ -65,140 +65,136 @@ function HomeSuggest() {
                     <div className="suggestion__title-list">
                         {defaultCate
                             ? categories.slice(0, 8).map((item, i) => (
-                                  <div
-                                      key={i}
-                                      className={`tab ${
-                                          item.id == categories[0].id
-                                              ? "active"
-                                              : ""
-                                      }`}
-                                      onClick={() => {
-                                          changeTab(item.id);
-                                          setDefaultCate(false);
-                                          setMore(18);
-                                      }}
-                                  >
-                                      <Images alt="test" src={item.c_avatar} />
-                                      <div className="tab-text fs-13">
-                                          {item.c_name}
-                                      </div>
-                                  </div>
-                              ))
+                                <div
+                                    key={i}
+                                    className={`tab ${item.id == categories[0].id
+                                        ? "active"
+                                        : ""
+                                        }`}
+                                    onClick={() => {
+                                        changeTab(item.id);
+                                        setDefaultCate(false);
+                                        setMore(18);
+                                    }}
+                                >
+                                    <Images alt="test" src={item.c_avatar} />
+                                    <div className="tab-text fs-13">
+                                        {item.c_name}
+                                    </div>
+                                </div>
+                            ))
                             : categories.slice(0, 8).map((item, i) => (
-                                  <div
-                                      key={i}
-                                      className={`tab ${
-                                          item.tab ? "active" : ""
-                                      }`}
-                                      onClick={() => { changeTab(item.id); setMore(18) }}
-                                  >
-                                      <Images alt="test" src={item.c_avatar} />
-                                      <div className="tab-text fs-13">
-                                          {item.c_name}
-                                      </div>
-                                  </div>
-                              ))}
+                                <div
+                                    key={i}
+                                    className={`tab ${item.tab ? "active" : ""
+                                        }`}
+                                    onClick={() => { changeTab(item.id); setMore(18) }}
+                                >
+                                    <Images alt="test" src={item.c_avatar} />
+                                    <div className="tab-text fs-13">
+                                        {item.c_name}
+                                    </div>
+                                </div>
+                            ))}
                     </div>
                 </div>
                 <div className="suggestion__product">
                     <div className="content">
                         <div className="dashboard-product--item">
-                            {defaultCate ? (
+                            { defaultCate ? (
                                 <>
-                                    {products.slice(0,more).map((item2, i) => 
-                                        (
-                                            <Link
-                                                key={i}
-                                                to={`/${item2.pro_slug}-${item2.id}`}
-                                                className="product-item"
-                                            >
-                                                <div
-                                                    className={`product-item--style ${
-                                                        !deal
+                                    {products.slice(0, more).map((item2, i) => {
+                                        {
+                                            return (
+                                                <Link
+                                                    key={i}
+                                                    to={`/${item2.pro_slug}-${item2.id}`}
+                                                    className="product-item"
+                                                >
+                                                    <div
+                                                        className={`product-item--style ${!deal
                                                             ? "not-style"
                                                             : ""
-                                                    }`}
-                                                >
-                                                    <div className="thumbnail">
-                                                        <div className="thumbnail--product-img">
-                                                            <Images
-                                                                src={
-                                                                    item2.pro_avatar
-                                                                }
-                                                                alt="333"
-                                                            />
+                                                            }`}
+                                                    >
+                                                        <div className="thumbnail">
+                                                            <div className="thumbnail--product-img">
+                                                                <Images
+                                                                    src={
+                                                                        item2.pro_avatar
+                                                                    }
+                                                                    alt="333"
+                                                                />
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div className="infor">
-                                                        {!deal && (
-                                                            <>
-                                                                <div className="name">
-                                                                    <h3 className="fs-10">
-                                                                        {
-                                                                            item2.pro_name
-                                                                        }
-                                                                    </h3>
-                                                                </div>
-                                                                <div
-                                                                    className={`price-discount ${
-                                                                        item2.prodiscount_value !==
-                                                                        0
+                                                        <div className="infor">
+                                                            {!deal && (
+                                                                <>
+                                                                    <div className="name">
+                                                                        <h3 className="fs-10">
+                                                                            {
+                                                                                item2.pro_name
+                                                                            }
+                                                                        </h3>
+                                                                    </div>
+                                                                    <div
+                                                                        className={`price-discount ${item2.prodiscount_value !==
+                                                                            0
                                                                             ? "has-discount"
                                                                             : ""
-                                                                    }`}
-                                                                >
-                                                                    <div className="price-discount__price">
-                                                                        {item2.pro_price.toLocaleString()}{" "}
-                                                                        ₫
-                                                                    </div>
-                                                                </div>
-                                                            </>
-                                                        )}
-                                                        {deal && (
-                                                            <>
-                                                                <div className="deal">
-                                                                    <div
-                                                                        className={`price-discount ${
-                                                                            item2.prodiscount_value !==
-                                                                            0
-                                                                                ? "has-discount"
-                                                                                : ""
-                                                                        }`}
+                                                                            }`}
                                                                     >
                                                                         <div className="price-discount__price">
                                                                             {item2.pro_price.toLocaleString()}{" "}
                                                                             ₫
                                                                         </div>
-                                                                        <div className="price-discount__discount">
-                                                                            {item2.pro_discount_value
-                                                                                ? item2.pro_discount_value +
+                                                                    </div>
+                                                                </>
+                                                            )}
+                                                            {deal && (
+                                                                <>
+                                                                    <div className="deal">
+                                                                        <div
+                                                                            className={`price-discount ${item2.prodiscount_value !==
+                                                                                0
+                                                                                ? "has-discount"
+                                                                                : ""
+                                                                                }`}
+                                                                        >
+                                                                            <div className="price-discount__price">
+                                                                                {item2.pro_price.toLocaleString()}{" "}
+                                                                                ₫
+                                                                            </div>
+                                                                            <div className="price-discount__discount">
+                                                                                {item2.pro_discount_value
+                                                                                    ? item2.pro_discount_value +
                                                                                     "%"
-                                                                                : ""}
+                                                                                    : ""}
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </>
-                                                        )}
+                                                                </>
+                                                            )}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </Link>
-                                        )
-                                    )}
+                                                </Link>
+                                            );
+                                        }
+                                    })}
                                 </>
                             ) : (
                                 <>
-                                    {products.filter((item) => item.pro_category_id.toString().match(tabNum)).slice(0, more).map((item2, i) => 
-                                        (
-                                            <Link
-                                                key={i}
-                                                to={`/${item2.pro_slug}-${item2.id}`}
-                                                className="product-item"
-                                            >
-                                                <div
-                                                    className={`product-item--style ${
-                                                        !deal
-                                                            ? "not-style"
-                                                            : ""
+                                    {products.filter((item) => item.pro_category_id.toString().match(tabNum)).slice(0, more).map((item2, i) =>
+                                    (
+                                        <Link
+                                            key={i}
+                                            to={`/${item2.pro_slug}-${item2.id}`}
+                                            className="product-item"
+                                        >
+                                            <div
+                                                className={`product-item--style ${!deal
+                                                    ? "not-style"
+                                                    : ""
                                                     }`}
                                                 >
                                                     <div className="thumbnail">
@@ -222,8 +218,7 @@ function HomeSuggest() {
                                                                     </h3>
                                                                 </div>
                                                                 <div
-                                                                    className={`price-discount ${
-                                                                        item2.prodiscount_value !==
+                                                                    className={`price-discount ${item2.prodiscount_value !==
                                                                         0
                                                                             ? "has-discount"
                                                                             : ""
@@ -240,12 +235,11 @@ function HomeSuggest() {
                                                             <>
                                                                 <div className="deal">
                                                                     <div
-                                                                        className={`price-discount ${
-                                                                            item2.prodiscount_value !==
+                                                                        className={`price-discount ${item2.prodiscount_value !==
                                                                             0
-                                                                                ? "has-discount"
-                                                                                : ""
-                                                                        }`}
+                                                                            ? "has-discount"
+                                                                            : ""
+                                                                            }`}
                                                                     >
                                                                         <div className="price-discount__price">
                                                                             {item2.pro_price.toLocaleString()}{" "}
@@ -264,18 +258,16 @@ function HomeSuggest() {
                                                     </div>
                                                 </div>
                                             </Link>
-                                        )
-                                    )}
-                                </>
-                            )}
+                                    ))}
+                                    </>)}
                         </div>
                     </div>
-                    { more < 24 && 
+                    {more < 24 &&
                         <button className="view-more" onClick={() => setMore(more + 6)}>
                             Xem thêm
                         </button>
                     }
-                    
+
                 </div>
             </>
         );
