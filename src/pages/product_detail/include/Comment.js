@@ -1,4 +1,4 @@
-import { Link, useLocation, useSearchParams, useNavigate, createSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams, useNavigate, createSearchParams } from 'react-router-dom';
 import { isWideScreen } from "../../../helpers/screen";
 import React from 'react';
 import { useEffect, useState } from "react";

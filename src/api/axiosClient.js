@@ -1,5 +1,6 @@
 import axios from 'axios';
-// import { getDataLocalStorageByKey, remoteDataLocalStorageByKey } from '../helpers/function';
+
+console.log("------------------------", process.env.URL_API);
 const axiosClient = axios.create({
 	baseURL: 'https://api-ecm.123code.net/api',
 	// baseURL: 'http://localhost:3006/api',
