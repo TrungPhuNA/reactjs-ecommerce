@@ -54,8 +54,9 @@ export default function Footers() {
   const theme = useTheme();
   return (
     <>
-      {isWideScreen() && <EmailContact />}
-
+      {isWideScreen() && 
+      <>
+      <EmailContact />
       <footer className={theme}>
         <div className="style-information">
           <div className="cm-width d-flexs">
@@ -239,7 +240,8 @@ export default function Footers() {
             </div>
           </div>
         </div>
-      </footer>
+      </footer></>}
+      {!isWideScreen && (<></>)}
     </>
 
     // <footer>
@@ -339,5 +341,7 @@ export default function Footers() {
     //         </div>
     //     </div>
     // </footer>
+
+    
   );
 }

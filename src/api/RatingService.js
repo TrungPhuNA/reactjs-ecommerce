@@ -14,10 +14,10 @@ const ratingApi = {
 		}
 	},
 
-	async getListRateByProducts(params) {
+	async getListRateByProducts(page, page_size, product_id) {
 		try {
-			const url = `vote/lists/?${params}`;
-			const response = await axiosClient.get(url, params)
+			const url = `vote/lists/?${page && `page=${page}`}${page_size && `&page_size=${page_size}`}${product_id && `&product_id=${product_id}`}`;
+			const response = await axiosClient.get(url)
 
 			if (response.status === 200) {
 				return response.data;

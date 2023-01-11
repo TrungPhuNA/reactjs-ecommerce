@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import { isWideScreen } from "../../../helpers/screen";
 import React, { useState,useEffect } from 'react';
 import { addToCart } from '../../../store/cartSlice';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import Skeleton from "react-loading-skeleton";
 import Login from '../../../components/login/Login'
 import Popup from "reactjs-popup";
@@ -15,13 +15,19 @@ function Product({ products, pro_price, loading }) {
 
     let { id } = useParams();
     const [count, setCount] = useState(1);
+    const [alert, setAlert] = useState(false);
     const dispatch = useDispatch();
-    // const dataToken = useSelector((state) => state.authReduce.token);
 
     const addToCartRedux = async () => {
         products.quantity = count;
         dispatch(addToCart(products));
         setCount(1);
+        setAlert(true);
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+        setTimeout(() => setAlert(false), 5000);
         console.log(products);
     }
 
@@ -313,6 +319,17 @@ function Product({ products, pro_price, loading }) {
                         }
                     </div>
                 </div>
+                { alert === true &&
+                    <>
+                        <div className="add-success">
+                            <div className="img"/>
+                            <p className="status">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path></svg>
+                                Thêm vào giỏ hàng thành công!
+                            </p>
+                        </div>
+                    </>
+                }
             </div>
         )
         }

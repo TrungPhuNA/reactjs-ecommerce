@@ -1,20 +1,29 @@
 import React, { useState, useEffect } from "react";
 import SideNavBar from "./SideNavBar";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import cartApi from "../../../api/CartService";
 import Skeleton from "react-loading-skeleton";
+import authApi from "../../../api/AuthService";
 
 function OrderManagement() {
 
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
-
-    const [tabs, setTabs] = useState([]);
+    const navigate = useNavigate();
+    const [tabs, setTabs] = useState();
     const [loading, setLoading] = useState(true);
     const [del, setDel] = useState(true);
     const [viewMore, setViewMore] = useState(false);
     const [isShow, setIsShow] = useState(false);
+
+    const getProfile = async () => {
+        const response = await authApi.getProfile();
+        if (response.status !== 200) {
+            window.location.reload();
+            navigate('/');
+        }
+    }
 
     useEffect(() => {
         let data = [
@@ -49,7 +58,8 @@ function OrderManagement() {
                 status: false,
             },
         ]
-        setTabs(data)
+        setTabs(data);
+        getProfile();
     }, []);
 
 
@@ -183,9 +193,7 @@ function OrderManagement() {
                                                         (
                                                             <>
                                                                 <div className='view-more'>
-                                                                    <button onClick={() => setViewMore(true)}>
-                                                                        Xem thêm {item.orders.length-2} sản phẩm
-                                                                    </button>
+                                                                    Và {item.orders.length-2} sản phẩm...
                                                                 </div>
                                                             </>
                                                         ) : (<></>)}

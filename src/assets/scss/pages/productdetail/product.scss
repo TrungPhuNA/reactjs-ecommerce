@@ -792,5 +792,44 @@
     }    
 }
 
+.add-success {
+    position: absolute;
+    right: 100px;
+    padding: 16px;
+    transform: translateY(100%);
+    background-color: rgb(255, 246, 246);
+    border-radius: 6px;
+    box-shadow: rgb(179 179 179) 1px 1px 15px;
+    margin-top: -150px;
+    z-index: 3001;
+
+    .img {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        right: 15px;
+        border-width: 8px;
+        border-style: solid;
+        border-color: transparent transparent rgb(255, 255, 255);
+        border-image: initial;
+    }
+
+    svg {
+        margin-right: 4px;
+        color: rgb(76, 175, 80);
+        font-size: 19px;
+    }
+
+    .status {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        margin: 0px;
+        color: rgb(51, 51, 51);
+        font-size: 13px;
+        white-space: nowrap;
+        font-weight: 600;
+    }
+}
 
     

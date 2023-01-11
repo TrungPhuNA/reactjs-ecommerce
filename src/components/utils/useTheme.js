@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useDarkMode from "use-dark-mode";
-
+import * as process from 'process';
 const lightTheme = "light-mode";
 const darkTheme = "dark-mode";
 
@@ -17,5 +17,5 @@ export const useTheme = () => {
 };
 
 
-export const BASE_URL = 'http://api-ecm.123code.net/api';
-// export const BASE_URL = 'http://localhost:3006/api';
+export const BASE_URL = `https://api-ecm.123code.net/api`;
+// export const BASE_URL = process.env.REACT_APP_URL_API;

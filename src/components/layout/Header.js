@@ -28,7 +28,7 @@ function Header() {
         try {
             if (localStorage.getItem("accessToken")) {
                 setIsUser(true);
-                return fetch(`https://api-ecm.123code.net/api/auth/profile`, {
+                return fetch(`${BASE_URL}/auth/profile`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -246,7 +246,7 @@ function Header() {
                                             >
                                                 <Login />
                                             </Popup>
-                                            <Popup 
+                                            <Popup
                                                 modal
                                                 trigger={
                                                 <div className="header-cart" >

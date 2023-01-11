@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import Category from './include/desktop/Category';
 import Container from './include/desktop/Container';
 import Products from './include/desktop/Products';
@@ -28,8 +28,8 @@ function CategoryPage() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        getCategoryDetail();
-        getProductsByCategory();
+        getCategoryDetail().then(r => {});
+        getProductsByCategory().then(r => {});
         setShow(true);
         setSortAsc(false);
         setSortDesc(false);
@@ -123,7 +123,7 @@ function CategoryPage() {
                                                     {isWideScreen() &&
                                                         <>
                                                             <Link to={`${sortAsc === false ? `?price=asc` : '?'}`}
-                                                                // {`?${searchParams}`} 
+                                                                // {`?${searchParams}`}
                                                                 onClick={handleChangeSort}
                                                                 className={`tabs-list ${sortAsc === true ? 'active' : ''}`}
                                                                 data-sort-type="price"

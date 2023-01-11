@@ -9,8 +9,7 @@ function UpdatePassword() {
     const [password, setPassword] = useState("");
 
     async function getUser() {
-        // fetch(`${BASE_URL}/auth/profile`, {
-        fetch(`https://api-ecm.123code.net/api/auth/profile`, {
+        fetch(`${BASE_URL}/auth/profile`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -30,8 +29,7 @@ function UpdatePassword() {
 
     async function updatePassword() {
         let item = {password_old, password_new, password_confirm}
-        // fetch(`${BASE_URL}/user/update-password`, {
-        fetch(`https://api-ecm.123code.net/api/user/update-password`, {
+        fetch(`${BASE_URL}/user/update-password`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",

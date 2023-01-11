@@ -24,7 +24,9 @@ function ProductSummary({ deal, disCount }) {
     };
 
     useEffect(() => {
-        getProducts();
+        getProducts({
+            sale: true
+        }).then(r => {});
     }, []);
 
     return (
@@ -54,13 +56,13 @@ function ProductSummary({ deal, disCount }) {
                 </div>
             ) : (
             <Swiper {...settingsSlide}>
-                {products.slice(1,12).map((item, index) => 
+                {products.slice(1,12).map((item, index) =>
                     (
                         <SwiperSlide  key={index}>
                             <div className="dashboard-product--item">
                                 <Link
                                     to={`/${item.pro_slug}-${item.id}`}
-                                    className="product-item" 
+                                    className="product-item"
                                 >
                                     <div
                                         className={`product-item--style ${

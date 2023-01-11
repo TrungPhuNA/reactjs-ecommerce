@@ -1,5 +1,5 @@
 import SideNavBar from "./SideNavBar";
-import {Link, useParams} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import authApi from "../../../api/AuthService";
 import React, { useEffect, useState} from 'react';
 import cartApi from "../../../api/CartService";
@@ -12,23 +12,26 @@ function OrderDetail() {
     }, [])
 
     let { id } = useParams();
-
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
     const [phone, setPhone] = useState("");
     const [productList, setProductList] = useState([]);
     const [loading, setLoading] = useState(true);
-    
+
     const getUser = async () => {
         const res = await authApi.getProfile();
         if (res.status === 200) {
             setName(res.data.name);
             setAddress(res.data.address);
             setPhone(res.data.phone);
+        } else {
+            window.location.reload();
+            navigate('/');
         }
     }
     const getOrderProducts = async () => {
-        const response = await cartApi.getTransaction(); 
+        const response = await cartApi.getTransaction();
         response.data.forEach((item, index) => {
             if (item.id === id) {
                 setProductList(item.orders);
@@ -39,8 +42,8 @@ function OrderDetail() {
     }
 
     useEffect(() => {
-        getOrderProducts();
-        getUser();
+        getOrderProducts().then(r => {});
+        getUser().then(r => {});
     }, []);
 
     return(
@@ -62,7 +65,7 @@ function OrderDetail() {
                         </div>
                     </div>
                 </div>
-            ) : 
+            ) :
             (<>
                 <div className="container">
                     <div className="category-title">
@@ -75,7 +78,7 @@ function OrderDetail() {
                         <div className="right-container">
                             <div className="heading-title">
                                 <span>Chi tiết đơn hàng #{id} </span>
-                                
+
                                 <span className="heading-title-bold"></span>
                             </div>
                             <div className="heading-date">
@@ -133,8 +136,8 @@ function OrderDetail() {
                                     </div>
                                 </div>
                             </div>
-                            
-                            { productList.map((item, index) => 
+
+                            { productList.map((item, index) =>
                                 item.products.map((item2, index) => (
                                     <>
                                         <div className="heading-detail-container4" key={index}>
@@ -164,7 +167,7 @@ function OrderDetail() {
                                     </>
                                 )))
                             }
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </>)}
