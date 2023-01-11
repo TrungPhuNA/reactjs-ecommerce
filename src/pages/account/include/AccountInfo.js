@@ -10,13 +10,15 @@ import { isWideScreen } from "../../../helpers/screen";
 import AccountSetting from "./mobile/AccountSetting";
 import Skeleton from "react-loading-skeleton";
 import {BASE_URL, useTheme} from '../../../components/utils/useTheme';
+import { useNavigate } from "react-router-dom";
 
 function AccountInfo() {
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
-
+	
+	const navigate = useNavigate();
 	const [user, setUser] = useState([]);
 	const [name, setName] = useState("");
 	const [address, setAddress] = useState("");
@@ -25,22 +27,29 @@ function AccountInfo() {
 	const [loading, setLoading] = useState(true);
 
 	async function getUser() {
-		fetch(`${BASE_URL}/auth/profile`, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: "Bearer " + localStorage.getItem("accessToken"),
-			},
-		}).then((result) => {
-			result.json().then((res) => {
-				setUser(res);
-				setName(res.data.name);
-				setAddress(res.data.address);
-				setPhone(res.data.phone);
-				setEmail(res.data.email);
-				setLoading(false);
+		try {
+			fetch(`${BASE_URL}/auth/profile`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: "Bearer " + localStorage.getItem("accessToken"),
+				},
+			}).then((result) => {
+				result.json().then((res) => {
+					setUser(res);
+					setName(res.data.name);
+					setAddress(res.data.address);
+					setPhone(res.data.phone);
+					setEmail(res.data.email);
+					setLoading(false);
+				});
 			});
-		});
+		} catch {
+			window.location.reload();
+			navigate('/');
+			
+		}
+		
 	}
 
 	useEffect(() => {

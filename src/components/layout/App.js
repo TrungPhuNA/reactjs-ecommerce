@@ -49,9 +49,10 @@ function App() {
         {/* {isWideScreen() && <Footers />} */}
         <Footers />
 
+        {isWideScreen() &&
         <div className={`scrollToTop ${off_fixed}`} onClick={onClickActive}>
           <i className="fa fa-chevron-up"></i>
-        </div>
+        </div>}
       </Provider>
     </div>
   );

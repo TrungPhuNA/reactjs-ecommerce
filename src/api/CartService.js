@@ -65,6 +65,18 @@ const cartApi = {
         } catch (e) {
             console.log('---------------showTransaction@Error ', e);
         }
+    },
+    async showConfig() {
+        try {
+            const url = `transaction/config`;
+            const response = await axiosClient.get(url);
+            console.log('------------- showTransaction@response: ', response);
+            if (response.status === 200 || response.status === 201) {
+                return response.data;
+            }
+        } catch (e) {
+            console.log('---------------showTransaction@Error ', e);
+        }
     }
 }
 

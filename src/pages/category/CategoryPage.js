@@ -78,7 +78,6 @@ function CategoryPage() {
             event.currentTarget.classList.remove("active");
         }
     }
-    console.log('---searchParams', searchParams);
 
     const handleSortAsc = () => {
         const sortedArr = [...products].sort((a, b) => a.pro_price > b.pro_price ? 1 : -1);
@@ -156,40 +155,16 @@ function CategoryPage() {
                                         </div>
                                     </div>
 
-                                    {loadingProduct === true ? (
-                                        <div className="product-container">
-                                            <div className="suggestion__product">
-                                                <div className="content">
-                                                    <div className="" style={{ display: "flex", padding: "0 10px" }}>
-                                                        <div className="dashboard-product--item" style={{ marginTop: "10px", marginRight: "10px" }}>
-                                                            <Skeleton height={100} />
-                                                            <Skeleton height={10} style={{ marginTop: "10px" }} />
-                                                            <Skeleton height={10} style={{ marginTop: "5px" }} />
-                                                            <Skeleton height={10} style={{ marginTop: "5px" }} />
-                                                        </div>
-                                                        <div className="dashboard-product--item" style={{ marginTop: "10px", marginRight: "10px" }}>
-                                                            <Skeleton height={100} />
-                                                            <Skeleton height={10} style={{ marginTop: "10px" }} />
-                                                            <Skeleton height={10} style={{ marginTop: "5px" }} />
-                                                            <Skeleton height={10} style={{ marginTop: "5px" }} />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ) : (
-                                        <>
-                                            <Products
-                                                products={products}
-                                                id={id}
-                                                productsAsc={productsAsc}
-                                                productsDesc={productsDesc}
-                                                show={show}
-                                                sortAsc={sortAsc}
-                                                sortDesc={sortDesc}
-                                            />
-                                        </>
-                                    )}
+                                    <Products
+                                        products={products}
+                                        id={id}
+                                        productsAsc={productsAsc}
+                                        productsDesc={productsDesc}
+                                        show={show}
+                                        sortAsc={sortAsc}
+                                        sortDesc={sortDesc}
+                                        loadingProduct={loadingProduct}
+                                    />
                                 </div>
                             </div>
                         </div>

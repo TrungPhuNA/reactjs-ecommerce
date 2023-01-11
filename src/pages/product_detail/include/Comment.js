@@ -22,7 +22,11 @@ function Comment({ id, products }) {
     const [showRate, setShowRate] = useState(false);
     const [showUpdate, setShowUpdate] = useState(false);
     const [alert, setAlert] = useState(false);
-    // const [active, setActive] = useState(false);
+    const [alertStar, setAlertStar] = useState(false);
+    const [alertContent, setAlertContent] = useState(false);
+    const [click, setClick] = useState(false);
+    const [show, setShow] = useState(false);
+    const [alertCmt, setAlertCmt] = useState(false);
 
     const [rating, setRating] = useState(0);
     const [content, setContent] = useState();
@@ -47,7 +51,6 @@ function Comment({ id, products }) {
 
     const [currentPage, setCurrentPage] = useState(1);
     const location = useLocation();
-    let { searchParams } = useSearchParams();
     const navigate = useNavigate();
 
     function currentTableData() {
@@ -66,6 +69,9 @@ function Comment({ id, products }) {
 
     useEffect(() => {
         setIdVote();
+        setAlertStar(false);
+        setAlertContent(false);
+        setClick(false);
         setCurrentPage(1);
         setPercent1(0);
         setPercent2(0);
@@ -85,9 +91,6 @@ function Comment({ id, products }) {
         let star4 = 0;
         let star5 = 0;
         const response = await ratingApi.getListRateByProducts(page, page_size, id);
-        if (response.status === 200) {
-            setVote(response.data);
-        }
         response.data.forEach(item => {
             if (item.v_product_id == product_id) {
                 star += item.v_number;
@@ -104,6 +107,7 @@ function Comment({ id, products }) {
                     star5 += 1;
             }
         })
+        setVote(arr);
         setCountComment(arr.length);
         setVoteStar(star);
         setPercent1(star1);
@@ -118,7 +122,6 @@ function Comment({ id, products }) {
         console.log('star4: ', star4);
         console.log('star5: ', star5);
     }
-
     const countRate = (index) => {
         let tmp = [];
         for (var i = 0; i < index; i++) {
@@ -127,12 +130,36 @@ function Comment({ id, products }) {
         return tmp;
     }
 
-    const handleClickVote = async (vote_number) => {
-        console.log('--------------- number: ', vote_number);
+    const activeFilter = () => {
         let paramsQuery = location.search; console.log('paramsQuery', paramsQuery);
         let query = new URLSearchParams(paramsQuery);
         let value = query.get('number');
-        console.log('============== value: ', value);
+
+        if (value) {
+            if (value.includes(1))
+                setActive1(true); 
+            if (value.includes(2))
+                setActive2(true);
+            if (value.includes(3))
+                setActive3(true); 
+            if (value.includes(4))
+                setActive4(true); 
+            if (value.includes(5))
+                setActive5(true);  
+        }
+        
+    }
+
+    useEffect(() => {
+        activeFilter();
+    }, []);
+
+    const handleClickVote = async (vote_number) => {
+        console.log('--------------- number: ', vote_number);
+        let paramsQuery = location.search;
+        let query = new URLSearchParams(paramsQuery);
+        let value = query.get('number');
+
         if (value) {
             if (vote_number != value) {
                 // kiem tra xem da co trong array chua
@@ -173,25 +200,47 @@ function Comment({ id, products }) {
 
         console.log('--------------- value: ', value);
         let params = {
-            number: decodeURIComponent(value),
+            number: value,
         };
         const options = {
-            search: `?${createSearchParams(params)}`,
+            search: decodeURIComponent(`?${createSearchParams(params)}`),
         };
         navigate(options, { replace: true });
     }
 
     const handleSubmit = async () => {
-        let data = {
-            v_content: content,
-            v_number: rating,
-            v_product_id: product_id,
+        if (click == true && content) {
+            console.log('rating', rating);
+            let data = {
+                v_content: content,
+                v_number: rating + 1,
+                v_product_id: product_id,
+            }
+            const response = await ratingApi.createRate(data);
+            if (response.status === 200) {
+                setContent('');
+                setShowRate(false);
+                setRefresh(!refresh);
+                setShow(true);
+            } else {
+                setAlertCmt(true);
+            }
+        } else {
+            if (click === false)
+                setAlertStar(true);
+            if (!content) 
+                setAlertContent(true);
         }
-        const response = await ratingApi.createRate(data);
-        if (response.status === 200) {
-            setContent('');
-            setShowRate(false);
-        }
+        
+    }
+
+    const handleUpdateContent = async (idVote) => {
+        const response = await ratingApi.getListRateByProducts(page, page_size, id);
+        response.data.forEach(item => {
+            if (item.id == idVote) {
+                setContent(item.v_content);
+            }
+        })
     }
 
     const handleUpdateVote = async (idVote) => {
@@ -203,18 +252,15 @@ function Comment({ id, products }) {
             }
             const response = await ratingApi.updateRateByProducts(idVote, data);
             if (response.status === 200) {
-                setContent('');
+                //setContent('');
                 setShowUpdate(false);
+                setRefresh(refresh);
             }
         } catch {
             setAlert(true);
         }
 
 
-    }
-
-    const handleRefresh = () => {
-        setRefresh(!refresh);
     }
 
     return (
@@ -329,7 +375,7 @@ function Comment({ id, products }) {
                 </div>
                 {auth === true &&
                     <div className="rate-container">
-                        <button onClick={() => setShowRate(true)}>Viết đánh giá</button>
+                        <button onClick={() => { setShowRate(true); setContent('') }}>Viết đánh giá</button>
                     </div>
                 }
                 {showRate === true && (
@@ -345,17 +391,19 @@ function Comment({ id, products }) {
                                 <div className="rate-form-content">
                                     <div className="rate-info">
                                         <img src={products.pro_avatar} alt='xad' width='35' height='35' />
-                                        <span>{products.pro_name}</span>
+                                        <span style={{ marginLeft: 10 }}>{products.pro_name}</span>
                                     </div>
                                     <div className="rate">
                                         <Rate
                                             rating={rating}
-                                            onRating={(rate) => setRating(rate)}
+                                            onRating={(rate) => {setRating(rate); setClick(true); setAlertStar(false)}}
                                         />
                                     </div>
                                     <div className="rate-input">
-                                        <textarea type='text' value={content} onChange={(e) => setContent(e.target.value)} placeholder="Mời bạn chia sẻ thêm một số cảm nhận về sản phẩm ..." />
-                                        <button onClick={() => { handleSubmit(); handleRefresh() }}>Gửi đánh giá</button>
+                                        <textarea type='text' value={content} onChange={(e) => {setContent(e.target.value); setAlertContent(false)}} placeholder="Mời bạn chia sẻ thêm một số cảm nhận về sản phẩm ..." />
+                                        <p style={{ color: 'red', fontSize: 12, textAlign: 'center' }}>{ alertStar === true && 'Vui lòng chọn số sao!' }</p>
+                                        <p style={{ color: 'red', fontSize: 12, textAlign: 'center' }}>{ alertContent === true && 'Vui lòng nhập nội dung!' }</p>
+                                        <button onClick={handleSubmit}>Gửi đánh giá</button>
                                     </div>
                                 </div>
                             </div>
@@ -387,7 +435,7 @@ function Comment({ id, products }) {
                                     {item.v_content}
                                 </div>
                                 <span className="thank">Bình luận</span>
-                                {userId == item.v_user_id && <span className="thank" onClick={() => { setShowUpdate(true); setIdVote(item.id) }}>Chỉnh sửa</span>}
+                                {userId == item.v_user_id && <span className="thank" onClick={() => { setShowUpdate(true); setIdVote(item.id); handleUpdateContent(item.id) }}>Chỉnh sửa</span>}
                             </div>
                         </div>
                     ))}
@@ -405,19 +453,19 @@ function Comment({ id, products }) {
                                     <div className="rate-info">
                                         <img src={products.pro_avatar} alt='xad' width='50' height='50' />
                                         <div>
-                                            <span>{products.pro_name}</span>
+                                            <span style={{ marginLeft: 10 }}>{products.pro_name}</span>
                                         </div>
                                     </div>
                                     <div className="rate">
                                         <Rate
                                             rating={rating}
-                                            onRating={(rate) => setRating(rate)}
+                                            // onRating={(rate) => setRating(rate)}
                                         />
                                     </div>
                                     <div className="rate-input">
                                         <textarea type='text' value={content} onChange={(e) => setContent(e.target.value)} placeholder="Mời bạn chia sẻ thêm một số cảm nhận về sản phẩm ..." />
                                         {alert === true && <div style={{ textAlign: 'center', color: 'red', marginTop: '10px', fontSize: '12px', marginLeft: '12px' }}>Nội dung không được để trống!</div>}
-                                        <button onClick={() => { handleUpdateVote(idVote); handleRefresh() }}>Lưu chỉnh sửa</button>
+                                        <button onClick={() => handleUpdateVote(idVote)}>Lưu chỉnh sửa</button>
                                     </div>
                                 </div>
                             </div>
@@ -436,6 +484,55 @@ function Comment({ id, products }) {
                     </>
                 }
             </div>
+            {show === true ? (
+                <div className="alert-cart">
+                    <div className="alert-cart-container">
+                        <div className="alert-cart-content">
+                            <div>
+                                <img
+                                    width="20"
+                                    height="20"
+                                    alt="sc"
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL3KoNpySX6KZDN0GJtebbCnuYtu2FIClZGA&usqp=CAU"
+                                />
+                                <h4>Đánh giá thành công!</h4>
+                            </div>
+                            <button className="button-close1" onClick={() => setShow(false)}>
+                                Đóng
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <>
+                    {alertCmt ? (
+                        <div className="alert-cart">
+                            <div className="alert-cart-container">
+                                <div className="alert-cart-content">
+                                    <img
+                                        width="20"
+                                        height="20"
+                                        alt="sc"
+                                        src="https://cdn-icons-png.flaticon.com/512/6659/6659895.png"
+                                    />
+                                    <h4>Đánh giá thất bại!</h4>
+                                    <button
+                                        className="button-close2"
+                                        onClick={() => {
+                                            setShow(false);
+                                            setAlertCmt(false);
+                                        }}
+                                    >
+                                        Đóng
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        <></>
+                    )}
+                </>
+            )}
         </div>
     )
 

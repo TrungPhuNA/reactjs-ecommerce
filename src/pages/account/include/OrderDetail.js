@@ -1,5 +1,5 @@
 import SideNavBar from "./SideNavBar";
-import {Link, useParams} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import authApi from "../../../api/AuthService";
 import React, { useEffect, useState} from 'react';
 import cartApi from "../../../api/CartService";
@@ -12,7 +12,7 @@ function OrderDetail() {
     }, [])
 
     let { id } = useParams();
-
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
     const [phone, setPhone] = useState("");
@@ -25,6 +25,9 @@ function OrderDetail() {
             setName(res.data.name);
             setAddress(res.data.address);
             setPhone(res.data.phone);
+        } else {
+            window.location.reload();
+            navigate('/');
         }
     }
     const getOrderProducts = async () => {
