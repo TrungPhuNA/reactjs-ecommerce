@@ -1,9 +1,8 @@
 import axios from 'axios';
+import * as process from 'process';
 
-console.log("------------------------", process.env.URL_API);
 const axiosClient = axios.create({
-	baseURL: 'https://api-ecm.123code.net/api',
-	// baseURL: 'http://localhost:3006/api',
+	baseURL: process.env.REACT_APP_URL_API,
 	headers: {
 		'Content-Type': 'application/json',
 	},

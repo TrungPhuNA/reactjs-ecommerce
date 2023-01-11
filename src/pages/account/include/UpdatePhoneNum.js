@@ -9,8 +9,7 @@ function UpdatePhoneNum() {
     const [phone, setPhone] = useState("");
 
     async function getUser() {
-        // fetch(`${BASE_URL}/auth/profile`, {
-        fetch(`https://api-ecm.123code.net/api/auth/profile`, {
+        fetch(`${BASE_URL}/auth/profile`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -26,8 +25,7 @@ function UpdatePhoneNum() {
 
     async function updatePhone() {
         let item = { phone };
-        // fetch(`${BASE_URL}/user/update-phone`, {
-        fetch(`https://api-ecm.123code.net/api/user/update-phone`, {
+        fetch(`${BASE_URL}/user/update-phone`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
