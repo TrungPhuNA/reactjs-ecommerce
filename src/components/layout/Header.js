@@ -384,7 +384,7 @@ function Header() {
                                                 .filter((item) =>
                                                     item.pro_name
                                                         .toLowerCase()
-                                                        .match(searchInput.toLowerCase()    )
+                                                        .match(searchInput.toLowerCase())
                                                 )
                                                 .slice(0, 5)
                                                 .map((item, index) => (

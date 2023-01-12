@@ -2,14 +2,10 @@ import axiosClient from './axiosClient';
 
 const cartApi = {
 
-    async getTransaction(params) {
+    async getTransaction(page, page_size) {
         try {
-			const newParams = { ...params }
-			const url = `transaction/lists`;
-			console.log('--------- newParams: ', newParams);
-			const response = await axiosClient.get(url, {
-				params: {...newParams},
-			})
+			const url = `transaction/lists?${page && `page=${page}`}${page_size && `&page_size=${page_size}`}`;
+			const response = await axiosClient.get(url)
 
 			if (response.status === 200) {
 				return response.data;

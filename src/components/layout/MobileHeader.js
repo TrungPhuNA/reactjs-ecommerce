@@ -12,15 +12,7 @@ function MobileHeader(props) {
           <img src={"/logo.svg"} alt="free" width="40" />
         </Link>
         <div>
-          <Link to="/" title="free-ship">
-            <img
-              src="https://salt.tikicdn.com/ts/upload/c5/0b/06/88e5d7fa1a7cb51144fff2933e7269d9.png"
-              alt="free"
-              width="26"
-              height="26"
-            />
-          </Link>
-          <Link to="/" title="free-ship">
+          <Link to="/cart" title="free-ship">
             <img
               src="https://salt.tikicdn.com/ts/upload/70/44/6c/a5ac520d156fde81c08dda9c89afaf37.png"
               alt="free"

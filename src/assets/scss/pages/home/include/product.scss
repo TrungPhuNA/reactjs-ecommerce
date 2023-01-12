@@ -342,6 +342,11 @@
             @media (max-width: 1024px) {
                 .content {
                     margin: 0;
+
+                    .dashboard-product--item {
+                        width: 30%;
+                        margin-left: 12px;
+                    }
                 }
             }
 

@@ -12,7 +12,7 @@ import Pagination from "../../../components/common/Pagination";
 
 let page = 1;
 let page_size = 100;
-let PageSize = 10;
+let PageSize = 5;
 
 function Comment({ id, products }) {
 
@@ -147,7 +147,6 @@ function Comment({ id, products }) {
             if (value.includes(5))
                 setActive5(true);  
         }
-        
     }
 
     useEffect(() => {

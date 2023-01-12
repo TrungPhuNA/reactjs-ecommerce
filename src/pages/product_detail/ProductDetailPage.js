@@ -54,10 +54,9 @@ function ProductDetailPage() {
             {!isWideScreen() &&
                 <>
                     <DetailHeader />
-                    <Product />
-                    <SimilarProduct />
-                    <ProductDescribe />
-                    <Comment />
+                    <Product products={products} pro_price={pro_price} loading={loading}/>
+                    <ProductDescribe products={products}/>
+                    <Comment id={id} products={products}/>
                     <HomeSuggest />
                     <DetailFooter />
                 </>

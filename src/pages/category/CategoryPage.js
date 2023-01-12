@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import Category from './include/desktop/Category';
-import Container from './include/desktop/Container';
+// import Container from './include/desktop/Container';
 import Products from './include/desktop/Products';
 import { isWideScreen } from "../../helpers/screen";
-import MobileCategoryHeader from "./include/mobile/MobileCategoryHeader";
+// import MobileCategoryHeader from "./include/mobile/MobileCategoryHeader";
 import { useParams } from 'react-router';
 import categoryApi from '../../api/CategoryService';
 import productApi from '../../api/ProductService';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import SidebarFilter from '../../components/common/sidebar/SidebarFinter';
 
 function CategoryPage() {
 
     let { id } = useParams();
+    const navigate = useNavigate();
     const [category, setCategory] = useState(null);
     const [products, setProducts] = useState([]);
     const [productsAsc, setProductsAsc] = useState([]);
@@ -142,14 +143,6 @@ function CategoryPage() {
                                                             </Link>
                                                         </>
                                                     }
-                                                    {!isWideScreen() &&
-                                                        <>
-                                                            <Link to="category" className="active">Phổ Biến</Link>
-                                                            <Link to="category" className="active">Bán Chạy</Link>
-                                                            <Link to="category" className="active">Hàng Mới</Link>
-                                                            <Link to="category" className="active">Giá <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M3.43306 0.308058C3.67714 0.0639806 4.07286 0.0639806 4.31694 0.308058L6.81694 2.80806C7.06102 3.05214 7.06102 3.44786 6.81694 3.69194C6.57286 3.93602 6.17714 3.93602 5.93306 3.69194L4.5 2.25888V10.125C4.5 10.4702 4.22018 10.75 3.875 10.75C3.52982 10.75 3.25 10.4702 3.25 10.125V2.25888L1.81694 3.69194C1.57286 3.93602 1.17714 3.93602 0.933058 3.69194C0.688981 3.44786 0.688981 3.05214 0.933058 2.80806L3.43306 0.308058ZM9.5 11.7411V3.25C9.5 2.90482 9.77982 2.625 10.125 2.625C10.4702 2.625 10.75 2.90482 10.75 3.25V11.7411L12.1831 10.3081C12.4271 10.064 12.8229 10.064 13.0669 10.3081C13.311 10.5521 13.311 10.9479 13.0669 11.1919L10.5669 13.6919C10.3229 13.936 9.92714 13.936 9.68306 13.6919L7.18306 11.1919C6.93898 10.9479 6.93898 10.5521 7.18306 10.3081C7.42714 10.064 7.82286 10.064 8.06694 10.3081L9.5 11.7411Z" fill="#38383D"></path></svg></Link>
-                                                        </>
-                                                    }
                                                 </div>
                                             </div>
                                         </div>
@@ -174,12 +167,96 @@ function CategoryPage() {
 
             {!isWideScreen() &&
                 <>
-                    <h2>Mobile</h2>
-                    <>
-                        <MobileCategoryHeader />
-                        <Container />
-                    </>
-                </>
+                <div className="container">
+                    <div className="mobile__header">
+                        <div className="mobile__header--logo">
+                            <Link
+                            to="/"
+                            title="free-ship"
+                            style={{ scale: "3", marginBottom: "5px", marginLeft: 40, marginTop: 0 }}
+                            >
+                            <img src={"/logo.svg"} alt="free" width="40" />
+                            </Link>
+                            <div>
+                            <Link to="/" title="free-ship">
+                                <img
+                                src="https://salt.tikicdn.com/ts/upload/70/44/6c/a5ac520d156fde81c08dda9c89afaf37.png"
+                                alt="free"
+                                width="24"
+                                height="24"
+                                />
+                            </Link>
+                            </div>
+                        </div>
+                        <div className="mobile__header--search">
+                            <img
+                            src="https://salt.tikicdn.com/ts/upload/34/62/0c/6ae13efaff83c66f810c4c63942cf6c0.png"
+                            height="24"
+                            width="24"
+                            alt="search"
+                            />
+                            <input
+                            className="w-100"
+                            type="text"
+                            placeholder="Bạn tìm gì hôm nay?"
+                            />
+                        </div>
+                    </div>
+                    <Category category={category} />
+                    <div className="category-view">
+                        <SidebarFilter />
+                        <div className="category-right">
+                            <div className="search-summary">
+                                <div className="title">
+                                    <h1>{category?.c_name || <Skeleton count={1} />}</h1>
+                                </div>
+
+                                <div className="search-summary-category">
+                                    <div className="summary-top">
+                                        <div className="top-tabs">
+                                            <div className="tabs-list">
+                                                {isWideScreen() &&
+                                                    <>
+                                                        <Link to={`${sortAsc === false ? `?price=asc` : '?'}`}
+                                                            // {`?${searchParams}`}
+                                                            onClick={handleChangeSort}
+                                                            className={`tabs-list ${sortAsc === true ? 'active' : ''}`}
+                                                            data-sort-type="price"
+                                                            data-sort-value={"asc"}
+                                                        >
+                                                            Giá Thấp Đến Cao
+                                                        </Link>
+                                                        <Link to={`${sortDesc === false ? `?price=desc` : '?'}`}
+                                                            // {`?${searchParams}`}
+                                                            onClick={handleChangeSort}
+                                                            className={`tabs-list ${sortDesc === true ? 'active' : ''}`}
+                                                            data-sort-type="price"
+                                                            data-sort-value={"desc"}
+                                                        >
+                                                            Giá Cao Đến Thấp
+                                                        </Link>
+                                                    </>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <Products
+                                    products={products}
+                                    id={id}
+                                    productsAsc={productsAsc}
+                                    productsDesc={productsDesc}
+                                    show={show}
+                                    sortAsc={sortAsc}
+                                    sortDesc={sortDesc}
+                                    loadingProduct={loadingProduct}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </>
             }
         </main>
 

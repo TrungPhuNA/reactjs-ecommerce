@@ -15,7 +15,7 @@
     }
 
     div {
-        width: 64px;
+        width: 50%;
         display: flex;
         -webkit-box-pack: center;
         justify-content: center;
@@ -63,6 +63,8 @@
 .mobile__header {
     padding: 8px 12px 0px;
     margin-bottom: 12px;
+    position: sticky;
+    z-index: 1000;
 
     &--logo {
         display: flex;
