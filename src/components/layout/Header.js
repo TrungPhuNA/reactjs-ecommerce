@@ -406,7 +406,8 @@ function Header() {
                                                         />
                                                         <p>{item.pro_name}</p>
                                                     </Link>
-                                                ))}
+                                                ))
+                                            }
                                             <div className="show-more">
                                                 Xem thêm <DownOutlined />
                                             </div>
