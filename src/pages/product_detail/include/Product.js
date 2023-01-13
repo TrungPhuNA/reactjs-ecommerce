@@ -66,24 +66,17 @@ function Product({ products, pro_price, loading }) {
                     }
                     {!isWideScreen() &&
                         <>
-                            <div className="review-img1">
-                                <Swiper
-                                    spaceBetween={5}
-                                    slidesPerView={1}
-                                    speed={500}
-                                    navigation={true}
-                                    pagination={{ clickable: true }}
-                                    className="review-swiper">
-                                    <div className="swiper-button-prev" />
-                                    <SwiperSlide>
-                                        <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp" />
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/2a/3b/a1/694060a125c0d42ba5d2fafc511b6ec3.jpg.webp" />
-                                    </SwiperSlide>
-                                    <div className="swiper-button-next" />
-                                </Swiper>
+                            <div className="group-img">
+                                    {<img alt="/" src={products?.pro_avatar} /> || <Skeleton height={100} />}
                             </div>
+                            {/* <div className="share-product">
+                                <div className="share-text">Chia sẻ:</div>
+                                <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/social-facebook.svg" />
+                                <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/social-messenger.svg" />
+                                <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/social-pinterest.svg" />
+                                <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/social-twitter.svg" />
+                                <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/social-copy.svg" />
+                            </div> */}
                         </>
                     }
                 </div>

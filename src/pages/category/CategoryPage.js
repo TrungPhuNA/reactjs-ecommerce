@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import Category from './include/desktop/Category';
-import Container from './include/desktop/Container';
+// import Container from './include/desktop/Container';
 import Products from './include/desktop/Products';
 import { isWideScreen } from "../../helpers/screen";
-import MobileCategoryHeader from "./include/mobile/MobileCategoryHeader";
+// import MobileCategoryHeader from "./include/mobile/MobileCategoryHeader";
 import { useParams } from 'react-router';
 import categoryApi from '../../api/CategoryService';
 import productApi from '../../api/ProductService';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import SidebarFilter from '../../components/common/sidebar/SidebarFinter';
 
 function CategoryPage() {
 
     let { id } = useParams();
+    const navigate = useNavigate();
     const [category, setCategory] = useState(null);
     const [products, setProducts] = useState([]);
     const [productsAsc, setProductsAsc] = useState([]);
@@ -25,6 +26,8 @@ function CategoryPage() {
     const [show, setShow] = useState(true);
     const [sortAsc, setSortAsc] = useState(false);
     const [sortDesc, setSortDesc] = useState(false);
+
+    const [showSearch, setShowSearch] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -101,6 +104,31 @@ function CategoryPage() {
             setShow(false)
     }
 
+    //search mobile
+    const [dataList, setDataList] = useState([]);
+    const [searchInput, setSearchInput] = useState("");
+    const [arr] = useState([]);
+    const [showMore, setShowMore] = useState(4);
+
+    const saveSearch = () => {
+        arr.push({ name: searchInput });
+        console.log(arr);
+    };
+
+	const page_size = 300;
+	const page = 1;
+
+    const getData = async () => {
+        const response = await productApi.getListsProductsByPage(page, page_size);
+        if (response.status === 200) {
+            setDataList(response.data);
+        }
+    };
+
+    useEffect(() => {
+        getData();
+    }, []);
+
 
     return (
         <main className={isWideScreen() ? 'desktop' : 'mobile'}>
@@ -142,14 +170,6 @@ function CategoryPage() {
                                                             </Link>
                                                         </>
                                                     }
-                                                    {!isWideScreen() &&
-                                                        <>
-                                                            <Link to="category" className="active">Phổ Biến</Link>
-                                                            <Link to="category" className="active">Bán Chạy</Link>
-                                                            <Link to="category" className="active">Hàng Mới</Link>
-                                                            <Link to="category" className="active">Giá <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M3.43306 0.308058C3.67714 0.0639806 4.07286 0.0639806 4.31694 0.308058L6.81694 2.80806C7.06102 3.05214 7.06102 3.44786 6.81694 3.69194C6.57286 3.93602 6.17714 3.93602 5.93306 3.69194L4.5 2.25888V10.125C4.5 10.4702 4.22018 10.75 3.875 10.75C3.52982 10.75 3.25 10.4702 3.25 10.125V2.25888L1.81694 3.69194C1.57286 3.93602 1.17714 3.93602 0.933058 3.69194C0.688981 3.44786 0.688981 3.05214 0.933058 2.80806L3.43306 0.308058ZM9.5 11.7411V3.25C9.5 2.90482 9.77982 2.625 10.125 2.625C10.4702 2.625 10.75 2.90482 10.75 3.25V11.7411L12.1831 10.3081C12.4271 10.064 12.8229 10.064 13.0669 10.3081C13.311 10.5521 13.311 10.9479 13.0669 11.1919L10.5669 13.6919C10.3229 13.936 9.92714 13.936 9.68306 13.6919L7.18306 11.1919C6.93898 10.9479 6.93898 10.5521 7.18306 10.3081C7.42714 10.064 7.82286 10.064 8.06694 10.3081L9.5 11.7411Z" fill="#38383D"></path></svg></Link>
-                                                        </>
-                                                    }
                                                 </div>
                                             </div>
                                         </div>
@@ -174,12 +194,176 @@ function CategoryPage() {
 
             {!isWideScreen() &&
                 <>
-                    <h2>Mobile</h2>
-                    <>
-                        <MobileCategoryHeader />
-                        <Container />
-                    </>
-                </>
+                <div className="container">
+                    <div className="mobile__header">
+                        <div className="mobile__header--cate-logo">
+                            <div onClick={() => {showSearch === true ? setShowSearch(false) : navigate(-1)}} className="left-header">
+                                <img alt='.' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/backWhite.svg"/>
+                            </div>
+                            <div className="mobile__header--cate-search" onClick={() => setShowSearch(true)}>
+                                <img
+                                src="https://salt.tikicdn.com/ts/upload/34/62/0c/6ae13efaff83c66f810c4c63942cf6c0.png"
+                                height="24"
+                                width="24"
+                                alt="search"
+                                />
+                                <input
+                                className="w-100"
+                                type="text"
+                                placeholder="Bạn tìm gì hôm nay?"
+                                value={searchInput}
+                                onChange={(e) => setSearchInput(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <Link to="/cart" title="free-ship">
+                                    <img
+                                    src="https://salt.tikicdn.com/ts/upload/70/44/6c/a5ac520d156fde81c08dda9c89afaf37.png"
+                                    alt="free"
+                                    width="24"
+                                    height="24"
+                                    />
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="category-view">
+                        <div className="category-right">
+                            <div className="search-summary">
+                                { showSearch === false ?
+                                    (<>
+                                        <div className="search-summary-category">
+                                            <div className="summary-top">
+                                                <div className="filter-icon">
+                                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M0.75 0.75C0.75 0.335786 1.08579 0 1.5 0H16.5C16.9142 0 17.25 0.335786 17.25 0.75V3C17.25 3.19891 17.171 3.38968 17.0303 3.53033L11.25 9.31066V15C11.25 15.2841 11.0895 15.5438 10.8354 15.6708L7.83541 17.1708C7.60292 17.2871 7.32681 17.2746 7.1057 17.138C6.88459 17.0013 6.75 16.7599 6.75 16.5V9.31066L0.96967 3.53033C0.829018 3.38968 0.75 3.19891 0.75 3V0.75ZM2.25 1.5V2.68934L8.03033 8.46967C8.17098 8.61032 8.25 8.80109 8.25 9V15.2865L9.75 14.5365V9C9.75 8.80109 9.82902 8.61032 9.96967 8.46967L15.75 2.68934V1.5H2.25Z" fill="#808089"></path></svg>
+                                                    <span>Lọc</span>
+                                                    <div style={{height: 24, width: 1, backgroundColor: '#efefef', marginLeft: 8,}}/>
+                                                </div>
+                                                <div className="top-tabs">
+                                                    <div className="tabs-list">
+                                                        <Link to={`${sortAsc === false ? `?price=asc` : '?'}`}
+                                                            // {`?${searchParams}`}
+                                                            onClick={handleChangeSort}
+                                                            className={`tabs-list ${sortAsc === true ? 'active' : ''}`}
+                                                            data-sort-type="price"
+                                                            data-sort-value={"asc"}
+                                                        >
+                                                            Giá Thấp Đến Cao
+                                                        </Link>
+                                                        <Link to={`${sortDesc === false ? `?price=desc` : '?'}`}
+                                                            // {`?${searchParams}`}
+                                                            onClick={handleChangeSort}
+                                                            className={`tabs-list ${sortDesc === true ? 'active' : ''}`}
+                                                            data-sort-type="price"
+                                                            data-sort-value={"desc"}
+                                                        >
+                                                            Giá Cao Đến Thấp
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>) : 
+                                    (<div className="search-container">
+                                        {searchInput.length > 0 && (
+                                            <Link
+                                                to={`/search&q=${searchInput}`}
+                                                className="search-list"
+                                                onClick={saveSearch}
+                                            >
+                                                <img
+                                                    src="https://salt.tikicdn.com/ts/upload/e8/aa/26/42a11360f906c4e769a0ff144d04bfe1.png"
+                                                    alt="icon-search"
+                                                    width='35'
+                                                    height='35'
+                                                />
+                                                <p className='search-item'>{searchInput}</p>
+                                            </Link>
+                                        )}
+                                        {arr
+                                            .filter((item) =>
+                                                item.name
+                                                    .toLowerCase()
+                                                    .match(searchInput.toLowerCase())
+                                            )
+                                            .slice(0, 3)
+                                            .map((item, index) => (
+                                                <Link
+                                                    to={`/search&q=${item.name}`}
+                                                    className="search-list"
+                                                    key={index}
+                                                >
+                                                    <img
+                                                        src="https://salt.tikicdn.com/ts/upload/90/fa/09/9deed3e3186254637b5ca648f3032665.png"
+                                                        alt="icon-search"
+                                                        width='35'
+                                                        height='35'
+                                                    />
+                                                    <p>{item.name}</p>
+                                                </Link>
+                                            ))}
+                                        {dataList
+                                            .filter((item) =>
+                                                item.pro_name
+                                                    .toLowerCase()
+                                                    .match(searchInput.toLowerCase())
+                                            )
+                                            .slice(0, showMore)
+                                            .map((item, index) => (
+                                                <Link
+                                                    to={`${item.pro_slug}-${item.id}`}
+                                                    className="search-list"
+                                                    onClick={() =>
+                                                        setSearchInput("")
+                                                    }
+                                                    key={index}
+                                                >
+                                                    <img
+                                                        src={
+                                                            item.pro_avatar
+                                                        }
+                                                        alt="icon-product"
+                                                        width="35"
+                                                        height="35"
+                                                    />
+                                                    <p>{item.pro_name}</p>
+                                                </Link>
+                                            ))
+                                        }
+                                        { showMore <= 6 ?
+                                            (<div className="search-list" style={{ justifyContent: 'center'}} onClick={() => setShowMore(8)}>
+                                            <span style={{ color: 'blue' }}>Xem thêm</span>
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn0DdZzOaqWSYrbQKRLpUVqYtqmOig49fawwX3Hd8H3XmYchxtZbBIHeFyktUSMg6_Ul8&usqp=CAU" width='14' height='14' style ={{ color: 'blue', marginLeft: 10, marginTop: -2 }}/>
+                                        </div>) :
+                                            (<div className="search-list" style={{ justifyContent: 'center'}} onClick={() => setShowMore(4)}>
+                                            <span style={{ color: 'blue' }}>Thu gọn</span>
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn0DdZzOaqWSYrbQKRLpUVqYtqmOig49fawwX3Hd8H3XmYchxtZbBIHeFyktUSMg6_Ul8&usqp=CAU" width='14' height='14' style ={{ color: 'blue', marginLeft: 10, marginTop: -2, transform: 'scaleX(-1)', transform: 'scaleY(-1)' }}/>
+                                        </div>)
+                                        }
+                                        
+                                    </div>)      
+                                }
+                                
+                                { showSearch === false && 
+                                    <>
+                                        <Products
+                                            products={products}
+                                            id={id}
+                                            productsAsc={productsAsc}
+                                            productsDesc={productsDesc}
+                                            show={show}
+                                            sortAsc={sortAsc}
+                                            sortDesc={sortDesc}
+                                            loadingProduct={loadingProduct}
+                                        />   
+                                    </>
+                                }
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </>
             }
         </main>
 

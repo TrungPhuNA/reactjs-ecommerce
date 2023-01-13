@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import SideNavBar from "./SideNavBar";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, createSearchParams, useLocation } from 'react-router-dom';
 import cartApi from "../../../api/CartService";
 import Skeleton from "react-loading-skeleton";
 import authApi from "../../../api/AuthService";
+
+let page = 1;
+let page_size = 100;
 
 function OrderManagement() {
 
@@ -11,69 +14,159 @@ function OrderManagement() {
         window.scrollTo(0, 0)
     }, [])
     const navigate = useNavigate();
-    const [tabs, setTabs] = useState();
+    const location = useLocation();
+
+    const [name, setName] = useState('');
+    const [orderList, setOrderList] = useState([]);
+    const [tabs, setTabs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [del, setDel] = useState(true);
     const [viewMore, setViewMore] = useState(false);
     const [isShow, setIsShow] = useState(false);
+    const [defaultTab, setDefaultTab] = useState(true);
+    const [tabNum, setTabNum] = useState(); // match(tabNum)
+    const [active1, setActive1] = useState(false);
+    const [active2, setActive2] = useState(false);
+    const [active3, setActive3] = useState(false);
+    const [showSearch, setShowSearch] = useState(false);
+    ///const [input, setInput] = useState('');
+    const [inputSearch, setInputSearch] = useState('');
 
     const getProfile = async () => {
         const response = await authApi.getProfile();
         if (response.status !== 200) {
-            window.location.reload();
             navigate('/');
+            window.location.reload();
+        } else {
+            setName(response.data.name);
         }
     }
 
     useEffect(() => {
-        let data = [
-            {
-                id: 1,
-                title: 'Tất cả đơn',
-                status: true,
-            },
-            {
-                id: 2,
-                title: 'Chờ thanh toán',
-                status: false,
-            },
-            {
-                id: 3,
-                title: 'Đang xử lý',
-                status: false,
-            },
-            {
-                id: 4,
-                title: 'Đang vận chuyển',
-                status: false,
-            },
-            {
-                id: 5,
-                title: 'Đã giao',
-                status: false,
-            },
-            {
-                id: 6,
-                title: 'Đã hủy',
-                status: false,
-            },
-        ]
-        setTabs(data);
+        // let data = [
+        //     {
+        //         id: 1,
+        //         title: 'Tất cả đơn',
+        //         status: true,
+        //     },
+        //     {
+        //         id: 2,
+        //         title: 'Chờ thanh toán',
+        //         status: false,
+        //     },
+        //     {
+        //         id: 3,
+        //         title: 'Đang xử lý',
+        //         status: false,
+        //     },
+        //     {
+        //         id: 4,
+        //         title: 'Đang vận chuyển',
+        //         status: false,
+        //     },
+        //     {
+        //         id: 5,
+        //         title: 'Đã giao',
+        //         status: false,
+        //     },
+        //     {
+        //         id: 6,
+        //         title: 'Đã hủy',
+        //         status: false,
+        //     },
+        // ]
         getProfile();
+        showTab();
+        activeTab();
     }, []);
-
-
-    const [orderList, setOrderList] = useState([]);
 
     const getOrderList = async () => {
 
-        const response = await cartApi.getTransaction();
+        const response = await cartApi.getTransaction(page, page_size);
         console.log('--------- response: ', response);
         if (response.status === 200) {
             setLoading(false);
             setOrderList(response.data);
         }
     }
+
+    // const handleSearch = () => {
+    //     setInputSearch(input);
+    //     if (!inputSearch) {
+    //         setShowSearch(false);
+    //     } else {
+    //         setShowSearch(true);
+    //     }
+    // }
+
+    const showTab = async () => {
+        const response = await cartApi.showConfig();
+        if (response.status === 200) {
+            setTabs(response.data.status);
+        }
+    }
+
+    const handleClickTab = async (tab) => {
+        console.log('--------------- tab: ', tab);
+        let paramsQuery = location.search;
+        let query = new URLSearchParams(paramsQuery);
+        let value = query.get('value');
+
+        if (value) {
+            value = tab;
+        }
+
+        if (tab == 1) {
+            setActive1(!active1);
+        }
+        if (tab == 2) {
+            setActive2(!active2);
+        }
+        if (tab == 3) {
+            setActive3(!active3);
+        }
+        if (!tab) {
+            setDefaultTab(true);
+        }
+        // có tồn tại number && value là gì
+
+        console.log('--------------- value: ', value);
+        let params = {
+            value: `${tab ? value : 'all'}`,
+        };
+        const options = {
+            search: decodeURIComponent(`?${createSearchParams(params)}`),
+        };
+        navigate(options, { replace: true });
+    }
+
+    const activeTab = () => {
+        let paramsQuery = location.search;
+        let query = new URLSearchParams(paramsQuery);
+        let value = query.get('value');
+        console.log(value);
+
+        if (value) {
+            if (value.includes(1)) {
+                // setActive1(true); 
+                setDefaultTab(false);
+            }
+            if (value.includes(2)) {
+                // setActive2(true); 
+                setDefaultTab(false);
+            }
+            if (value.includes(3)) {
+                // setActive3(true); 
+                setDefaultTab(false);
+            } 
+        } else {
+            setDefaultTab(true);
+        }
+    }
+
+    const handleClose = () => {
+		setIsShow(false);
+	};
 
     const removeOrder = async (id) => {
         const response = await cartApi.deleteTransaction(id);
@@ -83,21 +176,17 @@ function OrderManagement() {
         }
     }
 
-    const handleClose = () => {
-        setIsShow(false);
-    }
-
     useEffect(() => {
         getOrderList();
     },[del]);
 
     function changeTab(tabNumber) {
-        let tab = tabs.map((item, index) => {
-            item.status = item.id === tabNumber ? true : false;
-            setTabs(tabNumber);
+        let tabActive = tabs.map(item => {
+            item.tab = item.value == tabNumber;
+            setTabNum(tabNumber);
             return item;
         })
-        setTabs(tab);
+        setTabs(tabActive);
     }
 
     return(
@@ -134,18 +223,27 @@ function OrderManagement() {
                                     Đơn hàng của tôi
                                 </div>
                                 <div className="order-tablist">
+                                    <div className={`order-tab${defaultTab === true ?  '-active' : ''}`} onClick={() => { setDefaultTab(true); handleClickTab() }}>Tất cả đơn</div>
                                     { tabs.map((item, index) => (
-                                        <div className={`order-tab${item.status ? '-active' : ''}`} key={index} onClick={() => changeTab(item.id)}>{item.title}</div>
+                                        <div className={`order-tab${defaultTab === false && item.tab ? '-active' : ''}`} key={index} onClick={() => {changeTab(item.value); setDefaultTab(false); handleClickTab(item.value)}}>{item.name}</div>
                                     ))}
                                 </div>
-                                <div className="order-search-input">
+                                {/* <div className="order-search-input">
                                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" color="#808089" className="icon-left" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
-                                    <input className="search-input-bar" name="search" placeholder="Tìm đơn hàng theo Mã đơn hàng, Nhà bán hoặc Tên sản phẩm" type="search"></input>
-                                    <div className="search-input-right">Tìm đơn hàng</div>
-                                </div>
+                                    <input className="search-input-bar" type='search' 
+                                        value={input} onChange={(e) => setInput(e.target.value)} 
+                                        placeholder="Tìm đơn hàng theo ID" 
+                                        onKeyPress={event => {
+                                        if(event.key === 'Enter') {
+                                            handleSearch();
+                                        }
+                                    }}></input>
+                                    <div className="search-input-right" onClick={handleSearch}>Tìm đơn hàng</div>
+                                </div> */}
                                 <div className="order-container">
-                                    { orderList.length > 0 ?
-                                        orderList.map((item, index) =>
+                                    { defaultTab === true &&
+                                        orderList.length > 0 && orderList.map((item, index) =>
+                                            item.t_name === name &&
                                             <>
                                                 <div className="list-item" key={index}>
                                                     <div className="list-order">
@@ -209,12 +307,76 @@ function OrderManagement() {
                                                 </div>
                                             </>
                                         )
-                                        :
-                                        (<>
-                                            <img className='empty-icon'src="https://frontend.tikicdn.com/_desktop-next/static/img/account/empty-order.png" alt='empty'/>
-                                            <div className='empty-order'>Chưa có đơn hàng</div>
-                                        </>)
+                                       
                                     }
+                                    { defaultTab === false &&
+                                        orderList.length > 0 && orderList.map((item, index) =>
+                                            item.t_status == tabNum && item.t_name === name &&
+                                            <>
+                                                <div className="list-item" key={index}>
+                                                    <div className="list-order">
+                                                        <span>Đơn hàng số {item.id}</span>
+                                                    </div>
+                                                    {item.orders.map((item2, index) =>
+                                                        viewMore === true ? (
+                                                            item2.products.map((item3, index) => (
+                                                                <div key={index}>
+                                                                    <div className="list-product" >
+                                                                        <div className="list-product-info">
+                                                                            <img src={item3.pro_avatar} alt='z' width='100px' height='100px'/>
+                                                                            <div className="list-product-name">
+                                                                                <span><Link to={`/${item3.pro_slug}-${item3.id}`} style={{color: 'black'}}>{item3.pro_name}</Link></span>
+                                                                                <span className="number">x{item2.od_qty}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="list-product-price">
+                                                                            <span>{(item2.od_price * item2.od_qty).toLocaleString()} ₫</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        ))
+                                                        ) : ( index < 2 &&
+                                                            item2.products.map((item3, index) => (
+                                                                <div key={index}>
+                                                                    <div className="list-product" >
+                                                                        <div className="list-product-info">
+                                                                            <img src={item3.pro_avatar} alt='z' width='100px' height='100px'/>
+                                                                            <div className="list-product-name">
+                                                                                <span><Link to={`/${item3.pro_slug}-${item3.id}`} style={{color: 'black'}}>{item3.pro_name}</Link></span>
+                                                                                <span className="number">x{item2.od_qty}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="list-product-price">
+                                                                            <span>{(item2.od_price * item2.od_qty).toLocaleString()} ₫</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            ))
+                                                        )
+                                                    )}
+                                                    {(item.orders.length -2) > 0 &&
+                                                        viewMore === false ?
+                                                        (
+                                                            <>
+                                                                <div className='view-more'>
+                                                                    Và {item.orders.length-2} sản phẩm...
+                                                                </div>
+                                                            </>
+                                                        ) : (<></>)}
+                                                    <div className="list-total">
+                                                        <span>Tổng tiền:</span> {item.t_total_money.toLocaleString()} ₫
+                                                    </div>
+                                                    <div className="group-btn-order">
+                                                        <button className="btn-order" onClick={() => removeOrder(item.id)}>Xóa</button>
+                                                        {/* <Link to=''><button className="btn-order">Mua lại</button></Link> */}
+                                                        <Link to={`./orderdetail/id=${item.id}`}><button className="btn-order">Xem chi tiết</button></Link>
+                                                    </div>
+                                                    <div className="list-seperate"/>
+                                                </div>
+                                            </>
+                                        )
+                                    }
+                                
                                 </div>
                             </div>
                         </div>

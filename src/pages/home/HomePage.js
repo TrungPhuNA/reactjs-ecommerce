@@ -5,17 +5,15 @@ import HomeSuggest from "./include/HomeSuggest";
 import HomeBrand from "./include/HomeBrand";
 import HomeDeal from "./include/HomeDeal";
 import HomeCategory from "./include/HomeCategory";
-import Images from "../../components/Image/Images";
 import { isWideScreen } from "../../helpers/screen";
 import MenuMobile from "../../components/layout/MenuMobile";
 import MobileHeader from "../../components/layout/MobileHeader";
-import HomeSearchMobile from "../../components/common/HomeSearchMobile";
-import LoginMobile from "../../components/login/LoginMobile";
+import productApi from "../../api/ProductService";
+import { Link } from "react-router-dom";
 
 function HomePage() {
-  const [menu, setMenu] = useState(1);
-  const [search, setSearch] = useState(false);
-  const [login, setLogin] = useState(false);
+
+    const [show, setShow] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -34,31 +32,17 @@ function HomePage() {
         </>
       )}
 
-      {!isWideScreen() && (
+      {!isWideScreen() && 
         <>
-          {search && <HomeSearchMobile search={search} setSearch={setSearch} />}
-          {!search && !login && (
-            <>
-              <MobileHeader search={search} setSearch={setSearch} />
-              {/* <HomeAdv /> */}
-              <HomeDeal />
-              <HomeBanner number={4} />
-              <FamousCategory check={false} />
-              <HomeSuggest status={false} />
-            </>
-          )}
-          {login && <LoginMobile login={login} setLogin={setLogin} />}
-
-          {!login && (
-            <MenuMobile
-              menu={menu}
-              setMenu={setMenu}
-              login={login}
-              setLogin={setLogin}
-            />
-          )}
+            <MobileHeader/>
+            {/* <HomeAdv /> */}
+            <HomeDeal />
+            <HomeBanner number={4} />
+            <FamousCategory check={false} />
+            <HomeSuggest status={false} />
+            <MenuMobile/>
         </>
-      )}
+      }
     </main>
   );
 }
