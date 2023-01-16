@@ -198,6 +198,22 @@
             margin-left: 40%;
             cursor: pointer;
         }
+
+        @media (max-width: 1024px) {
+            button {
+                background-color: #2f80ed;
+                color: #fff;
+                border: 1px solid #2f80ed;
+                border-radius: 4px;
+                display: block;
+                line-height: 17px;
+                padding: 11px 5px;
+                text-align: center;
+                width: 40%;
+                margin-left: 35%;
+                cursor: pointer;
+            }
+        }
     }
 
     .customer-comment {
@@ -439,6 +455,21 @@
     z-index: 1500;
     background: rgba(0, 0, 0, .75);
     margin: auto;
+
+    @media (max-width: 1024px) {
+        .rate-form {
+            background-color: #fff;
+            border-radius: 8px;
+            left: 50%;
+            position: fixed;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1551;
+            overflow-y: auto;
+            max-height: 90vh;
+            width: 350px;
+        }
+    }
 
     .rate-form {
         background-color: #fff;

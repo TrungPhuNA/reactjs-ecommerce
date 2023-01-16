@@ -50,7 +50,59 @@ const authApi = {
         } catch (e) {
             console.log('--------------- E ', e);
         }
-    }
+    },
+
+    async updateEmail(data) {
+        try {
+            const url = `user/update-email`;
+            const response = await axiosClient.put(url, data)
+
+            if (response.data.status === 200) {
+                return response.data;
+            }
+        } catch (e) {
+            console.log('--------------- E ', e);
+        }
+    },
+
+    async updatePassword(data) {
+        try {
+            const url = `user/update-password`;
+            const response = await axiosClient.put(url, data)
+
+            if (response.data.status === 200) {
+                return response.data;
+            }
+        } catch (e) {
+            console.log('--------------- E ', e);
+        }
+    },
+
+    async updatePhone(data) {
+        try {
+            const url = `user/update-phone`;
+            const response = await axiosClient.put(url, data)
+
+            if (response.data.status === 200) {
+                return response.data;
+            }
+        } catch (e) {
+            console.log('--------------- E ', e);
+        }
+    },
+
+    async updateInfo(data) {
+        try {
+            const url = `user/update-info`;
+            const response = await axiosClient.put(url, data)
+
+            if (response.data.status === 200) {
+                return response.data;
+            }
+        } catch (e) {
+            console.log('--------------- E ', e);
+        }
+    },
 };
 
 export default authApi;

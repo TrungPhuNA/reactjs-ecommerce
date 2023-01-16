@@ -1,7 +1,33 @@
-import React from 'react';
-import {Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Link, useNavigate } from 'react-router-dom';
+import authApi from '../../../../api/AuthService';
 
 function AccountInfoMob() {
+
+    useEffect(() => {
+		window.scrollTo(0, 0);
+        getUser();
+	}, []);
+	
+	const navigate = useNavigate();
+	const [name, setName] = useState("");
+	const [address, setAddress] = useState("");
+	const [phone, setPhone] = useState("");
+	const [email, setEmail] = useState("");
+
+    const getUser = async () => {
+        const response = await authApi.getProfile();
+        if (response.status === 200) {
+            setName(response.data.name);
+            setAddress(response.data.address);
+            setPhone(response.data.phone);
+            setEmail(response.data.email);
+        } else {
+            navigate('/');
+            // window.location.reload();
+        }
+    }
+
     return (
         <>
             <header className="header-as-title">
@@ -30,21 +56,7 @@ function AccountInfoMob() {
                         </div>
                         <div className="title-info-mob">
                             <div className="info-mob-text">Họ & Tên</div>
-                            <div className="info-mob-text">Trần Hoàng</div>
-                        </div>
-                    </div>
-                    <div className="info-mob-icon">
-                            <img alt='s' width='24' height='24' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/arrow-right.png"/>
-                    </div>
-                </Link>
-                <Link to="/updnickname" className="account-info-mob">
-                    <div className="info-mob">
-                        <div className="left-info-mob">
-                            <img  alt='s' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/follower.png" width="24" height='24'/>
-                        </div>
-                        <div className="title-info-mob">
-                            <div className="info-mob-text">Nickname</div>
-                            <div className="info-mob-text1">Thêm nickname</div>
+                            <div className="info-mob-text">{name}</div>
                         </div>
                     </div>
                     <div className="info-mob-icon">
@@ -58,27 +70,27 @@ function AccountInfoMob() {
                         </div>
                         <div className="title-info-mob">
                             <div className="info-mob-text">Ngày sinh</div>
-                            <div className="info-mob-text">22/10/2001</div>
+                            <div className="info-mob-text1">Thêm ngày sinh</div>
                         </div>
                     </div>
                     <div className="info-mob-icon">
                             <img alt='s' width='24' height='24' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/arrow-right.png"/>
                     </div>
                 </Link>
-                <Link to="/updsex" className="account-info-mob">
+                {/* <Link to="/updsex" className="account-info-mob">
                     <div className="info-mob">
                         <div className="left-info-mob">
                             <img alt='s' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/gender.png" width="24" height='24'/>
                         </div>
                         <div className="title-info-mob">
                             <div className="info-mob-text">Giới tính</div>
-                            <div className="info-mob-text">Nam</div>
+                            <div className="info-mob-text1">Thêm giới tính</div>
                         </div>
                     </div>
                     <div className="info-mob-icon">
                             <img alt='s' width='24' height='24' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/arrow-right.png"/>
                     </div>
-                </Link>
+                </Link> */}
                 <Link to="" className="account-info-mob">
                     <div className="info-mob">
                         <div className="left-info-mob">
@@ -100,7 +112,7 @@ function AccountInfoMob() {
                         </div>
                         <div className="title-info-mob">
                             <div className="info-mob-text">Số điện thoại</div>
-                            <div className="info-mob-text">1234567890</div>
+                            <div className="info-mob-text">{phone}</div>
                         </div>
                     </div>
                     <div className="info-mob-icon">
@@ -113,8 +125,8 @@ function AccountInfoMob() {
                             <img alt='s' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/email.png" width="24" height='24'/>
                         </div>
                         <div className="title-info-mob">
-                            <div className="info-mob-text">Địa chỉ email</div>
-                            <div className="info-mob-text">hoangnguyen@interspace.vn</div>
+                            <div className="info-mob-text">Email</div>
+                            <div className="info-mob-text">{email}</div>
                         </div>
                     </div>
                     <div className="info-mob-icon">

@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -14,8 +14,10 @@ import Popup from "reactjs-popup";
 function Product({ products, pro_price, loading }) {
 
     let { id } = useParams();
+    const navigate = useNavigate();
     const [count, setCount] = useState(1);
     const [alert, setAlert] = useState(false);
+    const [alert1, setAlert1] = useState(false);
     const dispatch = useDispatch();
 
     const addToCartRedux = async () => {
@@ -23,11 +25,18 @@ function Product({ products, pro_price, loading }) {
         dispatch(addToCart(products));
         setCount(1);
         setAlert(true);
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
-        setTimeout(() => setAlert(false), 5000);
+        setAlert1(true);
+        
+        if (isWideScreen()) {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+            setTimeout(() => setAlert(false), 5000); 
+        } else {
+            setTimeout(() => setAlert1(false), 4000);
+        }
+        
         console.log(products);
     }
 
@@ -93,21 +102,35 @@ function Product({ products, pro_price, loading }) {
                                         <span style={{color: 'blue', cursor: 'pointer'}}>Hasaki</span>
                                     </span>
                                 </div>
+                                <h1 className="product-title">{products?.pro_name || <Skeleton count={1}/>}</h1>
+                                <div className="below-title">
+                                    <div className="below-rate">
+                                        <div style={{fontSize: '15px', lineHeight: '24px', color: 'rgb(120, 120, 120)',}}>
+                                            {(products?.pro_review_star / products?.pro_review_total).toFixed(1)}<span  className="star-on">&#9733;</span>
+                                        </div>
+                                        <div className="below-seperate" />
+                                        <Link to="" onClick={() => window.scrollTo(0,1200)} style={{textDecoration: 'underline'}}>Xem đánh giá</Link>
+                                        {/* <div className="below-seperate" />
+                                        <div className="sold">Đã bán {products?.pro_review_total}</div> */}
+                                    </div>
+                                </div>
                             </>
                         }
-                        {!isWideScreen() && <></>}
-                        <h1 className="product-title">{products?.pro_name || <Skeleton count={1}/>}</h1>
-                        <div className="below-title">
-                            <div className="below-rate">
-                                <div style={{fontSize: '15px', lineHeight: '24px', color: 'rgb(120, 120, 120)',}}>
-                                    {(products?.pro_review_star / products?.pro_review_total).toFixed(1)}<span  className="star-on">&#9733;</span>
+                        {!isWideScreen() && <>
+                            <h1 className="product-title">{products?.pro_name || <Skeleton count={1}/>}</h1>
+                            <div className="below-title">
+                                <div className="below-rate">
+                                    <div style={{fontSize: '15px', lineHeight: '24px', color: 'rgb(120, 120, 120)',}}>
+                                        {(products?.pro_review_star / products?.pro_review_total).toFixed(1)}<span  className="star-on">&#9733;</span>
+                                    </div>
+                                    <div className="below-seperate" />
+                                    <Link to="" onClick={() => window.scrollTo({top: 800, behavior: "smooth"})} style={{textDecoration: 'underline'}}>Xem đánh giá</Link>
+                                    {/* <div className="below-seperate" />
+                                    <div className="sold">Đã bán {products?.pro_review_total}</div> */}
                                 </div>
-                                <div className="below-seperate" />
-                                <Link to="" onClick={() => window.scrollTo(0,1200)} style={{textDecoration: 'underline'}}>Xem đánh giá</Link>
-                                {/* <div className="below-seperate" />
-                                <div className="sold">Đã bán {products?.pro_review_total}</div> */}
                             </div>
-                        </div>
+                        </>}
+                        
                     </div>
 
                     <div className="content-body">
@@ -201,7 +224,16 @@ function Product({ products, pro_price, loading }) {
                                         </div>
                                     </div>
                                 </>}
-                            {!isWideScreen() && <div></div>}
+                            {!isWideScreen() && 
+                                <div>
+                                    <div className="m_detail_footer">
+                                        <button className="btnpay-mob">
+                                            Trả góp
+                                        </button>
+                                        <button className="btnadd-mob" onClick={addToCartRedux}>Chọn Mua</button>
+                                    </div>
+                                </div>
+                            }
                         </div>
 
                         {isWideScreen() &&
@@ -323,6 +355,12 @@ function Product({ products, pro_price, loading }) {
                         </div>
                     </>
                 }
+
+                {!isWideScreen() && alert1 === true &&
+                    <>
+                        <span className="notiAdd">Thêm giỏ hàng thành công!</span>
+                    </>
+                }   
             </div>
         )
         }
