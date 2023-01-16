@@ -8,13 +8,9 @@ import AccountPage from '../pages/account/AccountPage';
 import AccountInfo from '../pages/account/include/AccountInfo';
 import OrderManagement from '../pages/account/include/OrderManagement';
 import OrderDetail from '../pages/account/include/OrderDetail';
-import UpdatePhoneNum from '../pages/account/include/UpdatePhoneNum';
-import UpdateEmail from '../pages/account/include/UpdateEmail';
-import UpdatePassword from '../pages/account/include/UpdatePassword';
 import UpdatePin from '../pages/account/include/UpdatePin';
 import UpdName from '../pages/account/include/mobile/UpdName';
 import UpdEmail from '../pages/account/include/mobile/UpdEmail';
-import UpdNickname from '../pages/account/include/mobile/UpdNickname';
 import UpdPass from '../pages/account/include/mobile/UpdPass';
 import UpdPhoneNum from '../pages/account/include/mobile/UpdPhoneNum';
 import UpdSex from '../pages/account/include/mobile/UpdSex';
@@ -23,7 +19,8 @@ import AccountSetting from '../pages/account/include/mobile/AccountSetting';
 import OrderManagementMob from '../pages/account/include/mobile/OrderManagementMob';
 import ShopCart from '../components/common/ShopCart';
 import SearchPage from '../pages/search/SearchPage';
-import SearchMobile from '../pages/search/SearchMobile';
+import LoginMobile from '../components/login/LoginMobile';
+import RegisterMobile from '../components/login/RegisterMobile';
 
 export const routes = () => {
     return [
@@ -60,20 +57,8 @@ export const routes = () => {
             element: <AccountSetting />
         },
         {
-            path: '/updatepn',
-            element: <UpdatePhoneNum />
-        },
-        {
-            path: '/updatepass',
-            element: <UpdatePassword />
-        },
-        {
             path: '/updatepin',
             element: <UpdatePin />
-        },
-        {
-            path: '/updateemail',
-            element: <UpdateEmail />
         },
         {
             path: '/order',
@@ -96,10 +81,6 @@ export const routes = () => {
             element: <UpdEmail />
         },
         {
-            path: '/updnickname',
-            element: <UpdNickname />
-        },
-        {
             path: '/updpass',
             element: <UpdPass />
         },
@@ -120,8 +101,12 @@ export const routes = () => {
             element: <SearchPage />
         },
         {
-            path: '/searchmobile',
-            element: <SearchMobile/>
+            path: '/loginMobile',
+            element: <LoginMobile/>
+        },
+        {
+            path: '/registerMobile',
+            element: <RegisterMobile/>
         }
     ]
 }

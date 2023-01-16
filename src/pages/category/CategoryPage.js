@@ -10,11 +10,14 @@ import productApi from '../../api/ProductService';
 import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import SidebarFilter from '../../components/common/sidebar/SidebarFinter';
+import authApi from '../../api/AuthService';
+import { useSelector } from 'react-redux';
 
 function CategoryPage() {
 
     let { id } = useParams();
     const navigate = useNavigate();
+    const cart = useSelector((state) => state.cartReduce.listCart);
     const [category, setCategory] = useState(null);
     const [products, setProducts] = useState([]);
     const [productsAsc, setProductsAsc] = useState([]);
@@ -127,7 +130,18 @@ function CategoryPage() {
 
     useEffect(() => {
         getData();
+        getUser();
     }, []);
+
+    const [user, setUser] = useState(false);
+    const getUser = async () => {
+        const response = await authApi.getProfile();
+        if (response.status === 200) 
+            setUser(true);
+        else 
+            setUser(false);
+    }
+
 
 
     return (
@@ -216,13 +230,14 @@ function CategoryPage() {
                                 />
                             </div>
                             <div>
-                                <Link to="/cart" title="free-ship">
+                                <Link to={`${user === true ? '/cart' : '/loginMobile'}`} title="free-ship">
                                     <img
                                     src="https://salt.tikicdn.com/ts/upload/70/44/6c/a5ac520d156fde81c08dda9c89afaf37.png"
                                     alt="free"
                                     width="24"
                                     height="24"
                                     />
+                                    <span>{ cart ? cart.length : 0 }</span>
                                 </Link>
                             </div>
                         </div>

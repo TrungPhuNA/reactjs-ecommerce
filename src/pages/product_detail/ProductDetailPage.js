@@ -58,7 +58,7 @@ function ProductDetailPage() {
                     <ProductDescribe products={products}/>
                     <Comment id={id} products={products}/>
                     <HomeSuggest />
-                    <DetailFooter />
+                    {/* <DetailFooter /> */}
                 </>
             }
         </main>

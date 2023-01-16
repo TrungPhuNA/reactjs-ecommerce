@@ -26,7 +26,7 @@
         margin-bottom: 12px;
         position: sticky;
         z-index: 1000;
-    
+
         .left-header {
             display: flex;
             -webkit-box-align: center;
@@ -39,7 +39,7 @@
                 height: 32px;
                 background: rgba(36, 36, 36, 0.5);
             }
-        }
+        }   
     
         &--logo {
             display: flex;
@@ -72,6 +72,7 @@
                 width: 100%;
                 padding: 0px;
             }
+
         }
         
         &--cate-logo {
@@ -81,6 +82,7 @@
             -webkit-box-align: center;
             align-items: center;
             justify-content: space-between;
+
         }
     
         &--cate-search {

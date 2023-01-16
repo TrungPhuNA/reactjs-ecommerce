@@ -11,7 +11,7 @@
         -webkit-box-align: center;
         align-items: center;
         padding: 0px 16px;
-        height: 56px;
+        height: 48px;
         -webkit-box-pack: justify;
         justify-content: space-between;
         background-color: #222232;
@@ -38,9 +38,23 @@
             .img-cart1 {
                 padding: 6px;
                 border-radius: 20px;
-                width: 32px;
-                height: 32px;
                 background: rgba(36, 36, 36, 0.5);
+            }
+
+            span {
+                display: block;
+                position: absolute;
+                z-index: 1;
+                top: 7px;
+                right: 13px;
+                width: 16px;
+                height: 16px;
+                font-size: 11px;
+                line-height: 16px;
+                background-color: #fff;
+                color: black;
+                border-radius: 50%;
+                text-align: center;
             }
 
             .more-wrapper {
