@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useNavigate } from 'react-router-dom';
 import authApi from '../../../../api/AuthService';
+import { useSelector } from 'react-redux';
 
 function AccountInfoMob() {
 
@@ -9,6 +10,9 @@ function AccountInfoMob() {
         getUser();
 	}, []);
 	
+    const cart = useSelector((state) => state.cartReduce.listCart);
+
+    const [isUser, setIsUser] = useState(false);
 	const navigate = useNavigate();
 	const [name, setName] = useState("");
 	const [address, setAddress] = useState("");
@@ -22,9 +26,10 @@ function AccountInfoMob() {
             setAddress(response.data.address);
             setPhone(response.data.phone);
             setEmail(response.data.email);
+            setIsUser(true);
         } else {
             navigate('/');
-            // window.location.reload();
+            window.location.reload();
         }
     }
 
@@ -37,8 +42,9 @@ function AccountInfoMob() {
                     </button>    
                 </Link>  
                 <div className="mob-as-title">Thông Tin Tài Khoản</div>
-                <Link to="" className="img-cart">
+                <Link to={`${isUser === true ? '/cart' : '/loginMobile'}`} className="img-cart">
                     <img alt="." src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/cart.svg"/>
+                    <span>{cart ? cart.length : 0}</span>
                 </Link>
             </header>
             <main className="main-as">

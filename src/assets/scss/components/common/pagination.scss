@@ -1,6 +1,6 @@
 .pagination-container {
     padding: 0px;
-    margin: 77px 0px 16px;
+    margin: 30px 0px 16px;
     display: flex;
     gap: 16px;
     -webkit-box-pack: center;
@@ -72,5 +72,11 @@
                 cursor: default;
             }
         }
+    }
+}
+
+@media (max-width: 1024px) {
+    .pagination-container {
+        gap: 5px;
     }
 }

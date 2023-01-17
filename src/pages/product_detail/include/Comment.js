@@ -389,8 +389,13 @@ function Comment({ id, products }) {
                                 </div>
                                 <div className="rate-form-content">
                                     <div className="rate-info">
-                                        <img src={products.pro_avatar} alt='xad' width='35' height='35' />
-                                        <span style={{ marginLeft: 10 }}>{products.pro_name}</span>
+                                        <div>
+                                            <img src={products.pro_avatar} alt='xad' width='40' height='40' />
+                                        </div>
+                                        <div>
+                                            <span style={{ marginLeft: 10 }}>{products.pro_name}</span>
+                                        </div>
+                                        
                                     </div>
                                     <div className="rate">
                                         <Rate

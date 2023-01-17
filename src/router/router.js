@@ -16,7 +16,6 @@ import UpdPhoneNum from '../pages/account/include/mobile/UpdPhoneNum';
 import UpdSex from '../pages/account/include/mobile/UpdSex';
 import AccountInfoMob from '../pages/account/include/mobile/AccountInfoMob';
 import AccountSetting from '../pages/account/include/mobile/AccountSetting';
-import OrderManagementMob from '../pages/account/include/mobile/OrderManagementMob';
 import ShopCart from '../components/common/ShopCart';
 import SearchPage from '../pages/search/SearchPage';
 import LoginMobile from '../components/login/LoginMobile';
@@ -63,10 +62,6 @@ export const routes = () => {
         {
             path: '/order',
             element: <OrderManagement />
-        },
-        {
-            path: '/ordmob',
-            element: <OrderManagementMob />
         },
         {
             path: 'order/orderdetail/id=:id',

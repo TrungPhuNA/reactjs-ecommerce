@@ -6,7 +6,6 @@ import ProductDescribe from "./include/ProductDescribe";
 import Comment from "./include/Comment";
 import { isWideScreen } from "../../helpers/screen";
 import DetailHeader from "./include/mobile/DetailHeader";
-import DetailFooter from "./include/mobile/DetailFooter";
 import { useParams } from "react-router";
 import productApi from "../../api/ProductService";
 import HomeSuggest from "../home/include/HomeSuggest";
