@@ -373,7 +373,23 @@ function Comment({ id, products }) {
                             </>
                         }
                         {!isWideScreen() &&
-                            <div></div>
+                            <>
+                                <div className="review-filter">
+                                    <div className="filter-label">Lọc xem theo : </div>
+                                    <div className="filter-inner">
+                                        <span className={`filter${active5 === true && 'active'}`} onClick={() => handleClickVote(5)} id='number'>5 &#9733;</span>
+                                        <span className={`filter${active4 === true && 'active'}`} onClick={() => handleClickVote(4)} id='number'>4 &#9733;</span>
+                                        <span className={`filter${active3 === true && 'active'}`} onClick={() => handleClickVote(3)} id='number'>3 &#9733;</span>
+                                        <span className={`filter${active2 === true && 'active'}`} onClick={() => handleClickVote(2)} id='number'>2 &#9733;</span>
+                                        <span className={`filter${active1 === true && 'active'}`} onClick={() => handleClickVote(1)} id='number'>1 &#9733;</span>
+                                        {/* <span className={`filter`} onClick={() => handleClickVote(5)} id='number'>5 &#9733;</span>
+                                        <span className={`filter`} onClick={() => handleClickVote(4)} id='number'>4 &#9733;</span>
+                                        <span className={`filter`} onClick={() => handleClickVote(3)} id='number'>3 &#9733;</span>
+                                        <span className={`filter`} onClick={() => handleClickVote(2)} id='number'>2 &#9733;</span>
+                                        <span className={`filter`} onClick={() => handleClickVote(1)} id='number'>1 &#9733;</span> */}
+                                    </div>
+                                </div>
+                            </>
                         }
                     </div>
                 </div>
