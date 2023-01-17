@@ -222,22 +222,20 @@
         border-top: 1px solid rgb(242, 242, 242);
 
         @media (max-width: 1024px) {
-            flex-direction: column;
+            flex-direction: row;
+            width: 100%;
         }
 
-        .review-user {
-            flex-basis: 335px;
-            flex-shrink: 0;
-
-            @media (max-width: 1024px) {
-                flex-basis: 0;
-            }
-        }
 
         .user-inner {
             display: flex;
             -webkit-box-align: center;
             align-items: center;
+            margin-right: 200px;
+
+            @media (max-width: 1024px) {
+                margin-right: 100px;
+            }
 
             .user-avatar {
                 margin: 0px 12px 0px 0px;
