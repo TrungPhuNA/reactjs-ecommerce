@@ -78,6 +78,11 @@ function Comment({ id, products }) {
         setPercent3(0);
         setPercent4(0);
         setPercent5(0);
+        setActive1(false);
+        setActive2(false);
+        setActive3(false);
+        setActive4(false);
+        setActive5(false);
         getUser();
         getRate();
     }, [id, refresh])
