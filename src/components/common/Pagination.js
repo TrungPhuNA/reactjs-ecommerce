@@ -56,16 +56,36 @@ const Pagination = (props) => {
                 
                 // Render our Page Pills
                 return (     
-                    <Link to={pageNumber !== DOTS ? `?page=${pageNumber}` : '...'} key={index}>
-                        <li 
-                            className={classnames("pagination-item", {
-                                selected: pageNumber === currentPage,
-                            })}
-                            onClick={() => onPageChange(pageNumber)}
-                        >
-                            {pageNumber}
-                        </li>
-                    </Link>
+                    <>
+                        { pageNumber !== DOTS ? (
+                            <>
+                                <Link to={`?page=${pageNumber}`} key={index}>
+                                    <li 
+                                        className={classnames("pagination-item", {
+                                            selected: pageNumber === currentPage,
+                                        })}
+                                        onClick={() => onPageChange(pageNumber)}
+                                    >
+                                        {pageNumber}
+                                    </li>
+                                </Link>
+                            </>
+                        ) 
+                        : 
+                        (
+                            <>
+                                <li 
+                                    className={classnames("pagination-item", {
+                                        selected: pageNumber === currentPage,
+                                    })}
+                                >
+                                    {pageNumber}
+                                </li>
+                            </>
+                        )
+                        }
+                    </>
+                    
                 )
             })}
             {/*  Right Navigation arrow */}

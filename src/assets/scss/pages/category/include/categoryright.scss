@@ -41,7 +41,6 @@
     .summary-top {
         display: flex;
         -webkit-box-pack: justify;
-        justify-content: space-between;
         border-bottom: 1px solid rgb(242, 242, 242);
         padding: 7px 0px 0px;
         background-color: white;
@@ -54,7 +53,7 @@
 
         @media (max-width: 1024px) {
             .top-tabs {
-                margin-right: 85px;
+                margin-right: 5px;
             }
         }
 

@@ -109,7 +109,7 @@ function Product({ products, pro_price, loading }) {
                                             {(products?.pro_review_star / products?.pro_review_total).toFixed(1)}<span  className="star-on">&#9733;</span>
                                         </div>
                                         <div className="below-seperate" />
-                                        <Link to="" onClick={() => window.scrollTo(0,1200)} style={{textDecoration: 'underline'}}>Xem đánh giá</Link>
+                                        <Link to="" onClick={() => window.scrollTo({top: 1100, behavior: 'smooth'})} style={{textDecoration: 'underline'}}>Xem đánh giá</Link>
                                         {/* <div className="below-seperate" />
                                         <div className="sold">Đã bán {products?.pro_review_total}</div> */}
                                     </div>
@@ -121,7 +121,7 @@ function Product({ products, pro_price, loading }) {
                             <div className="below-title">
                                 <div className="below-rate">
                                     <div style={{fontSize: '15px', lineHeight: '24px', color: 'rgb(120, 120, 120)',}}>
-                                        {(products?.pro_review_star / products?.pro_review_total).toFixed(1)}<span  className="star-on">&#9733;</span>
+                                        {products?.pro_review_star / products?.pro_review_total.toFixed(1)}<span  className="star-on">&#9733;</span>
                                     </div>
                                     <div className="below-seperate" />
                                     <Link to="" onClick={() => window.scrollTo({top: 800, behavior: "smooth"})} style={{textDecoration: 'underline'}}>Xem đánh giá</Link>
@@ -130,7 +130,6 @@ function Product({ products, pro_price, loading }) {
                                 </div>
                             </div>
                         </>}
-                        
                     </div>
 
                     <div className="content-body">

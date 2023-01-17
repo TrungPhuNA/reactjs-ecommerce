@@ -1,7 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import authApi from '../../../../api/AuthService';
 import { useSelector } from 'react-redux';
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function DetailHeader() {
 
@@ -17,12 +19,16 @@ function DetailHeader() {
             setUser(false);
     }
 
+    useEffect(() => {
+        getUser();
+    }, [])
 
     return (
         <div className="m_detail-header">
             <div className="m_d-inner-top">
-                <div onClick={() => navigate(-1)} className="left-header">
-                    <img alt='.' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/backWhite.svg"/>
+                <div className="left-header">
+                    <img onClick={() => navigate(-1)}  alt='.' src="https://frontend.tikicdn.com/_mobile-next/static/img/icons/backWhite.svg"/>
+                    <FontAwesomeIcon onClick={() => navigate('/')}  icon={faHome} style={{ color: 'white', width: 20, height: 20, marginLeft: 5 }}/>
                 </div>
                 <Link to={`${ user === true ? '/cart' : '/loginMobile'}`}>
                     <div className="right-header">
