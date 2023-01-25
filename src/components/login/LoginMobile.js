@@ -1,32 +1,102 @@
 import { ArrowLeftOutlined} from '@ant-design/icons';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import authApi from '../../api/AuthService';
 
-export default function LoginMobile(props) {
-    const [loginBy, setLoginBy] = useState('sdt');
+export default function LoginMobile() {
 
-    const changeLogin = () => {
-        if(loginBy === 'sdt') {
-            setLoginBy('mail')
-        } else {
-            setLoginBy('sdt');
+    const navigate = useNavigate();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [usernameError, setUsernameError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [noti, setNoti] = useState(false);
+    // const dispatch = useDispatch();
+
+    async function loginUser(e) {
+        e.preventDefault();
+        try {
+            setNoti(false);
+            let item = { username, password };
+            let results = await authApi.login(item);
+            console.log('--------- results: ', results);
+            if (results.status === 200) {
+                localStorage.setItem("user", JSON.stringify(results.data));
+                const token = localStorage.getItem("user");
+                const tokenString = JSON.parse(token);
+                localStorage.setItem("accessToken", tokenString.accessToken);
+                // dispatch(setTokenLogin(results.data));
+                // dispatch(setTokenLogin(tokenString.accessToken));
+                navigate('/');
+                window.location.reload();
+            } else {
+                if (!username)
+                    setUsernameError("Tên đăng nhặp không được bỏ trống!");
+                if (!password)
+                    setPasswordError("Mật khẩu không được bỏ trống!");
+                if (username && password)
+                    setNoti(true);
+            }
+        } catch (e) {
+            console.log('---Erorlogin');
         }
     }
 
     return (
         <div className='login-mobile'>
             <header>
-                <a href='/'>
+                <Link to='/'>
                     <ArrowLeftOutlined />
-                </a>
+                </Link>
                 <img src="https://salt.tikicdn.com/ts/upload/38/1a/0c/c9160ec942ae0348aae9bdad444f6ac5.jpg" alt="anh"/>
             </header>
             <div className='login-form'>
                 <h3 className='fs-24'>Xin chào,</h3>
                 <p className='fs-14'>Đăng nhập hoặc tạo tài khoản</p>
-                <input placeholder={loginBy === 'sdt'?'Số điện thoại':'abc@gmail.com'} type={loginBy === 'sdt'? 'text':'email'}/>
-                <Link to='/info'><button className='continue w-100'>Tiếp tục</button></Link>
-                <div className='login-by' onClick={() => changeLogin()}>Đăng nhập bằng email</div>
+                <input
+                    name="username"
+                    type="text"
+                    placeholder="Tên đăng nhập"
+                    value={username}
+                    onChange={(e) => { setUsername(e.target.value); setUsernameError('') }
+                    }
+                    className={
+                        usernameError &&
+                        "error"
+                    }
+                    style={{ fontSize: 18 }}
+                />
+                {usernameError && (
+                    <div className="input-feedback">
+                        {usernameError}
+                    </div>
+                )}
+                <input
+                    name="password"
+                    type="password"
+                    placeholder="Mật khẩu"
+                    value={password}
+                    onChange={(e) => { setPassword(e.target.value); setPasswordError(''); }
+                    }
+                    className={
+                        passwordError &&
+                        "error"
+                    }
+                    style={{ fontSize: 18 }}
+                />
+                {passwordError && (
+                    <div className="input-feedback">
+                        {passwordError}
+                    </div>
+                )}
+                <button className='continue w-100' onClick={loginUser}>Tiếp tục</button>
+                {noti === true ? (<>
+                    <div className="unauth">Sai tên đăng nhập hoặc mật khẩu!</div>
+                </>)
+                    :
+                    (<></>)
+                }
+                <div className='login-by' onClick={() => navigate('/registerMobile')}>Đăng ký</div>
                 <p className='continue-by'> Hoặc tiếp tục bằng</p>
                 <div className='icon'>
                     <img src="https://salt.tikicdn.com/ts/upload/30/c4/e4/5c2b91f593e76ce4dedd85273e5a152b.png" alt='fb'/>

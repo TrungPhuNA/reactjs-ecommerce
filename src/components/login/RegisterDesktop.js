@@ -29,7 +29,7 @@ function RegisterDesktop() {
                 const token = localStorage.getItem('user');
                 const tokenString = JSON.parse(token);
                 localStorage.setItem('accessToken', tokenString.accessToken);
-                //window.location.reload();
+                window.location.reload();
             }
         } catch (e) {
             if (!name)

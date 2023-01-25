@@ -41,15 +41,20 @@
     .summary-top {
         display: flex;
         -webkit-box-pack: justify;
-        justify-content: space-between;
         border-bottom: 1px solid rgb(242, 242, 242);
-        padding: 12px 0px 0px;
+        padding: 7px 0px 0px;
         background-color: white;
 
     }
 
         .top-tabs {
             margin-right: 10px;
+        }
+
+        @media (max-width: 1024px) {
+            .top-tabs {
+                margin-right: 5px;
+            }
         }
 
         .tabs-list {
@@ -59,8 +64,9 @@
             margin: 0;
 
             @media (max-width: 1024px) {
-                width: 100%;
-                display: flex;  
+                .tabs-list {
+                    margin-top: -5px;
+                }
             }
 
             a {
@@ -82,12 +88,6 @@
                 }
             }
 
-            a:hover {
-                color: rgb(11, 116, 229);
-                font-weight: 500;
-                position: relative;
-            }
-
             .active::after {
                 content: "";
                 display: block;
@@ -97,6 +97,7 @@
                 width: 40px;
                 left: 50%;
                 transform: translateX(-50%);
+                color: rgb(11, 116, 229);
             }
 
         }
@@ -250,4 +251,42 @@
         }
 
     }
+
+    .filter-icon {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        border-right-width: 2px;
+        border-right-color: #efefef;
+        padding: 0px 20px 8px;
+
+        span {
+            margin: 0px 0px 0px 6px;
+            line-height: 20px;
+            font-size: 14px;
+            color: rgb(56, 56, 61);
+        }
+    }
+    
+    .search-container {
+        background-color: #ffff;
+
+       .search-list {
+            padding: 12px 16px;
+            color: rgb(36, 36, 36);
+            font-size: 13px;
+            line-height: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            border-top: 1px solid rgb(242, 242, 242);
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+        } 
+
+        p {
+            margin-left: 10px;
+        }
+    }
+    
 }

@@ -18,7 +18,7 @@
 }
 
 .product-img {
-    padding: 16px 0px 16px 16px;
+    padding: 16px;
     position: relative;
 }
 
@@ -143,7 +143,7 @@
             word-break: break-word;
             
         @media (max-width: 1024px) {
-            font-size: 16px;
+            font-size: 20px;
             line-height: 24px;
             overflow: hidden;
             display: -webkit-box;
@@ -172,11 +172,13 @@
             }
 
             .below-rate {
+                margin-left: 10px;
                 display: flex;
 
                 .star-on {
                     color: rgb(253, 216, 53);
                     display: inline-block;
+                    font-size: 16px;
                 }
             }
 
@@ -790,5 +792,52 @@
     }    
 }
 
+.add-success {
+    position: absolute;
+    right: 100px;
+    padding: 16px;
+    transform: translateY(100%);
+    background-color: rgb(255, 246, 246);
+    border-radius: 6px;
+    box-shadow: rgb(179 179 179) 1px 1px 15px;
+    margin-top: -150px;
+    z-index: 3001;
 
-    
+    .img {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        right: 15px;
+        border-width: 8px;
+        border-style: solid;
+        border-color: transparent transparent rgb(255, 255, 255);
+        border-image: initial;
+    }
+
+    svg {
+        margin-right: 4px;
+        color: rgb(76, 175, 80);
+        font-size: 19px;
+    }
+
+    .status {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        margin: 0px;
+        color: rgb(51, 51, 51);
+        font-size: 13px;
+        white-space: nowrap;
+        font-weight: 600;
+    }
+}
+
+.notiAdd {
+    text-align: center;
+    color: green;
+    padding: 10px 20px;
+    width: 80%;
+    margin-bottom: 20px;
+    align-self: center;
+    border-radius: 10px;
+}

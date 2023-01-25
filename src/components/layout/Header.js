@@ -384,7 +384,7 @@ function Header() {
                                                 .filter((item) =>
                                                     item.pro_name
                                                         .toLowerCase()
-                                                        .match(searchInput.toLowerCase()    )
+                                                        .match(searchInput.toLowerCase())
                                                 )
                                                 .slice(0, 5)
                                                 .map((item, index) => (
@@ -406,7 +406,8 @@ function Header() {
                                                         />
                                                         <p>{item.pro_name}</p>
                                                     </Link>
-                                                ))}
+                                                ))
+                                            }
                                             <div className="show-more">
                                                 Xem thêm <DownOutlined />
                                             </div>

@@ -1,7 +1,44 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import { Link, useNavigate } from "react-router-dom";
+import authApi from "../../../../api/AuthService";
 
 function UpdEmail() {
+
+    const navigate = useNavigate();
+    const [noti, setNoti] = useState(false);
+    const [alert, setAlert] = useState(false);
+    const [email, setEmail] = useState(false);
+
+    useEffect(() => {
+        getUser();
+    }, [])
+
+    const getUser = async () => {
+        const response = await authApi.getProfile();
+        if (response.status === 200) {
+            setEmail(response.data.email);
+        } else {
+            navigate('/');
+            // window.location.reload();
+        }
+    }
+
+    const updateEmail = async (e) => {
+        e.preventDefault();
+        try {
+            let item = { email: email }
+            const response = await authApi.updateEmail(item);
+            if (response.status === 200) {
+                setNoti(true);
+                setAlert(false);
+            }
+        } catch {
+            setNoti(false);
+            setAlert(true);
+        }
+        
+    }
+
     return (
         <>
             <header className="header-as-title">
@@ -21,12 +58,13 @@ function UpdEmail() {
                         <label>Địa chỉ email</label>
                         <div className="form-input">
                             <img src='https://frontend.tikicdn.com/_mobile-next/static/img/icons/account/email.png' alt="ds" width="24" height="24"/>
-                            <input className="form-upd-phonenum" name="fullName" maxlength="128" placeholder="Nhập địa chỉ email" focused="true"/>
+                            <input value={email} onChange={(e) => setEmail(e.target.value)} className="form-upd-phonenum" name="fullName" maxLength="128" placeholder="Nhập địa chỉ email" focused="true"/>
                             <div className="clear"/>
                         </div>
                         <div className="mess-hint">Mã xác thực (OTP) sẽ được gửi đến email này để xác minh email là của bạn</div>
                     </div>
-                    <button type="submit">Lưu thay đổi</button>
+                    <button type="submit" onClick={updateEmail}>Lưu thay đổi</button>
+                    { noti === true && <p style={{ color: 'green', fontSize: 14, textAlign: 'center'}}>Thay đổi thành công!</p>}
                 </form>
             </div>
         </>

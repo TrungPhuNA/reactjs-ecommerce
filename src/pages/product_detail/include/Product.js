@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import { isWideScreen } from "../../../helpers/screen";
 import React, { useState,useEffect } from 'react';
 import { addToCart } from '../../../store/cartSlice';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import Skeleton from "react-loading-skeleton";
 import Login from '../../../components/login/Login'
 import Popup from "reactjs-popup";
@@ -14,14 +14,29 @@ import Popup from "reactjs-popup";
 function Product({ products, pro_price, loading }) {
 
     let { id } = useParams();
+    const navigate = useNavigate();
     const [count, setCount] = useState(1);
+    const [alert, setAlert] = useState(false);
+    const [alert1, setAlert1] = useState(false);
     const dispatch = useDispatch();
-    // const dataToken = useSelector((state) => state.authReduce.token);
 
     const addToCartRedux = async () => {
         products.quantity = count;
         dispatch(addToCart(products));
         setCount(1);
+        setAlert(true);
+        setAlert1(true);
+        
+        if (isWideScreen()) {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+            setTimeout(() => setAlert(false), 5000); 
+        } else {
+            setTimeout(() => setAlert1(false), 4000);
+        }
+        
         console.log(products);
     }
 
@@ -60,24 +75,17 @@ function Product({ products, pro_price, loading }) {
                     }
                     {!isWideScreen() &&
                         <>
-                            <div className="review-img1">
-                                <Swiper
-                                    spaceBetween={5}
-                                    slidesPerView={1}
-                                    speed={500}
-                                    navigation={true}
-                                    pagination={{ clickable: true }}
-                                    className="review-swiper">
-                                    <div className="swiper-button-prev" />
-                                    <SwiperSlide>
-                                        <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp" />
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <img alt="/" src="https://salt.tikicdn.com/cache/750x750/ts/product/2a/3b/a1/694060a125c0d42ba5d2fafc511b6ec3.jpg.webp" />
-                                    </SwiperSlide>
-                                    <div className="swiper-button-next" />
-                                </Swiper>
+                            <div className="group-img">
+                                    {<img alt="/" src={products?.pro_avatar} /> || <Skeleton height={100} />}
                             </div>
+                            {/* <div className="share-product">
+                                <div className="share-text">Chia sẻ:</div>
+                                <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/social-facebook.svg" />
+                                <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/social-messenger.svg" />
+                                <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/social-pinterest.svg" />
+                                <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/social-twitter.svg" />
+                                <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/social-copy.svg" />
+                            </div> */}
                         </>
                     }
                 </div>
@@ -94,21 +102,34 @@ function Product({ products, pro_price, loading }) {
                                         <span style={{color: 'blue', cursor: 'pointer'}}>Hasaki</span>
                                     </span>
                                 </div>
+                                <h1 className="product-title">{products?.pro_name || <Skeleton count={1}/>}</h1>
+                                <div className="below-title">
+                                    <div className="below-rate">
+                                        <div style={{fontSize: '15px', lineHeight: '24px', color: 'rgb(120, 120, 120)',}}>
+                                            {(products?.pro_review_star / products?.pro_review_total).toFixed(1)}<span  className="star-on">&#9733;</span>
+                                        </div>
+                                        <div className="below-seperate" />
+                                        <Link to="" onClick={() => window.scrollTo({top: 1100, behavior: 'smooth'})} style={{textDecoration: 'underline'}}>Xem đánh giá</Link>
+                                        {/* <div className="below-seperate" />
+                                        <div className="sold">Đã bán {products?.pro_review_total}</div> */}
+                                    </div>
+                                </div>
                             </>
                         }
-                        {!isWideScreen() && <></>}
-                        <h1 className="product-title">{products?.pro_name || <Skeleton count={1}/>}</h1>
-                        <div className="below-title">
-                            <div className="below-rate">
-                                <div className="star-on">
-                                    &#9733;&#9733;&#9733;&#9733;&#9733;
+                        {!isWideScreen() && <>
+                            <h1 className="product-title">{products?.pro_name || <Skeleton count={1}/>}</h1>
+                            <div className="below-title">
+                                <div className="below-rate">
+                                    <div style={{fontSize: '15px', lineHeight: '24px', color: 'rgb(120, 120, 120)',}}>
+                                        {products?.pro_review_star / products?.pro_review_total.toFixed(1)}<span  className="star-on">&#9733;</span>
+                                    </div>
+                                    <div className="below-seperate" />
+                                    <Link to="" onClick={() => window.scrollTo({top: 800, behavior: "smooth"})} style={{textDecoration: 'underline'}}>Xem đánh giá</Link>
+                                    {/* <div className="below-seperate" />
+                                    <div className="sold">Đã bán {products?.pro_review_total}</div> */}
                                 </div>
-                                <div className="below-seperate" />
-                                <Link to="" onClick={() => window.scrollTo(0,1200)} style={{textDecoration: 'underline'}}>Xem đánh giá</Link>
-                                <div className="below-seperate" />
-                                <div className="sold">Đã bán 0</div>
                             </div>
-                        </div>
+                        </>}
                     </div>
 
                     <div className="content-body">
@@ -202,7 +223,16 @@ function Product({ products, pro_price, loading }) {
                                         </div>
                                     </div>
                                 </>}
-                            {!isWideScreen() && <div></div>}
+                            {!isWideScreen() && 
+                                <div>
+                                    <div className="m_detail_footer">
+                                        <button className="btnpay-mob">
+                                            Trả góp
+                                        </button>
+                                        <button className="btnadd-mob" onClick={addToCartRedux}>Chọn Mua</button>
+                                    </div>
+                                </div>
+                            }
                         </div>
 
                         {isWideScreen() &&
@@ -313,6 +343,23 @@ function Product({ products, pro_price, loading }) {
                         }
                     </div>
                 </div>
+                { alert === true &&
+                    <>
+                        <div className="add-success">
+                            <div className="img"/>
+                            <p className="status">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path></svg>
+                                Thêm vào giỏ hàng thành công!
+                            </p>
+                        </div>
+                    </>
+                }
+
+                {!isWideScreen() && alert1 === true &&
+                    <>
+                        <span className="notiAdd">Thêm giỏ hàng thành công!</span>
+                    </>
+                }   
             </div>
         )
         }

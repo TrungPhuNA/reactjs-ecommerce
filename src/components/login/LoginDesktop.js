@@ -15,6 +15,7 @@ function LoginDesktop() {
     async function loginUser(e) {
         e.preventDefault();
         try {
+            setNoti(false);
             let item = { username, password };
             let results = await authApi.login(item);
             console.log('--------- results: ', results);
@@ -37,8 +38,6 @@ function LoginDesktop() {
         } catch (e) {
             console.log('---Erorlogin');
         }
-
-
     }
 
     return (

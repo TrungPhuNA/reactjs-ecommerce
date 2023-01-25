@@ -1,7 +1,46 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import { Link, useNavigate } from "react-router-dom";
+import authApi from "../../../../api/AuthService";
 
 function UpdName() {
+
+    const navigate = useNavigate();
+    const [noti, setNoti] = useState(false);
+    const [alert, setAlert] = useState(false);
+    const [name, setName] = useState('');
+    const [address, setAddress] = useState('');
+
+    useEffect(() => {
+        getUser();
+    }, [])
+
+    const getUser = async () => {
+        const response = await authApi.getProfile();
+        if (response.status === 200) {
+            setName(response.data.name);
+            setAddress(response.data.address);
+        } else {
+            navigate('/');
+            // window.location.reload();
+        }
+    }
+
+    const updateName = async (e) => {
+        e.preventDefault();
+        try {
+            let item = { name: name, address: address }
+            const response = await authApi.updateInfo(item);
+            if (response.status === 200) {
+                setNoti(true);
+                setAlert(false);
+            }
+        } catch {
+            setNoti(false);
+            setAlert(true);
+        }
+        
+    }
+
     return (
         <>
             <header className="header-as-title">
@@ -20,12 +59,12 @@ function UpdName() {
                     <div className="form-container">
                         <label>Họ & Tên</label>
                         <div className="form-input">
-                            <input name="fullName" maxlength="128" placeholder="Nhập họ &amp; tên" focused="true"/>
+                            <input value={name} onChange={(e) => setName(e.target.value)} name="fullName" maxlength="128" placeholder="Nhập họ &amp; tên" focused="true"/>
                             <div className="clear"/>
                         </div>
                         <div className="mess-hint">Họ & Tên gồm 2 từ trở lên.</div>
                     </div>
-                    <button type="submit">Lưu thay đổi</button>
+                    <button type="submit" onClick={updateName}>Lưu thay đổi</button>
                 </form>
             </div>
         </>

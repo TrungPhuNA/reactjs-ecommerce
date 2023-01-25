@@ -2,67 +2,135 @@ import React, { useState, useEffect } from "react";
 import SideNavBar from "./SideNavBar";
 import { Link } from "react-router-dom";
 import Popup from "reactjs-popup";
-import UpdatePhoneNum from "./UpdatePhoneNum";
-import UpdateEmail from "./UpdateEmail";
-import UpdatePassword from "./UpdatePassword";
 import UpdatePin from "./UpdatePin";
 import { isWideScreen } from "../../../helpers/screen";
 import AccountSetting from "./mobile/AccountSetting";
 import Skeleton from "react-loading-skeleton";
 import {BASE_URL, useTheme} from '../../../components/utils/useTheme';
+import { useNavigate } from "react-router-dom";
+import authApi from "../../../api/AuthService";
 
 function AccountInfo() {
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
-
+	
+	const navigate = useNavigate();
 	const [user, setUser] = useState([]);
 	const [name, setName] = useState("");
 	const [address, setAddress] = useState("");
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
+	const [phoneInput, setPhoneInput] = useState("");
+	const [emailInput, setEmailInput] = useState("");
+	const [password_old, setPassword_old] = useState("");
+    const [password_new, setPassword_new] = useState("");
+    const [password_confirm, setPassword_confirm] = useState("");
 	const [loading, setLoading] = useState(true);
+	const [noti, setNoti] = useState(false);
+	const [noti1, setNoti1] = useState(false);
+	const [alert, setAlert] = useState(false);
+	const [alert1, setAlert1] = useState(false);
+	const [count, setCount] = useState(1);
+
+	const [phoneUpdate, showPhoneUpdate] = useState(false);
+	const [emailUpdate, showEmailUpdate] = useState(false);
+	const [passwordUpdate, showPasswordUpdate] = useState(false);
 
 	async function getUser() {
-		fetch(`${BASE_URL}/auth/profile`, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: "Bearer " + localStorage.getItem("accessToken"),
-			},
-		}).then((result) => {
-			result.json().then((res) => {
-				setUser(res);
-				setName(res.data.name);
-				setAddress(res.data.address);
-				setPhone(res.data.phone);
-				setEmail(res.data.email);
-				setLoading(false);
-			});
-		});
+		const response = await authApi.getProfile();
+		if (response.status === 200) {
+			setName(response.data.name);
+			setAddress(response.data.address);
+			setPhone(response.data.phone);
+			setEmail(response.data.email);
+			setPhoneInput(response.data.phone);
+			setEmailInput(response.data.email);
+			setLoading(false);
+		} else {
+			navigate('/');
+			window.location.reload();
+		}
+		
 	}
 
 	useEffect(() => {
 		getUser();
-	}, []);
+	}, [count]);
 
 	async function updateInfo(e) {
 		e.preventDefault();
-		let item = { name, address };
-		fetch(`${BASE_URL}/user/update-info`, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: "Bearer " + localStorage.getItem("accessToken"),
-			},
-			body: JSON.stringify(item),
-		}).then((result) => {
-			result.json().then(() => {
-				getUser();
-			});
-		});
+		setAlert(false);
+		setNoti1(false);
+		try {
+			let item = { name: name, address: address };
+			const response = await authApi.updateInfo(item);
+			if (response.status === 200) {
+				setCount(count + 1);
+				setNoti1(true);
+			}
+		} catch {
+			setAlert1(true);
+		}
+		
 	}
+
+	async function updatePhone(e) {
+		e.preventDefault();
+        try {
+            let item = { phone: phoneInput };
+            const response = await authApi.updatePhone(item);
+			if (response.status === 200) {
+				setCount(count + 1);
+				setNoti(true);
+			}
+        } catch {
+            setAlert(true);
+        }
+    }
+
+	async function updateEmail(e) {
+		e.preventDefault();
+        try {
+            let item = { email: emailInput };
+            const response = await authApi.updateEmail(item);
+			if (response.status === 200) {
+				setCount(count + 1);
+				setNoti(true);
+			}
+        } catch {
+            setAlert(true);
+        }
+    }
+
+	const [showPass, setShowPass] = useState(false);
+
+    function ShowPassword() {
+        setShowPass(!showPass);
+    }
+
+	async function updatePassword() {
+        try {
+            let item = {password_old: password_old, password_new: password_new, password_confirm: password_confirm}
+            fetch(`${BASE_URL}/user/update-password`, {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + localStorage.getItem('accessToken'),
+                },
+                body: JSON.stringify(item),
+            }).then((result) => {
+                result.json().then(() => {
+                    setCount(count + 1);
+                    setNoti(true);
+                })
+            })
+        } catch {
+            setAlert(true);
+        }
+        
+    }
 
 	const theme = useTheme();
 	return (
@@ -318,11 +386,13 @@ function AccountInfo() {
 															</svg>
 														</div>
 													</div>
-													<div className="form-control">
+													<div className="form-control" style={{ flexDirection: 'column'}}>
 														<label className="input-label1">&nbsp;</label>
 														<button type="submit" onClick={updateInfo}>
 															Lưu thay đổi
 														</button>
+														{ noti1 === true && <p style={{ color: 'green', fontSize: 14, textAlign: 'center' }}>Thay đổi thành công!</p>}
+														{ alert1 === true && <p style={{ color: 'red', fontSize: 14, textAlign: 'center' }}>Thay đổi thất bại!</p>}
 													</div>
 												</form>
 											</div>
@@ -346,9 +416,33 @@ function AccountInfo() {
 													</div>
 													<div className="listitem-status">
 														<span />
-														<Popup modal trigger={<button>Cập nhật</button>}>
-															<UpdatePhoneNum />
-														</Popup>
+														<button onClick={() => { showPhoneUpdate(true); setAlert(false); setNoti(false)}}>Cập nhật</button>
+														{ phoneUpdate === true && 
+															<>
+																<div className="info-popup">
+																	<div className="up-phone-container">
+																		<button className="button-close" onClick={() => showPhoneUpdate(false)}><img src="https://salt.tikicdn.com/ts/upload/fe/20/d7/6d7764292a847adcffa7251141eb4730.png" alt="sdf" /></button>
+																		<span><p>Cập Nhật Số Điện Thoại</p></span>
+																		<form className="form-phonenum" onSubmit={updatePhone}>
+																			<div className="form-pn-control">
+																				<label className="input-pn-label">
+																					Số điện thoại
+																				</label>
+																				<div className="input-pn-box">
+																					<img src='https://frontend.tikicdn.com/_desktop-next/static/img/account/phone.png' alt="ds" width="24" height="24"/>
+																					<input maxLength="10" placeholder="Nhập số điện thoại" type="search"
+																						value={phoneInput} onChange={(e) => setPhoneInput(e.target.value)}
+																					/>
+																				</div>
+																				<button type="submit" onClick={updatePhone}>Lưu thay đổi</button>
+																				{ noti === true && <p style={{ color: 'green', fontSize: 14, textAlign: 'center' }}>Thay đổi thành công!</p>}
+																				{ alert === true && <p style={{ color: 'red', fontSize: 14, textAlign: 'center' }}>Thay đổi thất bại!</p>}
+																			</div>
+																		</form>
+																	</div>
+																</div>
+															</>
+														}
 													</div>
 												</div>
 												<div className="listitem">
@@ -366,9 +460,33 @@ function AccountInfo() {
 													</div>
 													<div className="listitem-status">
 														<span />
-														<Popup modal trigger={<button>Cập nhật</button>}>
-															<UpdateEmail />
-														</Popup>
+														<button onClick={() => { showEmailUpdate(true); setAlert(false); setNoti(false) }}>Cập nhật</button>
+														{ emailUpdate === true &&
+															<>
+																<div className="info-popup">
+																	<div className="up-phone-container">
+																		<button className="button-close" onClick={() => showEmailUpdate(false)}><img src="https://salt.tikicdn.com/ts/upload/fe/20/d7/6d7764292a847adcffa7251141eb4730.png" alt="sdf" /></button>
+																		<span><p>Cập Nhật Email</p></span>
+																		<form className="form-phonenum" onSubmit={updateEmail}>
+																			<div className="form-pn-control">
+																				<label className="input-pn-label">
+																					Địa chỉ email
+																				</label>
+																				<div className="input-pn-box">
+																					<img src='https://frontend.tikicdn.com/_desktop-next/static/img/account/email.png' alt="ds" width="24" height="24"/>
+																					<input maxlength="50" placeholder="Nhập địa chỉ email" type="search"
+																						value={email} onChange={(e) => setEmail(e.target.value)}
+																					/>
+																				</div>
+																				<button type="submit" onClick={updateEmail}>Lưu thay đổi</button>
+																				{ noti === true && <p style={{ color: 'green', fontSize: 14, textAlign: 'center' }}>Thay đổi thành công!</p>}
+																				{ alert === true && <p style={{ color: 'red', fontSize: 14, textAlign: 'center' }}>Thay đổi thất bại!</p>}
+																			</div>
+																		</form>
+																	</div>
+																</div>
+															</>
+														}
 													</div>
 												</div>
 											</div>
@@ -388,9 +506,61 @@ function AccountInfo() {
 													</div>
 													<div className="listitem-status">
 														<span />
-														<Popup modal trigger={<button>Cập nhật</button>}>
-															<UpdatePassword />
-														</Popup>
+														<button onClick={() => { showPasswordUpdate(true); setAlert(false); setNoti(false) }}>Cập nhật</button>
+														{ passwordUpdate === true &&
+															<>
+																<div className="info-popup">
+																	<div className="up-phone-container">
+																		<button className="button-close" onClick={() => showPasswordUpdate(false)}><img src="https://salt.tikicdn.com/ts/upload/fe/20/d7/6d7764292a847adcffa7251141eb4730.png" alt="sdf" /></button>
+																		<span><p>Đổi mật khẩu</p></span>
+																		<form className="form-phonenum" onSubmit={updatePassword}>
+																			<div className="form-pass-control">
+																				<label className="input-pass-label">
+																					Mật khẩu hiện tại
+																				</label>
+																				<div className="input-pass-box">
+																					<input className="input-pass-box1" placeholder="Nhập mật khẩu hiện tại"
+																						type={showPass ? "text" : "password"}
+																						value={password_old} onChange={(e) => setPassword_old(e.target.value)}
+																					/>
+																					<img onClick={ShowPassword} className="img-pass" src='https://frontend.tikicdn.com/_desktop-next/static/img/account/eye.png' alt="ds" width="24" height="24"/>
+																				</div>
+
+																			</div>
+																			<div className="form-pass-control">
+																				<label className="input-pass-label">
+																					Mật khẩu mới
+																				</label>
+																				<div className="input-pass-box">
+																					<input className="input-pass-box1" placeholder="Nhập mật khẩu mới"
+																						type={showPass ? "text" : "password"}
+																						value={password_new} onChange={(e) => setPassword_new(e.target.value)}
+																					/>
+																					<img onClick={ShowPassword} className="img-pass" src='https://frontend.tikicdn.com/_desktop-next/static/img/account/eye.png' alt="ds" width="24" height="24"/>
+																				</div>
+																				<div className="hint-pass-new"> Mật khẩu phải dài từ 8 đến 32 ký tự, bao gồm chữ và số</div>
+
+																			</div>
+																			<div className="form-pass-control">
+																				<label className="input-pass-label">
+																					Nhập lại mật khẩu mới
+																				</label>
+																				<div className="input-pass-box">
+																					<input className="input-pass-box1" placeholder="Nhập lại mật khẩu mới"
+																						type={showPass ? "text" : "password"}
+																						value={password_confirm} onChange={(e) => setPassword_confirm(e.target.value)}
+																					/>
+																					<img onClick={ShowPassword} className="img-pass" src='https://frontend.tikicdn.com/_desktop-next/static/img/account/eye.png' alt="ds" width="24" height="24"/>
+																				</div>
+																			</div>
+																			<button className="btn-pass" type="submit" onClick={updatePassword}>  Lưu thay đổi</button>
+																			{ noti === true && <p style={{ color: 'green', fontSize: 14, textAlign: 'center' }}>Thay đổi thành công!</p>}
+																			{ alert === true && <p style={{ color: 'red', fontSize: 14, textAlign: 'center' }}>Thay đổi thất bại!</p>}
+																		</form>
+																	</div>
+																</div>
+															</>
+														}
 													</div>
 												</div>
 												<div className="listitem">
