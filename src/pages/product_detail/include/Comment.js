@@ -48,6 +48,7 @@ function Comment({ id, products }) {
     const [percent3, setPercent3] = useState(0);
     const [percent4, setPercent4] = useState(0);
     const [percent5, setPercent5] = useState(0);
+    const [valueNumber, setValueNumber] = useState('');
 
     const [currentPage, setCurrentPage] = useState(1);
     const location = useLocation();
@@ -83,6 +84,7 @@ function Comment({ id, products }) {
         setActive3(false);
         setActive4(false);
         setActive5(false);
+        setValueNumber("");
         getUser();
         getRate();
     }, [id, refresh])
@@ -95,7 +97,8 @@ function Comment({ id, products }) {
         let star3 = 0;
         let star4 = 0;
         let star5 = 0;
-        const response = await ratingApi.getListRateByProducts(page, page_size, id);
+        console.log('-------------valueNumber:', valueNumber);
+        const response = await ratingApi.getListRateByProducts(page, page_size, id, valueNumber);
         response.data.forEach(item => {
             if (item.v_product_id == product_id) {
                 star += item.v_number;
@@ -120,12 +123,6 @@ function Comment({ id, products }) {
         setPercent3(star3);
         setPercent4(star4);
         setPercent5(star5);
-        console.log('totalstar: ', star);
-        console.log('star1: ', star1);
-        console.log('star2: ', star2);
-        console.log('star3: ', star3);
-        console.log('star4: ', star4);
-        console.log('star5: ', star5);
     }
     const countRate = (index) => {
         let tmp = [];
@@ -139,18 +136,17 @@ function Comment({ id, products }) {
         let paramsQuery = location.search; console.log('paramsQuery', paramsQuery);
         let query = new URLSearchParams(paramsQuery);
         let value = query.get('number');
-
         if (value) {
             if (value.includes(1))
-                setActive1(true); 
+                setActive1(true);
             if (value.includes(2))
                 setActive2(true);
             if (value.includes(3))
-                setActive3(true); 
+                setActive3(true);
             if (value.includes(4))
-                setActive4(true); 
+                setActive4(true);
             if (value.includes(5))
-                setActive5(true);  
+                setActive5(true);
         }
     }
 
@@ -159,7 +155,6 @@ function Comment({ id, products }) {
     }, []);
 
     const handleClickVote = async (vote_number) => {
-        console.log('--------------- number: ', vote_number);
         let paramsQuery = location.search;
         let query = new URLSearchParams(paramsQuery);
         let value = query.get('number');
@@ -175,7 +170,6 @@ function Comment({ id, products }) {
                         value = value.replace(vote_number + ',', '');
                     }
                 } else {
-                    console.log('else------------ coongj them');
                     value += "," + vote_number;
                 }
             } else {
@@ -210,6 +204,8 @@ function Comment({ id, products }) {
             search: decodeURIComponent(`?${createSearchParams(params)}`),
         };
         navigate(options, { replace: true });
+        setValueNumber(value);
+        await getRate();
     }
 
     const handleSubmit = async () => {
@@ -232,10 +228,10 @@ function Comment({ id, products }) {
         } else {
             if (click === false)
                 setAlertStar(true);
-            if (!content) 
+            if (!content)
                 setAlertContent(true);
         }
-        
+
     }
 
     const handleUpdateContent = async (idVote) => {
@@ -416,7 +412,7 @@ function Comment({ id, products }) {
                                         <div>
                                             <span style={{ marginLeft: 10 }}>{products.pro_name}</span>
                                         </div>
-                                        
+
                                     </div>
                                     <div className="rate">
                                         <Rate
@@ -444,7 +440,7 @@ function Comment({ id, products }) {
                                         <img alt="/" src="https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg" width="48" height="48" />
                                     </div>
                                     <div>
-                                        <div className="user-name">User {item.v_product_id}</div>
+                                        <div className="user-name">{item.user?.name}</div>
                                     </div>
                                 </div>
                             </div>

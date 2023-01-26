@@ -2,8 +2,8 @@ import axios from 'axios';
 import * as process from 'process';
 
 const axiosClient = axios.create({
-	baseURL: `https://api-ecm.123code.net/api`,
-	// baseURL = process.env.REACT_APP_URL_API;
+	// baseURL: `https://api-ecm.123code.net/api`,
+	baseURL: process.env.REACT_APP_URL_API,
 	headers: {
 		'Content-Type': 'application/json',
 	},

@@ -9,7 +9,7 @@ const authApi = {
                 return response.data;
             }
         } catch (e) {
-            console.log('--------------- getListsProducts@Error ', e);
+            console.log('--------------- getProfile@Error ', e);
             return {
                 status: 501,
                 data: []

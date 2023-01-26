@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Category from './include/desktop/Category';
-// import Container from './include/desktop/Container';
 import Products from './include/desktop/Products';
 import { isWideScreen } from "../../helpers/screen";
-// import MobileCategoryHeader from "./include/mobile/MobileCategoryHeader";
 import { useParams } from 'react-router';
 import categoryApi from '../../api/CategoryService';
 import productApi from '../../api/ProductService';
@@ -136,9 +134,9 @@ function CategoryPage() {
     const [user, setUser] = useState(false);
     const getUser = async () => {
         const response = await authApi.getProfile();
-        if (response.status === 200) 
+        if (response.status === 200)
             setUser(true);
-        else 
+        else
             setUser(false);
     }
 
@@ -278,7 +276,7 @@ function CategoryPage() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </>) : 
+                                    </>) :
                                     (<div className="search-container">
                                         {searchInput.length > 0 && (
                                             <Link
@@ -355,11 +353,11 @@ function CategoryPage() {
                                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn0DdZzOaqWSYrbQKRLpUVqYtqmOig49fawwX3Hd8H3XmYchxtZbBIHeFyktUSMg6_Ul8&usqp=CAU" width='14' height='14' style ={{ color: 'blue', marginLeft: 10, marginTop: -2, transform: 'scaleX(-1)', transform: 'scaleY(-1)' }}/>
                                         </div>)
                                         }
-                                        
-                                    </div>)      
+
+                                    </div>)
                                 }
-                                
-                                { showSearch === false && 
+
+                                { showSearch === false &&
                                     <>
                                         <Products
                                             products={products}
@@ -370,10 +368,10 @@ function CategoryPage() {
                                             sortAsc={sortAsc}
                                             sortDesc={sortDesc}
                                             loadingProduct={loadingProduct}
-                                        />   
+                                        />
                                     </>
                                 }
-                                
+
                             </div>
                         </div>
                     </div>
