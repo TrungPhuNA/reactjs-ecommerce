@@ -36,36 +36,20 @@ function HomeBrand() {
   useEffect(() => {
     const data = [
       {
-        src: "https://theme.hstatic.net/1000110092/1000546214/14/brand_img1.png?v=71",
-        title: "Puma",
+        src: "https://file.hstatic.net/200000117693/collection/abybom_1e9d0f419c5642eca9326d0f3dea47df_compact.png",
+        title: "Abybom",
         des: "It appears you are located in Vietnam, however you are about to enter the United States online store. Please note, items in the United States online store can only ship to addresses within United States.",
       },
       {
-        src: "https://theme.hstatic.net/1000110092/1000546214/14/brand_img2.png?v=71",
-        title: "Li-ning",
+        src: "https://file.hstatic.net/200000117693/collection/australis_ab7c627580c64b8db483bb7f8a2e2c0a_compact.png",
+        title: "Australis",
         des: "Prompted by the desire to outfit Chinese athletes in a national brand at the Olympic games, esteemed gymnast Li-Ning founded his eponymous label in 1990. Since its inception, the label has flourished into an international sportswear leader, exhibiting its authentic take on athleisure on the world stage. ",
       },
       {
-        src: "https://theme.hstatic.net/1000110092/1000546214/14/brand_img4.png?v=71",
-        title: "Converse",
+        src: "https://file.hstatic.net/200000117693/collection/images_4316496e24004962ba9f6eb7cf9d25a1_compact.jpg",
+        title: "Antibac",
         des: "Their most influential model, the Chuck Taylor All Star high-top—named after the Basketball Hall of Famer—is a quintessentially American classic favored by basketball players and iconic members of rock subcultures alike. This signature men’s canvas sneaker has continued to evolve through a panoply of sought-after collaborations with brands including Comme des Garçons and Maison Margiela",
-      },
-      {
-        src: "https://theme.hstatic.net/1000110092/1000546214/14/brand_img5.png?v=71",
-        title: "Adidas",
-        des: "Four tournaments in the making. Lionel Messi prepares for FIFA World Cup 2022™ with an impossible rondo.",
-      },
-      {
-        src: "https://theme.hstatic.net/1000110092/1000546214/14/brand_img6.png?v=71",
-        title: "Nike",
-        des: "This holiday, give more than a gift Give the joy of possibility. Inspire a special someone to chase that runner's high. To dance like nobody's watching To feel stronger. To be better.",
-      },
-
-      {
-        src: "https://cdn.elly.vn/uploads/2021/05/09222258/nhung-dieu-thu-vi-ve-giay-new-balance.2.jpg",
-        title: "New-Balance",
-        des: "A holographic emblem can be found on the collar and an embroidered orange Jumpman is stitched onto the white leather tongue",
-      },
+      }
     ];
     setBrand(data);
   }, []);
