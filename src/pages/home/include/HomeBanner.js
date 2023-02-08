@@ -10,19 +10,19 @@ function HomeBanner({ number }) {
           <div className="home-banner--top">
             <Link to="/">
               <Images
-                src="https://img.freepik.com/premium-psd/banner-sport-shoes-sale-social-media-post-facebook-web-banner-template_70055-854.jpg?w=2000"
+                src="https://w.ladicdn.com/6381c31b28155d0012aa38a2/714x350-sinh-nhat-thanh-vien-t2-2023-20230201104349-x9pca.png"
                 alt="23"
               />
             </Link>
             <Link to="/">
               <Images
-                src="https://img.freepik.com/premium-psd/banner-sport-shoes-sale-social-media-post-facebook-web-banner-template_70055-853.jpg?w=2000"
+                src="https://w.ladicdn.com/6381c31b28155d0012aa38a2/sieu-deal-rang-ngoi-1920x600-20230202075325-bndey.png"
                 alt="123"
               />
             </Link>
             <Link to="/">
               <Images
-                src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/2bbcfa99737217.5ef9be3dbb9a9.jpg"
+                src="https://w.ladicdn.com/6381c31b28155d0012aa38a2/tvn-ads_714x350-20230201104349-oy19s.png"
                 alt="123"
               />
             </Link>
@@ -34,19 +34,19 @@ function HomeBanner({ number }) {
           <div className="home-banner">
             <Link to="/">
               <Images
-                src="https://img.freepik.com/premium-psd/banner-sport-shoes-sale-social-media-post-facebook-web-banner-template_70055-854.jpg?w=2000"
+                src="https://w.ladicdn.com/6381c31b28155d0012aa38a2/714x350-sinh-nhat-thanh-vien-t2-2023-20230201104349-x9pca.png"
                 alt="23"
               />
             </Link>
             <Link to="/">
               <Images
-                src="https://img.freepik.com/premium-psd/banner-sport-shoes-sale-social-media-post-facebook-web-banner-template_70055-853.jpg?w=2000"
+                src="https://w.ladicdn.com/6381c31b28155d0012aa38a2/sieu-deal-rang-ngoi-1920x600-20230202075325-bndey.png"
                 alt="123"
               />
             </Link>
             <Link to="/">
               <Images
-                src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/2bbcfa99737217.5ef9be3dbb9a9.jpg"
+                src="https://w.ladicdn.com/6381c31b28155d0012aa38a2/tvn-ads_714x350-20230201104349-oy19s.png"
                 alt="123"
               />
             </Link>

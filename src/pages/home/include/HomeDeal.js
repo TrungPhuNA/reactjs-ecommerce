@@ -34,23 +34,15 @@ function HomeDeal() {
     {
       id: 1,
       type: 1,
-      name: "video",
-      //   src: "https://sand.tikicdn.com/ts/asavideo/19/0c/48/fdce6602418b5bd48113e4e7a7f10335.mp4",
-      src: "https://www.shutterstock.com/image-vector/shoe-banners-discount-concept-design-600w-1511595422.jpg",
+      name: "img",
+      src: "https://w.ladicdn.com/6381c31b28155d0012aa38a2/882-x-410-20230203024343-1lif2.png",
     },
     {
       id: 2,
       type: 2,
       name: "img",
-      src: "https://img.freepik.com/premium-psd/sport-sneakers-shoes-sale-social-media-instagram-post-facebook-web-banner-template_70055-1664.jpg?w=2000",
-    },
-    {
-      id: 3,
-      type: 3,
-      name: "img",
-      src: "https://i.ytimg.com/vi/bpZFpWysYeg/maxresdefault.jpg",
-      //   src: "https://salt.tikicdn.com/ts/upload/ee/f1/10/bc58a1bcbf5ff92206bff7a3c56ab89b.png",
-    },
+      src: "https://w.ladicdn.com/6381c31b28155d0012aa38a2/883-x-411-20230203024343-em_jj.png",
+    }
   ];
 
   return (
