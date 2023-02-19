@@ -86,7 +86,9 @@ function ShopCart() {
 			// setNotiMob(true);
 			// dispatch(removeAll());
 			if (createCart.data.link) {
-				window.location.replace(createCart.data.link);
+				// window.location.replace(createCart.data.link);
+				console.log('------------ createCart.data.link: ', createCart.data.link);
+				window.open(createCart.data.link, '_blank');
 			}
 		} else {
 			setAlert(true);
