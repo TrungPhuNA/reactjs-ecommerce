@@ -80,10 +80,14 @@ function ShopCart() {
 		console.log("order -----------: ", order);
 
 		const createCart = await cartApi.createTransaction(order);
+		console.log('------------------ createCart: ', createCart);
 		if (createCart.status === 200) {
-			setIsShow(true);
-			setNotiMob(true);
-			dispatch(removeAll());
+			// setIsShow(true);
+			// setNotiMob(true);
+			// dispatch(removeAll());
+			if (createCart.data.link) {
+				window.location.replace(createCart.data.link);
+			}
 		} else {
 			setAlert(true);
 			setNotiMobF(true);
@@ -411,7 +415,7 @@ function ShopCart() {
 						</div>
 					</div>
 					<div className="sc_mobile-container">
-						{ cart.length !== 0 && 
+						{ cart.length !== 0 &&
 							<div className="address-mobile">
 								<div className="left">
 									<div className="info">
