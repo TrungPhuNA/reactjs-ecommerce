@@ -1,4 +1,10 @@
-import { useLocation, useSearchParams, useNavigate, createSearchParams } from 'react-router-dom';
+import {
+    useLocation,
+    useSearchParams,
+    useNavigate,
+    createSearchParams,
+    Link,
+} from 'react-router-dom';
 import { isWideScreen } from "../../../helpers/screen";
 import React from 'react';
 import { useEffect, useState } from "react";
@@ -8,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ratingApi from "../../../api/RatingService";
 import authApi from "../../../api/AuthService";
 import Pagination from "../../../components/common/Pagination";
+import Images from '../../../components/Image/Images';
 
 
 let page = 1;
@@ -359,11 +366,6 @@ function Comment({ id, products }) {
                                         <span className={`filter${active3 === true && 'active'}`} onClick={() => handleClickVote(3)} id='number'>3 &#9733;</span>
                                         <span className={`filter${active2 === true && 'active'}`} onClick={() => handleClickVote(2)} id='number'>2 &#9733;</span>
                                         <span className={`filter${active1 === true && 'active'}`} onClick={() => handleClickVote(1)} id='number'>1 &#9733;</span>
-                                        {/* <span className={`filter`} onClick={() => handleClickVote(5)} id='number'>5 &#9733;</span>
-                                        <span className={`filter`} onClick={() => handleClickVote(4)} id='number'>4 &#9733;</span>
-                                        <span className={`filter`} onClick={() => handleClickVote(3)} id='number'>3 &#9733;</span>
-                                        <span className={`filter`} onClick={() => handleClickVote(2)} id='number'>2 &#9733;</span>
-                                        <span className={`filter`} onClick={() => handleClickVote(1)} id='number'>1 &#9733;</span> */}
                                     </div>
                                 </div>
                             </>
@@ -378,11 +380,6 @@ function Comment({ id, products }) {
                                         <span className={`filter${active3 === true && 'active'}`} onClick={() => handleClickVote(3)} id='number'>3 &#9733;</span>
                                         <span className={`filter${active2 === true && 'active'}`} onClick={() => handleClickVote(2)} id='number'>2 &#9733;</span>
                                         <span className={`filter${active1 === true && 'active'}`} onClick={() => handleClickVote(1)} id='number'>1 &#9733;</span>
-                                        {/* <span className={`filter`} onClick={() => handleClickVote(5)} id='number'>5 &#9733;</span>
-                                        <span className={`filter`} onClick={() => handleClickVote(4)} id='number'>4 &#9733;</span>
-                                        <span className={`filter`} onClick={() => handleClickVote(3)} id='number'>3 &#9733;</span>
-                                        <span className={`filter`} onClick={() => handleClickVote(2)} id='number'>2 &#9733;</span>
-                                        <span className={`filter`} onClick={() => handleClickVote(1)} id='number'>1 &#9733;</span> */}
                                     </div>
                                 </div>
                             </>
@@ -454,6 +451,26 @@ function Comment({ id, products }) {
                                 </div>
                                 <div className="review-user-text">
                                     {item.v_content}
+                                </div>
+                                <div>
+                                    <div className={"lists-comment"}>
+                                        <ul>
+                                        {item.comments && item.comments.length > 0 && item.comments.map((comment, index) => {
+                                            return (
+                                                <li key={index}>
+                                                    <p>
+                                                        <span>ADM</span>
+                                                        <div>
+                                                            <b>{ comment.created_at}</b> <br/>
+                                                            <span>{comment.c_content}</span>
+                                                        </div>
+                                                    </p>
+                                                </li>
+                                            )
+                                        })}
+                                        </ul>
+
+                                    </div>
                                 </div>
                                 <span className="thank">Bình luận</span>
                                 {userId == item.v_user_id && <span className="thank" onClick={() => { setShowUpdate(true); setIdVote(item.id); handleUpdateContent(item.id) }}>Chỉnh sửa</span>}

@@ -17,5 +17,4 @@ export const useTheme = () => {
 };
 
 
-export const BASE_URL = `https://api-ecm.123code.net/api`;
-// export const BASE_URL = process.env.REACT_APP_URL_API;
+export const BASE_URL = process.env.REACT_APP_URL_API;
