@@ -16,7 +16,6 @@ function FamousCategory({ check }) {
 		};
 
 		const response = await categoryApi.getListsCategory(params);
-		console.log('-------------- getCategoriesHome@response: ', response);
 		SetCategories(response.data);
 		SetLoadingCategory(false);
 	}

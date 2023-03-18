@@ -9,6 +9,8 @@ import DetailHeader from "./include/mobile/DetailHeader";
 import { useParams } from "react-router";
 import productApi from "../../api/ProductService";
 import HomeSuggest from "../home/include/HomeSuggest";
+import {useDispatch} from "react-redux";
+import {addItemProductId} from "../../store/locaStorageStore";
 
 function ProductDetailPage() {
 
@@ -19,6 +21,7 @@ function ProductDetailPage() {
     const [pro_price, setPro_Price] = useState();
     const [productSuggest, setProductSuggest] = useState([]);
     const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
 
     const getProductsDetail = async () => {
         const response = await productApi.findById(id);
@@ -28,6 +31,7 @@ function ProductDetailPage() {
             setCategoryId(response.data.pro_category_id);
             setPro_Price(response.data.pro_price.toLocaleString())
             setLoading(false);
+            dispatch(addItemProductId(response.data));
         }
     }
 

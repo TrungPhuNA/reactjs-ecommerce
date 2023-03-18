@@ -11,24 +11,27 @@ import { Link } from "react-router-dom";
 import productApi from "../../api/ProductService";
 import authApi from "../../api/AuthService";
 import { useSelector } from "react-redux";
+import ProductViewed from "../../components/common/product/ProductViewed";
 function HomePage() {
 
     const [show, setShow] = useState(false);
     const [products, setProducts] = useState([]);
+    const [productsView, setProductsView] = useState([]);
     const [searchInput, setSearchInput] = useState("");
     const [arr] = useState([]);
     const [showMore, setShowMore] = useState(4);
 
     const cart = useSelector((state) => state.cartReduce.listCart);
-    
+    const productIds = useSelector((state) => state.localStorageReduce.productIds);
+    console.log('------------- productIds: ', productIds);
 
     const saveSearch = () => {
         arr.push({ name: searchInput });
         console.log(arr);
     };
 
-	const page_size = 300;
-	const page = 1;
+    const page_size = 300;
+    const page = 1;
 
     const getData = async () => {
         const response = await productApi.getListsProductsByPage(page, page_size);
@@ -37,12 +40,29 @@ function HomePage() {
         }
     };
 
+    const getProductByIds = async () => {
+        if (productIds.length > 0)
+        {
+            let ids = productIds.map(function (item) {
+                return item.id;
+            });
+            const response = await productApi.getListsProducts({
+                product_ids: ids.join(",")
+            });
+            if (response.status === 200) {
+                setProductsView(response.data);
+            }
+
+            console.log('---------- ids: ', ids);
+        }
+    }
+
     const [user, setUser] = useState(false);
     const getUser = async () => {
         const response = await authApi.getProfile();
-        if (response.status === 200) 
+        if (response.status === 200)
             setUser(true);
-        else 
+        else
             setUser(false);
     }
 
@@ -50,75 +70,99 @@ function HomePage() {
         window.scrollTo(0, 0);
         getData();
         getUser();
+        getProductByIds();
     }, []);
 
-  return (
-    <main className={isWideScreen() ? "desktop" : "mobile"}>
-      {isWideScreen() && (
-        <>
-          <HomeCategory />
-          <HomeDeal />
-          <HomeBanner />
-          <FamousCategory check={true} />
-          <HomeSuggest />
-          <HomeBrand />
-        </>
-      )}
-
-        {!isWideScreen() && 
-            show === false && 
-            <>
-                <div className="mobile__header">
-                    <div className="mobile__header--logo">
-                        <Link
-                            to="/"
-                            title="free-ship"
-                            style={{
-                                scale: "3",
-                                marginBottom: "5px",
-                                marginLeft: 40,
-                                marginTop: 0,
-                            }}
-                        >
-                            <img src={"/logo.svg"} alt="free" width="40" />
-                        </Link>
-                        <div>
-                            <Link to={`${user === true ? '/cart' : '/loginMobile'}`} title="free-ship">
-                                <img
-                                    src="https://salt.tikicdn.com/ts/upload/70/44/6c/a5ac520d156fde81c08dda9c89afaf37.png"
-                                    alt="free"
-                                    width="24"
-                                    height="24"
-                                />
-                                <span>{cart ? cart.length : 0}</span>
-                            </Link>
+    return (
+        <main className={isWideScreen() ? "desktop" : "mobile"}>
+            {isWideScreen() && (
+                <>
+                    <HomeCategory />
+                    <HomeDeal />
+                    <HomeBanner />
+                    <FamousCategory check={true} />
+                    <div className="cm-width">
+                        <div className="product-slide">
+                            {isWideScreen() && (
+                                <>
+                                    <h2>Sản đã xem</h2>
+                                    <div className="slide-container">
+                                        <ProductViewed products={productsView} deal={true} />
+                                    </div>
+                                </>
+                            )}
+                            {!isWideScreen() && (
+                                <>
+                                    <h2>Sản đã xem</h2>
+                                    <div className="slide-container">
+                                        <ProductViewed
+                                            deal={true}
+                                            products={productsView}
+                                        />
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
-                    <div className="mobile__header--search">
-                        <img
-                            src="https://salt.tikicdn.com/ts/upload/34/62/0c/6ae13efaff83c66f810c4c63942cf6c0.png"
-                            height="24"
-                            width="24"
-                            alt="search"
-                        />
-                        <input
-                            className="w-100"
-                            type="text"
-                            placeholder="Bạn tìm gì hôm nay?"
-                            onClick={() => setShow(true)}
-                        />
+                    <HomeSuggest />
+                    <HomeBrand />
+                </>
+            )}
+
+            {!isWideScreen() &&
+                show === false &&
+                <>
+                    <div className="mobile__header">
+                        <div className="mobile__header--logo">
+                            <Link
+                                to="/"
+                                title="free-ship"
+                                style={{
+                                    scale: "3",
+                                    marginBottom: "5px",
+                                    marginLeft: 40,
+                                    marginTop: 0,
+                                }}
+                            >
+                                <img src={"/logo.svg"} alt="free" width="40" />
+                            </Link>
+                            <div>
+                                <Link to={`${user === true ? '/cart' : '/loginMobile'}`} title="free-ship">
+                                    <img
+                                        src="https://salt.tikicdn.com/ts/upload/70/44/6c/a5ac520d156fde81c08dda9c89afaf37.png"
+                                        alt="free"
+                                        width="24"
+                                        height="24"
+                                    />
+                                    <span>{cart ? cart.length : 0}</span>
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="mobile__header--search">
+                            <img
+                                src="https://salt.tikicdn.com/ts/upload/34/62/0c/6ae13efaff83c66f810c4c63942cf6c0.png"
+                                height="24"
+                                width="24"
+                                alt="search"
+                            />
+                            <input
+                                className="w-100"
+                                type="text"
+                                placeholder="Bạn tìm gì hôm nay?"
+                                onClick={() => setShow(true)}
+                            />
+                        </div>
                     </div>
-                </div>
-                {/* <HomeAdv /> */}
-                <HomeDeal />
-                <HomeBanner number={4} />
-                <FamousCategory check={false} />
-                <HomeSuggest status={false} />
-                <MenuMobile/>
-            </>
-        }
-        { !isWideScreen() &&
-            show === true && 
+                    {/* <HomeAdv /> */}
+                    <HomeDeal />
+                    <HomeBanner number={4} />
+                    <FamousCategory check={false} />
+                    <HomeSuggest status={false} />
+                    <MenuMobile/>
+                </>
+            }
+            { !isWideScreen() &&
+                show === true &&
                 <>
                     <div className="search">
                         <div className="mobile__header--cate-logo">
@@ -209,20 +253,20 @@ function HomePage() {
                             }
                             { showMore <= 6 ?
                                 (<div className="search-list" style={{ justifyContent: 'center'}} onClick={() => setShowMore(8)}>
-                                <span style={{ color: 'blue' }}>Xem thêm</span>
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn0DdZzOaqWSYrbQKRLpUVqYtqmOig49fawwX3Hd8H3XmYchxtZbBIHeFyktUSMg6_Ul8&usqp=CAU" width='14' height='14' style ={{ color: 'blue', marginLeft: 10, marginTop: -2 }}/>
-                            </div>) :
+                                    <span style={{ color: 'blue' }}>Xem thêm</span>
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn0DdZzOaqWSYrbQKRLpUVqYtqmOig49fawwX3Hd8H3XmYchxtZbBIHeFyktUSMg6_Ul8&usqp=CAU" width='14' height='14' style ={{ color: 'blue', marginLeft: 10, marginTop: -2 }}/>
+                                </div>) :
                                 (<div className="search-list" style={{ justifyContent: 'center'}} onClick={() => setShowMore(4)}>
-                                <span style={{ color: 'blue' }}>Thu gọn</span>
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn0DdZzOaqWSYrbQKRLpUVqYtqmOig49fawwX3Hd8H3XmYchxtZbBIHeFyktUSMg6_Ul8&usqp=CAU" width='14' height='14' style ={{ color: 'blue', marginLeft: 10, marginTop: -2, transform: 'scaleX(-1)', transform: 'scaleY(-1)' }}/>
-                            </div>)
+                                    <span style={{ color: 'blue' }}>Thu gọn</span>
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn0DdZzOaqWSYrbQKRLpUVqYtqmOig49fawwX3Hd8H3XmYchxtZbBIHeFyktUSMg6_Ul8&usqp=CAU" width='14' height='14' style ={{ color: 'blue', marginLeft: 10, marginTop: -2, transform: 'scaleX(-1)', transform: 'scaleY(-1)' }}/>
+                                </div>)
                             }
-                            
-                        </div>    
+
+                        </div>
                     </div>
                 </>
-        }
-    </main>
-  );
+            }
+        </main>
+    );
 }
 export default HomePage;
