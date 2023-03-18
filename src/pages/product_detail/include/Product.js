@@ -26,17 +26,17 @@ function Product({ products, pro_price, loading }) {
         setCount(1);
         setAlert(true);
         setAlert1(true);
-        
+
         if (isWideScreen()) {
             window.scrollTo({
                 top: 0,
                 behavior: "smooth"
             });
-            setTimeout(() => setAlert(false), 5000); 
+            setTimeout(() => setAlert(false), 5000);
         } else {
             setTimeout(() => setAlert1(false), 4000);
         }
-        
+
         console.log(products);
     }
 
@@ -201,29 +201,33 @@ function Product({ products, pro_price, loading }) {
                                                     <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg" width="20" height="20" />
                                                 </button>
                                             </div>
-                                            { localStorage.getItem('accessToken') ? (
-                                                <div className="group-button">
-                                                    <button className="btnadd" onClick={addToCartRedux}>Chọn Mua</button>
-                                                </div>
-                                            ) : (<>
-                                                <Popup 
-                                                    modal 
-                                                    trigger={
-                                                        <div className="group-button">
-                                                            <button className="btnadd">Chọn Mua</button>
-                                                        </div>
-                                                    }
-                                                >
-                                                    <Login/>
-                                                </Popup>
-                                            </>)
+                                            <div className="group-button">
+                                                <button className="btnadd" onClick={addToCartRedux}>Chọn Mua</button>
+                                            </div>
 
-                                            }
-                                            
+                                            {/*{ localStorage.getItem('accessToken') ? (*/}
+                                            {/*    <div className="group-button">*/}
+                                            {/*        <button className="btnadd" onClick={addToCartRedux}>Chọn Mua</button>*/}
+                                            {/*    </div>*/}
+                                            {/*) : (<>*/}
+                                            {/*    <Popup */}
+                                            {/*        modal */}
+                                            {/*        trigger={*/}
+                                            {/*            <div className="group-button">*/}
+                                            {/*                <button className="btnadd">Chọn Mua</button>*/}
+                                            {/*            </div>*/}
+                                            {/*        }*/}
+                                            {/*    >*/}
+                                            {/*        <Login/>*/}
+                                            {/*    </Popup>*/}
+                                            {/*</>)*/}
+
+                                            {/*}*/}
+
                                         </div>
                                     </div>
                                 </>}
-                            {!isWideScreen() && 
+                            {!isWideScreen() &&
                                 <div>
                                     <div className="m_detail_footer">
                                         <button className="btnpay-mob">
@@ -359,7 +363,7 @@ function Product({ products, pro_price, loading }) {
                     <>
                         <span className="notiAdd">Thêm giỏ hàng thành công!</span>
                     </>
-                }   
+                }
             </div>
         )
         }
