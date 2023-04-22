@@ -160,15 +160,16 @@ function Header() {
                             </div>
                             <div className="topbar-right">
                                 <div className="main-header--top__right">
-                                    <>
-                                        <div className="logged">
-                                            <img
-                                                alt="sd"
-                                                src="https://salt.tikicdn.com/cache/512x512/ts/avatar/b9/42/e9/5d6bd301d4a6fb334877b9ae5082f483.jpg"
-                                                width="32"
-                                                height="32"
-                                            />
-                                            <span>
+                                    {isUser ? (
+                                        <>
+                                            <div className="logged">
+                                                <img
+                                                    alt="sd"
+                                                    src="https://salt.tikicdn.com/cache/512x512/ts/avatar/b9/42/e9/5d6bd301d4a6fb334877b9ae5082f483.jpg"
+                                                    width="32"
+                                                    height="32"
+                                                />
+                                                <span>
                                                     <span className="logged-user">
                                                         Tài khoản
                                                     </span>
@@ -186,35 +187,86 @@ function Header() {
                                                             height="16px"
                                                         />
                                                     </span>
-                                                {hideLogout ? (
-                                                    <></>
-                                                ) : (
-                                                    <>{showDropdownList()}</>
-                                                )}
+                                                    {hideLogout ? (
+                                                        <></>
+                                                    ) : (
+                                                        <>{showDropdownList()}</>
+                                                    )}
                                                 </span>
-                                        </div>
-                                        <div className="header-cart">
-                                            <Link to="/cart">
-                                                <div className="header-cart-shotcut">
-                                                    <div className="cart-wrapper">
-                                                        <img
-                                                            src="https://salt.tikicdn.com/ts/upload/40/44/6c/b80ad73e5e84aeb71c08e5d8d438eaa1.png"
-                                                            alt=""
-                                                            className="cart-icon"
-                                                        />
-                                                        <span className="cart-number">
+                                            </div>
+                                            <div className="header-cart">
+                                                <Link to="/cart">
+                                                    <div className="header-cart-shotcut">
+                                                        <div className="cart-wrapper">
+                                                            <img
+                                                                src="https://salt.tikicdn.com/ts/upload/40/44/6c/b80ad73e5e84aeb71c08e5d8d438eaa1.png"
+                                                                alt=""
+                                                                className="cart-icon"
+                                                            />
+                                                            <span className="cart-number">
                                                                 {cart
                                                                     ? cart.length
                                                                     : 0}
                                                             </span>
-                                                    </div>
-                                                    <span className="cart-title">
+                                                        </div>
+                                                        <span className="cart-title">
                                                             Giỏ hàng
                                                         </span>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Popup
+                                                modal
+                                                trigger={
+                                                    <div className="header-user-shortcut">
+                                                        <img
+                                                            className="profile"
+                                                            src="https://salt.tikicdn.com/ts/upload/67/de/1e/90e54b0a7a59948dd910ba50954c702e.png"
+                                                            alt=""
+                                                        />
+                                                        <span className="user-style">
+                                                            <span className="user-style__title">
+                                                                    Đăng nhập/Đăng ký
+                                                            </span>
+                                                            <span className="account-label">
+                                                                <span>
+                                                                    Tài khoản
+                                                                </span>
+                                                                <img
+                                                                    src="https://salt.tikicdn.com/ts/upload/d7/d4/a8/34939af2da1ceeeae9f95b7485784233.png"
+                                                                    alt="arrowIcon"
+                                                                />
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                }
+                                            >
+                                                <Login />
+                                            </Popup>
+                                            <Link to={'/cart'}>
+                                                <div className="header-cart" >
+                                                    <Link to={'/cart'}>
+                                                        <div className="header-cart-shotcut">
+                                                            <div className="cart-wrapper">
+                                                                <img
+                                                                    src="https://salt.tikicdn.com/ts/upload/40/44/6c/b80ad73e5e84aeb71c08e5d8d438eaa1.png"
+                                                                    alt=""
+                                                                    className="cart-icon"
+                                                                />
+                                                                <span className="cart-number">{cart
+                                                                    ? cart.length
+                                                                    : 0}</span>
+                                                            </div>
+                                                            <span className="cart-title">Giỏ hàng</span>
+                                                        </div>
+                                                    </Link>
                                                 </div>
                                             </Link>
-                                        </div>
-                                    </>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,5 @@
 import axiosClient from "./axiosClient";
+import LogApi from "./LogApi";
 
 const authApi = {
     async getProfile() {
@@ -10,6 +11,15 @@ const authApi = {
             }
         } catch (e) {
             console.log('--------------- getProfile@Error ', e);
+            let data = {
+                method: "GET",
+                path: "auth/profile",
+                status: e.response.status || 501,
+                logs_response: e.message ? e.message : (e.response?.message)
+            }
+
+            LogApi.store(data);
+
             return {
                 status: 501,
                 data: []

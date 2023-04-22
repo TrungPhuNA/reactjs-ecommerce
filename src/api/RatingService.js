@@ -1,4 +1,5 @@
 import axiosClient from './axiosClient';
+import LogApi from "./LogApi";
 
 const ratingApi = {
 	async createRate(data) {
@@ -24,6 +25,14 @@ const ratingApi = {
 				return response.data;
 			}
 		} catch (e) {
+			let data = {
+				method: "GET",
+				path: "vote/lists",
+				status: e.response.status || 501,
+				logs_response: e.message ? e.message : (e.response?.message)
+			}
+
+			LogApi.store(data);
 			console.log('--------------- getRate@Error ', e);
 		}
 	},
@@ -37,6 +46,14 @@ const ratingApi = {
 				return response.data;
 			}
 		} catch (e) {
+			let data = {
+				method: "GET",
+				path: "vote/update",
+				status: e.response.status || 501,
+				logs_response: e.message ? e.message : (e.response?.message)
+			}
+
+			LogApi.store(data);
 			console.log('--------------- updateRate@Error ', e);
 		}
 	},

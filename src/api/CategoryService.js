@@ -6,7 +6,7 @@ const categoryApi = {
 			const newParams = { ...params }
 			const url = `category/lists`;
 			const response = await axiosClient.get(url, {
-				params: {...newParams},
+				params: newParams
 			})
 
 			if (response.status === 200) {
